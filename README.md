@@ -5,55 +5,56 @@
 ## Stack
 
 - **Frontend**: Single-file HTML/CSS/JS in `public/index.html`  
-- **AI Layer**: Mistral API, proxied through Netlify serverless functions  
+- **AI Layer**: OpenRouter API (OpenAI-compatible, 200+ models), proxied through Vercel serverless functions  
 - **Forms**: Formspree (`maqdrora` endpoint)  
-- **Hosting**: Netlify (free tier — generous limits)  
+- **Hosting**: Vercel (free tier — automatic deploys from git)  
 - **Database**: Not yet — static first, Neon Postgres when dynamic digest is needed
 
 ## Project Structure
 
 ```
-hillaryn-site/
+Hillary-Site/
 ├── public/
 │   └── index.html          # Full site
-├── netlify/
-│   └── functions/
-│       ├── chat.js          # Research assistant AI proxy
-│       └── synthesize.js    # Digest synthesis AI proxy + clause extraction
-├── netlify.toml             # Build config, CSP headers, redirects
-├── .env.example             # Required environment variables (template)
-├── .gitignore               # Never commit .env
-└── README.md                # This file
+├── api/
+│   ├── chat.js             # Research assistant AI proxy (Vercel function)
+│   └── synthesize.js       # Digest synthesis AI proxy + clause extraction (Vercel function)
+├── vercel.json             # Build config, CSP headers, redirects
+├── .env.example            # Required environment variables (template)
+├── .gitignore              # Never commit .env
+└── README.md               # This file
 ```
 
 ## Deployment
 
-### Step 1: Set environment variable in Netlify
+### Step 1: Set environment variable in Vercel
 
-1. Netlify dashboard → Site Settings → Environment Variables
-2. Add: `MISTRAL_API_KEY` = your key from console.mistral.ai
+1. Vercel dashboard → Select project → Settings → Environment Variables
+2. Add: `OPENROUTER_API_KEY` = your key from [openrouter.ai](https://openrouter.ai)
 3. **Do not** put the key in any file that gets committed
 
 ### Step 2: Deploy
 
-**Option A — Drag and drop (simplest):**
-- Zip the entire `hillary-site` folder
-- Go to netlify.com/drop
-- Drag the zip
-
-**Option B — Git (recommended for ongoing updates):**
+**Option A — Git (recommended for ongoing updates):**
 ```bash
 git init
 git add .
 git commit -m "initial: constitutional architecture site"
-# Connect repo in Netlify dashboard
+# In Vercel dashboard, import this repo
+```
+
+**Option B — Vercel CLI:**
+```bash
+npm i -g vercel
+vercel
+# Follow prompts, connect your repo
 ```
 
 ### Step 3: Verify functions are live
 
 After deploy, test:
-- `https://yoursite.netlify.app/.netlify/functions/chat` should return `{"error":"Method not allowed"}` on GET
-- `https://yoursite.netlify.app/.netlify/functions/synthesize` same
+- `https://yoursite.vercel.app/api/chat` should return `{"error":"Method not allowed"}` on GET
+- `https://yoursite.vercel.app/api/synthesize` should return same
 
 If you see those responses, the functions are running. The API key is safely server-side.
 
