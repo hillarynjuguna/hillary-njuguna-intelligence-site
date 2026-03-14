@@ -50,7 +50,7 @@ module.exports = async function handler(req, res) {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        'HTTP-Referer': 'https://njugunahillary.vercel.app',
+        'HTTP-Referer': 'https://hillary-site.vercel.app',
         'X-Title': 'Hillary Njuguna Intelligence Stack — Synthesis Engine'
       },
       body: JSON.stringify({
