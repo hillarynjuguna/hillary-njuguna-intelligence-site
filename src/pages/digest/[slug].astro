@@ -1,0 +1,47 @@
+---
+export const prerender = true;
+import { getCollection } from 'astro:content';
+import ContentLayout from '@layouts/ContentLayout.astro';
+import { getRelatedContent } from '@lib/content';
+import { buildArticleSchema } from '@lib/seo';
+import { SITE } from '@data/site';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('digest', ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { data } = entry;
+
+const related = await getRelatedContent(data.related, entry.slug);
+
+const articleSchema = buildArticleSchema({
+  title: data.seoTitle ?? data.title,
+  description: data.seoDescription ?? data.summary,
+  url: `${SITE.url}/digest/${entry.slug}`,
+  publishedAt: data.publishedAt,
+  updatedAt: data.updatedAt,
+  ogImage: data.ogImage,
+  type: data.structuredDataType,
+});
+---
+
+<ContentLayout
+  title={data.seoTitle ?? data.title}
+  description={data.seoDescription ?? data.summary}
+  category={data.category}
+  publishedAt={data.publishedAt}
+  updatedAt={data.updatedAt}
+  tags={data.tags}
+  author={data.author}
+  breadcrumbs={[
+    { name: 'Digest', href: '/digest' },
+    { name: data.title, href: `/digest/${entry.slug}` },
+  ]}
+  related={related}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <Content />
+</ContentLayout>

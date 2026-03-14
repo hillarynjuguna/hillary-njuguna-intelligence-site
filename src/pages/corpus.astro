@@ -1,0 +1,486 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCurrentSignal } from '@lib/content';
+
+const signal = await getCurrentSignal();
+
+const examplePrompts = [
+  "What is the core argument of the DCFB framework?",
+  "How does the Bainbridge Warning differ from a standard AI audit?",
+  "Explain trust as irreversibility residue in plain language",
+  "What does cognitive infrastructure readiness actually measure?",
+  "How do the 7 models in the orchestra differ in cognitive posture?",
+  "What is a clause candidate and how are they generated?",
+];
+---
+
+<BaseLayout
+  title="Corpus"
+  description="Query the Oscillatory Fields research corpus directly. 560+ sourced documents, 18 months of synthesis, the complete intelligence architecture — queryable, navigable, alive."
+>
+  <div class="corpus-page page-enter">
+    <div class="container">
+      <header class="corpus-header">
+        <p class="label corpus-label">Research Stack</p>
+        <h1 class="corpus-title">The Corpus</h1>
+        <p class="corpus-desc">
+          560+ sourced documents. 18 months of synthesis. The complete Oscillatory Fields
+          research corpus — queryable by anyone. Ask about frameworks, research, governance
+          theory, or anything in the intellectual architecture.
+        </p>
+        {signal?.corpusStats && (
+          <div class="corpus-stats">
+            {signal.corpusStats.entries && (
+              <div class="corpus-stat">
+                <span class="corpus-stat__val">{signal.corpusStats.entries}</span>
+                <span class="label corpus-stat__key">published entries</span>
+              </div>
+            )}
+            {signal.corpusStats.clauses && (
+              <div class="corpus-stat">
+                <span class="corpus-stat__val">{signal.corpusStats.clauses}</span>
+                <span class="label corpus-stat__key">clause candidates</span>
+              </div>
+            )}
+            <div class="corpus-stat">
+              <span class="corpus-stat__val">560+</span>
+              <span class="label corpus-stat__key">source documents</span>
+            </div>
+          </div>
+        )}
+      </header>
+
+      <div class="corpus-interface">
+        <!-- Chat surface -->
+        <div class="corpus-chat" id="corpus-chat">
+          <div class="chat-messages" id="chat-messages" aria-live="polite" aria-label="Conversation">
+            <div class="chat-message chat-message--system">
+              <p>
+                You're speaking directly with the Research Stack — a synthesis layer built
+                on the Oscillatory Fields corpus. Ask about any framework, concept, or piece
+                of research. I'll answer from the corpus and surface related material where relevant.
+              </p>
+            </div>
+          </div>
+
+          <div class="chat-input-area">
+            <div class="chat-suggestions">
+              <p class="label chat-suggestions__label">Try asking:</p>
+              <div class="chat-suggestions__list">
+                {examplePrompts.map((prompt) => (
+                  <button class="chat-suggestion" data-prompt={prompt}>
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div class="chat-input-row">
+              <textarea
+                id="corpus-input"
+                class="chat-input"
+                placeholder="Ask the corpus anything…"
+                rows="3"
+                aria-label="Your question"
+              ></textarea>
+              <button id="corpus-submit" class="btn btn--primary chat-submit" aria-label="Send">
+                Ask →
+              </button>
+            </div>
+            <p class="label chat-note">
+              Synthesis mode — responses draw from the corpus and may generate clause candidates.
+            </p>
+          </div>
+        </div>
+
+        <!-- Sidebar: about the corpus -->
+        <aside class="corpus-sidebar">
+          <div class="corpus-info">
+            <p class="label corpus-info__label">About this corpus</p>
+            <h2 class="corpus-info__title">What the Research Stack knows</h2>
+            <div class="corpus-info__items">
+              <div class="corpus-info__item">
+                <span class="label corpus-info__item-label">DCFB Framework</span>
+                <p class="corpus-info__item-desc">Distributed Cognition as Foundational Behavior — the theoretical foundation</p>
+              </div>
+              <div class="corpus-info__item">
+                <span class="label corpus-info__item-label">CIR Framework</span>
+                <p class="corpus-info__item-desc">Cognitive Infrastructure Readiness across five constitutional dimensions</p>
+              </div>
+              <div class="corpus-info__item">
+                <span class="label corpus-info__item-label">Bainbridge Warning</span>
+                <p class="corpus-info__item-desc">Institutional AI failure pattern analysis and diagnostic</p>
+              </div>
+              <div class="corpus-info__item">
+                <span class="label corpus-info__item-label">Trust Theory</span>
+                <p class="corpus-info__item-desc">Trust = Irreversibility Residue — structural account of AI trust</p>
+              </div>
+              <div class="corpus-info__item">
+                <span class="label corpus-info__item-label">Intelligence Digest</span>
+                <p class="corpus-info__item-desc">Live field notes from active synthesis sessions</p>
+              </div>
+            </div>
+            <div class="corpus-info__links">
+              <a href="/research" class="label corpus-info__link">Research archive →</a>
+              <a href="/clauses" class="label corpus-info__link">Clause archive →</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .corpus-page {
+    padding: var(--space-24) 0 var(--space-32);
+  }
+
+  .corpus-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .corpus-label {
+    color: var(--ember);
+    margin-bottom: var(--space-3);
+  }
+
+  .corpus-title {
+    font-size: var(--text-5xl);
+    margin-bottom: var(--space-5);
+  }
+
+  @media (max-width: 768px) {
+    .corpus-title { font-size: var(--text-4xl); }
+  }
+
+  .corpus-desc {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 64ch;
+    margin-bottom: var(--space-8);
+  }
+
+  .corpus-stats {
+    display: flex;
+    gap: var(--space-10);
+    flex-wrap: wrap;
+  }
+
+  .corpus-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .corpus-stat__val {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--ember);
+  }
+
+  .corpus-stat__key {
+    color: var(--text-tertiary);
+  }
+
+  /* Interface layout */
+  .corpus-interface {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .corpus-interface {
+      grid-template-columns: 1fr;
+    }
+    .corpus-sidebar {
+      order: -1;
+    }
+  }
+
+  /* Chat */
+  .corpus-chat {
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-messages {
+    min-height: 280px;
+    max-height: 520px;
+    overflow-y: auto;
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .chat-message {
+    max-width: 90%;
+  }
+
+  .chat-message--system {
+    background: var(--surface-3);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .chat-message--user {
+    align-self: flex-end;
+    background: rgba(196, 112, 58, 0.12);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--text-base);
+    color: var(--pale-gold);
+  }
+
+  .chat-message--assistant {
+    background: var(--surface-3);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .chat-message--thinking {
+    color: var(--text-tertiary);
+    font-style: italic;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+
+  /* Input area */
+  .chat-input-area {
+    padding: var(--space-5) var(--space-6);
+    border-top: 1px solid var(--border-dim);
+    background: var(--surface-1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .chat-suggestions__label {
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-3);
+  }
+
+  .chat-suggestions__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+
+  .chat-suggestion {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    background: var(--surface-3);
+    border: 1px solid var(--border-dim);
+    border-radius: 2px;
+    padding: var(--space-2) var(--space-3);
+    cursor: pointer;
+    text-align: left;
+    line-height: 1.4;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .chat-suggestion:hover {
+    color: var(--text-primary);
+    border-color: var(--border-bright);
+    background: var(--surface-4);
+  }
+
+  .chat-input-row {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-end;
+  }
+
+  .chat-input {
+    flex: 1;
+    background: var(--surface-3);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    resize: none;
+    transition: border-color var(--duration-fast) var(--ease-out);
+    line-height: var(--leading-relaxed);
+  }
+
+  .chat-input:focus {
+    outline: none;
+    border-color: var(--ember-dim);
+  }
+
+  .chat-input::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  .chat-submit {
+    flex-shrink: 0;
+    align-self: flex-end;
+  }
+
+  .chat-note {
+    color: var(--text-tertiary);
+  }
+
+  /* Sidebar */
+  .corpus-info {
+    background: var(--surface-2);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    position: sticky;
+    top: calc(var(--space-16) + 60px);
+  }
+
+  .corpus-info__label {
+    color: var(--ember);
+    margin-bottom: var(--space-4);
+  }
+
+  .corpus-info__title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-6);
+    line-height: var(--leading-snug);
+  }
+
+  .corpus-info__items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .corpus-info__item {
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .corpus-info__item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .corpus-info__item-label {
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: var(--space-1);
+  }
+
+  .corpus-info__item-desc {
+    color: var(--text-tertiary);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+
+  .corpus-info__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .corpus-info__link {
+    color: var(--ember);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .corpus-info__link:hover {
+    color: var(--ember-bright);
+  }
+</style>
+
+<script>
+  const messagesEl = document.getElementById('chat-messages');
+  const inputEl = document.getElementById('corpus-input') as HTMLTextAreaElement;
+  const submitBtn = document.getElementById('corpus-submit');
+  const suggestions = document.querySelectorAll('.chat-suggestion');
+
+  let messageHistory: { role: string; content: string }[] = [];
+
+  function appendMessage(role: 'user' | 'assistant' | 'thinking', text: string) {
+    const div = document.createElement('div');
+    div.className = `chat-message chat-message--${role}`;
+    div.innerHTML = `<p>${text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>').replace(/\n/g, '<br>')}</p>`;
+    messagesEl?.appendChild(div);
+    messagesEl?.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
+    return div;
+  }
+
+  async function sendMessage(text: string) {
+    if (!text.trim()) return;
+
+    inputEl.value = '';
+    inputEl.disabled = true;
+    if (submitBtn) (submitBtn as HTMLButtonElement).disabled = true;
+
+    appendMessage('user', text);
+    const thinkingEl = appendMessage('thinking', 'Synthesising from corpus…');
+
+    messageHistory.push({ role: 'user', content: text });
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: messageHistory }),
+      });
+
+      const data = await res.json();
+      thinkingEl.remove();
+
+      if (data.reply) {
+        appendMessage('assistant', data.reply);
+        messageHistory.push({ role: 'assistant', content: data.reply });
+        // Keep last 20 messages
+        if (messageHistory.length > 20) messageHistory = messageHistory.slice(-20);
+      } else {
+        appendMessage('assistant', 'The corpus encountered an issue. Please try again.');
+      }
+    } catch {
+      thinkingEl.remove();
+      appendMessage('assistant', 'Unable to reach the Research Stack. Check your connection and try again.');
+    } finally {
+      inputEl.disabled = false;
+      if (submitBtn) (submitBtn as HTMLButtonElement).disabled = false;
+      inputEl.focus();
+    }
+  }
+
+  submitBtn?.addEventListener('click', () => sendMessage(inputEl.value));
+
+  inputEl?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage(inputEl.value);
+    }
+  });
+
+  suggestions.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const prompt = btn.getAttribute('data-prompt') ?? '';
+      sendMessage(prompt);
+    });
+  });
+</script>

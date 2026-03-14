@@ -1,0 +1,93 @@
+---
+interface Props {
+  items: any[];
+}
+
+const { items } = Astro.props;
+if (!items?.length) return;
+
+function getHref(item: any): string {
+  if (item.collection === 'digest') return `/digest/${item.slug}`;
+  if (item.collection === 'research') return `/research/${item.slug}`;
+  if (item.collection === 'products') return `/products/${item.slug}`;
+  return `/${item.slug}`;
+}
+
+function getLabel(item: any): string {
+  const labels: Record<string, string> = {
+    digest: 'Digest',
+    research: 'Research',
+    products: 'Product',
+  };
+  return labels[item.collection] ?? item.collection;
+}
+---
+
+<aside class="related">
+  <h2 class="related__heading label">Related</h2>
+  <div class="related__list">
+    {items.map((item) => (
+      <a href={getHref(item)} class="related__item">
+        <span class="label related__type">{getLabel(item)}</span>
+        <span class="related__title">{item.data.title}</span>
+        {item.data.summary && (
+          <span class="related__summary">{item.data.summary.slice(0, 100)}…</span>
+        )}
+      </a>
+    ))}
+  </div>
+</aside>
+
+<style>
+  .related {
+    margin-top: var(--space-16);
+    padding-top: var(--space-10);
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .related__heading {
+    color: var(--ember);
+    margin-bottom: var(--space-6);
+  }
+
+  .related__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .related__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--duration-mid) var(--ease-out);
+    background: var(--surface-2);
+  }
+
+  .related__item:hover {
+    border-color: var(--border-bright);
+    background: var(--surface-3);
+    transform: translateY(-2px);
+  }
+
+  .related__type {
+    color: var(--ember);
+  }
+
+  .related__title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+  }
+
+  .related__summary {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    line-height: var(--leading-normal);
+  }
+</style>

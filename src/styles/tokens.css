@@ -1,0 +1,104 @@
+/* ── Design Tokens ─────────────────────────────────────────────────────────── */
+:root {
+  /* Color palette */
+  --void: #050403;
+  --void-1: #0c0a08;
+  --void-2: #161210;
+  --void-3: #1e1a16;
+  --void-4: #28221d;
+
+  --ember: #c4703a;
+  --ember-dim: #8a4e29;
+  --ember-bright: #d4834f;
+
+  --gold: #c9955a;
+  --pale-gold: #e8d4b0;
+  --warm-white: #f5ede0;
+
+  --sage: #5a7a62;
+  --sage-dim: #3d5442;
+  --sage-bright: #6e9477;
+
+  --ash: #6e6459;
+  --ash-light: #9e9088;
+  --ash-dim: #3e3832;
+
+  --text-primary: #e8d4b0;
+  --text-secondary: #9e9088;
+  --text-tertiary: #6e6459;
+  --text-accent: #c4703a;
+
+  --surface-1: #0c0a08;
+  --surface-2: #161210;
+  --surface-3: #1e1a16;
+  --surface-4: #28221d;
+
+  --border-dim: rgba(196, 112, 58, 0.12);
+  --border-mid: rgba(196, 112, 58, 0.22);
+  --border-bright: rgba(196, 112, 58, 0.4);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-mono: 'DM Mono', 'Fira Code', monospace;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --text-xs: 0.6875rem;   /* 11px */
+  --text-sm: 0.8125rem;   /* 13px */
+  --text-base: 0.9375rem; /* 15px */
+  --text-md: 1.0625rem;   /* 17px */
+  --text-lg: 1.25rem;     /* 20px */
+  --text-xl: 1.5rem;      /* 24px */
+  --text-2xl: 1.875rem;   /* 30px */
+  --text-3xl: 2.25rem;    /* 36px */
+  --text-4xl: 3rem;       /* 48px */
+  --text-5xl: 3.75rem;    /* 60px */
+  --text-6xl: 4.5rem;     /* 72px */
+
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+  --leading-loose: 2;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Layout */
+  --max-w-prose: 68ch;
+  --max-w-wide: 90ch;
+  --max-w-site: 1200px;
+  --max-w-narrow: 52ch;
+
+  /* Border */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+
+  /* Transition */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-mid: 250ms;
+  --duration-slow: 400ms;
+
+  /* Z-index */
+  --z-below: -1;
+  --z-base: 0;
+  --z-raised: 10;
+  --z-overlay: 20;
+  --z-modal: 30;
+  --z-nav: 40;
+  --z-toast: 50;
+}

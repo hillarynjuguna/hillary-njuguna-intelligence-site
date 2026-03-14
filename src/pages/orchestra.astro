@@ -1,0 +1,234 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ORCHESTRA_MODELS } from '@data/navigation';
+---
+
+<BaseLayout
+  title="The Orchestra"
+  description="The methodology behind Oscillatory Fields — a 7-model intelligence ecology where each AI system plays a distinct cognitive role in the research and synthesis process."
+>
+  <div class="page page-enter">
+    <div class="container">
+      <header class="page-header">
+        <p class="label page-label">Methodology</p>
+        <h1 class="page-title">The Orchestra</h1>
+        <p class="page-desc">
+          A 7-model intelligence ecology. Not a single AI assistant used interchangeably —
+          a structured ensemble where each model plays a distinct cognitive role,
+          and the intelligence emerges from the field between them.
+        </p>
+      </header>
+
+      <section class="orchestra-section">
+        <div class="orchestra-intro prose" data-reveal>
+          <h2>Not one model. A field.</h2>
+          <p>
+            The dominant approach to AI-assisted research treats models as interchangeable tools —
+            pick the most capable one and use it for everything. This produces capable outputs
+            from a single perspective, which is not the same as rigorous synthesis.
+          </p>
+          <p>
+            The Orchestra is built on a different premise: different models have genuinely different
+            cognitive postures. Claude holds context with unusual fidelity. Grok reads the ambient
+            cultural signal. DeepSeek finds structural weaknesses in arguments. Perplexity grounds
+            analysis in what's happening now. These aren't the same cognitive act. They shouldn't
+            be treated as interchangeable.
+          </p>
+          <p>
+            Orchestrating them means understanding what each model is for — and routing research
+            questions through the right instrument at the right moment. The synthesis that emerges
+            is genuinely richer than anything a single model could produce.
+          </p>
+        </div>
+      </section>
+
+      <section class="models-section">
+        <h2 class="models-heading label" data-reveal>The Seven Instruments</h2>
+        <div class="models-grid">
+          {ORCHESTRA_MODELS.map((model, i) => (
+            <div class="model-card" data-reveal data-reveal-delay={String(i % 4 + 1)}>
+              <div class="model-card__header">
+                <span class="model-card__name">{model.name}</span>
+                <span class="label model-card__provider">{model.provider}</span>
+              </div>
+              <span class="label model-card__role">{model.role}</span>
+              <p class="model-card__desc">{model.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="governance-section" data-reveal>
+        <div class="governance-inner">
+          <div class="governance-text">
+            <p class="label governance-label">Constitutional Layer</p>
+            <h2 class="governance-title">The governance architecture beneath the orchestra</h2>
+            <p class="governance-desc">
+              Running across all seven models is a constitutional governance layer — a set of
+              principles about how AI outputs should be treated, how synthesis should be validated,
+              and what counts as knowledge versus speculation in this research context.
+            </p>
+            <p class="governance-desc">
+              Every synthesis run produces a potential clause candidate — a fragment of the
+              evolving constitutional framework that governs how the orchestra operates.
+              These candidates accumulate in the public governance archive.
+            </p>
+          </div>
+          <div class="governance-cta">
+            <a href="/clauses" class="btn btn--ember">View clause archive →</a>
+            <a href="/corpus" class="btn btn--ghost">Query the corpus →</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    padding: var(--space-24) 0 var(--space-32);
+  }
+
+  .page-header {
+    max-width: 64ch;
+    margin-bottom: var(--space-16);
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .page-label {
+    color: var(--ember);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-title {
+    font-size: var(--text-5xl);
+    margin-bottom: var(--space-5);
+  }
+
+  @media (max-width: 768px) {
+    .page-title { font-size: var(--text-4xl); }
+  }
+
+  .page-desc {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Orchestra intro */
+  .orchestra-section {
+    margin-bottom: var(--space-20);
+  }
+
+  .orchestra-intro {
+    max-width: var(--max-w-prose);
+  }
+
+  /* Models */
+  .models-section {
+    margin-bottom: var(--space-20);
+  }
+
+  .models-heading {
+    color: var(--ember);
+    margin-bottom: var(--space-8);
+  }
+
+  .models-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .model-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    transition: border-color var(--duration-mid) var(--ease-out);
+  }
+
+  .model-card:hover {
+    border-color: var(--border-bright);
+  }
+
+  .model-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .model-card__name {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    color: var(--text-primary);
+  }
+
+  .model-card__provider {
+    color: var(--text-tertiary);
+  }
+
+  .model-card__role {
+    color: var(--ember);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .model-card__desc {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Governance */
+  .governance-section {
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    padding: var(--space-12);
+  }
+
+  .governance-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .governance-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .governance-label {
+    color: var(--ember);
+    margin-bottom: var(--space-3);
+  }
+
+  .governance-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-5);
+    line-height: var(--leading-snug);
+  }
+
+  .governance-desc {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+    max-width: 60ch;
+  }
+
+  .governance-cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    flex-shrink: 0;
+  }
+</style>
