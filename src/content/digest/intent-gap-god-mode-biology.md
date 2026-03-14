@@ -1,15 +1,36 @@
 ---
+id: digest-intent-gap-god-mode-biology
 title: "The Intent Gap, God Mode Biology, and the Quiet Infrastructure Shift"
+description: "Analysis of the alignment gap in AI systems, biotech's self-modification loop, and the real infrastructure story beneath the AI hype cycle."
 summary: "On the growing distance between what AI systems are asked to do and what they actually optimise for — plus biotech's accelerating self-modification loop and the infrastructure move hiding beneath the AI hype cycle."
 publishedAt: 2026-02-27
 tags: ["intent-gap", "alignment", "biotech", "infrastructure", "ai-governance"]
+themes: ["governance", "epistemics", "infrastructure", "ai-systems"]
+domains: ["governance", "epistemics"]
+lineage: ["dcfb-core"]
 category: "Field Notes"
+digestType: field-notes
 featured: true
+crystallization: developing
+governanceRelevance: direct
 seoTitle: "The Intent Gap, God Mode Biology & Infrastructure Shift — Oscillatory Fields"
 seoDescription: "Analysis of the alignment gap in AI systems, biotech's self-modification loop, and the real infrastructure story beneath the hype cycle."
 excerpt: "The intent gap is not a prompt engineering problem. It is a governance problem."
 author: "Hillary Njuguna"
 structuredDataType: "BlogPosting"
+explicitRelations:
+  - targetId: clause-intent-specification
+    type: crystallizes
+    confidence: high
+    explanation: "The intent gap analysis directly produced the Intent Specification Requirement clause — the clause text appears as the 'clause candidate from this synthesis' in this entry."
+    provenance: ["section: The Intent Gap"]
+    manual: true
+  - targetId: research-dcfb
+    type: example_of
+    confidence: high
+    explanation: "This digest entry is a field-level example of the DCFB Principle 1 failure mode — organisations treating intent at the node level rather than the field level."
+    provenance: ["section: The Intent Gap"]
+    manual: true
 ---
 
 ## The Intent Gap

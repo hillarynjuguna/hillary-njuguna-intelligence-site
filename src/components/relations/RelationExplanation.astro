@@ -1,0 +1,66 @@
+---
+import type { RelatedItem } from '@lib/graph/types';
+import RelationBadge from './RelationBadge.astro';
+
+interface Props {
+  item: RelatedItem;
+  collapsed?: boolean;
+}
+
+const { item, collapsed = false } = Astro.props;
+const { edge } = item;
+
+const showConfidenceNote = !edge.manual && edge.confidence !== 'high';
+const confidenceNote =
+  edge.confidence === 'low'
+    ? 'Inferred from structural overlap — verify manually.'
+    : edge.confidence === 'medium'
+    ? 'Inferred with moderate confidence.'
+    : '';
+---
+
+<div class:list={['rel-explanation', collapsed && 'rel-explanation--collapsed']}>
+  <div class="rel-explanation__badge-row">
+    <RelationBadge type={edge.type} isManual={edge.manual} compact />
+    {edge.manual && <span class="rel-explanation__manual-mark label">authored</span>}
+  </div>
+  {!collapsed && edge.explanation && (
+    <p class="rel-explanation__text">{edge.explanation}</p>
+  )}
+  {showConfidenceNote && !collapsed && (
+    <p class="rel-explanation__note label">{confidenceNote}</p>
+  )}
+</div>
+
+<style>
+  .rel-explanation {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .rel-explanation__badge-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .rel-explanation__manual-mark {
+    color: var(--text-tertiary);
+    font-size: 10px;
+    opacity: 0.6;
+  }
+
+  .rel-explanation__text {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+
+  .rel-explanation__note {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    opacity: 0.6;
+  }
+</style>

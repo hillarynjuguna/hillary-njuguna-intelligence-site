@@ -1,16 +1,52 @@
 ---
+id: research-bainbridge-warning
 title: "The Bainbridge Warning"
+description: "Framework for understanding institutional AI failure — the structural pattern where high capability and low governance combine to produce entirely predictable catastrophic outcomes."
 summary: "A framework for understanding institutional AI failure — named for the structural pattern where high capability and low governance combine to produce catastrophic outcomes that were entirely predictable in retrospect."
 publishedAt: 2026-02-01
 tags: ["bainbridge-warning", "institutional-failure", "ai-governance", "risk-architecture", "readiness"]
 themes: ["governance", "institutional-design", "failure-analysis", "constitutional-ai"]
 concepts: ["bainbridge-pattern", "capability-governance-gap", "predictable-failure", "institutional-readiness"]
+domains: ["governance", "institutional-design", "failure-analysis"]
+lineage: ["dcfb-core", "bainbridge-core"]
 featured: true
+crystallization: developing
+governanceRelevance: direct
+researchType: framework
 seoTitle: "The Bainbridge Warning — Institutional AI Failure Framework"
 seoDescription: "Understanding why high-capability AI deployments fail in low-governance institutions — and the predictable pattern that makes these failures structurally inevitable."
 excerpt: "The failure was predictable. It always is, afterward."
 author: "Hillary Njuguna"
-related: ["dcfb-distributed-cognition", "trust-irreversibility-residue"]
+keyClaims:
+  - "High capability adoption + low governance infrastructure = structurally predictable failure."
+  - "The failure is always legible in retrospect — the framework makes it visible before."
+  - "Capability-governance gaps can be diagnosed and closed before they produce institutional failures."
+unresolvedEdges:
+  - "What is the minimum viable governance profile for a given capability level?"
+  - "How do Bainbridge zones interact when multiple gap areas co-exist?"
+dependsOnConcepts:
+  - "distributed cognition (Hutchins)"
+  - "capability-governance gap"
+  - "constitutional design"
+explicitRelations:
+  - targetId: research-dcfb
+    type: extends
+    confidence: high
+    explanation: "The Bainbridge Warning is the applied diagnostic operationalisation of DCFB — translating the five constitutional principles into a gap analysis framework for institutional deployment."
+    provenance: ["section: The Diagnostic"]
+    manual: true
+  - targetId: product-bainbridge-warning
+    type: prototype_for
+    confidence: high
+    explanation: "This research paper is the theoretical foundation for the Bainbridge Warning product offering — the product operationalises the research as a delivered assessment service."
+    provenance: ["section: The Diagnostic"]
+    manual: true
+  - targetId: research-trust-irreversibility-residue
+    type: depends_on
+    confidence: high
+    explanation: "The Bainbridge Warning gap analysis depends on the irreversibility account of trust — Bainbridge zones are structurally defined by where irreversibility accumulates faster than governance."
+    provenance: ["section: Gap Analysis"]
+    manual: true
 ---
 
 ## The Pattern

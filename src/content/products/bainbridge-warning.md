@@ -1,7 +1,10 @@
 ---
+id: product-bainbridge-warning
 title: "The Bainbridge Warning"
+description: "An institutional AI readiness framework that makes predictable failures visible before they occur."
 summary: "An institutional AI readiness framework that makes predictable failures visible before they occur. For executive teams, governance leads, and board advisors navigating high-stakes AI deployment."
 productType: "framework"
+productKind: offering
 status: "live"
 price: "On request"
 ctaLabel: "Request Access"
@@ -9,10 +12,27 @@ ctaUrl: "mailto:hello@hillarynjuguna.com?subject=Bainbridge Warning"
 platform: "Direct"
 featured: true
 order: 1
+domains: ["governance", "institutional-design"]
+lineage: ["bainbridge-core", "dcfb-core"]
+crystallization: crystallized
+governanceRelevance: direct
+relatedResearch: ["research-bainbridge-warning", "research-dcfb"]
 seoTitle: "The Bainbridge Warning — Institutional AI Readiness Framework"
 seoDescription: "A diagnostic framework for closing the capability-governance gap before it produces institutional failure. For executive teams navigating high-stakes AI deployment."
 excerpt: "The failure was predictable. It always is, afterward. The Bainbridge Warning makes it visible before."
-related: ["cir", "martha"]
+explicitRelations:
+  - targetId: research-bainbridge-warning
+    type: derives_from
+    confidence: high
+    explanation: "The product is the delivered-service operationalisation of the Bainbridge Warning research framework — same diagnostic, structured as an assessment engagement."
+    provenance: []
+    manual: true
+  - targetId: product-cir
+    type: extends
+    confidence: high
+    explanation: "The Bainbridge Warning extends CIR by adding a capability profile, gap analysis, and predictability assessment — building on the constitutional foundation CIR establishes."
+    provenance: ["section: The Framework"]
+    manual: true
 faq:
   - q: "Who is this for?"
     a: "Executive teams, governance leads, board advisors, and policy directors at organisations deploying or planning to deploy AI capabilities at scale. Also useful for institutional investors assessing AI-related governance risk."

@@ -1,0 +1,465 @@
+{
+  "domains": {
+    "governance": {
+      "label": "governance",
+      "contentIds": [
+        "digest-cir-v2-core-argument",
+        "digest-intent-gap-god-mode-biology",
+        "digest-mcp-consolidation-infrastructure-paradox",
+        "research-bainbridge-warning",
+        "research-dcfb",
+        "research-trust-irreversibility-residue",
+        "product-bainbridge-warning",
+        "product-cir",
+        "product-clearbid",
+        "product-martha",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "count": 12
+    },
+    "constitutional-design": {
+      "label": "constitutional-design",
+      "contentIds": [
+        "digest-cir-v2-core-argument",
+        "product-cir"
+      ],
+      "count": 2
+    },
+    "epistemics": {
+      "label": "epistemics",
+      "contentIds": [
+        "digest-intent-gap-god-mode-biology",
+        "research-dcfb",
+        "research-trust-irreversibility-residue",
+        "clause-intent-specification"
+      ],
+      "count": 4
+    },
+    "infrastructure": {
+      "label": "infrastructure",
+      "contentIds": [
+        "digest-mcp-consolidation-infrastructure-paradox"
+      ],
+      "count": 1
+    },
+    "institutional-design": {
+      "label": "institutional-design",
+      "contentIds": [
+        "research-bainbridge-warning",
+        "product-bainbridge-warning"
+      ],
+      "count": 2
+    },
+    "failure-analysis": {
+      "label": "failure-analysis",
+      "contentIds": [
+        "research-bainbridge-warning"
+      ],
+      "count": 1
+    },
+    "ai-systems": {
+      "label": "ai-systems",
+      "contentIds": [
+        "research-dcfb"
+      ],
+      "count": 1
+    },
+    "trust-theory": {
+      "label": "trust-theory",
+      "contentIds": [
+        "research-trust-irreversibility-residue"
+      ],
+      "count": 1
+    },
+    "procurement": {
+      "label": "procurement",
+      "contentIds": [
+        "product-clearbid"
+      ],
+      "count": 1
+    },
+    "education": {
+      "label": "education",
+      "contentIds": [
+        "product-martha"
+      ],
+      "count": 1
+    },
+    "deployment-authority": {
+      "label": "deployment-authority",
+      "contentIds": [
+        "clause-irreversibility-threshold"
+      ],
+      "count": 1
+    }
+  },
+  "themes": {
+    "governance": {
+      "label": "governance",
+      "contentIds": [
+        "digest-cir-v2-core-argument",
+        "digest-intent-gap-god-mode-biology",
+        "digest-mcp-consolidation-infrastructure-paradox",
+        "research-bainbridge-warning",
+        "research-dcfb"
+      ],
+      "count": 5
+    },
+    "constitutional-design": {
+      "label": "constitutional-design",
+      "contentIds": [
+        "digest-cir-v2-core-argument"
+      ],
+      "count": 1
+    },
+    "institutional-design": {
+      "label": "institutional-design",
+      "contentIds": [
+        "digest-cir-v2-core-argument",
+        "digest-mcp-consolidation-infrastructure-paradox",
+        "research-bainbridge-warning",
+        "research-trust-irreversibility-residue"
+      ],
+      "count": 4
+    },
+    "ai-systems": {
+      "label": "ai-systems",
+      "contentIds": [
+        "digest-cir-v2-core-argument",
+        "digest-intent-gap-god-mode-biology",
+        "digest-mcp-consolidation-infrastructure-paradox",
+        "research-dcfb"
+      ],
+      "count": 4
+    },
+    "epistemics": {
+      "label": "epistemics",
+      "contentIds": [
+        "digest-intent-gap-god-mode-biology"
+      ],
+      "count": 1
+    },
+    "infrastructure": {
+      "label": "infrastructure",
+      "contentIds": [
+        "digest-intent-gap-god-mode-biology",
+        "digest-mcp-consolidation-infrastructure-paradox"
+      ],
+      "count": 2
+    },
+    "failure-analysis": {
+      "label": "failure-analysis",
+      "contentIds": [
+        "research-bainbridge-warning"
+      ],
+      "count": 1
+    },
+    "constitutional-ai": {
+      "label": "constitutional-ai",
+      "contentIds": [
+        "research-bainbridge-warning"
+      ],
+      "count": 1
+    },
+    "cognition": {
+      "label": "cognition",
+      "contentIds": [
+        "research-dcfb"
+      ],
+      "count": 1
+    },
+    "human-ai-collaboration": {
+      "label": "human-ai-collaboration",
+      "contentIds": [
+        "research-dcfb"
+      ],
+      "count": 1
+    },
+    "trust-theory": {
+      "label": "trust-theory",
+      "contentIds": [
+        "research-trust-irreversibility-residue"
+      ],
+      "count": 1
+    },
+    "ai-governance": {
+      "label": "ai-governance",
+      "contentIds": [
+        "research-trust-irreversibility-residue"
+      ],
+      "count": 1
+    },
+    "decision-theory": {
+      "label": "decision-theory",
+      "contentIds": [
+        "research-trust-irreversibility-residue"
+      ],
+      "count": 1
+    }
+  },
+  "tags": {
+    "cir": {
+      "label": "cir",
+      "contentIds": [
+        "digest-cir-v2-core-argument"
+      ],
+      "count": 1
+    },
+    "cognitive-infrastructure": {
+      "label": "cognitive-infrastructure",
+      "contentIds": [
+        "digest-cir-v2-core-argument"
+      ],
+      "count": 1
+    },
+    "ai-readiness": {
+      "label": "ai-readiness",
+      "contentIds": [
+        "digest-cir-v2-core-argument"
+      ],
+      "count": 1
+    },
+    "constitutional-ai": {
+      "label": "constitutional-ai",
+      "contentIds": [
+        "digest-cir-v2-core-argument",
+        "research-trust-irreversibility-residue"
+      ],
+      "count": 2
+    },
+    "framework": {
+      "label": "framework",
+      "contentIds": [
+        "digest-cir-v2-core-argument"
+      ],
+      "count": 1
+    },
+    "intent-gap": {
+      "label": "intent-gap",
+      "contentIds": [
+        "digest-intent-gap-god-mode-biology"
+      ],
+      "count": 1
+    },
+    "alignment": {
+      "label": "alignment",
+      "contentIds": [
+        "digest-intent-gap-god-mode-biology",
+        "research-trust-irreversibility-residue",
+        "clause-intent-specification"
+      ],
+      "count": 3
+    },
+    "biotech": {
+      "label": "biotech",
+      "contentIds": [
+        "digest-intent-gap-god-mode-biology"
+      ],
+      "count": 1
+    },
+    "infrastructure": {
+      "label": "infrastructure",
+      "contentIds": [
+        "digest-intent-gap-god-mode-biology",
+        "digest-mcp-consolidation-infrastructure-paradox"
+      ],
+      "count": 2
+    },
+    "ai-governance": {
+      "label": "ai-governance",
+      "contentIds": [
+        "digest-intent-gap-god-mode-biology",
+        "research-bainbridge-warning"
+      ],
+      "count": 2
+    },
+    "mcp": {
+      "label": "mcp",
+      "contentIds": [
+        "digest-mcp-consolidation-infrastructure-paradox"
+      ],
+      "count": 1
+    },
+    "institutional-ai": {
+      "label": "institutional-ai",
+      "contentIds": [
+        "digest-mcp-consolidation-infrastructure-paradox"
+      ],
+      "count": 1
+    },
+    "governance": {
+      "label": "governance",
+      "contentIds": [
+        "digest-mcp-consolidation-infrastructure-paradox",
+        "research-trust-irreversibility-residue",
+        "clause-intent-specification"
+      ],
+      "count": 3
+    },
+    "cost-accounting": {
+      "label": "cost-accounting",
+      "contentIds": [
+        "digest-mcp-consolidation-infrastructure-paradox"
+      ],
+      "count": 1
+    },
+    "bainbridge-warning": {
+      "label": "bainbridge-warning",
+      "contentIds": [
+        "research-bainbridge-warning"
+      ],
+      "count": 1
+    },
+    "institutional-failure": {
+      "label": "institutional-failure",
+      "contentIds": [
+        "research-bainbridge-warning"
+      ],
+      "count": 1
+    },
+    "risk-architecture": {
+      "label": "risk-architecture",
+      "contentIds": [
+        "research-bainbridge-warning"
+      ],
+      "count": 1
+    },
+    "readiness": {
+      "label": "readiness",
+      "contentIds": [
+        "research-bainbridge-warning"
+      ],
+      "count": 1
+    },
+    "dcfb": {
+      "label": "dcfb",
+      "contentIds": [
+        "research-dcfb"
+      ],
+      "count": 1
+    },
+    "distributed-cognition": {
+      "label": "distributed-cognition",
+      "contentIds": [
+        "research-dcfb"
+      ],
+      "count": 1
+    },
+    "intelligence-architecture": {
+      "label": "intelligence-architecture",
+      "contentIds": [
+        "research-dcfb"
+      ],
+      "count": 1
+    },
+    "cognitive-systems": {
+      "label": "cognitive-systems",
+      "contentIds": [
+        "research-dcfb"
+      ],
+      "count": 1
+    },
+    "theory": {
+      "label": "theory",
+      "contentIds": [
+        "research-dcfb"
+      ],
+      "count": 1
+    },
+    "trust": {
+      "label": "trust",
+      "contentIds": [
+        "research-trust-irreversibility-residue",
+        "clause-irreversibility-threshold"
+      ],
+      "count": 2
+    },
+    "irreversibility": {
+      "label": "irreversibility",
+      "contentIds": [
+        "research-trust-irreversibility-residue",
+        "clause-irreversibility-threshold"
+      ],
+      "count": 2
+    },
+    "intent": {
+      "label": "intent",
+      "contentIds": [
+        "clause-intent-specification"
+      ],
+      "count": 1
+    },
+    "monitoring": {
+      "label": "monitoring",
+      "contentIds": [
+        "clause-intent-specification"
+      ],
+      "count": 1
+    },
+    "deployment": {
+      "label": "deployment",
+      "contentIds": [
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "count": 2
+    },
+    "governance-review": {
+      "label": "governance-review",
+      "contentIds": [
+        "clause-irreversibility-threshold"
+      ],
+      "count": 1
+    },
+    "accountability": {
+      "label": "accountability",
+      "contentIds": [
+        "clause-irreversibility-threshold"
+      ],
+      "count": 1
+    }
+  },
+  "lineage": {
+    "dcfb-core": {
+      "label": "dcfb-core",
+      "contentIds": [
+        "digest-cir-v2-core-argument",
+        "digest-intent-gap-god-mode-biology",
+        "digest-mcp-consolidation-infrastructure-paradox",
+        "research-bainbridge-warning",
+        "research-dcfb",
+        "research-trust-irreversibility-residue",
+        "product-bainbridge-warning",
+        "product-cir",
+        "product-martha",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "count": 11
+    },
+    "constitutional-ai": {
+      "label": "constitutional-ai",
+      "contentIds": [
+        "digest-cir-v2-core-argument",
+        "research-dcfb",
+        "research-trust-irreversibility-residue",
+        "product-cir",
+        "product-martha",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "count": 7
+    },
+    "bainbridge-core": {
+      "label": "bainbridge-core",
+      "contentIds": [
+        "digest-mcp-consolidation-infrastructure-paradox",
+        "research-bainbridge-warning",
+        "product-bainbridge-warning"
+      ],
+      "count": 3
+    }
+  },
+  "generatedAt": "2026-03-14T22:00:35.047Z"
+}

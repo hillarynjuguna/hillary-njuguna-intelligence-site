@@ -1,0 +1,965 @@
+{
+  "nodes": [
+    {
+      "id": "digest-cir-v2-core-argument",
+      "slug": "cir-v2-core-argument",
+      "title": "CIR v2.0 — Core Argument",
+      "description": "The central thesis of the Cognitive Infrastructure Readiness framework: AI readiness is not a technical question, it is a constitutional one.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "constitutional-design"
+      ],
+      "themes": [
+        "governance",
+        "constitutional-design",
+        "institutional-design",
+        "ai-systems"
+      ],
+      "tags": [
+        "cir",
+        "cognitive-infrastructure",
+        "ai-readiness",
+        "constitutional-ai",
+        "framework"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-02-15T00:00:00.000Z"
+    },
+    {
+      "id": "digest-intent-gap-god-mode-biology",
+      "slug": "intent-gap-god-mode-biology",
+      "title": "The Intent Gap, God Mode Biology, and the Quiet Infrastructure Shift",
+      "description": "Analysis of the alignment gap in AI systems, biotech's self-modification loop, and the real infrastructure story beneath the AI hype cycle.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "epistemics"
+      ],
+      "themes": [
+        "governance",
+        "epistemics",
+        "infrastructure",
+        "ai-systems"
+      ],
+      "tags": [
+        "intent-gap",
+        "alignment",
+        "biotech",
+        "infrastructure",
+        "ai-governance"
+      ],
+      "lineage": [
+        "dcfb-core"
+      ],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-02-27T00:00:00.000Z"
+    },
+    {
+      "id": "digest-mcp-consolidation-infrastructure-paradox",
+      "slug": "mcp-consolidation-infrastructure-paradox",
+      "title": "MCP Consolidation, the Infrastructure Paradox, and What Institutional AI Actually Costs",
+      "description": "MCP becomes the default integration layer. The infrastructure paradox deepens. And the full cost accounting for institutional AI deployment.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "emergent",
+      "governanceRelevance": "adjacent",
+      "domains": [
+        "governance",
+        "infrastructure"
+      ],
+      "themes": [
+        "governance",
+        "infrastructure",
+        "institutional-design",
+        "ai-systems"
+      ],
+      "tags": [
+        "mcp",
+        "infrastructure",
+        "institutional-ai",
+        "governance",
+        "cost-accounting"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "bainbridge-core"
+      ],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-02-22T00:00:00.000Z"
+    },
+    {
+      "id": "research-bainbridge-warning",
+      "slug": "bainbridge-warning",
+      "title": "The Bainbridge Warning",
+      "description": "Framework for understanding institutional AI failure — the structural pattern where high capability and low governance combine to produce entirely predictable catastrophic outcomes.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "institutional-design",
+        "failure-analysis"
+      ],
+      "themes": [
+        "governance",
+        "institutional-design",
+        "failure-analysis",
+        "constitutional-ai"
+      ],
+      "tags": [
+        "bainbridge-warning",
+        "institutional-failure",
+        "ai-governance",
+        "risk-architecture",
+        "readiness"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "bainbridge-core"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-02-01T00:00:00.000Z",
+      "unresolvedEdges": [
+        "What is the minimum viable governance profile for a given capability level?",
+        "How do Bainbridge zones interact when multiple gap areas co-exist?"
+      ],
+      "keyClaims": [
+        "High capability adoption + low governance infrastructure = structurally predictable failure.",
+        "The failure is always legible in retrospect — the framework makes it visible before.",
+        "Capability-governance gaps can be diagnosed and closed before they produce institutional failures."
+      ]
+    },
+    {
+      "id": "research-dcfb",
+      "slug": "dcfb-distributed-cognition",
+      "title": "DCFB: Distributed Cognition as Foundational Behavior",
+      "description": "Foundational theory establishing distributed cognition as the correct unit of analysis for human-AI systems. Intelligence emerges from fields, not nodes.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "epistemics",
+        "ai-systems"
+      ],
+      "themes": [
+        "cognition",
+        "ai-systems",
+        "governance",
+        "human-ai-collaboration"
+      ],
+      "tags": [
+        "dcfb",
+        "distributed-cognition",
+        "intelligence-architecture",
+        "cognitive-systems",
+        "theory"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-01-10T00:00:00.000Z",
+      "unresolvedEdges": [
+        "How does DCFB scale to multi-organisational AI deployments where field boundaries are contested?",
+        "What is the minimum viable constitutional structure for a cognitive field?"
+      ],
+      "keyClaims": [
+        "Intelligence is field-emergent, not node-located — the unit of analysis must shift from agent to field.",
+        "Constitutional design must precede capability optimisation — governance is infrastructure, not constraint.",
+        "Distributed accountability requires distributed monitoring proportional to the actual distribution of intelligence."
+      ]
+    },
+    {
+      "id": "research-trust-irreversibility-residue",
+      "slug": "trust-irreversibility-residue",
+      "title": "Trust = Irreversibility Residue",
+      "description": "A theoretical account of trust in human-AI systems: trust is not a feeling but a structural property, measured by accumulated irreversibility.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "epistemics",
+        "trust-theory"
+      ],
+      "themes": [
+        "trust-theory",
+        "ai-governance",
+        "institutional-design",
+        "decision-theory"
+      ],
+      "tags": [
+        "trust",
+        "irreversibility",
+        "governance",
+        "alignment",
+        "constitutional-ai"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-01-28T00:00:00.000Z",
+      "unresolvedEdges": [
+        "How do you measure irreversibility in systems with partial reversal mechanisms?",
+        "What is the minimum viable irreversibility mapping for a governance review?"
+      ],
+      "keyClaims": [
+        "Trust is not a feeling or a confidence level — it is the structural residue of accumulated irreversibility.",
+        "Governance must be calibrated to irreversibility profiles, not confidence metrics.",
+        "Constitutional AI governance must account for the irreversibility profile of a deployment, not merely the confidence profile of the model."
+      ]
+    },
+    {
+      "id": "product-bainbridge-warning",
+      "slug": "bainbridge-warning",
+      "title": "The Bainbridge Warning",
+      "description": "An institutional AI readiness framework that makes predictable failures visible before they occur.",
+      "contentType": "product",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "institutional-design"
+      ],
+      "themes": [],
+      "tags": [],
+      "lineage": [
+        "bainbridge-core",
+        "dcfb-core"
+      ],
+      "sourceCollection": "products",
+      "relatedResearch": [
+        "research-bainbridge-warning",
+        "research-dcfb"
+      ],
+      "governanceNotes": []
+    },
+    {
+      "id": "product-cir",
+      "slug": "cir",
+      "title": "Cognitive Infrastructure Readiness v2.0",
+      "description": "A self-assessment framework for organisations evaluating their AI readiness across five constitutional dimensions.",
+      "contentType": "product",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "constitutional-design"
+      ],
+      "themes": [],
+      "tags": [],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "products",
+      "relatedResearch": [
+        "research-dcfb",
+        "research-bainbridge-warning"
+      ],
+      "governanceNotes": []
+    },
+    {
+      "id": "product-clearbid",
+      "slug": "clearbid",
+      "title": "ClearBid",
+      "description": "AI-structured deal packets for procurement processes — reducing the interpretation gap between procurement intent and received response.",
+      "contentType": "product",
+      "status": "published",
+      "crystallization": "emergent",
+      "governanceRelevance": "adjacent",
+      "domains": [
+        "procurement",
+        "governance"
+      ],
+      "themes": [],
+      "tags": [],
+      "lineage": [],
+      "sourceCollection": "products",
+      "relatedResearch": [],
+      "governanceNotes": []
+    },
+    {
+      "id": "product-martha",
+      "slug": "martha",
+      "title": "Martha Cohort Program",
+      "description": "A structured cohort for teams learning to build and govern AI-augmented workflows with constitutional governance built in.",
+      "contentType": "product",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "adjacent",
+      "domains": [
+        "governance",
+        "education"
+      ],
+      "themes": [],
+      "tags": [],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "products",
+      "relatedResearch": [
+        "research-dcfb"
+      ],
+      "governanceNotes": []
+    },
+    {
+      "id": "clause-intent-specification",
+      "slug": "intent-specification-requirement",
+      "title": "Intent Specification Requirement",
+      "description": "Organisations must demonstrate — not merely assert — that their AI system's optimisation target corresponds to stated organisational intent.",
+      "contentType": "clause",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "epistemics"
+      ],
+      "themes": [],
+      "tags": [
+        "intent",
+        "alignment",
+        "monitoring",
+        "deployment",
+        "governance"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "clauses",
+      "publishedAt": "2026-02-27T00:00:00.000Z",
+      "governanceDomain": "epistemic-safety",
+      "clauseStatus": "candidate",
+      "crystallizationThreshold": 0.6,
+      "supportingContentIds": [
+        "digest-intent-gap-god-mode-biology",
+        "research-dcfb"
+      ],
+      "objections": [
+        "Live monitoring requirements may be technically infeasible for all model types at this stage.",
+        "Interpretability access is not uniformly available across vendors."
+      ]
+    },
+    {
+      "id": "clause-irreversibility-threshold",
+      "slug": "irreversibility-threshold-review",
+      "title": "Irreversibility Threshold Review Requirement",
+      "description": "Every AI deployment decision crossing a significant irreversibility threshold must trigger an explicit governance review with named accountable authority.",
+      "contentType": "clause",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "deployment-authority"
+      ],
+      "themes": [],
+      "tags": [
+        "irreversibility",
+        "trust",
+        "governance-review",
+        "deployment",
+        "accountability"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "clauses",
+      "publishedAt": "2026-01-28T00:00:00.000Z",
+      "governanceDomain": "agentic-behavior",
+      "clauseStatus": "candidate",
+      "crystallizationThreshold": 0.7,
+      "supportingContentIds": [
+        "research-trust-irreversibility-residue",
+        "research-bainbridge-warning"
+      ],
+      "objections": [
+        "Irreversibility thresholds are context-dependent and difficult to pre-specify universally.",
+        "Named accountable authority may be unclear in distributed or federated deployment architectures."
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "research-dcfb",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "The CIR five-dimension model directly operationalises DCFB's five constitutional principles — each CIR dimension maps to a DCFB principle.",
+      "provenance": [
+        "section: The Readiness Assessment"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "product-cir",
+      "type": "prototype_for",
+      "confidence": "high",
+      "explanation": "This digest entry is the public-facing theoretical brief for the CIR v2.0 product — the argument that motivates the purchase and use of the full assessment instrument.",
+      "provenance": [
+        "section: The Core Argument"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "digest-intent-gap-god-mode-biology",
+      "type": "extends",
+      "confidence": "medium",
+      "explanation": "CIR v2.0 extends the intent gap analysis into a full constitutional framework — the intent gap is one of five constitutional dimensions in CIR.",
+      "provenance": [
+        "section: Intent Specification"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "clause-intent-specification",
+      "type": "crystallizes",
+      "confidence": "high",
+      "explanation": "The intent gap analysis directly produced the Intent Specification Requirement clause — the clause text appears as the 'clause candidate from this synthesis' in this entry.",
+      "provenance": [
+        "section: The Intent Gap"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-dcfb",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "This digest entry is a field-level example of the DCFB Principle 1 failure mode — organisations treating intent at the node level rather than the field level.",
+      "provenance": [
+        "section: The Intent Gap"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-mcp-consolidation-infrastructure-paradox",
+      "target": "research-bainbridge-warning",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "The MCP consolidation and infrastructure paradox is a concrete present-tense instance of the Bainbridge pattern — capability (MCP deployment velocity) expanding faster than governance infrastructure.",
+      "provenance": [
+        "section: The Infrastructure Paradox"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-mcp-consolidation-infrastructure-paradox",
+      "target": "research-dcfb",
+      "type": "clarifies",
+      "confidence": "medium",
+      "explanation": "The invisible cost stack analysis (intent specification, alignment monitoring, governance overhead) maps directly to the DCFB constitutional design requirements — making them concrete and costed.",
+      "provenance": [
+        "section: What Institutional AI Actually Costs"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-bainbridge-warning",
+      "target": "research-dcfb",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "The Bainbridge Warning is the applied diagnostic operationalisation of DCFB — translating the five constitutional principles into a gap analysis framework for institutional deployment.",
+      "provenance": [
+        "section: The Diagnostic"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-bainbridge-warning",
+      "target": "product-bainbridge-warning",
+      "type": "prototype_for",
+      "confidence": "high",
+      "explanation": "This research paper is the theoretical foundation for the Bainbridge Warning product offering — the product operationalises the research as a delivered assessment service.",
+      "provenance": [
+        "section: The Diagnostic"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-bainbridge-warning",
+      "target": "research-trust-irreversibility-residue",
+      "type": "depends_on",
+      "confidence": "high",
+      "explanation": "The Bainbridge Warning gap analysis depends on the irreversibility account of trust — Bainbridge zones are structurally defined by where irreversibility accumulates faster than governance.",
+      "provenance": [
+        "section: Gap Analysis"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-dcfb",
+      "target": "research-bainbridge-warning",
+      "type": "prototype_for",
+      "confidence": "high",
+      "explanation": "DCFB provides the five constitutional principles that the Bainbridge Warning diagnostic operationalises as a capability-governance gap analysis.",
+      "provenance": [
+        "section: Connection to the CIR Framework"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-dcfb",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "high",
+      "explanation": "DCFB Principle 1 (field-level assessment) directly motivates the intent specification requirement — you cannot specify intent at the node level in a distributed field.",
+      "provenance": [
+        "section: What Changes When You Treat Cognition as Distributed"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-dcfb",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "high",
+      "explanation": "DCFB Principle 4 (distributed monitoring) requires knowing when deployment decisions cross irreversibility thresholds — the governance trigger the clause formalises.",
+      "provenance": [
+        "section: Governance requirements change"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-trust-irreversibility-residue",
+      "target": "research-dcfb",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "The irreversibility account of trust builds directly on DCFB Principle 4 (distributed monitoring) — governance calibrated to the actual distribution of irreversibility in the field.",
+      "provenance": [
+        "section: The Governance Implication"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-trust-irreversibility-residue",
+      "target": "clause-irreversibility-threshold",
+      "type": "crystallizes",
+      "confidence": "high",
+      "explanation": "This research directly produced the Irreversibility Threshold Review Requirement clause — the clause text appears verbatim as the 'Clause Candidate' at the end of this piece.",
+      "provenance": [
+        "section: Clause Candidate"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-trust-irreversibility-residue",
+      "target": "research-bainbridge-warning",
+      "type": "clarifies",
+      "confidence": "high",
+      "explanation": "The irreversibility account clarifies the structural mechanism behind Bainbridge failures — capability-governance gaps are irreversibility gaps, not just confidence gaps.",
+      "provenance": [
+        "section: What This Changes About Governance"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-bainbridge-warning",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "The product is the delivered-service operationalisation of the Bainbridge Warning research framework — same diagnostic, structured as an assessment engagement.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "product-cir",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "The Bainbridge Warning extends CIR by adding a capability profile, gap analysis, and predictability assessment — building on the constitutional foundation CIR establishes.",
+      "provenance": [
+        "section: The Framework"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-cir",
+      "target": "research-dcfb",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "CIR v2.0 is the practical instrument that operationalises DCFB — the five CIR constitutional dimensions map directly to the five DCFB principles.",
+      "provenance": [
+        "section: The Five Constitutional Dimensions"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-cir",
+      "target": "digest-cir-v2-core-argument",
+      "type": "prototype_for",
+      "confidence": "high",
+      "explanation": "The CIR v2.0 digest entry is the public-facing brief that introduces the product argument — reading order goes brief first, then full instrument.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-clearbid",
+      "target": "product-cir",
+      "type": "extends",
+      "confidence": "medium",
+      "explanation": "ClearBid applies the intent specification principle from CIR to the procurement domain — closing the gap between what organisations intend to specify and what they receive.",
+      "provenance": [
+        "section: The Procurement Interpretation Gap"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-martha",
+      "target": "product-cir",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "Martha delivers the CIR framework as a team-applied cohort experience — it takes the self-assessment instrument and builds it into a structured group learning process.",
+      "provenance": [
+        "section: The Cohort Structure"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-martha",
+      "target": "research-dcfb",
+      "type": "example_of",
+      "confidence": "medium",
+      "explanation": "Martha is a practical example of DCFB applied at team scale — the cohort structure is designed around the field, not individual participants.",
+      "provenance": [
+        "section: For Teams Who Build"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "clause-intent-specification",
+      "target": "research-dcfb",
+      "type": "governance_relevant_to",
+      "confidence": "high",
+      "explanation": "DCFB Principle 1 (field-level capability assessment) directly motivates this clause — you cannot specify intent at the node level in a distributed cognitive field.",
+      "provenance": [
+        "section: What Changes When You Treat Cognition as Distributed"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "clause-intent-specification",
+      "target": "digest-intent-gap-god-mode-biology",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "This clause was synthesised directly from the intent gap field notes — the clause text appears as the 'clause candidate from this synthesis' in that entry.",
+      "provenance": [
+        "section: The Intent Gap"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "clause-intent-specification",
+      "target": "product-cir",
+      "type": "governance_relevant_to",
+      "confidence": "high",
+      "explanation": "This clause corresponds to CIR Dimension 1: Intent Specification — organisations that complete CIR are implicitly engaging with this clause requirement.",
+      "provenance": [
+        "section: Intent Specification"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "clause-irreversibility-threshold",
+      "target": "research-trust-irreversibility-residue",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "This clause is the direct governance operationalisation of the Trust = Irreversibility Residue framework — the 'Clause Candidate' section of that paper is this clause verbatim.",
+      "provenance": [
+        "section: Clause Candidate"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "clause-irreversibility-threshold",
+      "target": "research-dcfb",
+      "type": "governance_relevant_to",
+      "confidence": "high",
+      "explanation": "DCFB Principle 4 (distributed monitoring) requires knowing when deployment decisions cross irreversibility thresholds — this clause formalises that governance trigger.",
+      "provenance": [
+        "section: Governance requirements change"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "clause-irreversibility-threshold",
+      "target": "research-bainbridge-warning",
+      "type": "governance_relevant_to",
+      "confidence": "high",
+      "explanation": "The Bainbridge Warning gap analysis directly identifies irreversibility threshold failures as a primary Bainbridge zone — this clause is the governance response to that diagnosis.",
+      "provenance": [
+        "section: Gap Analysis"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "research-bainbridge-warning",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "research-trust-irreversibility-residue",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-bainbridge-warning",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-trust-irreversibility-residue",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, epistemics] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-mcp-consolidation-infrastructure-paradox",
+      "target": "research-trust-irreversibility-residue",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-bainbridge-warning",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-bainbridge-warning",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-bainbridge-warning",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-dcfb",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-trust-irreversibility-residue",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-trust-irreversibility-residue",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-trust-irreversibility-residue",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-trust-irreversibility-residue",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance, epistemics] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "clause-irreversibility-threshold",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    }
+  ],
+  "generatedAt": "2026-03-14T22:00:35.046Z",
+  "stats": {
+    "totalNodes": 12,
+    "totalEdges": 49,
+    "manualEdges": 29,
+    "inferredEdges": 20,
+    "byType": {
+      "digest": 3,
+      "research": 3,
+      "product": 4,
+      "clause": 2
+    }
+  }
+}

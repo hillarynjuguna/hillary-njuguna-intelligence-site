@@ -1,0 +1,117 @@
+---
+/**
+ * Topology-aware related content component.
+ * Accepts RelatedItem[] from the graph engine.
+ */
+import type { RelatedItem } from '@lib/graph/types';
+import RelationExplanation from './RelationExplanation.astro';
+
+interface Props {
+  items: RelatedItem[];
+  heading?: string;
+}
+
+const { items, heading = 'Related' } = Astro.props;
+if (!items?.length) return;
+
+function getHref(item: RelatedItem): string {
+  const { contentType, slug } = item.node;
+  if (contentType === 'digest') return `/digest/${slug}`;
+  if (contentType === 'research') return `/research/${slug}`;
+  if (contentType === 'product') return `/products/${slug}`;
+  if (contentType === 'clause') return `/clauses/${slug}`;
+  return `/${slug}`;
+}
+
+const CONTENT_LABELS: Record<string, string> = {
+  research: 'Research',
+  digest: 'Digest',
+  product: 'Product',
+  clause: 'Clause',
+};
+---
+
+<aside class="related">
+  <h2 class="related__heading label">{heading}</h2>
+  <div class="related__list">
+    {items.map((item) => (
+      <a href={getHref(item)} class="related__item">
+        <div class="related__item-top">
+          <span class="label related__type">
+            {CONTENT_LABELS[item.node.contentType] ?? item.node.contentType}
+          </span>
+          <RelationExplanation item={item} collapsed />
+        </div>
+        <span class="related__title">{item.node.title}</span>
+        {item.node.description && (
+          <span class="related__desc">
+            {item.node.description.length > 110
+              ? item.node.description.slice(0, 110) + '…'
+              : item.node.description}
+          </span>
+        )}
+      </a>
+    ))}
+  </div>
+</aside>
+
+<style>
+  .related {
+    margin-top: var(--space-16);
+    padding-top: var(--space-10);
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .related__heading {
+    color: var(--ember);
+    margin-bottom: var(--space-6);
+  }
+
+  .related__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .related__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--duration-mid) var(--ease-out);
+    background: var(--surface-2);
+  }
+
+  .related__item:hover {
+    border-color: var(--border-bright);
+    background: var(--surface-3);
+    transform: translateY(-2px);
+  }
+
+  .related__item-top {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    justify-content: space-between;
+  }
+
+  .related__type {
+    color: var(--ember);
+  }
+
+  .related__title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+  }
+
+  .related__desc {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    line-height: var(--leading-normal);
+  }
+</style>

@@ -1,16 +1,52 @@
 ---
+id: research-trust-irreversibility-residue
 title: "Trust = Irreversibility Residue"
+description: "A theoretical account of trust in human-AI systems: trust is not a feeling but a structural property, measured by accumulated irreversibility."
 summary: "A theoretical account of trust in human-AI systems — the claim that trust is not a feeling but a structural property, measured by the degree of irreversibility that has accumulated through repeated interaction."
 publishedAt: 2026-01-28
 tags: ["trust", "irreversibility", "governance", "alignment", "constitutional-ai"]
 themes: ["trust-theory", "ai-governance", "institutional-design", "decision-theory"]
 concepts: ["irreversibility", "trust-accumulation", "constitutional-authority", "governance-residue"]
+domains: ["governance", "epistemics", "trust-theory"]
+lineage: ["dcfb-core", "constitutional-ai"]
 featured: false
+crystallization: crystallized
+governanceRelevance: direct
+researchType: analysis
 seoTitle: "Trust = Irreversibility Residue — A Framework for Trust in AI Systems"
 seoDescription: "Why trust in AI systems should be measured as accumulated irreversibility, not stated confidence — and what this means for governance design."
 excerpt: "You cannot trust a system you can fully undo. Trust is what you extend when reversal becomes costly."
 author: "Hillary Njuguna"
-related: ["dcfb-distributed-cognition"]
+keyClaims:
+  - "Trust is not a feeling or a confidence level — it is the structural residue of accumulated irreversibility."
+  - "Governance must be calibrated to irreversibility profiles, not confidence metrics."
+  - "Constitutional AI governance must account for the irreversibility profile of a deployment, not merely the confidence profile of the model."
+unresolvedEdges:
+  - "How do you measure irreversibility in systems with partial reversal mechanisms?"
+  - "What is the minimum viable irreversibility mapping for a governance review?"
+dependsOnConcepts:
+  - "distributed cognition (Hutchins)"
+  - "constitutional design"
+  - "irreversibility in decision theory"
+explicitRelations:
+  - targetId: research-dcfb
+    type: derives_from
+    confidence: high
+    explanation: "The irreversibility account of trust builds directly on DCFB Principle 4 (distributed monitoring) — governance calibrated to the actual distribution of irreversibility in the field."
+    provenance: ["section: The Governance Implication"]
+    manual: true
+  - targetId: clause-irreversibility-threshold
+    type: crystallizes
+    confidence: high
+    explanation: "This research directly produced the Irreversibility Threshold Review Requirement clause — the clause text appears verbatim as the 'Clause Candidate' at the end of this piece."
+    provenance: ["section: Clause Candidate"]
+    manual: true
+  - targetId: research-bainbridge-warning
+    type: clarifies
+    confidence: high
+    explanation: "The irreversibility account clarifies the structural mechanism behind Bainbridge failures — capability-governance gaps are irreversibility gaps, not just confidence gaps."
+    provenance: ["section: What This Changes About Governance"]
+    manual: true
 ---
 
 ## The Standard Account and Its Failure

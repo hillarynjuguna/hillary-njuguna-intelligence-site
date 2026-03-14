@@ -2,7 +2,9 @@
 export const prerender = true;
 import { getCollection } from 'astro:content';
 import ContentLayout from '@layouts/ContentLayout.astro';
-import { getRelatedContent } from '@lib/content';
+import LineageTrail from '@components/relations/LineageTrail.astro';
+import GovernanceLinks from '@components/relations/GovernanceLinks.astro';
+import { getRelatedContent } from '@lib/related/getRelatedContent';
 import { buildArticleSchema } from '@lib/seo';
 import { SITE } from '@data/site';
 
@@ -15,7 +17,16 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const { data } = entry;
 
-const related = await getRelatedContent(data.related, entry.slug);
+const contentId = data.id ?? `research-${entry.slug}`;
+const allRelated = await getRelatedContent(contentId, 6);
+
+// Separate governance-relevant items from general related
+const govItems = allRelated.filter(
+  (r) =>
+    r.edge.type === 'governance_relevant_to' ||
+    (r.node.contentType === 'clause' && r.node.governanceRelevance !== 'none')
+);
+const relatedItems = allRelated.filter((r) => !govItems.includes(r)).slice(0, 4);
 
 const articleSchema = buildArticleSchema({
   title: data.seoTitle ?? data.title,
@@ -39,8 +50,24 @@ const articleSchema = buildArticleSchema({
     { name: 'Research', href: '/research' },
     { name: data.title, href: `/research/${entry.slug}` },
   ]}
-  related={related}
+  related={relatedItems}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  {data.lineage && data.lineage.length > 0 && (
+    <div class="research-lineage">
+      <LineageTrail lineage={data.lineage} compact />
+    </div>
+  )}
   <Content />
+  {govItems.length > 0 && (
+    <GovernanceLinks clauseItems={govItems} />
+  )}
 </ContentLayout>
+
+<style>
+  .research-lineage {
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--border-dim);
+  }
+</style>

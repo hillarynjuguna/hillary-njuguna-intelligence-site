@@ -1,16 +1,42 @@
 ---
+id: digest-cir-v2-core-argument
 title: "CIR v2.0 — Core Argument"
+description: "The central thesis of the Cognitive Infrastructure Readiness framework: AI readiness is not a technical question, it is a constitutional one."
 summary: "The central thesis of the Cognitive Infrastructure Readiness framework: AI readiness is not a technical question, it is a constitutional one."
 publishedAt: 2026-02-15
 tags: ["cir", "cognitive-infrastructure", "ai-readiness", "constitutional-ai", "framework"]
+themes: ["governance", "constitutional-design", "institutional-design", "ai-systems"]
+domains: ["governance", "constitutional-design"]
+lineage: ["dcfb-core", "constitutional-ai"]
 category: "Practitioner Brief"
+digestType: practitioner-brief
 featured: true
+crystallization: crystallized
+governanceRelevance: direct
 seoTitle: "CIR v2.0 Core Argument — Cognitive Infrastructure Readiness"
 seoDescription: "The central thesis of the CIR framework: why AI readiness is a constitutional design problem, not a technology adoption problem."
 excerpt: "You cannot bolt governance onto a system that was designed without it. The constitution must come first."
 author: "Hillary Njuguna"
 structuredDataType: "Article"
-related: ["intent-gap-god-mode-biology"]
+explicitRelations:
+  - targetId: research-dcfb
+    type: derives_from
+    confidence: high
+    explanation: "The CIR five-dimension model directly operationalises DCFB's five constitutional principles — each CIR dimension maps to a DCFB principle."
+    provenance: ["section: The Readiness Assessment"]
+    manual: true
+  - targetId: product-cir
+    type: prototype_for
+    confidence: high
+    explanation: "This digest entry is the public-facing theoretical brief for the CIR v2.0 product — the argument that motivates the purchase and use of the full assessment instrument."
+    provenance: ["section: The Core Argument"]
+    manual: true
+  - targetId: digest-intent-gap-god-mode-biology
+    type: extends
+    confidence: medium
+    explanation: "CIR v2.0 extends the intent gap analysis into a full constitutional framework — the intent gap is one of five constitutional dimensions in CIR."
+    provenance: ["section: Intent Specification"]
+    manual: true
 ---
 
 ## The Core Argument

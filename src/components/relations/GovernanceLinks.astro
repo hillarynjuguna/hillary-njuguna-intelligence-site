@@ -1,0 +1,117 @@
+---
+/**
+ * Displays governance clause links for content with governanceRelevance: direct or adjacent.
+ * Shows which clauses a piece of content supports, or which clauses are relevant to it.
+ */
+import type { RelatedItem } from '@lib/graph/types';
+import RelationBadge from './RelationBadge.astro';
+
+interface Props {
+  /** RelatedItems that are clauses (filtered by caller) */
+  clauseItems: RelatedItem[];
+  /** Whether this content is a clause itself (reverse display) */
+  isClause?: boolean;
+}
+
+const { clauseItems, isClause = false } = Astro.props;
+if (!clauseItems?.length) return;
+
+const heading = isClause ? 'Supporting content' : 'Governance relevance';
+---
+
+<aside class="gov-links">
+  <div class="gov-links__header">
+    <span class="gov-links__label label">{heading}</span>
+    <span class="gov-links__marker">⚖</span>
+  </div>
+  <div class="gov-links__list">
+    {clauseItems.map((item) => (
+      <a
+        href={item.node.contentType === 'clause'
+          ? `/clauses/${item.node.slug}`
+          : item.node.contentType === 'research'
+          ? `/research/${item.node.slug}`
+          : item.node.contentType === 'digest'
+          ? `/digest/${item.node.slug}`
+          : `/products/${item.node.slug}`}
+        class="gov-links__item"
+      >
+        <div class="gov-links__item-top">
+          <RelationBadge type={item.edge.type} isManual={item.edge.manual} compact />
+        </div>
+        <span class="gov-links__title">{item.node.title}</span>
+        {item.edge.explanation && (
+          <span class="gov-links__explanation">{item.edge.explanation}</span>
+        )}
+      </a>
+    ))}
+  </div>
+</aside>
+
+<style>
+  .gov-links {
+    margin-top: var(--space-10);
+    padding: var(--space-6) var(--space-7);
+    background: color-mix(in srgb, var(--ember) 5%, var(--surface-2));
+    border: 1px solid color-mix(in srgb, var(--ember) 25%, var(--border-dim));
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--ember);
+  }
+
+  .gov-links__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+  }
+
+  .gov-links__label {
+    color: var(--ember);
+  }
+
+  .gov-links__marker {
+    font-size: var(--text-sm);
+    opacity: 0.4;
+  }
+
+  .gov-links__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .gov-links__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-sm);
+    background: var(--surface-1);
+    text-decoration: none;
+    transition: all var(--duration-mid) var(--ease-out);
+  }
+
+  .gov-links__item:hover {
+    border-color: color-mix(in srgb, var(--ember) 40%, transparent);
+    background: color-mix(in srgb, var(--ember) 6%, var(--surface-1));
+  }
+
+  .gov-links__item-top {
+    margin-bottom: var(--space-1);
+  }
+
+  .gov-links__title {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+  }
+
+  .gov-links__explanation {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+</style>

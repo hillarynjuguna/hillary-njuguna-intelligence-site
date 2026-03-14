@@ -2,7 +2,8 @@
 export const prerender = true;
 import { getCollection } from 'astro:content';
 import ProductLayout from '@layouts/ProductLayout.astro';
-import { getRelatedContent } from '@lib/content';
+import RelatedContent from '@components/relations/RelatedContent.astro';
+import { getRelatedContent } from '@lib/related/getRelatedContent';
 import { buildProductSchema } from '@lib/seo';
 import { SITE } from '@data/site';
 
@@ -15,7 +16,8 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const { data } = entry;
 
-const related = await getRelatedContent(data.related, entry.slug);
+const contentId = data.id ?? `product-${entry.slug}`;
+const relatedItems = await getRelatedContent(contentId, 4);
 
 const productSchema = buildProductSchema({
   title: data.title,
@@ -28,6 +30,7 @@ const productSchema = buildProductSchema({
 <ProductLayout
   title={data.seoTitle ?? data.title}
   description={data.seoDescription ?? data.summary}
+  summary={data.summary}
   status={data.status}
   price={data.price}
   ctaLabel={data.ctaLabel}
@@ -41,4 +44,7 @@ const productSchema = buildProductSchema({
 >
   <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <Content />
+  {relatedItems.length > 0 && (
+    <RelatedContent items={relatedItems} heading="Research foundation" />
+  )}
 </ProductLayout>

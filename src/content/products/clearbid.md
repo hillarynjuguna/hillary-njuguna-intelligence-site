@@ -1,7 +1,10 @@
 ---
+id: product-clearbid
 title: "ClearBid"
+description: "AI-structured deal packets for procurement processes — reducing the interpretation gap between procurement intent and received response."
 summary: "AI-structured deal packets for procurement and tender processes. Reduces the interpretation gap between what organisations intend to procure and what they receive."
 productType: "tool"
+productKind: tool
 status: "development"
 price: "Coming Soon"
 ctaLabel: "Join Waitlist"
@@ -9,10 +12,20 @@ waitlistUrl: "mailto:hello@hillarynjuguna.com?subject=ClearBid Waitlist"
 platform: "Direct"
 featured: false
 order: 4
+domains: ["procurement", "governance"]
+lineage: []
+crystallization: emergent
+governanceRelevance: adjacent
 seoTitle: "ClearBid — AI-Structured Procurement Intelligence"
 seoDescription: "Structured deal packets for procurement processes. Closing the gap between procurement intent and received response."
 excerpt: "The interpretation gap in procurement is not a communication problem. It is a structure problem."
-related: ["cir"]
+explicitRelations:
+  - targetId: product-cir
+    type: extends
+    confidence: medium
+    explanation: "ClearBid applies the intent specification principle from CIR to the procurement domain — closing the gap between what organisations intend to specify and what they receive."
+    provenance: ["section: The Procurement Interpretation Gap"]
+    manual: true
 faq:
   - q: "What is ClearBid?"
     a: "ClearBid is a tool that helps procurement teams structure their tender requirements and evaluate responses in ways that reduce the interpretation gap — the distance between what you intended to procure and what vendors actually bid."

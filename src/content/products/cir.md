@@ -1,7 +1,10 @@
 ---
+id: product-cir
 title: "Cognitive Infrastructure Readiness v2.0"
+description: "A self-assessment framework for organisations evaluating their AI readiness across five constitutional dimensions."
 summary: "A self-assessment framework for organisations evaluating their AI readiness across five constitutional dimensions. Available now on Gumroad."
 productType: "guide"
+productKind: guide
 status: "live"
 price: "$50"
 ctaLabel: "Get CIR v2.0"
@@ -9,10 +12,27 @@ ctaUrl: "https://hillarynjuguna.gumroad.com/l/xlwin"
 platform: "Gumroad"
 featured: true
 order: 2
+domains: ["governance", "constitutional-design"]
+lineage: ["dcfb-core", "constitutional-ai"]
+crystallization: crystallized
+governanceRelevance: direct
+relatedResearch: ["research-dcfb", "research-bainbridge-warning"]
 seoTitle: "CIR v2.0 — Cognitive Infrastructure Readiness Framework"
 seoDescription: "The self-assessment framework for institutional AI readiness. Five constitutional dimensions. Available now at $50."
 excerpt: "AI readiness is not a technical question. It is a constitutional one."
-related: ["bainbridge-warning", "martha"]
+explicitRelations:
+  - targetId: research-dcfb
+    type: derives_from
+    confidence: high
+    explanation: "CIR v2.0 is the practical instrument that operationalises DCFB — the five CIR constitutional dimensions map directly to the five DCFB principles."
+    provenance: ["section: The Five Constitutional Dimensions"]
+    manual: true
+  - targetId: digest-cir-v2-core-argument
+    type: prototype_for
+    confidence: high
+    explanation: "The CIR v2.0 digest entry is the public-facing brief that introduces the product argument — reading order goes brief first, then full instrument."
+    provenance: []
+    manual: true
 faq:
   - q: "What is CIR?"
     a: "CIR is a self-assessment framework that helps organisations evaluate their AI readiness across five constitutional dimensions: intent specification, authority architecture, alignment monitoring, governance scalability, and failure mode literacy."

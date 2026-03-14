@@ -1,8 +1,9 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
-import RelatedContent from '@components/content/RelatedContent.astro';
+import RelatedContent from '@components/relations/RelatedContent.astro';
 import type { SEOProps } from '@lib/seo';
+import type { RelatedItem } from '@lib/graph/types';
 import { formatDate } from '@lib/content';
 
 interface Props extends SEOProps {
@@ -14,7 +15,7 @@ interface Props extends SEOProps {
   category?: string;
   author?: string;
   breadcrumbs?: { name: string; href: string }[];
-  related?: any[];
+  related?: RelatedItem[];
   showByline?: boolean;
 }
 

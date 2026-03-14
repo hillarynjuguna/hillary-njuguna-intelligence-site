@@ -2,7 +2,8 @@
 export const prerender = true;
 import { getCollection } from 'astro:content';
 import ContentLayout from '@layouts/ContentLayout.astro';
-import { getRelatedContent } from '@lib/content';
+import GovernanceLinks from '@components/relations/GovernanceLinks.astro';
+import { getRelatedContent } from '@lib/related/getRelatedContent';
 import { buildArticleSchema } from '@lib/seo';
 import { SITE } from '@data/site';
 
@@ -15,7 +16,15 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const { data } = entry;
 
-const related = await getRelatedContent(data.related, entry.slug);
+const contentId = data.id ?? `digest-${entry.slug}`;
+const allRelated = await getRelatedContent(contentId, 5);
+
+const govItems = allRelated.filter(
+  (r) =>
+    r.edge.type === 'governance_relevant_to' ||
+    r.node.contentType === 'clause'
+);
+const relatedItems = allRelated.filter((r) => !govItems.includes(r)).slice(0, 3);
 
 const articleSchema = buildArticleSchema({
   title: data.seoTitle ?? data.title,
@@ -40,8 +49,11 @@ const articleSchema = buildArticleSchema({
     { name: 'Digest', href: '/digest' },
     { name: data.title, href: `/digest/${entry.slug}` },
   ]}
-  related={related}
+  related={relatedItems}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <Content />
+  {govItems.length > 0 && (
+    <GovernanceLinks clauseItems={govItems} />
+  )}
 </ContentLayout>

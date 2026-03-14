@@ -1,14 +1,35 @@
 ---
+id: digest-mcp-consolidation-infrastructure-paradox
 title: "MCP Consolidation, the Infrastructure Paradox, and What Institutional AI Actually Costs"
+description: "MCP becomes the default integration layer. The infrastructure paradox deepens. And the full cost accounting for institutional AI deployment."
 summary: "Model Context Protocol becomes the default integration layer. The infrastructure paradox: more capable systems require more governance, not less. And the real cost accounting for institutional AI deployment."
 publishedAt: 2026-02-22
 tags: ["mcp", "infrastructure", "institutional-ai", "governance", "cost-accounting"]
+themes: ["governance", "infrastructure", "institutional-design", "ai-systems"]
+domains: ["governance", "infrastructure"]
+lineage: ["dcfb-core", "bainbridge-core"]
 category: "Field Notes"
+digestType: field-notes
+crystallization: emergent
+governanceRelevance: adjacent
 seoTitle: "MCP Consolidation & Institutional AI Cost Accounting — Oscillatory Fields"
 seoDescription: "MCP becomes the integration default, infrastructure paradox deepens, and what institutional AI deployment actually costs when you count the governance overhead."
 excerpt: "The institutions that treat AI as a capability problem will lose to the ones that treat it as an infrastructure problem."
 author: "Hillary Njuguna"
 structuredDataType: "BlogPosting"
+explicitRelations:
+  - targetId: research-bainbridge-warning
+    type: example_of
+    confidence: high
+    explanation: "The MCP consolidation and infrastructure paradox is a concrete present-tense instance of the Bainbridge pattern — capability (MCP deployment velocity) expanding faster than governance infrastructure."
+    provenance: ["section: The Infrastructure Paradox"]
+    manual: true
+  - targetId: research-dcfb
+    type: clarifies
+    confidence: medium
+    explanation: "The invisible cost stack analysis (intent specification, alignment monitoring, governance overhead) maps directly to the DCFB constitutional design requirements — making them concrete and costed."
+    provenance: ["section: What Institutional AI Actually Costs"]
+    manual: true
 ---
 
 ## MCP Consolidation
