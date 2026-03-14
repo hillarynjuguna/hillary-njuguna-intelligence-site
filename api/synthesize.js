@@ -53,7 +53,7 @@ module.exports = async function handler(req, res) {
         'X-Title': 'Hillary Njuguna Intelligence Stack — Synthesis Engine'
       },
       body: JSON.stringify({
-        model: 'mistralai/mistral-large-latest',
+        model: 'mistralai/mistral-small-3.1-24b-instruct',
         max_tokens: 1000,
         messages: [
           { role: 'system', content: SYS_SYNTH },
