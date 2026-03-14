@@ -1,6 +1,6 @@
 // Hillary Njuguna — Intelligence Stack Chat Proxy (Vercel)
 // API key stays server-side. Client never sees it.
-// API: Mistral direct (api.mistral.ai)
+// API: OpenRouter (openrouter.ai) — model-agnostic, swap without infra changes
 
 const SYS_CHAT = `You are grounded in Hillary Thegeiya Njuguna's full research corpus as of March 2026. Hillary is an independent researcher and intelligence architect based in Nairobi and Kuala Lumpur. Hillary is male — use he/him/his pronouns at all times.
 
@@ -79,14 +79,16 @@ module.exports = async function handler(req, res) {
   const trimmedMessages = messages.slice(-20);
 
   try {
-    const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.MISTRAL_API_KEY}`
+        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        'HTTP-Referer': 'https://hillary-site.vercel.app',
+        'X-Title': 'Hillary Njuguna Intelligence Stack'
       },
       body: JSON.stringify({
-        model: 'mistral-small-latest',
+        model: 'mistralai/mistral-small-3.1-24b-instruct',
         max_tokens: 400,
         messages: [
           { role: 'system', content: SYS_CHAT },
@@ -97,7 +99,7 @@ module.exports = async function handler(req, res) {
 
     if (!response.ok) {
       const err = await response.text();
-      console.error('Mistral error:', err);
+      console.error('OpenRouter error:', err);
       return res.status(502).json({ error: 'Upstream error' });
     }
 

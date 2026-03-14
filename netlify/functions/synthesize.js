@@ -49,14 +49,16 @@ exports.handler = async function(event, context) {
   const trimmedInput = input.slice(0, 8000);
 
   try {
-    const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.MISTRAL_API_KEY}`
+        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        'HTTP-Referer': 'https://hillary-site.vercel.app',
+        'X-Title': 'Hillary Njuguna Intelligence Stack — Synthesis Engine'
       },
       body: JSON.stringify({
-        model: 'mistral-large-latest',
+        model: 'mistralai/mistral-large-latest',
         max_tokens: 1000,
         messages: [
           { role: 'system', content: SYS_SYNTH },
@@ -67,7 +69,7 @@ exports.handler = async function(event, context) {
 
     if (!response.ok) {
       const err = await response.text();
-      console.error('Mistral error:', err);
+      console.error('OpenRouter error:', err);
       return { statusCode: 502, body: JSON.stringify({ error: 'Upstream error' }) };
     }
 

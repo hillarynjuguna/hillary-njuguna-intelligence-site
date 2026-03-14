@@ -1,7 +1,7 @@
 // Hillary Njuguna — Intelligence Synthesis Proxy (Vercel)
 // Synthesizes raw content → Oscillatory Fields field intelligence
 // Also extracts a micro-clause from each synthesis run
-// API: Mistral direct (api.mistral.ai)
+// API: OpenRouter (openrouter.ai) — model-agnostic, swap without infra changes
 
 const SYS_SYNTH = `You are Hillary Njuguna's intelligence synthesis engine for Oscillatory Fields publication.
 
@@ -44,14 +44,16 @@ module.exports = async function handler(req, res) {
   const trimmedInput = input.slice(0, 8000);
 
   try {
-    const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.MISTRAL_API_KEY}`
+        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        'HTTP-Referer': 'https://hillary-site.vercel.app',
+        'X-Title': 'Hillary Njuguna Intelligence Stack — Synthesis Engine'
       },
       body: JSON.stringify({
-        model: 'mistral-large-latest',
+        model: 'mistralai/mistral-large-latest',
         max_tokens: 1000,
         messages: [
           { role: 'system', content: SYS_SYNTH },
@@ -62,7 +64,7 @@ module.exports = async function handler(req, res) {
 
     if (!response.ok) {
       const err = await response.text();
-      console.error('Mistral error:', err);
+      console.error('OpenRouter error:', err);
       return res.status(502).json({ error: 'Upstream error' });
     }
 
