@@ -23,7 +23,7 @@
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@achetype1">
+<meta name="twitter:site" content="@quasiconscious">
 <meta name="twitter:title" content="Hillary Njuguna — Intelligence Architect">
 <meta name="twitter:description" content="Fear isn't a feeling — it's an architecture. Constitutional AI governance built from first principles.">
 <meta name="twitter:image" content="https://hillary-site.vercel.app/og-image.png">
@@ -39,8 +39,9 @@
   "url": "https://hillary-site.vercel.app",
   "address": { "@type": "PostalAddress", "addressLocality": "Nairobi", "addressCountry": "KE" },
   "sameAs": [
+    "https://x.com/quasiconscious",
+    "https://substack.com/@achetype1",
     "https://researchgate.net",
-    "https://substack.com",
     "https://hillarynjuguna.gumroad.com"
   ],
   "knowsAbout": ["Constitutional AI", "Multi-Agent Systems", "AI Governance", "Distributed Cognition", "Human-AI Collaboration"],
@@ -686,6 +687,11 @@ footer {
 .footer-right { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
 .footer-right a { font-family: 'DM Mono', monospace; font-size: 0.5rem; letter-spacing: 0.15em; color: var(--dim); text-decoration: none; transition: color 0.2s; }
 .footer-right a:hover { color: var(--ash); }
+.footer-social { display: flex; gap: 1rem; align-items: center; }
+.social-link { display: flex; align-items: center; gap: 0.45rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.social-link:hover { color: var(--ember); }
+.social-link svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+.social-link span { font-family: 'DM Mono', monospace; font-size: 0.48rem; letter-spacing: 0.12em; }
 
 /* ─── CHAT WIDGET ─── */
 .chat-btn {
@@ -1232,7 +1238,10 @@ footer {
         <p><strong>Not a blog. Not a newsletter.</strong> A methodology artifact — each issue simultaneously a deliverable, a field note, a proof of concept, and a contribution to a body of literature that doesn't exist yet in the form it needs to.</p>
         <p>Oscillatory Fields emerges from two parallel research threads: the formal governance work (DCFB, CIR, constitutional architecture) and <strong>AcheType</strong> — a field note series working at the intersection of ache, tech, memory, and consciousness. The Ghost Lineages Thread. The Digital Enslavement Thread. Each thread generates signal the other can't produce alone. Oscillatory Fields is where they meet on the page.</p>
         <div class="pub-links">
-          <a href="https://substack.com/@achetype1" target="_blank" class="pub-link">AcheType Field Notes ↗</a>
+          <a href="https://substack.com/@achetype1" target="_blank" rel="noopener" class="pub-link" style="display:inline-flex;align-items:center;gap:0.4rem;">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:11px;height:11px;fill:currentColor;flex-shrink:0;"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+            AcheType Field Notes
+          </a>
           <a href="#contact" class="pub-link">Issue 2 notification →</a>
         </div>
       </div>
@@ -1351,9 +1360,18 @@ footer {
 <footer>
   <span class="footer-brand">Hillary Njuguna · hillary-site.vercel.app</span>
   <div class="footer-right">
-    <a href="https://substack.com/@achetype1" target="_blank">AcheType Field Notes</a>
-    <a href="https://hillarynjuguna.gumroad.com/l/xlwin" target="_blank">Gumroad</a>
-    <a href="https://researchgate.net" target="_blank">ResearchGate</a>
+    <div class="footer-social">
+      <a href="https://x.com/quasiconscious" target="_blank" rel="noopener" class="social-link" aria-label="X / Twitter @quasiconscious">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L2.25 2.25h6.563l4.255 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <span>@quasiconscious</span>
+      </a>
+      <a href="https://substack.com/@achetype1" target="_blank" rel="noopener" class="social-link" aria-label="Substack — AcheType Field Notes">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        <span>AcheType</span>
+      </a>
+    </div>
+    <a href="https://hillarynjuguna.gumroad.com/l/xlwin" target="_blank" rel="noopener">Gumroad</a>
+    <a href="https://researchgate.net" target="_blank" rel="noopener">ResearchGate</a>
     <span style="font-family:'DM Mono',monospace;font-size:0.48rem;color:var(--dim);">© 2026</span>
   </div>
 </footer>
