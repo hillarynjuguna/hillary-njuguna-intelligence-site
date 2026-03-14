@@ -574,6 +574,7 @@ section { padding: 7rem 2.5rem; }
 .dcard-expanded { display: none; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--dust); font-size: 0.86rem; color: var(--ash); line-height: 1.78; }
 .dcard-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
 .dcard-tag { font-family: 'DM Mono', monospace; font-size: 0.45rem; letter-spacing: 0.1em; color: var(--dim); border: 1px solid var(--dust); padding: 0.15rem 0.45rem; }
+.dtag { font-family: 'DM Mono', monospace; font-size: 0.45rem; letter-spacing: 0.1em; color: var(--dim); border: 1px solid var(--dust); padding: 0.15rem 0.45rem; }
 
 /* Live synthesis */
 .synth-box {
@@ -1120,72 +1121,7 @@ footer {
     </div>
 
     <!-- DIGEST CARDS -->
-    <div id="dCards">
-      <div class="digest-cards">
-
-        <div class="dcard r">
-          <div class="dcard-meta">
-            <span class="dcard-date">Feb 27, 2026</span>
-            <span class="dcard-cat">Adoption · Biology · Window</span>
-          </div>
-          <div class="dcard-title">The Intent Gap, God Mode Biology, and the Window That's Closing</div>
-          <div class="dcard-body">
-            <p>Three signals this week. Taken together, they describe the structural problem every organisation deploying AI is refusing to name.</p>
-            <p><strong>Copilot:</strong> 85% of Fortune 500 bought it. Almost nobody uses it. The diagnosis — an "intent gap" rather than a technical flaw — is the most honest thing written about enterprise AI adoption all year. The shadow AI economy thrives because employees bypass corporate tools for Claude and ChatGPT that fit real workflows. This is the market's correction to intent misalignment.</p>
-            <p><strong>AlphaFold:</strong> The protein folding Nobel isn't just a milestone — it's proof AI can operate in God Mode within bounded, well-defined domains. The implication: the capability frontier keeps moving while most organisations are still debating last cycle's tools.</p>
-          </div>
-          <span class="dcard-more" onclick="toggleExpand(this)">Read full synthesis ↓</span>
-          <div class="dcard-expanded">The Copilot case is the canonical study in what I call the intent gap — a deployment succeeds commercially but fails operationally because the tool was never connected to what the organisation actually needs to accomplish. Microsoft framed Copilot as productivity enhancement. But productivity is not an organisational purpose. Margin protection is. Market position is. These are the problems CEOs lose sleep over — and they require a fundamentally different AI deployment architecture: one that starts from organisational intent, not feature lists. The lesson: constitutional alignment between an AI system and the organisation's genuine purpose is not a nice-to-have. It's the entire product. Nate B. Jones understates the real shift: it isn't from "doing tasks" to "managing agents." It's from executing to constitutionally governing what agents are allowed to execute.</div>
-          <div class="dcard-tags">
-            <span class="dcard-tag">Enterprise AI</span>
-            <span class="dcard-tag">Intent Gap</span>
-            <span class="dcard-tag">Shadow AI</span>
-            <span class="dcard-tag">AlphaFold</span>
-          </div>
-        </div>
-
-        <div class="dcard r" style="transition-delay:0.1s;">
-          <div class="dcard-meta">
-            <span class="dcard-date">Feb 19–24, 2026</span>
-            <span class="dcard-cat">Infrastructure · Protocol · Scale</span>
-          </div>
-          <div class="dcard-title">MCP Consolidation, the Infrastructure Paradox, and the End of Manual Code</div>
-          <div class="dcard-body">
-            <p>Eleven signals. The structural pattern underneath all of them: <strong>the agentic layer is consolidating around protocols while the infrastructure layer is quietly failing under the load.</strong></p>
-            <p>Microsoft's Agent Framework RC, Google's Antigravity integration, and Anthropic's positioning are independently converging on Model Context Protocol. This is REST consolidation happening in real time.</p>
-            <p><strong>The infrastructure paradox:</strong> The New Stack's piece on CD pipeline gaps is the most underrated article of the week. AI generates more code, faster. But review and deployment infrastructure wasn't built for that velocity. Result: AI adoption reduces delivery throughput. The Bainbridge Warning made concrete.</p>
-          </div>
-          <span class="dcard-more" onclick="toggleExpand(this)">Read full synthesis ↓</span>
-          <div class="dcard-expanded">OpenAI's Harness Engineering: a small team, one million lines of code, no manual source code written, five months. The human role shifted entirely to environment design, intent specification, and structured feedback. This is not a future scenario — it happened in a controlled pilot. The question is no longer whether this shift occurs. It's whether your organisation has the constitutional infrastructure to govern it when it does. The LangSmith memory system paper reveals something equally significant: the architecture for agents that learn from their own operational history is now deployable by technically-lite developers. Combined with LLM evaluation frameworks, the emerging pattern is clear: the competitive moat isn't access to powerful models. It's the governance layer above them — evaluation, memory, constitutional constraint, and named ownership.</div>
-          <div class="dcard-tags">
-            <span class="dcard-tag">MCP</span>
-            <span class="dcard-tag">Bainbridge Warning</span>
-            <span class="dcard-tag">Harness Engineering</span>
-            <span class="dcard-tag">CD Gaps</span>
-          </div>
-        </div>
-
-        <div class="dcard r" style="transition-delay:0.2s;">
-          <div class="dcard-meta">
-            <span class="dcard-date">Practitioner Brief</span>
-            <span class="dcard-cat">Governance · Framework</span>
-          </div>
-          <div class="dcard-title">Field Intelligence: Cognitive Infrastructure Readiness v2.0 — The Core Argument</div>
-          <div class="dcard-body">
-            <p><strong>The diagnostic question:</strong> Is your organisation deploying LLM agents into regulated workflows without a framework for what happens when they fail?</p>
-            <p>Most organisations answer "no, we have guardrails" — then discover their guardrails are policy documents, not architecture. The Bainbridge Warning applies: as agent systems become more reliable, human exception-handling skills atrophy. The window for building durable cognitive infrastructure is approximately 18 months.</p>
-            <p>Start with R3 classification. If you cannot enumerate your irreversible agent actions today, you have no foundation for any other governance primitive.</p>
-          </div>
-          <a class="dcard-more" href="#products" style="text-decoration:none;">Get the full framework →</a>
-          <div class="dcard-tags">
-            <span class="dcard-tag">R3 Classification</span>
-            <span class="dcard-tag">Dual Ownership</span>
-            <span class="dcard-tag">Bainbridge Warning</span>
-          </div>
-        </div>
-
-      </div>
-    </div><!-- /dCards -->
+    <div id="digest-cards-container"></div>
 
     <!-- SYNTHESIS PANEL -->
     <div class="synth-box" id="dSynth">
@@ -1572,6 +1508,26 @@ const obs = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('in'), i * 70); });
 }, { threshold: 0.07 });
 document.querySelectorAll('.r').forEach(el => obs.observe(el));
+</script>
+
+
+
+<script>
+(async function loadDigest() {
+  const container = document.getElementById('digest-cards-container');
+  if (!container) return;
+  try {
+    const res = await fetch('/api/digest');
+    const { entries } = await res.json();
+    container.innerHTML = entries.map(e => `
+      <div class="dcard">
+        <div class="dcard-meta">${new Date(e.date).toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'})}</div>
+        ${e.tags.map(t=>`<span class="dtag">${t}</span>`).join('')}
+        <div class="dcard-title">${e.title}</div>
+        <div class="dcard-summary">${e.summary}</div>
+      </div>`).join('');
+  } catch(err) { console.error(err); }
+})();
 </script>
 
 

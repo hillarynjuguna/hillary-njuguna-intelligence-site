@@ -5,7 +5,7 @@
 ## Stack
 
 - **Frontend**: Single-file HTML/CSS/JS in `public/index.html`  
-- **AI Layer**: OpenRouter API (OpenAI-compatible, 200+ models), proxied through Vercel serverless functions  
+- **AI Layer**: Mistral API, proxied through Vercel serverless functions  
 - **Forms**: Formspree (`maqdrora` endpoint)  
 - **Hosting**: Vercel (free tier — automatic deploys from git)  
 - **Database**: Not yet — static first, Neon Postgres when dynamic digest is needed
@@ -30,7 +30,7 @@ Hillary-Site/
 ### Step 1: Set environment variable in Vercel
 
 1. Vercel dashboard → Select project → Settings → Environment Variables
-2. Add: `OPENROUTER_API_KEY` = your key from [openrouter.ai](https://openrouter.ai)
+2. Add: `MISTRAL_API_KEY` = your key from [mistral.ai](https://mistral.ai)
 3. **Do not** put the key in any file that gets committed
 
 ### Step 2: Deploy

@@ -2,7 +2,7 @@
 // Synthesizes raw content → Oscillatory Fields field intelligence
 // Also extracts a micro-clause from each synthesis run
 // Migrated from Netlify functions → Vercel API routes
-// API: OpenRouter (OpenAI-compatible) replacing Mistral direct
+// API: Mistral direct
 
 const SYS_SYNTH = `You are Hillary Njuguna's intelligence synthesis engine for Oscillatory Fields publication.
 
@@ -45,18 +45,18 @@ module.exports = async function handler(req, res) {
   const trimmedInput = input.slice(0, 8000);
 
   try {
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        'Authorization': `Bearer ${process.env.MISTRAL_API_KEY}`,
         'HTTP-Referer': 'https://njugunahillary.vercel.app',
         'X-Title': 'Hillary Njuguna Intelligence Stack — Synthesis Engine'
       },
       body: JSON.stringify({
         // Synthesis uses the same free model — upgrade to paid when production SLA matters
         // mistralai/mistral-large-latest (paid) was the previous choice; free tier is adequate for this use
-        model: 'mistralai/mistral-small-3.1-24b-instruct:free',
+        model: 'mistral-large-latest',
         max_tokens: 1000,
         messages: [
           { role: 'system', content: SYS_SYNTH },
@@ -67,7 +67,7 @@ module.exports = async function handler(req, res) {
 
     if (!response.ok) {
       const err = await response.text();
-      console.error('OpenRouter error:', err);
+      console.error('Mistral error:', err);
       return res.status(502).json({ error: 'Upstream error' });
     }
 

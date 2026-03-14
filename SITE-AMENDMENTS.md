@@ -232,19 +232,19 @@ Add this link alongside the availability list or below the contact form:
 
 ---
 
-### H. Add the OpenRouter API key (R2 — enables full orchestra)
+### H. Add the Mistral API key (R2 — enables full orchestra)
 
-**What this unlocks**: The chat function routes queries to the most appropriate model — Perplexity for real-time questions, DeepSeek for technical audits, Grok for counter-arguments, Mistral as default. One key, one bill, ~50 models.
+**What this unlocks**: The chat function uses Mistral Large for intelligent responses.
 
 **Steps**:
-1. Go to openrouter.ai → Sign up → API Keys → Create key
-2. Netlify dashboard → Environment variables → Add variable:
-   - Key: `OPENROUTER_API_KEY`
+1. Go to mistral.ai → Sign up → API Keys → Create key
+2. Vercel dashboard → Environment variables → Add variable:
+   - Key: `MISTRAL_API_KEY`
    - Value: your key
 3. Trigger deploy
-4. The `chat.js` function auto-detects OpenRouter when the key is present and overrides Mistral
+4. The functions use Mistral directly
 
-**Cost note**: OpenRouter charges per token per model. Mistral Small (~$0.20/M tokens) remains the default for general queries. Perplexity and Grok cost more — the routing logic only sends queries there when the classification genuinely warrants it.
+**Cost note**: Mistral charges per token. Mistral Large is used for chat and synthesis.
 
 ---
 
