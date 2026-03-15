@@ -37,7 +37,9 @@ Clause Candidate:
 If no clause candidate is warranted, write "No clause candidate from this synthesis."`;
 
 export const POST: APIRoute = async ({ request }) => {
-  const apiKey = import.meta.env.OPENROUTER_API_KEY;
+  // process.env is the correct runtime env access in Vercel serverless functions.
+  // import.meta.env is Vite build-time only and will always be undefined in production.
+  const apiKey = process.env.OPENROUTER_API_KEY ?? import.meta.env.OPENROUTER_API_KEY;
 
   if (!apiKey) {
     return new Response(
@@ -86,6 +88,30 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     const data = await response.json();
+
+    // Check for OpenRouter-level errors before accessing choices
+    if (!response.ok || data.error) {
+      const errMsg = data.error?.message ?? data.error ?? `HTTP ${response.status}`;
+      const errCode = data.error?.code ?? response.status;
+      console.error(`[/api/synthesize] OpenRouter error ${errCode}:`, errMsg);
+      if (response.status === 401 || errCode === 401) {
+        return new Response(
+          JSON.stringify({ error: 'API key invalid or missing. Contact site administrator.' }),
+          { status: 502, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+      if (response.status === 429 || errCode === 429) {
+        return new Response(
+          JSON.stringify({ error: 'Rate limit reached. Try again in a few minutes.' }),
+          { status: 429, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+      return new Response(
+        JSON.stringify({ error: `Synthesis unavailable: ${errMsg}` }),
+        { status: 502, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
     const raw = data.choices?.[0]?.message?.content ?? '';
 
     // Parse synthesis and clause candidate

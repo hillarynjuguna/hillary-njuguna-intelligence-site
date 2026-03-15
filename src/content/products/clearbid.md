@@ -8,7 +8,7 @@ productKind: tool
 status: "development"
 price: "Coming Soon"
 ctaLabel: "Join Waitlist"
-waitlistUrl: "mailto:hello@hillarynjuguna.com?subject=ClearBid Waitlist"
+waitlistUrl: "mailto:hillarynjuguna@protonmail.com?subject=ClearBid Waitlist"
 platform: "Direct"
 featured: false
 order: 4
@@ -47,4 +47,4 @@ ClearBid applies structured intelligence to reduce this gap systematically.
 
 ClearBid is in active development. Join the waitlist to be notified at launch and to provide early input on the features that matter most to your procurement workflow.
 
-*[Join waitlist →](mailto:hello@hillarynjuguna.com?subject=ClearBid Waitlist)*
+*[Join waitlist →](mailto:hillarynjuguna@protonmail.com?subject=ClearBid Waitlist)*

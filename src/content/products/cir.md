@@ -88,4 +88,4 @@ Do your decision-makers understand the specific failure modes of the systems the
 
 Available now on Gumroad for $50. Immediate digital delivery.
 
-*Questions? Contact [hello@hillarynjuguna.com](mailto:hello@hillarynjuguna.com).*
+*Questions? Contact [hillarynjuguna@protonmail.com](mailto:hillarynjuguna@protonmail.com).*
