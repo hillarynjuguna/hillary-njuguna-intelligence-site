@@ -1,0 +1,144 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getAllProducts, getStatusLabel, getStatusBadgeClass } from '@lib/content';
+
+const products = await getAllProducts();
+---
+
+<BaseLayout
+  title="Products"
+  description="Applied frameworks, tools, and cohort programs from the Oscillatory Fields research corpus. CIR v2.0, The Bainbridge Warning, Martha Cohort, and ClearBid."
+>
+  <div class="page page-enter">
+    <div class="container">
+      <header class="page-header">
+        <p class="label page-label">Applied Work</p>
+        <h1 class="page-title">Products</h1>
+        <p class="page-desc">
+          Frameworks, tools, and cohort programs built from the research corpus.
+          From the CIR self-assessment to the Bainbridge Warning diagnostic — each product
+          operationalises a layer of the Oscillatory Fields research architecture.
+        </p>
+      </header>
+
+      <div class="products-grid">
+        {products.map((product) => {
+          const badgeClass = getStatusBadgeClass(product.data.status);
+          const statusLabel = getStatusLabel(product.data.status);
+          return (
+            <a href={`/products/${product.slug}`} class="product-card hover-lift" data-reveal>
+              <div class="product-card__header">
+                <span class={`badge ${badgeClass}`}>{statusLabel}</span>
+                {product.data.price && (
+                  <span class="label product-card__price">{product.data.price}</span>
+                )}
+              </div>
+              <h2 class="product-card__title">{product.data.title}</h2>
+              <p class="product-card__summary">{product.data.summary}</p>
+              <div class="product-card__footer">
+                <span class="label product-card__type">{product.data.productType}</span>
+                <span class="label product-card__cta">View details →</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    padding: var(--space-24) 0 var(--space-32);
+  }
+
+  .page-header {
+    max-width: 64ch;
+    margin-bottom: var(--space-16);
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .page-label {
+    color: var(--ember);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-title {
+    font-size: var(--text-5xl);
+    margin-bottom: var(--space-5);
+  }
+
+  @media (max-width: 768px) {
+    .page-title { font-size: var(--text-4xl); }
+  }
+
+  .page-desc {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-5);
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-7);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    background: var(--surface-2);
+    transition: all var(--duration-mid) var(--ease-out);
+  }
+
+  .product-card:hover {
+    border-color: var(--ember-dim);
+    background: var(--surface-3);
+  }
+
+  .product-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .product-card__price {
+    color: var(--pale-gold);
+  }
+
+  .product-card__title {
+    font-size: var(--text-xl);
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+  }
+
+  .product-card__summary {
+    font-size: var(--text-base);
+    color: var(--text-tertiary);
+    line-height: var(--leading-relaxed);
+    flex: 1;
+  }
+
+  .product-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .product-card__type {
+    color: var(--text-tertiary);
+    text-transform: capitalize;
+  }
+
+  .product-card__cta {
+    color: var(--ember);
+  }
+</style>

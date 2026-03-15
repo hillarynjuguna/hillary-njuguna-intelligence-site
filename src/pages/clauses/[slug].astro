@@ -1,0 +1,306 @@
+---
+export const prerender = true;
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import LineageTrail from '@components/relations/LineageTrail.astro';
+import RelatedContent from '@components/relations/RelatedContent.astro';
+import GovernanceLinks from '@components/relations/GovernanceLinks.astro';
+import { getRelatedContent } from '@lib/related/getRelatedContent';
+import { formatDate } from '@lib/content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('clauses', ({ data }) => data.visibility === 'public');
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+
+const contentId = data.id ?? `clause-${entry.slug}`;
+const allRelated = await getRelatedContent(contentId, 6);
+
+// Split: governance items = research/digest supporting this clause
+const governanceItems = allRelated.filter(
+  (r) => r.node.contentType !== 'clause' && (
+    r.edge.type === 'governance_relevant_to' ||
+    r.edge.type === 'derives_from' ||
+    r.edge.type === 'crystallizes'
+  )
+);
+const otherRelated = allRelated.filter(
+  (r) => !governanceItems.includes(r)
+).slice(0, 3);
+
+const statusLabels: Record<string, string> = {
+  candidate: 'Candidate',
+  provisional: 'Provisional',
+  active: 'Active',
+  retired: 'Retired',
+};
+
+const statusBadge: Record<string, string> = {
+  candidate: 'badge--dev',
+  provisional: 'badge--soon',
+  active: 'badge--live',
+  retired: 'badge--soon',
+};
+
+const clauseStatus = data.clauseStatus ?? 'candidate';
+const publishedDate = data.publishedAt ?? data.generatedAt;
+---
+
+<BaseLayout
+  title={`${data.title} — Governance Clause`}
+  description={data.sourceContext ?? data.clauseText.slice(0, 160)}
+>
+  <article class="clause-page page-enter">
+    <div class="container container--narrow">
+      <Breadcrumbs items={[
+        { name: 'Clauses', href: '/clauses' },
+        { name: data.title, href: `/clauses/${entry.slug}` },
+      ]} />
+
+      <header class="clause-header">
+        <div class="clause-header__meta">
+          <span class={`badge ${statusBadge[clauseStatus] ?? 'badge--dev'}`}>
+            {statusLabels[clauseStatus] ?? clauseStatus}
+          </span>
+          {data.governanceDomain && (
+            <span class="clause-domain label">{data.governanceDomain}</span>
+          )}
+          <time class="label clause-date" datetime={publishedDate.toISOString()}>
+            Generated {formatDate(publishedDate)}
+          </time>
+        </div>
+
+        <h1 class="clause-title">{data.title}</h1>
+
+        {data.lineage?.length > 0 && (
+          <LineageTrail lineage={data.lineage} />
+        )}
+      </header>
+
+      <section class="clause-text-section">
+        <blockquote class="clause-text">
+          {data.clauseText}
+        </blockquote>
+      </section>
+
+      {data.sourceContext && (
+        <section class="clause-section">
+          <h2 class="clause-section__title label">Origin</h2>
+          <p class="clause-section__body">{data.sourceContext}</p>
+        </section>
+      )}
+
+      {data.applicability && (
+        <section class="clause-section">
+          <h2 class="clause-section__title label">Applicability</h2>
+          <p class="clause-section__body">{data.applicability}</p>
+        </section>
+      )}
+
+      {data.objections && data.objections.length > 0 && (
+        <section class="clause-section">
+          <h2 class="clause-section__title label">Known objections</h2>
+          <ul class="clause-objections">
+            {data.objections.map((obj) => (
+              <li class="clause-objection">{obj}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {data.crystallizationThreshold !== undefined && (
+        <section class="clause-section">
+          <h2 class="clause-section__title label">Crystallization threshold</h2>
+          <div class="clause-threshold">
+            <div class="clause-threshold__bar">
+              <div
+                class="clause-threshold__fill"
+                style={`width: ${Math.round(data.crystallizationThreshold * 100)}%`}
+              />
+            </div>
+            <span class="label clause-threshold__value">
+              {Math.round(data.crystallizationThreshold * 100)}% supporting content must reach crystallized state
+            </span>
+          </div>
+        </section>
+      )}
+
+      {data.tags && data.tags.length > 0 && (
+        <div class="clause-tags">
+          {data.tags.map((tag) => (
+            <span class="tag">#{tag}</span>
+          ))}
+        </div>
+      )}
+
+      {governanceItems.length > 0 && (
+        <GovernanceLinks clauseItems={governanceItems} isClause />
+      )}
+
+      {otherRelated.length > 0 && (
+        <RelatedContent items={otherRelated} heading="Also related" />
+      )}
+
+      <section class="clause-cta" data-reveal>
+        <p class="label clause-cta__note">
+          Clauses accumulate through active synthesis.
+          <a href="/corpus">Query the corpus →</a>
+        </p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .clause-page {
+    padding: var(--space-24) 0 var(--space-32);
+  }
+
+  .clause-header {
+    margin-bottom: var(--space-10);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--border-dim);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .clause-header__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .clause-domain {
+    color: var(--ember);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .clause-date {
+    color: var(--text-tertiary);
+  }
+
+  .clause-title {
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 768px) {
+    .clause-title { font-size: var(--text-3xl); }
+  }
+
+  .clause-text-section {
+    margin-bottom: var(--space-10);
+  }
+
+  .clause-text {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: var(--leading-relaxed);
+    color: var(--pale-gold);
+    border-left: 3px solid var(--ember);
+    padding: var(--space-6) var(--space-8);
+    background: var(--surface-2);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-style: italic;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .clause-text {
+      font-size: var(--text-lg);
+      padding: var(--space-5) var(--space-6);
+    }
+  }
+
+  .clause-section {
+    margin-bottom: var(--space-8);
+  }
+
+  .clause-section__title {
+    color: var(--ember);
+    margin-bottom: var(--space-3);
+  }
+
+  .clause-section__body {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 64ch;
+  }
+
+  .clause-objections {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .clause-objection {
+    padding: var(--space-3) var(--space-5);
+    border-left: 2px solid var(--border-mid);
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    background: var(--surface-2);
+  }
+
+  .clause-threshold {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    max-width: 360px;
+  }
+
+  .clause-threshold__bar {
+    height: 4px;
+    background: var(--surface-3);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .clause-threshold__fill {
+    height: 100%;
+    background: var(--ember);
+    border-radius: 2px;
+  }
+
+  .clause-threshold__value {
+    color: var(--text-tertiary);
+  }
+
+  .clause-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-10);
+  }
+
+  .clause-cta {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .clause-cta__note {
+    color: var(--text-tertiary);
+  }
+
+  .clause-cta__note a {
+    color: var(--ember);
+    text-decoration: none;
+  }
+
+  .clause-cta__note a:hover {
+    text-decoration: underline;
+  }
+</style>

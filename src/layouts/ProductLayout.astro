@@ -1,0 +1,245 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+import type { SEOProps } from '@lib/seo';
+import { getStatusLabel, getStatusBadgeClass } from '@lib/content';
+
+interface Props extends SEOProps {
+  title: string;
+  summary: string;
+  status: string;
+  price?: string;
+  ctaLabel?: string;
+  ctaUrl?: string;
+  waitlistUrl?: string;
+  breadcrumbs?: { name: string; href: string }[];
+  faq?: { q: string; a: string }[];
+}
+
+const {
+  title,
+  summary,
+  status,
+  price,
+  ctaLabel,
+  ctaUrl,
+  waitlistUrl,
+  breadcrumbs = [],
+  faq = [],
+  ...seoProps
+} = Astro.props;
+
+const badgeClass = getStatusBadgeClass(status);
+const statusLabel = getStatusLabel(status);
+const primaryCta = status === 'live' ? ctaUrl : waitlistUrl;
+const primaryCtaLabel = status === 'live' ? (ctaLabel ?? 'Get Access') : 'Join Waitlist';
+---
+
+<BaseLayout {...seoProps} title={title} ogType="article">
+  <div class="product-page page-enter">
+    <div class="container">
+      {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
+
+      <div class="product-layout">
+        <div class="product-main">
+          <header class="product-header">
+            <span class={`badge ${badgeClass}`}>{statusLabel}</span>
+            <h1 class="product-title">{title}</h1>
+            <p class="product-summary">{summary}</p>
+          </header>
+
+          <div class="prose product-body">
+            <slot />
+          </div>
+
+          {faq.length > 0 && (
+            <section class="product-faq">
+              <h2 class="faq-heading">Common Questions</h2>
+              <div class="faq-list">
+                {faq.map(({ q, a }) => (
+                  <details class="faq-item">
+                    <summary class="faq-q">{q}</summary>
+                    <p class="faq-a">{a}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+
+        <aside class="product-sidebar">
+          <div class="product-cta-card">
+            <div class="cta-status">
+              <span class={`badge ${badgeClass}`}>{statusLabel}</span>
+            </div>
+            {price && (
+              <div class="cta-price">{price}</div>
+            )}
+            {primaryCta && (
+              <a
+                href={primaryCta}
+                class="btn btn--primary cta-btn"
+                target={primaryCta.startsWith('http') ? '_blank' : undefined}
+                rel={primaryCta.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
+                {primaryCtaLabel}
+              </a>
+            )}
+            <div class="cta-contact">
+              <p class="label">Questions?</p>
+              <a href="mailto:hello@hillarynjuguna.com" class="cta-email">
+                hello@hillarynjuguna.com
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .product-page {
+    padding: var(--space-24) 0 var(--space-32);
+  }
+
+  .product-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .product-layout {
+      grid-template-columns: 1fr;
+    }
+    .product-sidebar {
+      order: -1;
+    }
+  }
+
+  .product-header {
+    margin-bottom: var(--space-10);
+  }
+
+  .product-header .badge {
+    margin-bottom: var(--space-4);
+  }
+
+  .product-title {
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-5);
+  }
+
+  @media (max-width: 768px) {
+    .product-title { font-size: var(--text-3xl); }
+  }
+
+  .product-summary {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+
+  /* Sidebar */
+  .product-cta-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    position: sticky;
+    top: calc(var(--space-16) + 60px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .cta-price {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    color: var(--pale-gold);
+  }
+
+  .cta-btn {
+    width: 100%;
+    justify-content: center;
+    padding: var(--space-4) var(--space-6);
+  }
+
+  .cta-contact {
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .cta-email {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--ember);
+  }
+
+  /* FAQ */
+  .product-faq {
+    margin-top: var(--space-16);
+    padding-top: var(--space-12);
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .faq-heading {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-8);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .faq-item {
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .faq-q {
+    padding: var(--space-4) var(--space-5);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background var(--duration-fast) var(--ease-out);
+  }
+
+  .faq-q:hover {
+    background: var(--surface-3);
+  }
+
+  .faq-q::after {
+    content: '+';
+    font-size: var(--text-lg);
+    color: var(--ember);
+    flex-shrink: 0;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .faq-item[open] .faq-q::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    padding: var(--space-4) var(--space-5) var(--space-5);
+    color: var(--text-secondary);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    border-top: 1px solid var(--border-dim);
+    background: var(--surface-1);
+  }
+</style>

@@ -1,0 +1,50 @@
+---
+export const prerender = true;
+import { getCollection } from 'astro:content';
+import ProductLayout from '@layouts/ProductLayout.astro';
+import RelatedContent from '@components/relations/RelatedContent.astro';
+import { getRelatedContent } from '@lib/related/getRelatedContent';
+import { buildProductSchema } from '@lib/seo';
+import { SITE } from '@data/site';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('products', ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { data } = entry;
+
+const contentId = data.id ?? `product-${entry.slug}`;
+const relatedItems = await getRelatedContent(contentId, 4);
+
+const productSchema = buildProductSchema({
+  title: data.title,
+  description: data.seoDescription ?? data.summary,
+  url: `${SITE.url}/products/${entry.slug}`,
+  price: data.price,
+});
+---
+
+<ProductLayout
+  title={data.seoTitle ?? data.title}
+  description={data.seoDescription ?? data.summary}
+  summary={data.summary}
+  status={data.status}
+  price={data.price}
+  ctaLabel={data.ctaLabel}
+  ctaUrl={data.ctaUrl}
+  waitlistUrl={data.waitlistUrl}
+  faq={data.faq}
+  breadcrumbs={[
+    { name: 'Products', href: '/products' },
+    { name: data.title, href: `/products/${entry.slug}` },
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  <Content />
+  {relatedItems.length > 0 && (
+    <RelatedContent items={relatedItems} heading="Research foundation" />
+  )}
+</ProductLayout>

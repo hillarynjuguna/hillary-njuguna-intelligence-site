@@ -1,0 +1,100 @@
+---
+import type { RelationType } from '@lib/graph/types';
+
+interface Props {
+  type: RelationType;
+  isManual?: boolean;
+  compact?: boolean;
+}
+
+const { type, isManual = false, compact = false } = Astro.props;
+
+const LABELS: Record<RelationType, string> = {
+  extends: 'Extends',
+  derives_from: 'Derives from',
+  responds_to: 'Responds to',
+  tensions_with: 'Tensions with',
+  clarifies: 'Clarifies',
+  depends_on: 'Depends on',
+  governance_relevant_to: 'Governance for',
+  prototype_for: 'Prototype for',
+  example_of: 'Example of',
+  contraindicates: 'Contraindicates',
+  crystallizes: 'Crystallizes',
+  remains_emergent_with: 'Emergent with',
+};
+
+const VARIANTS: Partial<Record<RelationType, string>> = {
+  governance_relevant_to: 'rel-badge--governance',
+  contraindicates: 'rel-badge--contra',
+  tensions_with: 'rel-badge--tension',
+  crystallizes: 'rel-badge--crystallized',
+  depends_on: 'rel-badge--depends',
+};
+
+const label = LABELS[type] ?? type.replace(/_/g, ' ');
+const variant = VARIANTS[type] ?? '';
+---
+
+<span class:list={['rel-badge', variant, compact && 'rel-badge--compact']}>
+  {label}
+  {!isManual && <span class="rel-badge__inferred" title="Inferred relation">~</span>}
+</span>
+
+<style>
+  .rel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    border: 1px solid var(--border-mid);
+    color: var(--ash-light);
+    background: var(--surface-2);
+    white-space: nowrap;
+  }
+
+  .rel-badge--compact {
+    font-size: 10px;
+    padding: 1px 5px;
+  }
+
+  .rel-badge--governance {
+    border-color: color-mix(in srgb, var(--ember) 40%, transparent);
+    color: var(--ember);
+    background: color-mix(in srgb, var(--ember) 8%, transparent);
+  }
+
+  .rel-badge--contra {
+    border-color: color-mix(in srgb, #e06c6c 40%, transparent);
+    color: #e06c6c;
+    background: color-mix(in srgb, #e06c6c 8%, transparent);
+  }
+
+  .rel-badge--tension {
+    border-color: color-mix(in srgb, var(--pale-gold) 40%, transparent);
+    color: var(--pale-gold);
+    background: color-mix(in srgb, var(--pale-gold) 8%, transparent);
+  }
+
+  .rel-badge--crystallized {
+    border-color: color-mix(in srgb, #7ec8c8 40%, transparent);
+    color: #7ec8c8;
+    background: color-mix(in srgb, #7ec8c8 8%, transparent);
+  }
+
+  .rel-badge--depends {
+    border-color: color-mix(in srgb, var(--ash-light) 50%, transparent);
+    color: var(--ash);
+    background: var(--surface-3);
+  }
+
+  .rel-badge__inferred {
+    opacity: 0.5;
+    font-size: 10px;
+  }
+</style>

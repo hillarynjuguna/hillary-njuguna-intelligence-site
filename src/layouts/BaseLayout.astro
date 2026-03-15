@@ -1,0 +1,54 @@
+---
+import Nav from '@components/layout/Nav.astro';
+import Footer from '@components/layout/Footer.astro';
+import SEOHead from '@components/seo/SEOHead.astro';
+import { buildSEO, type SEOProps } from '@lib/seo';
+import '@styles/global.css';
+
+interface Props extends SEOProps {
+  class?: string;
+}
+
+const { class: className, ...seoProps } = Astro.props;
+const seo = buildSEO(seoProps);
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#050403" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <SEOHead seo={seo} />
+  </head>
+  <body class={className}>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Nav />
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+---
+import { buildBreadcrumbSchema } from '@lib/seo';
+import { SITE } from '@data/site';
+
+interface Props {
+  items: { name: string; href: string }[];
+}
+
+const { items } = Astro.props;
+const allItems = [{ name: 'Home', href: '/' }, ...items];
+const schema = buildBreadcrumbSchema(
+  allItems.map((item) => ({ name: item.name, url: `${SITE.url}${item.href}` }))
+);
+---
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol class="breadcrumbs__list">
+    {allItems.map((item, i) => (
+      <li class="breadcrumbs__item">
+        {i < allItems.length - 1 ? (
+          <a href={item.href} class="breadcrumbs__link label">{item.name}</a>
+        ) : (
+          <span class="breadcrumbs__current label" aria-current="page">{item.name}</span>
+        )}
+        {i < allItems.length - 1 && (
+          <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+<style>
+  .breadcrumbs {
+    margin-bottom: var(--space-8);
+  }
+
+  .breadcrumbs__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumbs__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .breadcrumbs__link {
+    color: var(--text-tertiary);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .breadcrumbs__link:hover {
+    color: var(--ember);
+  }
+
+  .breadcrumbs__current {
+    color: var(--text-secondary);
+  }
+
+  .breadcrumbs__sep {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+  }
+</style>

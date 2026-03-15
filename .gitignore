@@ -6,12 +6,16 @@
 # Dependencies
 node_modules/
 
-# Build artifacts
-.netlify/
+# Vercel CLI project link — contains project + org IDs, do not commit
+.vercel/
 
 # OS artifacts
 .DS_Store
 Thumbs.db
+
+# Astro build output
+dist/
+.astro/
 
 # Editor artifacts
 .vscode/

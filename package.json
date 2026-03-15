@@ -1,0 +1,31 @@
+{
+  "name": "oscillatory-fields",
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "npm run build:graph && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "build:graph": "tsx scripts/build-graph.ts",
+    "validate:content": "tsx scripts/validate-content.ts",
+    "check:relations": "tsx scripts/check-relations.ts",
+    "check:orphans": "tsx scripts/check-orphans.ts",
+    "check:governance": "tsx scripts/check-governance.ts"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.0.0",
+    "@astrojs/rss": "^4.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/vercel": "^8.0.0",
+    "astro": "^5.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "fast-glob": "^3.3.3",
+    "gray-matter": "^4.0.3",
+    "tsx": "^4.21.0"
+  }
+}

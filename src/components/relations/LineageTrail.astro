@@ -1,0 +1,87 @@
+---
+/**
+ * Displays the lineage trail for a content node.
+ * Shows the intellectual ancestry as a horizontal breadcrumb.
+ */
+interface Props {
+  lineage: string[];
+  compact?: boolean;
+}
+
+const { lineage, compact = false } = Astro.props;
+if (!lineage?.length) return;
+
+// Human-readable lineage labels
+const LINEAGE_LABELS: Record<string, string> = {
+  'dcfb-core': 'DCFB Core',
+  'constitutional-ai': 'Constitutional AI',
+  'bainbridge-core': 'Bainbridge',
+  'trust-theory': 'Trust Theory',
+  'cir-framework': 'CIR Framework',
+};
+
+function lineageLabel(key: string): string {
+  return LINEAGE_LABELS[key] ?? key.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+}
+---
+
+<div class:list={['lineage-trail', compact && 'lineage-trail--compact']}>
+  <span class="lineage-trail__label label">Lineage</span>
+  <div class="lineage-trail__items">
+    {lineage.map((item, i) => (
+      <>
+        <span class="lineage-trail__item">{lineageLabel(item)}</span>
+        {i < lineage.length - 1 && (
+          <span class="lineage-trail__sep" aria-hidden="true">→</span>
+        )}
+      </>
+    ))}
+  </div>
+</div>
+
+<style>
+  .lineage-trail {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .lineage-trail--compact {
+    gap: var(--space-2);
+  }
+
+  .lineage-trail__label {
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+  }
+
+  .lineage-trail__items {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .lineage-trail__item {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ash);
+    padding: 1px 6px;
+    background: var(--surface-3);
+    border: 1px solid var(--border-dim);
+    border-radius: 2px;
+    letter-spacing: 0.03em;
+  }
+
+  .lineage-trail--compact .lineage-trail__item {
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+
+  .lineage-trail__sep {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    opacity: 0.4;
+  }
+</style>

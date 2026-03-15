@@ -1,0 +1,147 @@
+/* ── Prose / Long-form Content Styles ────────────────────────────────────── */
+.prose {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  max-width: var(--max-w-prose);
+}
+
+.prose > * + * {
+  margin-top: var(--space-5);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--text-primary);
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-4);
+}
+
+.prose h2 {
+  font-size: var(--text-2xl);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.prose h3 {
+  font-size: var(--text-xl);
+  color: var(--pale-gold);
+}
+
+.prose h4 {
+  font-size: var(--text-lg);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--ember);
+  font-weight: 400;
+}
+
+.prose p {
+  margin-bottom: var(--space-5);
+}
+
+.prose strong {
+  color: var(--pale-gold);
+  font-weight: 600;
+}
+
+.prose em {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.prose a {
+  color: var(--ember);
+  text-underline-offset: 3px;
+  text-decoration: underline;
+  text-decoration-color: rgba(196, 112, 58, 0.4);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+.prose a:hover {
+  color: var(--ember-bright);
+  text-decoration-color: var(--ember);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--space-6);
+  margin: var(--space-5) 0;
+}
+
+.prose li {
+  margin-bottom: var(--space-3);
+  line-height: var(--leading-relaxed);
+}
+
+.prose li::marker {
+  color: var(--ember-dim);
+}
+
+.prose blockquote {
+  border-left: 2px solid var(--ember);
+  margin: var(--space-8) 0;
+  padding: var(--space-5) var(--space-6);
+  background: var(--surface-2);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--pale-gold);
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--border-dim);
+  margin: var(--space-12) 0;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--surface-3);
+  color: var(--ember-bright);
+  padding: 0.125em 0.35em;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-dim);
+}
+
+.prose pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  overflow-x: auto;
+  margin: var(--space-8) 0;
+}
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--pale-gold);
+  font-size: var(--text-sm);
+}
+
+/* Lead paragraph — first paragraph after heading */
+.prose > p:first-of-type {
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+  line-height: var(--leading-relaxed);
+}
+
+/* Pull quote utility */
+.prose .pull-quote {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+  color: var(--ember);
+  border: none;
+  background: none;
+  padding: var(--space-8) 0;
+  margin: var(--space-12) 0;
+  border-top: 1px solid var(--border-dim);
+  border-bottom: 1px solid var(--border-dim);
+  font-style: italic;
+}

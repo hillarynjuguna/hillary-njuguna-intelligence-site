@@ -1,0 +1,22 @@
+{
+  "currentFocus": "Oscillatory Fields Issue 02 · Bainbridge Warning Launch",
+  "currentIssue": "Issue 02",
+  "currentSignal": "CIR v2.0 live — The Bainbridge Warning shipping March 2026",
+  "currentBuildState": "active",
+  "featuredLinks": [
+    { "label": "The Bainbridge Warning", "href": "/products/bainbridge-warning", "description": "The institutional AI readiness framework" },
+    { "label": "CIR v2.0", "href": "/products/cir", "description": "Cognitive Infrastructure Readiness — live now" },
+    { "label": "Intelligence Digest", "href": "/digest", "description": "Field notes from active synthesis" }
+  ],
+  "metrics": {
+    "documents": "560+",
+    "months": "18",
+    "models": "7"
+  },
+  "corpusStats": {
+    "entries": 3,
+    "clauses": 4,
+    "lastSynthesis": "2026-03-14"
+  },
+  "availabilityState": "available"
+}

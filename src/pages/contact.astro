@@ -1,0 +1,343 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Hillary Njuguna — for intelligence architecture consulting, AI readiness assessments, the Bainbridge Warning, or general inquiries."
+>
+  <div class="page page-enter">
+    <div class="container">
+      <div class="contact-layout">
+        <div class="contact-text">
+          <p class="label page-label">Contact</p>
+          <h1 class="page-title">Start a conversation</h1>
+          <p class="page-desc">
+            Whether you're navigating an AI deployment, thinking about governance architecture,
+            interested in CIR or the Bainbridge Warning, or just want to talk about the work —
+            reach out.
+          </p>
+
+          <div class="contact-modes">
+            <div class="contact-mode">
+              <p class="label contact-mode__label">Email</p>
+              <a href="mailto:hello@hillarynjuguna.com" class="contact-mode__value">
+                hello@hillarynjuguna.com
+              </a>
+            </div>
+            <div class="contact-mode">
+              <p class="label contact-mode__label">X / Twitter</p>
+              <a href="https://x.com/quasiconscious" target="_blank" rel="noopener noreferrer" class="contact-mode__value">
+                @quasiconscious ↗
+              </a>
+            </div>
+            <div class="contact-mode">
+              <p class="label contact-mode__label">Substack</p>
+              <a href="https://substack.com/@achetype1" target="_blank" rel="noopener noreferrer" class="contact-mode__value">
+                AcheType ↗
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-products">
+            <p class="label contact-products__label">Looking for something specific?</p>
+            <div class="contact-products__list">
+              <a href="/products/cir" class="contact-product">
+                CIR v2.0 →
+                <span class="badge badge--live">Available now</span>
+              </a>
+              <a href="/products/bainbridge-warning" class="contact-product">
+                Bainbridge Warning →
+                <span class="badge badge--live">On request</span>
+              </a>
+              <a href="/products/martha" class="contact-product">
+                Martha Cohort →
+                <span class="badge badge--soon">Q2 2026</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap">
+          <form
+            id="contact-form"
+            class="contact-form"
+            action="https://formspree.io/f/maqdrora"
+            method="POST"
+            novalidate
+          >
+            <div class="form-group">
+              <label for="name" class="label form-label">Your name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                placeholder="Hillary Njuguna"
+                required
+                autocomplete="name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="label form-label">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="_replyto"
+                class="form-input"
+                placeholder="you@organisation.com"
+                required
+                autocomplete="email"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="type" class="label form-label">Type of enquiry</label>
+              <select id="type" name="type" class="form-input form-select">
+                <option value="">Select one…</option>
+                <option value="ai-readiness">AI Readiness / CIR Assessment</option>
+                <option value="bainbridge">Bainbridge Warning</option>
+                <option value="governance">Constitutional Governance Design</option>
+                <option value="martha">Martha Cohort</option>
+                <option value="speaking">Speaking / Research Collaboration</option>
+                <option value="general">General enquiry</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="label form-label">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-input form-textarea"
+                placeholder="Tell me what you're working on and what you need…"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-footer">
+              <button type="submit" class="btn btn--primary form-submit">
+                Send message
+              </button>
+              <p class="label form-note" id="form-status"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    padding: var(--space-24) 0 var(--space-32);
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .page-label {
+    color: var(--ember);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-title {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-5);
+  }
+
+  @media (max-width: 768px) {
+    .page-title { font-size: var(--text-3xl); }
+  }
+
+  .page-desc {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-10);
+  }
+
+  /* Contact modes */
+  .contact-modes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    margin-bottom: var(--space-10);
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .contact-mode__label {
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-1);
+  }
+
+  .contact-mode__value {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    color: var(--ember);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .contact-mode__value:hover {
+    color: var(--ember-bright);
+  }
+
+  /* Products */
+  .contact-products__label {
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-products__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .contact-product {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .contact-product:hover {
+    color: var(--text-primary);
+  }
+
+  /* Form */
+  .contact-form-wrap {
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-label {
+    color: var(--text-tertiary);
+  }
+
+  .form-input {
+    background: var(--surface-3);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    transition: border-color var(--duration-fast) var(--ease-out);
+    width: 100%;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--ember-dim);
+  }
+
+  .form-input::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236e6459' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-4) center;
+    padding-right: var(--space-10);
+    cursor: pointer;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: var(--leading-relaxed);
+  }
+
+  .form-footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .form-note {
+    color: var(--text-tertiary);
+  }
+
+  .form-note.success {
+    color: var(--sage-bright);
+  }
+
+  .form-note.error {
+    color: var(--ember);
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const status = document.getElementById('form-status');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector('.form-submit') as HTMLButtonElement;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        form.reset();
+        if (status) {
+          status.textContent = 'Message sent. I\'ll be in touch.';
+          status.className = 'label form-note success';
+        }
+      } else {
+        throw new Error('Send failed');
+      }
+    } catch {
+      if (status) {
+        status.textContent = 'Something went wrong. Try emailing directly.';
+        status.className = 'label form-note error';
+      }
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message';
+    }
+  });
+</script>

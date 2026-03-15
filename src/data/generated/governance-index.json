@@ -1,0 +1,142 @@
+{
+  "clauses": [
+    {
+      "id": "clause-intent-specification",
+      "title": "Intent Specification Requirement",
+      "clauseStatus": "candidate",
+      "governanceDomain": "epistemic-safety",
+      "crystallizationThreshold": 0.6,
+      "supportingContentIds": [
+        "digest-intent-gap-god-mode-biology",
+        "research-dcfb"
+      ],
+      "objections": [
+        "Live monitoring requirements may be technically infeasible for all model types at this stage.",
+        "Interpretability access is not uniformly available across vendors."
+      ],
+      "crystallization": "developing"
+    },
+    {
+      "id": "clause-irreversibility-threshold",
+      "title": "Irreversibility Threshold Review Requirement",
+      "clauseStatus": "candidate",
+      "governanceDomain": "agentic-behavior",
+      "crystallizationThreshold": 0.7,
+      "supportingContentIds": [
+        "research-trust-irreversibility-residue",
+        "research-bainbridge-warning"
+      ],
+      "objections": [
+        "Irreversibility thresholds are context-dependent and difficult to pre-specify universally.",
+        "Named accountable authority may be unclear in distributed or federated deployment architectures."
+      ],
+      "crystallization": "developing"
+    }
+  ],
+  "adjacency": [
+    {
+      "contentId": "digest-cir-v2-core-argument",
+      "contentTitle": "CIR v2.0 — Core Argument",
+      "contentType": "digest",
+      "clauseIds": [
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "digest-intent-gap-god-mode-biology",
+      "contentTitle": "The Intent Gap, God Mode Biology, and the Quiet Infrastructure Shift",
+      "contentType": "digest",
+      "clauseIds": [
+        "clause-intent-specification",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "digest-mcp-consolidation-infrastructure-paradox",
+      "contentTitle": "MCP Consolidation, the Infrastructure Paradox, and What Institutional AI Actually Costs",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "research-bainbridge-warning",
+      "contentTitle": "The Bainbridge Warning",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-irreversibility-threshold",
+        "clause-intent-specification"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "research-dcfb",
+      "contentTitle": "DCFB: Distributed Cognition as Foundational Behavior",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-intent-specification",
+        "clause-irreversibility-threshold",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "research-trust-irreversibility-residue",
+      "contentTitle": "Trust = Irreversibility Residue",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-irreversibility-threshold",
+        "clause-irreversibility-threshold",
+        "clause-intent-specification"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "product-bainbridge-warning",
+      "contentTitle": "The Bainbridge Warning",
+      "contentType": "product",
+      "clauseIds": [
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "product-cir",
+      "contentTitle": "Cognitive Infrastructure Readiness v2.0",
+      "contentType": "product",
+      "clauseIds": [
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "product-clearbid",
+      "contentTitle": "ClearBid",
+      "contentType": "product",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "product-martha",
+      "contentTitle": "Martha Cohort Program",
+      "contentType": "product",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    }
+  ],
+  "byDomain": {
+    "epistemic-safety": [
+      "clause-intent-specification"
+    ],
+    "agentic-behavior": [
+      "clause-irreversibility-threshold"
+    ]
+  },
+  "generatedAt": "2026-03-14T22:00:35.047Z"
+}
