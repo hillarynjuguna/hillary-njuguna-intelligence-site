@@ -64,6 +64,18 @@ const examplePrompts = [
           </div>
 
           <div class="chat-input-area">
+            <div class="quick-prompts">
+              <button class="quick-prompt" data-prompt="What is the Bainbridge Warning and how do I know if my organisation has one?">
+                Diagnose a Bainbridge Zone →
+              </button>
+              <button class="quick-prompt" data-prompt="Walk me through CIR v2.0 — what does it assess and how?">
+                Explain CIR v2.0 →
+              </button>
+              <button class="quick-prompt" data-prompt="What is DCFB and why does it matter for AI governance?">
+                Introduce DCFB →
+              </button>
+            </div>
+
             <div class="chat-suggestions">
               <p class="label chat-suggestions__label">Try asking:</p>
               <div class="chat-suggestions__list">
@@ -274,6 +286,32 @@ const examplePrompts = [
     gap: var(--space-4);
   }
 
+  .quick-prompts {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-6);
+  }
+
+  .quick-prompt {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--ember);
+    background: transparent;
+    border: 1px solid var(--ember-dim);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+    white-space: nowrap;
+  }
+
+  .quick-prompt:hover {
+    background: var(--ember-dim);
+    border-color: var(--ember);
+    color: var(--text-primary);
+  }
+
   .chat-suggestions__label {
     color: var(--text-tertiary);
     margin-bottom: var(--space-3);
@@ -415,7 +453,7 @@ const examplePrompts = [
   const messagesEl = document.getElementById('chat-messages');
   const inputEl = document.getElementById('corpus-input') as HTMLTextAreaElement;
   const submitBtn = document.getElementById('corpus-submit');
-  const suggestions = document.querySelectorAll('.chat-suggestion');
+  const suggestions = document.querySelectorAll('.chat-suggestion, .quick-prompt');
 
   let messageHistory: { role: string; content: string }[] = [];
 
@@ -455,6 +493,8 @@ const examplePrompts = [
         messageHistory.push({ role: 'assistant', content: data.reply });
         // Keep last 20 messages
         if (messageHistory.length > 20) messageHistory = messageHistory.slice(-20);
+      } else if (data.error) {
+        appendMessage('assistant', `⚠ ${data.error}`);
       } else {
         appendMessage('assistant', 'The corpus encountered an issue. Please try again.');
       }

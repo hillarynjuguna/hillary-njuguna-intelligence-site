@@ -7,7 +7,7 @@ export const SITE = {
   author: {
     name: 'Hillary Njuguna',
     handle: '@quasiconscious',
-    email: 'hello@hillarynjuguna.com',
+    email: 'hillarynjuguna@protonmail.com',
     bio: 'Intelligence architect. Constitutional AI governance researcher. Builder of cognitive infrastructure frameworks.',
     origin: 'Nairobi → Kuala Lumpur → everywhere',
     social: {

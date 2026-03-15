@@ -1,4 +1,4 @@
-# Site Amendment Guide — njugunahillary.netlify.app
+# Site Amendment Guide — hillary-site.vercel.app
 *Constitutional Infrastructure Documentation · Last updated March 2026*
 
 > This document is the governance layer for the site itself. Every amendment has a classification, a location, and a verification step. Read the classification before executing.
@@ -22,7 +22,7 @@
 
 ### Access the site
 **GitHub repo**: github.com/Hnju0001/Website  
-**Live site**: https://njugunahillary.netlify.app  
+**Live site**: https://hillary-site.vercel.app  
 **Netlify dashboard**: app.netlify.com → njugunahillary  
 **Codespace**: github.com/Hnju0001/Website → Code → Codespaces → Open
 
@@ -50,7 +50,7 @@ git add .
 git commit -m "fix: description of what you changed"
 git push origin main
 # 4. Netlify auto-deploys. Live in ~60 seconds.
-# 5. Verify at https://njugunahillary.netlify.app
+# 5. Verify at https://hillary-site.vercel.app
 ```
 
 ---
@@ -181,7 +181,7 @@ When new AcheType Field Notes warrant surfacing on the main site, add their titl
 **Location**: Lines 7–50, inside `<head>`
 
 **When the site moves to a custom domain**:
-Search and replace all instances of `njugunahillary.netlify.app` with the new domain. Affects:
+Search and replace all instances of `hillary-site.vercel.app` with the new domain. Affects:
 - `<link rel="canonical">`
 - `<meta property="og:url">`
 - `<meta property="og:image">`
@@ -226,7 +226,7 @@ Add this link alongside the availability list or below the contact form:
 4. Find `MISTRAL_API_KEY` → Edit → Paste new key → Save
 5. Netlify dashboard → Deploys → Trigger deploy (environment variable changes require a redeploy)
 6. Revoke the old key in the Mistral console
-7. Verify: visit `https://njugunahillary.netlify.app/.netlify/functions/chat` → should return `{"error":"Method not allowed"}`
+7. Verify: visit `https://hillary-site.vercel.app/.netlify/functions/chat` → should return `{"error":"Method not allowed"}`
 
 **The old key** (`Zdnta9YFl8AljDq5qti1c07NZU9isqaS`) was exposed in previous conversations. Revoke it if not already done.
 
@@ -264,13 +264,13 @@ You mentioned losing access to a previous GitHub account. If this happens again:
 ## Verification Checklist — after any deploy
 
 ```
-□ Site loads: https://njugunahillary.netlify.app
-□ AI functions live: https://njugunahillary.netlify.app/.netlify/functions/chat
+□ Site loads: https://hillary-site.vercel.app
+□ AI functions live: https://hillary-site.vercel.app/.netlify/functions/chat
   → Should return: {"error":"Method not allowed"}
 □ Chat widget responds in browser (opens, sends message, receives reply)
 □ No "$50" or "Send a listing" visible for ClearBid
 □ AcheType Field Notes link in Oscillatory Fields section is clickable
-□ Footer shows: Hillary Njuguna · njugunahillary.netlify.app
+□ Footer shows: Hillary Njuguna · hillary-site.vercel.app
 □ Contact form submits (fills form, clicks Send, sees success message)
 ```
 

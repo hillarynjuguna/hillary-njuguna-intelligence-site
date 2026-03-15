@@ -8,7 +8,7 @@ productKind: cohort
 status: "waitlist"
 price: "TBA"
 ctaLabel: "Join the Waitlist"
-waitlistUrl: "mailto:hello@hillarynjuguna.com?subject=Martha Cohort Waitlist"
+waitlistUrl: "mailto:hillarynjuguna@protonmail.com?subject=Martha Cohort Waitlist"
 platform: "Direct"
 featured: false
 order: 3
@@ -78,4 +78,4 @@ Sessions cover:
 
 Join the waitlist to be notified when cohort applications open.
 
-*[Join waitlist →](mailto:hello@hillarynjuguna.com?subject=Martha Cohort Waitlist)*
+*[Join waitlist →](mailto:hillarynjuguna@protonmail.com?subject=Martha Cohort Waitlist)*

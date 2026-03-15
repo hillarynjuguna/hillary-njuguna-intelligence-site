@@ -1,0 +1,84 @@
+---
+// AudienceRouter — three intent-based entry points shown below the hero
+// Routes visitors by need: framework, research, or governance help
+---
+
+<div class="audience-router" data-reveal data-reveal-delay="5">
+  <a href="/products/cir" class="router-card">
+    <span class="router-card__label label">Framework</span>
+    <span class="router-card__cta">I want the framework →</span>
+    <span class="router-card__sub">CIR v2.0 · Cognitive Infrastructure Readiness</span>
+  </a>
+  <a href="/research" class="router-card">
+    <span class="router-card__label label">Research</span>
+    <span class="router-card__cta">I want the research →</span>
+    <span class="router-card__sub">DCFB · Bainbridge Warning · Trust Theory</span>
+  </a>
+  <a href="/contact" class="router-card router-card--ember">
+    <span class="router-card__label label">Governance</span>
+    <span class="router-card__cta">I need governance help →</span>
+    <span class="router-card__sub">Audits · Constitutional design · Martha Cohorts</span>
+  </a>
+</div>
+
+<style>
+  .audience-router {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    padding: var(--space-8) 0 var(--space-16);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  @media (max-width: 700px) {
+    .audience-router {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .router-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5) var(--space-6);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    background: var(--surface-2);
+    transition: all var(--duration-mid) var(--ease-out);
+  }
+
+  .router-card:hover {
+    border-color: var(--border-bright);
+    background: var(--surface-3);
+    transform: translateY(-2px);
+  }
+
+  .router-card--ember {
+    border-color: var(--ember-dim);
+  }
+
+  .router-card--ember:hover {
+    border-color: var(--ember);
+  }
+
+  .router-card__label {
+    color: var(--ember);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .router-card__cta {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+  }
+
+  .router-card__sub {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+  }
+</style>

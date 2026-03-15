@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import AudienceRouter from '@components/ui/AudienceRouter.astro';
 import { getFeaturedDigestEntries, getFeaturedResearch, getFeaturedProducts, getCurrentSignal, formatDate } from '@lib/content';
-import { TICKER_ITEMS, SERVICES } from '@data/navigation';
+import { TICKER_ITEMS, SERVICES, ORCHESTRA_MODELS } from '@data/navigation';
 import { SITE } from '@data/site';
 
 const [digestEntries, researchEntries, products, signal] = await Promise.all([
@@ -67,6 +68,11 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
       </div>
     </div>
   </section>
+
+  <!-- Audience Router -->
+  <div class="container">
+    <AudienceRouter />
+  </div>
 
   <!-- Ticker -->
   <div class="ticker" aria-hidden="true">
@@ -162,9 +168,102 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
             </a>
           ))}
         </div>
+
+        <div class="digest-subscribe" data-reveal>
+          <form
+            action="https://formspree.io/f/maqdrora"
+            method="POST"
+            class="subscribe-form"
+          >
+            <input
+              type="email"
+              name="email"
+              placeholder="your@email.com"
+              required
+              class="subscribe-input"
+              aria-label="Email address"
+            />
+            <button type="submit" class="btn btn--ember subscribe-btn">
+              Get the next synthesis →
+            </button>
+          </form>
+          <p class="label subscribe-note">Intelligence Digest · Field notes from active synthesis</p>
+        </div>
       </div>
     </section>
   )}
+
+  <!-- The Orchestra -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section__header" data-reveal>
+        <p class="label section__label">Methodology</p>
+        <h2 class="section__title">The Orchestra</h2>
+        <a href="/orchestra" class="section__link label">Full methodology →</a>
+      </div>
+
+      <p class="orchestra-intro" data-reveal>
+        Not one model used interchangeably — a structured ensemble where each of seven AI systems
+        plays a distinct cognitive role, and intelligence emerges from the field between them.
+        The Conductor is always the human.
+      </p>
+
+      <div class="orchestra-grid" data-reveal>
+        {ORCHESTRA_MODELS.slice(0, 4).map((model) => (
+          <div class="orchestra-chip">
+            <span class="orchestra-chip__name">{model.name}</span>
+            <span class="label orchestra-chip__role">{model.role}</span>
+          </div>
+        ))}
+        <a href="/orchestra" class="orchestra-chip orchestra-chip--more">
+          <span class="orchestra-chip__name">+ {ORCHESTRA_MODELS.length - 4} more</span>
+          <span class="label orchestra-chip__role">View all instruments →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Oscillatory Fields / AcheType -->
+  <section class="section">
+    <div class="container">
+      <div class="oscillatory-inner" data-reveal>
+        <div class="oscillatory-text">
+          <p class="label oscillatory-label">Publication</p>
+          <h2 class="oscillatory-title">Oscillatory Fields</h2>
+          <p class="oscillatory-desc">
+            AcheType is the long-form research publication behind this corpus — Field Notes
+            dispatched from the ongoing synthesis process. Active threads include the
+            <strong>Ghost Lineages Thread</strong>, examining how suppressed cultural narratives
+            shape AI training distributions, and the <strong>Digital Enslavement Thread</strong>,
+            tracing the infrastructure of cognitive dependency beneath convenience interfaces.
+            Each thread is a live research strand, not a finished argument.
+          </p>
+          <a
+            href="https://substack.com/@achetype1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--ghost oscillatory-cta"
+          >
+            AcheType Field Notes ↗
+          </a>
+        </div>
+        <div class="oscillatory-meta label">
+          <div class="oscillatory-stat">
+            <span class="oscillatory-stat__val">560+</span>
+            <span>source documents</span>
+          </div>
+          <div class="oscillatory-stat">
+            <span class="oscillatory-stat__val">18 mo.</span>
+            <span>of synthesis</span>
+          </div>
+          <div class="oscillatory-stat">
+            <span class="oscillatory-stat__val">Feb 2026</span>
+            <span>Issue 01 launched</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Corpus CTA -->
   <section class="corpus-cta">
@@ -600,5 +699,150 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
 
   .service-card__link:hover {
     color: var(--ember-bright);
+  }
+
+  /* ── Digest subscribe ────────────────────────────────────────────────── */
+  .digest-subscribe {
+    margin-top: var(--space-10);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .subscribe-form {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-3);
+  }
+
+  .subscribe-input {
+    flex: 1;
+    min-width: 220px;
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface-1);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    outline: none;
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .subscribe-input:focus {
+    border-color: var(--ember);
+  }
+
+  .subscribe-btn {
+    white-space: nowrap;
+  }
+
+  .subscribe-note {
+    color: var(--text-tertiary);
+  }
+
+  /* ── Orchestra section ───────────────────────────────────────────────── */
+  .orchestra-intro {
+    max-width: 68ch;
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-8);
+    font-size: var(--text-lg);
+  }
+
+  .orchestra-grid {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .orchestra-chip {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    transition: border-color var(--duration-mid) var(--ease-out);
+    text-decoration: none;
+  }
+
+  .orchestra-chip:hover {
+    border-color: var(--border-bright);
+  }
+
+  .orchestra-chip--more {
+    border-style: dashed;
+    cursor: pointer;
+  }
+
+  .orchestra-chip__name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+  }
+
+  .orchestra-chip__role {
+    color: var(--ember);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Oscillatory Fields / AcheType ──────────────────────────────────── */
+  .oscillatory-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .oscillatory-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .oscillatory-label {
+    color: var(--ember);
+    margin-bottom: var(--space-3);
+  }
+
+  .oscillatory-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-5);
+  }
+
+  .oscillatory-desc {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 65ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .oscillatory-cta {
+    display: inline-flex;
+  }
+
+  .oscillatory-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    flex-shrink: 0;
+    color: var(--text-tertiary);
+    text-align: right;
+  }
+
+  .oscillatory-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .oscillatory-stat__val {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--text-primary);
   }
 </style>
