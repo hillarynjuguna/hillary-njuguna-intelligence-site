@@ -42,6 +42,13 @@ import { ORCHESTRA_MODELS } from '@data/navigation';
         </div>
       </section>
 
+      <section class="conductor-section" data-reveal>
+        <blockquote class="conductor-quote">
+          <p class="conductor-quote__text">The Conductor is always the human.</p>
+          <p class="conductor-quote__subtext">This is not a design preference. It is the foundational architectural principle.</p>
+        </blockquote>
+      </section>
+
       <section class="models-section">
         <h2 class="models-heading label" data-reveal>The Seven Instruments</h2>
         <div class="models-grid">
@@ -123,6 +130,35 @@ import { ORCHESTRA_MODELS } from '@data/navigation';
 
   .orchestra-intro {
     max-width: var(--max-w-prose);
+  }
+
+  /* Conductor quote */
+  .conductor-section {
+    margin-bottom: var(--space-20);
+  }
+
+  .conductor-quote {
+    border-left: 4px solid var(--ember);
+    padding: var(--space-6) var(--space-8);
+    background: var(--surface-2);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin: 0;
+    max-width: 72ch;
+  }
+
+  .conductor-quote__text {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-3);
+    line-height: var(--leading-snug);
+  }
+
+  .conductor-quote__subtext {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    margin: 0;
+    font-style: italic;
   }
 
   /* Models */
