@@ -88,6 +88,6 @@ Do your decision-makers understand the specific failure modes of the systems the
 
 Available now on Gumroad for $50. Immediate digital delivery.
 
-**Enterprise & team access**: For organisations needing team licenses, facilitated delivery, or volume pricing, [contact directly →](mailto:hello@hillarynjuguna.com)
+**Enterprise & team access**: For organisations needing team licenses, facilitated delivery, or volume pricing, [contact directly →](mailto:hillarynjuguna@protonmail.com)
 
-*Questions? Contact [hello@hillarynjuguna.com](mailto:hello@hillarynjuguna.com).*
+*Questions? Contact [hillarynjuguna@protonmail.com](mailto:hillarynjuguna@protonmail.com).*

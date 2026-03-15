@@ -8,7 +8,7 @@ productKind: offering
 status: "live"
 price: "On request"
 ctaLabel: "Request Access"
-ctaUrl: "mailto:hello@hillarynjuguna.com?subject=Bainbridge Warning"
+ctaUrl: "mailto:hillarynjuguna@protonmail.com?subject=Bainbridge Warning"
 platform: "Direct"
 featured: true
 order: 1
@@ -106,4 +106,4 @@ The Bainbridge Warning is for the institutions that want to be on the right side
 
 ---
 
-*To request a Bainbridge Warning assessment, contact [hello@hillarynjuguna.com](mailto:hello@hillarynjuguna.com?subject=Bainbridge Warning) with a brief description of your organisation and current AI deployment scope.*
+*To request a Bainbridge Warning assessment, contact [hillarynjuguna@protonmail.com](mailto:hillarynjuguna@protonmail.com?subject=Bainbridge Warning) with a brief description of your organisation and current AI deployment scope.*
