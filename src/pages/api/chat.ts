@@ -48,11 +48,13 @@ RESPONSE STYLE:
 - Maximum ~400 tokens per response unless the question requires depth`;
 
 export const POST: APIRoute = async ({ request }) => {
-  const apiKey = import.meta.env.OPENROUTER_API_KEY;
+  // Belt-and-suspenders: Astro import.meta.env + Node process.env fallback
+  const apiKey = import.meta.env.OPENROUTER_API_KEY ?? process.env.OPENROUTER_API_KEY;
 
   if (!apiKey) {
+    console.error('[/api/chat] OPENROUTER_API_KEY is not set');
     return new Response(
-      JSON.stringify({ error: 'Research Stack not configured' }),
+      JSON.stringify({ error: 'Research Stack not configured — API key missing.' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
@@ -76,7 +78,7 @@ export const POST: APIRoute = async ({ request }) => {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${apiKey}`,
-        'HTTP-Referer': 'https://hillary-site.vercel.app',
+        'HTTP-Referer': 'https://hillarynjuguna.com',
         'X-Title': 'Oscillatory Fields Research Stack',
       },
       body: JSON.stringify({
@@ -91,16 +93,49 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     const data = await response.json();
-    const reply = data.choices?.[0]?.message?.content ?? 'No response from corpus.';
+
+    // Surface OpenRouter errors explicitly instead of silently falling back
+    if (!response.ok || data.error) {
+      const errMsg = data.error?.message ?? data.error ?? `HTTP ${response.status}`;
+      const errCode = data.error?.code ?? response.status;
+      console.error(`[/api/chat] OpenRouter error ${errCode}:`, errMsg);
+
+      // Human-readable messages for common failure codes
+      if (errCode === 401 || response.status === 401) {
+        return new Response(
+          JSON.stringify({ error: 'API key invalid or not recognised by OpenRouter. Check the OPENROUTER_API_KEY environment variable.' }),
+          { status: 502, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+      if (errCode === 429 || response.status === 429) {
+        return new Response(
+          JSON.stringify({ error: 'Rate limit reached on the free tier (200 req/day). Try again tomorrow or add credits at openrouter.ai.' }),
+          { status: 429, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+      return new Response(
+        JSON.stringify({ error: `Corpus unavailable: ${errMsg}` }),
+        { status: 502, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const reply = data.choices?.[0]?.message?.content;
+    if (!reply) {
+      console.error('[/api/chat] Unexpected OpenRouter response shape:', JSON.stringify(data).slice(0, 300));
+      return new Response(
+        JSON.stringify({ error: 'Unexpected response from model. Try again.' }),
+        { status: 502, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
 
     return new Response(JSON.stringify({ reply }), {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (err) {
-    console.error('[/api/chat]', err);
+    console.error('[/api/chat] fetch failed:', err);
     return new Response(
-      JSON.stringify({ error: 'Synthesis failed. Try again shortly.' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      JSON.stringify({ error: 'Could not reach the OpenRouter API. Check network connectivity.' }),
+      { status: 503, headers: { 'Content-Type': 'application/json' } }
     );
   }
 };

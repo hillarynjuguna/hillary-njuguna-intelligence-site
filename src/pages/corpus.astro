@@ -455,6 +455,8 @@ const examplePrompts = [
         messageHistory.push({ role: 'assistant', content: data.reply });
         // Keep last 20 messages
         if (messageHistory.length > 20) messageHistory = messageHistory.slice(-20);
+      } else if (data.error) {
+        appendMessage('assistant', `⚠ ${data.error}`);
       } else {
         appendMessage('assistant', 'The corpus encountered an issue. Please try again.');
       }
