@@ -211,5 +211,5 @@ src/
 
 ---
 
-*Built from a hostel in Nairobi with a Chromebook and an internet connection.*
+*Built from a hostel in Kuala Lumpur with a Chromebook and an internet connection.*
 *560+ sourced documents. 18 months. 7 models. Oscillatory Fields — February 2026.*
