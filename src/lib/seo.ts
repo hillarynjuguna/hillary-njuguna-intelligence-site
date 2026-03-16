@@ -45,6 +45,9 @@ export function buildPersonSchema() {
       SITE.author.social.x,
       SITE.author.social.substack,
       SITE.author.social.gumroad,
+      SITE.author.social.researchgate,
+      'https://github.com/hillarynjuguna',
+      'https://www.linkedin.com/in/hillarynjuguna', // Common pattern, good for AIEO
     ],
     jobTitle: 'Intelligence Architect',
     description: SITE.author.bio,
