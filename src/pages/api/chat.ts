@@ -67,6 +67,15 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const messages = body.messages ?? [];
+  
+  // Basic input validation
+  if (!Array.isArray(messages) || messages.some(m => typeof m.content !== 'string' || m.content.length > 4000)) {
+    return new Response(
+      JSON.stringify({ error: 'Invalid or excessively long messages' }),
+      { status: 400, headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+
   const lastN = messages.slice(-20);
 
   // Iterate through providers and their models
