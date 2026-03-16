@@ -21,8 +21,8 @@ const examplePrompts = [
   <div class="corpus-page page-enter">
     <div class="container">
       <header class="corpus-header">
-        <p class="label corpus-label">Research Stack</p>
-        <h1 class="corpus-title">The Corpus</h1>
+        <p class="label corpus-label">The Field</p>
+        <h1 class="corpus-title">Enter the Field</h1>
         <p class="corpus-desc">
           560+ sourced documents. 18 months of synthesis. The complete Oscillatory Fields
           research corpus — queryable by anyone. Ask about frameworks, research, governance
@@ -55,6 +55,10 @@ const examplePrompts = [
         <div class="corpus-chat" id="corpus-chat">
           <div class="chat-messages" id="chat-messages" aria-live="polite" aria-label="Conversation">
             <div class="chat-message chat-message--system">
+              <p>
+                <strong>GOVERNANCE NOTE:</strong> This Field is governed by Oscillatory Fields Constitutional Clauses. 
+                Responses draw from the indexed corpus. Author: Hillary Njuguna (he/him).
+              </p>
               <p>
                 You're speaking directly with the Research Stack — a synthesis layer built
                 on the Oscillatory Fields corpus. Ask about any framework, concept, or piece
@@ -91,16 +95,18 @@ const examplePrompts = [
               <textarea
                 id="corpus-input"
                 class="chat-input"
-                placeholder="Ask the corpus anything…"
+                placeholder="Enter the Field…"
                 rows="3"
                 aria-label="Your question"
               ></textarea>
               <button id="corpus-submit" class="btn btn--primary chat-submit" aria-label="Send">
-                Ask →
+                Query →
               </button>
             </div>
             <p class="label chat-note">
               Synthesis mode — responses draw from the corpus and may generate clause candidates.
+              <br />
+              <a href="/clauses" class="governance-link">View Constitutional Clauses →</a>
             </p>
           </div>
         </div>

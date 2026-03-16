@@ -3,6 +3,14 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { getAllClauses, formatDate } from '@lib/content';
 
 const clauses = await getAllClauses();
+
+const coreClauses = [
+  { id: '001', title: 'τ Sovereignty', desc: 'Direct authority is explicit, session-scoped, and revocable by the τ-node.' },
+  { id: '002', title: 'Node Autonomy', desc: 'Nodes maintain functional independence within defined operational boundaries.' },
+  { id: '003', title: 'Consequence Transparency', desc: 'System actions must surface potential consequences at the decision layer.' },
+  { id: '004', title: 'Attribution Persistence', desc: 'Every synthesis and action must maintain a persistent audit trail to its source.' },
+  { id: '005', title: 'Verification Before Rejection', desc: 'No input or node behavior shall be rejected without an explicit verification cycle.' }
+];
 ---
 
 <BaseLayout
@@ -12,13 +20,11 @@ const clauses = await getAllClauses();
   <div class="page page-enter">
     <div class="container">
       <header class="page-header">
-        <p class="label page-label">Constitutional Layer</p>
-        <h1 class="page-title">Clause Archive</h1>
+        <p class="label page-label">Governance</p>
+        <h1 class="page-title">Constitutional Clauses</h1>
         <p class="page-desc">
-          Every synthesis run has the potential to generate a clause candidate —
-          a fragment of the evolving constitutional framework that governs how
-          the Oscillatory Fields research corpus and AI systems operate.
-          These candidates are public, traceable, and accumulating.
+          These clauses define the structural invariants of the Oscillatory Fields intelligence architecture. 
+          They are the governance constraints under which the Research Stack operates.
         </p>
         <div class="clause-note">
           <p class="label clause-note__text">
@@ -27,6 +33,21 @@ const clauses = await getAllClauses();
           </p>
         </div>
       </header>
+
+      <section class="core-clauses">
+        <h2 class="section-title label">Core Invariants (Codex 5.4)</h2>
+        <div class="clauses-grid">
+          {coreClauses.map((clause) => (
+            <div class="clause-card-static">
+              <span class="clause-id label">Clause {clause.id}</span>
+              <h3 class="clause-title-static">{clause.title}</h3>
+              <p class="clause-desc-static">{clause.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <h2 class="section-title label">Derived Clause Candidates</h2>
 
       {clauses.length === 0 ? (
         <div class="clauses-empty">
@@ -122,6 +143,32 @@ const clauses = await getAllClauses();
     line-height: var(--leading-relaxed);
     margin-bottom: var(--space-6);
   }
+
+  .section-title {
+    display: block;
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border-dim);
+    color: var(--text-tertiary);
+  }
+
+  .clauses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-20);
+  }
+
+  .clause-card-static {
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    padding: var(--space-8);
+    border-radius: var(--radius-md);
+  }
+
+  .clause-id { color: var(--ember); margin-bottom: var(--space-4); display: block; }
+  .clause-title-static { font-size: var(--text-xl); margin-bottom: var(--space-4); color: var(--pale-gold); }
+  .clause-desc-static { color: var(--text-secondary); line-height: var(--leading-relaxed); }
 
   .clause-note {
     padding: var(--space-4) var(--space-5);
