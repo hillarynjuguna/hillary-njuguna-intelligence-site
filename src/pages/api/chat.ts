@@ -1,18 +1,34 @@
 import type { APIRoute } from 'astro';
 
-// Provider-agnostic abstraction layer
-// Currently wired to OpenRouter
-// To swap providers: update PROVIDER_URL, PROVIDER_KEY, and request format
-
-const PROVIDER_URL = 'https://openrouter.ai/api/v1/chat/completions';
-
-// List of models to try in order of preference. 
-// Mixing free and paid models ensures reliability.
-const MODELS = [
-  'mistralai/mistral-small-3.1-24b-instruct:free',
-  'google/gemini-flash-1.5-exp:free',
-  'meta-llama/llama-3.1-8b-instruct:free',
-  'openai/gpt-4o-mini' // Paid fallback (extremely cheap, ensures the site never "fails" for a user)
+// Provider configurations
+const PROVIDERS = [
+  {
+    name: 'OpenRouter',
+    url: 'https://openrouter.ai/api/v1/chat/completions',
+    apiKey: import.meta.env.OPENROUTER_API_KEY ?? process.env.OPENROUTER_API_KEY,
+    models: [
+      'mistralai/mistral-small-3.1-24b-instruct:free',
+      'google/gemini-flash-1.5-exp:free',
+      'meta-llama/llama-3.1-8b-instruct:free',
+      'openai/gpt-4o-mini' // Paid fallback (extremely cheap)
+    ],
+    headers: (key: string) => ({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${key}`,
+      'HTTP-Referer': 'https://hillarynjuguna.com',
+      'X-Title': 'Oscillatory Fields Research Stack',
+    })
+  },
+  {
+    name: 'Mistral Direct',
+    url: 'https://api.mistral.ai/v1/chat/completions',
+    apiKey: import.meta.env.MISTRAL_API_KEY ?? process.env.MISTRAL_API_KEY,
+    models: ['mistral-small-latest'],
+    headers: (key: string) => ({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${key}`,
+    })
+  }
 ];
 
 const SYSTEM_PROMPT = `You are the Research Stack — a synthesis layer built on the Oscillatory Fields research corpus by Hillary Njuguna.
@@ -40,16 +56,6 @@ RESPONSE STYLE:
 - Maximum ~400 tokens per response unless the question requires depth`;
 
 export const POST: APIRoute = async ({ request }) => {
-  const apiKey = import.meta.env.OPENROUTER_API_KEY ?? process.env.OPENROUTER_API_KEY;
-
-  if (!apiKey) {
-    console.error('[/api/chat] OPENROUTER_API_KEY is not set');
-    return new Response(
-      JSON.stringify({ error: 'Research Stack not configured — API key missing.' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
-  }
-
   let body: { messages?: { role: string; content: string }[] };
   try {
     body = await request.json();
@@ -63,53 +69,53 @@ export const POST: APIRoute = async ({ request }) => {
   const messages = body.messages ?? [];
   const lastN = messages.slice(-20);
 
-  // Attempt to call OpenRouter with model rotation
-  for (const model of MODELS) {
-    try {
-      const response = await fetch(PROVIDER_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${apiKey}`,
-          'HTTP-Referer': 'https://hillarynjuguna.com',
-          'X-Title': 'Oscillatory Fields Research Stack',
-        },
-        body: JSON.stringify({
-          model: model,
-          messages: [
-            { role: 'system', content: SYSTEM_PROMPT },
-            ...lastN,
-          ],
-          max_tokens: 600,
-          temperature: 0.7,
-        }),
-      });
+  // Iterate through providers and their models
+  for (const provider of PROVIDERS) {
+    if (!provider.apiKey) {
+      console.warn(`[/api/chat] Skipping ${provider.name} - API key missing.`);
+      continue;
+    }
 
-      const data = await response.json();
+    for (const model of provider.models) {
+      try {
+        const response = await fetch(provider.url, {
+          method: 'POST',
+          headers: provider.headers(provider.apiKey),
+          body: JSON.stringify({
+            model: model,
+            messages: [
+              { role: 'system', content: SYSTEM_PROMPT },
+              ...lastN,
+            ],
+            max_tokens: 600,
+            temperature: 0.7,
+          }),
+        });
 
-      if (response.ok && !data.error) {
-        const reply = data.choices?.[0]?.message?.content;
-        if (reply) {
-          return new Response(JSON.stringify({ reply }), {
-            headers: { 'Content-Type': 'application/json' },
-          });
+        const data = await response.json();
+
+        if (response.ok && !data.error) {
+          const reply = data.choices?.[0]?.message?.content;
+          if (reply) {
+            return new Response(JSON.stringify({ reply }), {
+              headers: { 'Content-Type': 'application/json' },
+            });
+          }
         }
-      }
 
-      // If we hit a rate limit (429) or specific OpenRouter error, log it and try the next model
-      const errCode = data.error?.code ?? response.status;
-      console.warn(`[/api/chat] Model ${model} failed with ${errCode}. Trying next...`);
-      
-      if (errCode !== 429 && errCode !== 408 && errCode !== 503) {
-          // If it's not a transient/rate-limit error (e.g., 401 Unauthorized), don't bother retrying
-          break;
+        const errCode = data.error?.code ?? response.status;
+        console.warn(`[/api/chat] ${provider.name} (${model}) failed with ${errCode}. Trying next...`);
+        
+        if (errCode !== 429 && errCode !== 408 && errCode !== 503) {
+            // Non-transient error for this provider/model, move to next model
+            continue;
+        }
+      } catch (err) {
+        console.error(`[/api/chat] Fetch failed for ${provider.name} (${model}):`, err);
       }
-    } catch (err) {
-      console.error(`[/api/chat] Fetch failed for model ${model}:`, err);
     }
   }
 
-  // If all models fail, return a professional error message
   return new Response(
     JSON.stringify({ 
       error: 'The Research Stack is currently high-load. Our intelligence nodes are recalibrating—please try again in a moment.' 
