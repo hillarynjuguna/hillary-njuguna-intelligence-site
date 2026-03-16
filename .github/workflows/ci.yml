@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+      - run: npm install
+      - name: Validate Content
+        run: npm run validate:content
+      - name: Check Relations
+        run: npm run check:relations
+      - name: Check Orphans
+        run: npm run check:orphans
+      - name: Check Governance
+        run: npm run check:governance
+      - name: Build Check
+        run: npm run build
