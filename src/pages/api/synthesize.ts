@@ -4,7 +4,12 @@ import type { APIRoute } from 'astro';
 // Abstraction layer: update PROVIDER_URL and MODEL to swap providers
 
 const PROVIDER_URL = 'https://openrouter.ai/api/v1/chat/completions';
-const MODEL = 'mistralai/mistral-small-3.1-24b-instruct:free';
+const MODELS = [
+  'mistralai/mistral-small-3.1-24b-instruct:free',
+  'google/gemini-flash-1.5-exp:free',
+  'meta-llama/llama-3.1-8b-instruct:free',
+  'openai/gpt-4o-mini' // Paid fallback (extremely cheap, ensures the site never "fails" for a user)
+];
 
 const SYSTEM_PROMPT = `You are a synthesis engine for the Oscillatory Fields research corpus.
 
@@ -65,46 +70,60 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  try {
-    const response = await fetch(PROVIDER_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-        'HTTP-Referer': 'https://hillary-site.vercel.app',
-        'X-Title': 'Oscillatory Fields Synthesis Engine',
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          { role: 'user', content },
-        ],
-        max_tokens: 1000,
-        temperature: 0.8,
-      }),
-    });
+    // Attempt to call OpenRouter with model rotation
+  for (const model of MODELS) {
+    try {
+      const response = await fetch(PROVIDER_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+          'HTTP-Referer': 'https://hillary-site.vercel.app',
+          'X-Title': 'Oscillatory Fields Synthesis Engine',
+        },
+        body: JSON.stringify({
+          model: model,
+          messages: [
+            { role: 'system', content: SYSTEM_PROMPT },
+            { role: 'user', content },
+          ],
+          max_tokens: 1000,
+          temperature: 0.8,
+        }),
+      });
 
-    const data = await response.json();
-    const raw = data.choices?.[0]?.message?.content ?? '';
+      const data = await response.json();
 
-    // Parse synthesis and clause candidate
-    const parts = raw.split(/---+/);
-    const synthesis = parts[0]?.replace(/^Synthesis:\s*/i, '').trim() ?? raw;
-    const clauseRaw = parts[1]?.replace(/^Clause Candidate:\s*/i, '').trim() ?? null;
-    const clauseCandidate =
-      clauseRaw && !clauseRaw.toLowerCase().includes('no clause candidate')
-        ? clauseRaw
-        : null;
+      if (response.ok && !data.error) {
+        const raw = data.choices?.[0]?.message?.content ?? '';
+        
+        // Parse synthesis and clause candidate
+        const parts = raw.split(/---+/);
+        const synthesis = parts[0]?.replace(/^Synthesis:\s*/i, '').trim() ?? raw;
+        const clauseRaw = parts[1]?.replace(/^Clause Candidate:\s*/i, '').trim() ?? null;
+        const clauseCandidate = 
+          clauseRaw && !clauseRaw.toLowerCase().includes('no clause candidate') 
+            ? clauseRaw 
+            : null;
 
-    return new Response(JSON.stringify({ synthesis, clauseCandidate }), {
-      headers: { 'Content-Type': 'application/json' },
-    });
-  } catch (err) {
-    console.error('[/api/synthesize]', err);
-    return new Response(
-      JSON.stringify({ error: 'Synthesis failed. Try again shortly.' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+        return new Response(JSON.stringify({ synthesis, clauseCandidate }), {
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+
+      const errCode = data.error?.code ?? response.status;
+      console.warn(`[/api/synthesize] Model ${model} failed with ${errCode}. Trying next...`);
+
+      if (errCode !== 429 && errCode !== 408 && errCode !== 503) {
+          break;
+      }
+    } catch (err) {
+      console.error(`[/api/synthesize] Fetch failed for model ${model}:`, err);
+    }
   }
+
+  return new Response(
+    JSON.stringify({ error: 'The Synthesis Engine is currently processing a high volume of research. Please try again shortly.' }),
+    { status: 503, headers: { 'Content-Type': 'application/json' } }
+  );
 };
