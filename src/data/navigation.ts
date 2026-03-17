@@ -1,6 +1,7 @@
 export const NAV_LINKS = [
   { label: 'Research', href: '/research' },
   { label: 'Products', href: '/products' },
+  { label: 'Diagnostic', href: '/bainbridge-diagnostic' },
   { label: 'Digest', href: '/digest' },
   { label: 'Orchestra', href: '/orchestra' },
   { label: 'Corpus', href: '/corpus' },
@@ -10,6 +11,7 @@ export const FOOTER_LINKS = {
   work: [
     { label: 'Research', href: '/research' },
     { label: 'Products', href: '/products' },
+    { label: 'Bainbridge Diagnostic', href: '/bainbridge-diagnostic' },
     { label: 'Intelligence Digest', href: '/digest' },
     { label: 'The Orchestra', href: '/orchestra' },
   ],
