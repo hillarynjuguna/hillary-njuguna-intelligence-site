@@ -1,0 +1,246 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+---
+
+<BaseLayout 
+  title="The Orchestra in Operation"
+  description="Watch seven cognitive instruments orchestrate governance synthesis in real-time."
+>
+  <div class="orchestra-page page-enter">
+    <div class="container">
+      <header class="page-header">
+        <p class="label page-label">Instrument Node: B3</p>
+        <h1 class="page-title">The Orchestra in Operation</h1>
+        <p class="page-desc">
+          Governance is not a solo instrument. This is a live demonstration of how seven distinct cognitive models 
+          orchestrate synthesis on a single governance question. Watch the Conductor route your question through 
+          the ensemble and see which model contributes what insight—and why.
+        </p>
+      </header>
+
+      <div class="orchestra-interface" id="orchestra-app">
+        <!-- Input Section -->
+        <div id="orchestra-input" class="input-section">
+          <div class="input-wrapper">
+            <label for="orchestra-question" class="label">Your Governance Question</label>
+            <textarea 
+              id="orchestra-question" 
+              placeholder="Ask about AI governance, institutional risk, constitutional design, or any deployment scenario..."
+              class="orchestra-textarea"
+            ></textarea>
+            <button id="conduct-btn" class="btn btn--primary">Conduct the Orchestra →</button>
+          </div>
+
+          <div class="models-legend">
+            <p class="label">The Seven Instruments</p>
+            <div class="models-grid">
+              <div class="model-card">
+                <span class="model-name">Claude</span>
+                <span class="model-role">The Witness</span>
+              </div>
+              <div class="model-card">
+                <span class="model-name">Gemini</span>
+                <span class="model-role">The Director</span>
+              </div>
+              <div class="model-card">
+                <span class="model-name">GPT-4o</span>
+                <span class="model-role">The Architect</span>
+              </div>
+              <div class="model-card">
+                <span class="model-name">DeepSeek</span>
+                <span class="model-role">The Anatomist</span>
+              </div>
+              <div class="model-card">
+                <span class="model-name">Grok</span>
+                <span class="model-role">The Mirror</span>
+              </div>
+              <div class="model-card">
+                <span class="model-name">Perplexity</span>
+                <span class="model-role">Live Signals</span>
+              </div>
+              <div class="model-card">
+                <span class="model-name">Local</span>
+                <span class="model-role">The Lab</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="orchestra-loading" class="hidden">
+          <div class="spinner"></div>
+          <p class="label">Conducting the ensemble...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div id="orchestra-results" class="hidden">
+          <div class="results-header">
+            <h2 class="results-title">Synthesis Report</h2>
+          </div>
+
+          <div class="synthesis-section">
+            <h3 class="label">Orchestrated Synthesis</h3>
+            <div id="synthesis-text" class="prose"></div>
+          </div>
+
+          <div class="contributions-section">
+            <h3 class="label">Model Contributions</h3>
+            <div id="contributions-list" class="contributions-grid"></div>
+          </div>
+
+          <div class="conductor-note-section">
+            <h3 class="label">Conductor's Note</h3>
+            <div id="conductor-note" class="prose"></div>
+          </div>
+
+          <button id="new-question-btn" class="btn">Ask Another Question</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .orchestra-page { padding: var(--space-24) 0; }
+  .page-header { margin-bottom: var(--space-16); max-width: 64ch; }
+  .page-label { color: var(--ember); margin-bottom: var(--space-4); }
+  .page-title { font-size: var(--text-5xl); margin-bottom: var(--space-6); }
+  .page-desc { font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.6; }
+
+  .orchestra-interface {
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    padding: var(--space-12);
+    max-width: 900px;
+  }
+
+  .input-section { margin-bottom: var(--space-12); }
+  .input-wrapper { margin-bottom: var(--space-12); }
+  .input-wrapper .label { display: block; margin-bottom: var(--space-4); color: var(--ember); }
+
+  .orchestra-textarea {
+    width: 100%;
+    background: var(--surface-3);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    color: var(--text-primary);
+    min-height: 150px;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+  }
+
+  .models-legend { padding: var(--space-8); background: var(--surface-3); border-radius: var(--radius-md); border: 1px solid var(--border-dim); }
+  .models-legend .label { margin-bottom: var(--space-4); color: var(--text-primary); }
+
+  .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: var(--space-3); }
+  .model-card {
+    background: var(--surface-2);
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-dim);
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  .model-name { display: block; color: var(--text-primary); font-weight: 600; margin-bottom: var(--space-1); }
+  .model-role { display: block; color: var(--text-tertiary); font-size: 0.75rem; }
+
+  #orchestra-loading { text-align: center; padding: var(--space-20) 0; }
+  .spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--ember-dim);
+    border-top-color: var(--ember);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--space-6);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .results-header { margin-bottom: var(--space-12); }
+  .results-title { font-size: var(--text-2xl); color: var(--pale-gold); }
+
+  .synthesis-section,
+  .contributions-section,
+  .conductor-note-section { margin-bottom: var(--space-12); }
+
+  .synthesis-section .label,
+  .contributions-section .label,
+  .conductor-note-section .label { color: var(--ember); margin-bottom: var(--space-6); }
+
+  .contributions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-6); }
+  .contribution-card {
+    background: var(--surface-3);
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--ember);
+  }
+  .contribution-model { font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-2); }
+  .contribution-role { font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: var(--space-4); }
+  .contribution-insight { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5; }
+
+  .hidden { display: none !important; }
+</style>
+
+<script>
+  const inputSection = document.getElementById('orchestra-input') as HTMLElement;
+  const loading = document.getElementById('orchestra-loading') as HTMLElement;
+  const results = document.getElementById('orchestra-results') as HTMLElement;
+  const conductBtn = document.getElementById('conduct-btn') as HTMLElement;
+  const newQuestionBtn = document.getElementById('new-question-btn') as HTMLElement;
+
+  async function conductOrchestra() {
+    const question = (document.getElementById('orchestra-question') as HTMLTextAreaElement).value;
+    
+    if (!question.trim()) {
+      alert('Please ask a governance question.');
+      return;
+    }
+
+    inputSection.classList.add('hidden');
+    loading.classList.remove('hidden');
+
+    try {
+      const res = await fetch('/api/orchestra', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+
+      const report = await res.json();
+
+      // Populate results
+      (document.getElementById('synthesis-text') as HTMLElement).innerHTML = report.synthesis.replace(/\n/g, '<br>');
+      (document.getElementById('conductor-note') as HTMLElement).innerHTML = report.conductorNote.replace(/\n/g, '<br>');
+
+      const contributionsList = document.getElementById('contributions-list') as HTMLElement;
+      contributionsList.innerHTML = report.modelContributions
+        .map((c: any) => `
+          <div class="contribution-card">
+            <div class="contribution-model">${c.model}</div>
+            <div class="contribution-role">${c.role}</div>
+            <div class="contribution-insight">${c.insight}</div>
+          </div>
+        `)
+        .join('');
+
+      loading.classList.add('hidden');
+      results.classList.remove('hidden');
+    } catch (err) {
+      alert('Orchestration failed. Please try again.');
+      loading.classList.add('hidden');
+      inputSection.classList.remove('hidden');
+    }
+  }
+
+  conductBtn?.addEventListener('click', conductOrchestra);
+  newQuestionBtn?.addEventListener('click', () => {
+    results.classList.add('hidden');
+    inputSection.classList.remove('hidden');
+    (document.getElementById('orchestra-question') as HTMLTextAreaElement).value = '';
+  });
+</script>

@@ -3,8 +3,8 @@ export const NAV_LINKS = [
   { label: 'Products', href: '/products' },
   { label: 'Diagnostic', href: '/bainbridge-diagnostic' },
   { label: 'Assessment', href: '/cir-assessment' },
+  { label: 'Orchestra', href: '/orchestra-operation' },
   { label: 'Digest', href: '/digest' },
-  { label: 'Orchestra', href: '/orchestra' },
   { label: 'Corpus', href: '/corpus' },
 ] as const;
 
@@ -14,8 +14,8 @@ export const FOOTER_LINKS = {
     { label: 'Products', href: '/products' },
     { label: 'Bainbridge Diagnostic', href: '/bainbridge-diagnostic' },
     { label: 'CIR Assessment', href: '/cir-assessment' },
+    { label: 'The Orchestra', href: '/orchestra-operation' },
     { label: 'Intelligence Digest', href: '/digest' },
-    { label: 'The Orchestra', href: '/orchestra' },
   ],
   engage: [
     { label: 'Corpus', href: '/corpus' },
