@@ -1,0 +1,281 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+---
+
+<BaseLayout 
+  title="CIR v2.0 Live Assessment"
+  description="Run a live interactive version of the Cognitive Infrastructure Readiness framework."
+>
+  <div class="assessment-page page-enter">
+    <div class="container">
+      <header class="page-header">
+        <p class="label page-label">Instrument Node: B2</p>
+        <h1 class="page-title">CIR v2.0 Assessment</h1>
+        <p class="page-desc">
+          AI readiness is not a technical question; it is a constitutional one. 
+          Run this eight-minute diagnostic to receive an actual readiness score, maturity level, 
+          and prioritised implementation sequence for your organization's cognitive infrastructure.
+        </p>
+      </header>
+
+      <div class="assessment-interface" id="assessment-app">
+        <!-- Question Section -->
+        <div id="assessment-questions">
+          <div class="question-step" id="step-1">
+            <h2 class="label">1. Intent Specification</h2>
+            <p class="question-text">Can you articulate, in writing, what your AI systems are optimising for at the organisational intent level?</p>
+            <textarea id="q-intent" placeholder="Describe how intent is specified and documented..."></textarea>
+            <div class="step-nav">
+              <button class="btn btn--primary next-step" data-next="2">Next →</button>
+            </div>
+          </div>
+
+          <div class="question-step hidden" id="step-2">
+            <h2 class="label">2. Authority Architecture</h2>
+            <p class="question-text">When the system produces unexpected output, who has authority to act? Is that authority clear to everyone in the chain?</p>
+            <textarea id="q-authority" placeholder="Describe the chain of authority for AI decisions..."></textarea>
+            <div class="step-nav">
+              <button class="btn prev-step" data-prev="1">← Back</button>
+              <button class="btn btn--primary next-step" data-next="3">Next →</button>
+            </div>
+          </div>
+
+          <div class="question-step hidden" id="step-3">
+            <h2 class="label">3. Alignment Monitoring</h2>
+            <p class="question-text">What is your live mechanism for detecting when the system's behaviour has drifted from intent?</p>
+            <textarea id="q-monitoring" placeholder="Describe live monitoring and drift detection..."></textarea>
+            <div class="step-nav">
+              <button class="btn prev-step" data-prev="2">← Back</button>
+              <button class="btn btn--primary next-step" data-next="4">Next →</button>
+            </div>
+          </div>
+
+          <div class="question-step hidden" id="step-4">
+            <h2 class="label">4. Governance Scalability</h2>
+            <p class="question-text">As you deploy more systems, does your governance architecture scale with them, or does it remain fixed?</p>
+            <textarea id="q-scalability" placeholder="Describe how governance scales with new deployments..."></textarea>
+            <div class="step-nav">
+              <button class="btn prev-step" data-prev="3">← Back</button>
+              <button class="btn btn--primary next-step" data-next="5">Next →</button>
+            </div>
+          </div>
+
+          <div class="question-step hidden" id="step-5">
+            <h2 class="label">5. Failure Mode Literacy</h2>
+            <p class="question-text">Do your decision-makers understand the specific failure modes of the systems they are accountable for?</p>
+            <textarea id="q-literacy" placeholder="Describe the level of failure mode literacy among leadership..."></textarea>
+            <div class="step-nav">
+              <button class="btn prev-step" data-prev="4">← Back</button>
+              <button id="submit-assessment" class="btn btn--primary">Generate Assessment →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="assessment-loading" class="hidden">
+          <div class="spinner"></div>
+          <p class="label">Calculating Readiness Maturity...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div id="assessment-results" class="hidden">
+          <div class="results-header">
+            <h2 class="results-title">Readiness Assessment Report</h2>
+            <div id="maturity-badge" class="badge"></div>
+          </div>
+          
+          <div class="overall-score-section">
+            <div class="overall-score-val" id="overall-score">0%</div>
+            <p class="label">Overall Readiness Score</p>
+          </div>
+
+          <div class="dimension-grid" id="dimension-grid">
+            <!-- Populated by JS -->
+          </div>
+
+          <div class="results-content">
+            <div class="results-section">
+              <h3 class="label">Structural Analysis</h3>
+              <div id="analysis-text" class="prose"></div>
+            </div>
+
+            <div class="results-section">
+              <h3 class="label">Prioritised Implementation Sequence</h3>
+              <ul id="priorities-list" class="results-list"></ul>
+            </div>
+          </div>
+
+          <div class="cta-box">
+            <p class="label">Full Assessment Available</p>
+            <p>For a detailed 40-page report and constitutional design workshop, purchase the full CIR v2.0 package.</p>
+            <a href="https://hillarynjuguna.gumroad.com/l/xlwin" class="btn btn--primary">Get Full CIR v2.0 →</a>
+          </div>
+
+          <button id="reset-assessment" class="btn">New Assessment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .assessment-page { padding: var(--space-24) 0; }
+  .page-header { margin-bottom: var(--space-16); max-width: 64ch; }
+  .page-label { color: var(--ember); margin-bottom: var(--space-4); }
+  .page-title { font-size: var(--text-5xl); margin-bottom: var(--space-6); }
+  .page-desc { font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.6; }
+
+  .assessment-interface {
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    padding: var(--space-12);
+    max-width: 900px;
+    min-height: 500px;
+    position: relative;
+  }
+
+  .question-step h2 { color: var(--ember); margin-bottom: var(--space-2); }
+  .question-text { font-size: var(--text-xl); color: var(--text-primary); margin-bottom: var(--space-6); font-weight: 500; }
+  .question-step textarea {
+    width: 100%;
+    background: var(--surface-3);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    color: var(--text-primary);
+    min-height: 200px;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin-bottom: var(--space-8);
+  }
+
+  .step-nav { display: flex; gap: var(--space-4); }
+  .hidden { display: none !important; }
+
+  #assessment-loading { text-align: center; padding: var(--space-20) 0; }
+  .spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--ember-dim);
+    border-top-color: var(--ember);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--space-6);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-12); }
+  .results-title { font-size: var(--text-2xl); color: var(--pale-gold); }
+  
+  .overall-score-section { text-align: center; margin-bottom: var(--space-12); padding: var(--space-8); background: var(--surface-3); border-radius: var(--radius-lg); }
+  .overall-score-val { font-size: var(--text-6xl); font-family: var(--font-display); color: var(--ember); line-height: 1; margin-bottom: var(--space-2); }
+
+  .dimension-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-12); }
+  .dimension-card { background: var(--surface-3); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-dim); }
+  .dim-label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-tertiary); display: block; margin-bottom: var(--space-2); }
+  .dim-score { font-size: var(--text-xl); color: var(--text-primary); font-weight: 600; }
+
+  .results-section { margin-bottom: var(--space-12); }
+  .results-section h3 { color: var(--ember); margin-bottom: var(--space-6); }
+  .results-list { list-style: none; padding: 0; }
+  .results-list li { margin-bottom: var(--space-6); padding-left: var(--space-6); border-left: 2px solid var(--ember-dim); }
+  .results-list li strong { display: block; color: var(--text-primary); margin-bottom: var(--space-1); }
+
+  .cta-box { 
+    background: rgba(196, 112, 58, 0.05); 
+    border: 1px solid var(--ember-dim); 
+    padding: var(--space-8); 
+    border-radius: var(--radius-lg); 
+    margin-bottom: var(--space-12);
+    text-align: center;
+  }
+  .cta-box .label { margin-bottom: var(--space-2); }
+  .cta-box p { margin-bottom: var(--space-6); color: var(--text-secondary); }
+
+  .badge--critical { background: rgba(220, 38, 38, 0.2); color: #ef4444; border: 1px solid #ef4444; }
+  .badge--high { background: rgba(196, 112, 58, 0.2); color: var(--ember); border: 1px solid var(--ember); }
+</style>
+
+<script>
+  const steps = document.querySelectorAll('.question-step');
+  const loading = document.getElementById('assessment-loading');
+  const results = document.getElementById('assessment-results');
+  const submitBtn = document.getElementById('submit-assessment');
+  const resetBtn = document.getElementById('reset-assessment');
+
+  // Navigation logic
+  document.querySelectorAll('.next-step').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const next = (btn as HTMLElement).dataset.next;
+      document.getElementById(`step-${Number(next)-1}`)?.classList.add('hidden');
+      document.getElementById(`step-${next}`)?.classList.remove('hidden');
+    });
+  });
+
+  document.querySelectorAll('.prev-step').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const prev = (btn as HTMLElement).dataset.prev;
+      document.getElementById(`step-${Number(prev)+1}`)?.classList.add('hidden');
+      document.getElementById(`step-${prev}`)?.classList.remove('hidden');
+    });
+  });
+
+  async function runAssessment() {
+    const responses = {
+      intent: (document.getElementById('q-intent') as HTMLTextAreaElement).value,
+      authority: (document.getElementById('q-authority') as HTMLTextAreaElement).value,
+      monitoring: (document.getElementById('q-monitoring') as HTMLTextAreaElement).value,
+      scalability: (document.getElementById('q-scalability') as HTMLTextAreaElement).value,
+      literacy: (document.getElementById('q-literacy') as HTMLTextAreaElement).value,
+    };
+
+    document.getElementById('assessment-questions')?.classList.add('hidden');
+    loading?.classList.remove('hidden');
+
+    try {
+      const res = await fetch('/api/cir-assessment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ responses }),
+      });
+
+      const report = await res.json();
+      
+      // Populate results
+      (document.getElementById('overall-score') as HTMLElement).innerText = `${report.overallScore}%`;
+      (document.getElementById('maturity-badge') as HTMLElement).innerText = report.maturityLevel;
+      (document.getElementById('analysis-text') as HTMLElement).innerHTML = report.analysis.replace(/\n/g, '<br>');
+      
+      const grid = document.getElementById('dimension-grid') as HTMLElement;
+      grid.innerHTML = `
+        <div class="dimension-card"><span class="dim-label">Intent</span><div class="dim-score">${report.dimensionScores.intent}/20</div></div>
+        <div class="dimension-card"><span class="dim-label">Authority</span><div class="dim-score">${report.dimensionScores.authority}/20</div></div>
+        <div class="dimension-card"><span class="dim-label">Monitoring</span><div class="dim-score">${report.dimensionScores.monitoring}/20</div></div>
+        <div class="dimension-card"><span class="dim-label">Scalability</span><div class="dim-score">${report.dimensionScores.scalability}/20</div></div>
+        <div class="dimension-card"><span class="dim-label">Literacy</span><div class="dim-score">${report.dimensionScores.literacy}/20</div></div>
+      `;
+
+      const prioritiesList = document.getElementById('priorities-list') as HTMLElement;
+      prioritiesList.innerHTML = report.priorities.map((p: any) => `<li><strong>${p.task}</strong> ${p.impact}</li>`).join('');
+
+      loading?.classList.add('hidden');
+      results?.classList.remove('hidden');
+    } catch (err) {
+      alert('Assessment failed. Please try again.');
+      loading?.classList.add('hidden');
+      document.getElementById('step-1')?.classList.remove('hidden');
+      document.getElementById('assessment-questions')?.classList.remove('hidden');
+    }
+  }
+
+  submitBtn?.addEventListener('click', runAssessment);
+  resetBtn?.addEventListener('click', () => {
+    results?.classList.add('hidden');
+    document.querySelectorAll('.question-step').forEach(s => s.classList.add('hidden'));
+    document.getElementById('step-1')?.classList.remove('hidden');
+    document.getElementById('assessment-questions')?.classList.remove('hidden');
+  });
+</script>
