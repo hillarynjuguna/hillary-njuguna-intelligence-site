@@ -63,6 +63,13 @@
       "governanceRelevance": "adjacent"
     },
     {
+      "contentId": "digest-tool-lineage-constitutional-routing",
+      "contentTitle": "Constitutional Inheritance and Tool Lineage",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
       "contentId": "research-bainbridge-warning",
       "contentTitle": "The Bainbridge Warning",
       "contentType": "research",
@@ -138,5 +145,5 @@
       "clause-irreversibility-threshold"
     ]
   },
-  "generatedAt": "2026-03-15T09:35:57.024Z"
+  "generatedAt": "2026-03-21T08:59:04.769Z"
 }

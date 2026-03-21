@@ -99,6 +99,34 @@
       "publishedAt": "2026-02-22T00:00:00.000Z"
     },
     {
+      "id": "digest-tool-lineage-constitutional-routing",
+      "slug": "tool-lineage-constitutional-routing",
+      "title": "Constitutional Inheritance and Tool Lineage",
+      "description": "A practical note on why Codex tends to scaffold structure while Claude Code tends to deepen narrative coherence, and why both lineages are necessary for serious orchestration work.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "adjacent",
+      "domains": [
+        "methodology",
+        "ai-systems"
+      ],
+      "themes": [],
+      "tags": [
+        "orchestra",
+        "lineage",
+        "rri",
+        "methodology",
+        "tooling"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-03-21T00:00:00.000Z"
+    },
+    {
       "id": "research-bainbridge-warning",
       "slug": "bainbridge-warning",
       "title": "The Bainbridge Warning",
@@ -484,6 +512,18 @@
       "explanation": "The invisible cost stack analysis (intent specification, alignment monitoring, governance overhead) maps directly to the DCFB constitutional design requirements — making them concrete and costed.",
       "provenance": [
         "section: What Institutional AI Actually Costs"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-tool-lineage-constitutional-routing",
+      "target": "research-dcfb",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "This digest extends DCFB into a tool-lineage routing frame by treating orchestration as constitutional inheritance rather than pure capability selection.",
+      "provenance": [
+        "section: routing principle for the field"
       ],
       "manual": true,
       "inferred": false
@@ -949,14 +989,14 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-03-15T09:35:57.023Z",
+  "generatedAt": "2026-03-21T08:59:04.767Z",
   "stats": {
-    "totalNodes": 12,
-    "totalEdges": 49,
-    "manualEdges": 29,
+    "totalNodes": 13,
+    "totalEdges": 50,
+    "manualEdges": 30,
     "inferredEdges": 20,
     "byType": {
-      "digest": 3,
+      "digest": 4,
       "research": 3,
       "product": 4,
       "clause": 2

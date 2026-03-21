@@ -43,6 +43,21 @@
       ],
       "count": 1
     },
+    "methodology": {
+      "label": "methodology",
+      "contentIds": [
+        "digest-tool-lineage-constitutional-routing"
+      ],
+      "count": 1
+    },
+    "ai-systems": {
+      "label": "ai-systems",
+      "contentIds": [
+        "digest-tool-lineage-constitutional-routing",
+        "research-dcfb"
+      ],
+      "count": 2
+    },
     "institutional-design": {
       "label": "institutional-design",
       "contentIds": [
@@ -55,13 +70,6 @@
       "label": "failure-analysis",
       "contentIds": [
         "research-bainbridge-warning"
-      ],
-      "count": 1
-    },
-    "ai-systems": {
-      "label": "ai-systems",
-      "contentIds": [
-        "research-dcfb"
       ],
       "count": 1
     },
@@ -304,6 +312,41 @@
       ],
       "count": 1
     },
+    "orchestra": {
+      "label": "orchestra",
+      "contentIds": [
+        "digest-tool-lineage-constitutional-routing"
+      ],
+      "count": 1
+    },
+    "lineage": {
+      "label": "lineage",
+      "contentIds": [
+        "digest-tool-lineage-constitutional-routing"
+      ],
+      "count": 1
+    },
+    "rri": {
+      "label": "rri",
+      "contentIds": [
+        "digest-tool-lineage-constitutional-routing"
+      ],
+      "count": 1
+    },
+    "methodology": {
+      "label": "methodology",
+      "contentIds": [
+        "digest-tool-lineage-constitutional-routing"
+      ],
+      "count": 1
+    },
+    "tooling": {
+      "label": "tooling",
+      "contentIds": [
+        "digest-tool-lineage-constitutional-routing"
+      ],
+      "count": 1
+    },
     "bainbridge-warning": {
       "label": "bainbridge-warning",
       "contentIds": [
@@ -427,6 +470,7 @@
         "digest-cir-v2-core-argument",
         "digest-intent-gap-god-mode-biology",
         "digest-mcp-consolidation-infrastructure-paradox",
+        "digest-tool-lineage-constitutional-routing",
         "research-bainbridge-warning",
         "research-dcfb",
         "research-trust-irreversibility-residue",
@@ -436,12 +480,13 @@
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
-      "count": 11
+      "count": 12
     },
     "constitutional-ai": {
       "label": "constitutional-ai",
       "contentIds": [
         "digest-cir-v2-core-argument",
+        "digest-tool-lineage-constitutional-routing",
         "research-dcfb",
         "research-trust-irreversibility-residue",
         "product-cir",
@@ -449,7 +494,7 @@
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
-      "count": 7
+      "count": 8
     },
     "bainbridge-core": {
       "label": "bainbridge-core",
@@ -461,5 +506,5 @@
       "count": 3
     }
   },
-  "generatedAt": "2026-03-15T09:35:57.023Z"
+  "generatedAt": "2026-03-21T08:59:04.768Z"
 }
