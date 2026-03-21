@@ -1,0 +1,38 @@
+---
+title: "The R0–R3 Reversibility Classification"
+summary: "A practical system for classifying the irreversibility of AI-assisted actions before they execute — the minimum viable governance primitive for anyone deploying AI in high-stakes contexts."
+publishedAt: 2026-02-15
+tags: ["r0-r3", "reversibility", "governance-primitives", "cir", "practical"]
+category: "Research"
+seoTitle: "The R0–R3 Reversibility Classification"
+seoDescription: "A practical system for classifying the irreversibility of AI-assisted actions before they execute — the minimum viable governance primitive for anyone deploying AI in high-stakes contexts."
+excerpt: "Before you let your AI system take an action, ask one question: if this turns out to be wrong, how hard is it to undo?"
+featured: false
+draft: false
+author: "Hillary Njuguna"
+researchType: framework
+themes: ["governance", "reversibility"]
+concepts: ["r0-r3", "governance-primitives", "cir"]
+domains: ["governance", "ai-systems"]
+lineage: ["dcfb-core", "constitutional-ai"]
+governanceRelevance: direct
+crystallization: crystallized
+---
+
+Before you let your AI system take an action, ask one question: if this turns out to be wrong, how hard is it to undo?
+
+That question has four answers.
+
+**R0 — Fully Reversible.** Read-only operations. Advisory outputs. Log entries. Analysis that informs but does not execute. Zero cost to reverse because nothing has changed in the world.
+
+**R1/R2 — Reversible with Overhead.** Actions that can be undone, but not instantly. Drafted communications that haven't sent. Database writes with rollback capability. Workflow steps that can be unwound with meaningful but manageable effort. The system can recover. Recovery has a cost.
+
+**R3 — Effectively Irreversible.** Sent communications. Published content. Executed financial transactions. Deployed code changes with downstream dependencies. Deleted records without backup. Once the action executes, the world has changed in ways that cannot be fully restored.
+
+The governance implication follows directly. R0 actions can be validated asynchronously — human review can happen after the fact without meaningful loss. R3 actions require human consent before execution, not after. The validation gate must be placed at the boundary between R2 and R3, where actions cross from recoverable to permanent.
+
+Most AI governance failures are R3 failures executed without R3 governance. A system that takes irreversible actions under the assumption that it can be corrected if wrong has no mechanism for the correction to actually prevent the harm. The harm has already happened.
+
+The R0–R3 Classification is not a theoretical framework. It is a decision point. Before any AI action executes, someone needs to have asked which tier it belongs to — and the answer needs to determine what governance applies.
+
+This is Module 1 of the Cognitive Infrastructure Readiness framework. The other three primitives build on it.
