@@ -5,7 +5,7 @@ const PROVIDERS = [
   {
     name: 'OpenRouter',
     url: 'https://openrouter.ai/api/v1/chat/completions',
-    apiKey: import.meta.env.OPENROUTER_API_KEY ?? process.env.OPENROUTER_API_KEY,
+    apiKey: process.env.OPENROUTER_API_KEY ?? import.meta.env.OPENROUTER_API_KEY,
     models: [
       'mistralai/mistral-small-3.1-24b-instruct:free',
       'google/gemini-flash-1.5-exp:free',
@@ -22,7 +22,7 @@ const PROVIDERS = [
   {
     name: 'Mistral Direct',
     url: 'https://api.mistral.ai/v1/chat/completions',
-    apiKey: import.meta.env.MISTRAL_API_KEY ?? process.env.MISTRAL_API_KEY,
+    apiKey: process.env.MISTRAL_API_KEY ?? import.meta.env.MISTRAL_API_KEY,
     models: ['mistral-small-latest'],
     headers: (key: string) => ({
       'Content-Type': 'application/json',
@@ -112,14 +112,14 @@ export const POST: APIRoute = async ({ request }) => {
 
         if (response.ok && !data.error) {
           const raw = data.choices?.[0]?.message?.content ?? '';
-          
+
           // Parse synthesis and clause candidate
           const parts = raw.split(/---+/);
           const synthesis = parts[0]?.replace(/^Synthesis:\s*/i, '').trim() ?? raw;
           const clauseRaw = parts[1]?.replace(/^Clause Candidate:\s*/i, '').trim() ?? null;
-          const clauseCandidate = 
-            clauseRaw && !clauseRaw.toLowerCase().includes('no clause candidate') 
-              ? clauseRaw 
+          const clauseCandidate =
+            clauseRaw && !clauseRaw.toLowerCase().includes('no clause candidate')
+              ? clauseRaw
               : null;
 
           return new Response(JSON.stringify({ synthesis, clauseCandidate }), {
