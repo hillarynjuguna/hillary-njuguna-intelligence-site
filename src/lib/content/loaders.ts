@@ -22,7 +22,7 @@ const CONTENT_ROOT = join(process.cwd(), 'src', 'content');
 
 export function loadCollection(collection: CollectionName): RawEntry[] {
   const dir = join(CONTENT_ROOT, collection);
-  const files = fg.sync(`${dir}/**/*.md`, { absolute: true });
+  const files = fg.sync(`${dir}/**/*.{md,mdx}`, { absolute: true });
 
   return files.map((filePath) => {
     const raw = readFileSync(filePath, 'utf8');
