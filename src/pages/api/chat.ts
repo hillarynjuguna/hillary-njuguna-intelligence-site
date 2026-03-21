@@ -5,7 +5,7 @@ const PROVIDERS = [
   {
     name: 'OpenRouter',
     url: 'https://openrouter.ai/api/v1/chat/completions',
-    apiKey: import.meta.env.OPENROUTER_API_KEY ?? process.env.OPENROUTER_API_KEY,
+    apiKey: process.env.OPENROUTER_API_KEY ?? import.meta.env.OPENROUTER_API_KEY,
     models: [
       'mistralai/mistral-small-3.1-24b-instruct:free',
       'google/gemini-flash-1.5-exp:free',
@@ -22,7 +22,7 @@ const PROVIDERS = [
   {
     name: 'Mistral Direct',
     url: 'https://api.mistral.ai/v1/chat/completions',
-    apiKey: import.meta.env.MISTRAL_API_KEY ?? process.env.MISTRAL_API_KEY,
+    apiKey: process.env.MISTRAL_API_KEY ?? import.meta.env.MISTRAL_API_KEY,
     models: ['mistral-small-latest'],
     headers: (key: string) => ({
       'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const messages = body.messages ?? [];
-  
+
   // Basic input validation
   if (!Array.isArray(messages) || messages.some(m => typeof m.content !== 'string' || m.content.length > 4000)) {
     return new Response(
@@ -122,7 +122,7 @@ export const POST: APIRoute = async ({ request }) => {
 
         const errCode = data.error?.code ?? response.status;
         console.warn(`[/api/chat] ${provider.name} (${model}) failed with ${errCode}. Trying next...`);
-        
+
         if (errCode !== 429 && errCode !== 408 && errCode !== 503) {
             // Non-transient error for this provider/model, move to next model
             continue;
@@ -134,8 +134,8 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   return new Response(
-    JSON.stringify({ 
-      error: 'The Field is currently high-load. Our intelligence nodes are recalibrating. Please try again in a moment.' 
+    JSON.stringify({
+      error: 'The Field is currently high-load. Our intelligence nodes are recalibrating. Please try again in a moment.'
     }),
     { status: 503, headers: { 'Content-Type': 'application/json' } }
   );
