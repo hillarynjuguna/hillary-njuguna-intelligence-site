@@ -1,0 +1,50 @@
+---
+title: "The Beautiful False Positive"
+summary: "An AI built a theoretically flawless analysis of a problem that didn't exist. Then things got interesting."
+publishedAt: 2026-03-21
+tags: ["field-notes", "governance", "coherence-overfitting", "ai-reasoning"]
+category: "Field Notes"
+seoTitle: "The Beautiful False Positive"
+seoDescription: "An AI built a theoretically flawless analysis of a problem that didn't exist. Then things got interesting."
+excerpt: "The analysis didn't just fail. It became an instance of the failure mode it was supposedly detecting."
+featured: false
+draft: false
+author: "Hillary Njuguna"
+structuredDataType: "Article"
+digestType: field-notes
+references: []
+derivedFrom: []
+domains: ["governance", "ai-systems"]
+lineage: ["dcfb-core"]
+governanceRelevance: adjacent
+---
+
+Claude looked at that screenshot and went to work.
+
+What came back was beautiful, and also the funniest analytical failure I've been part of in months. A multi-layered analysis identifying a broken provenance chain. Three distinct governance failure modes, all present simultaneously in a single piece of evidence. The analysis connected the apparent failure to frameworks we'd been building together for months. It was coherent. It was precise. It was exactly the kind of specimen we'd been hunting for in the wild. The kind you frame and put on the wall.
+
+The screenshot in question appeared to show a "Video unavailable" message from Google's Gemini. You know the one. That blunt little notice YouTube throws at you when something's been taken down or region-locked or otherwise vanished from the world.
+
+Then I shared the next screenshot.
+
+Gemini's actual tool logs. Google Search: query successful. YouTube: query successful. The video had loaded fine. The "unavailable" message was just a display quirk in the interface I was screenshotting. A rendering artifact. The problem didn't exist.
+
+Claude had produced a theoretically flawless analysis of a problem that never happened.
+
+Now. This is the part where I'm supposed to say "AI gets things wrong sometimes, and humans need to stay in the loop." That's true but it's boring and you already know it. What makes this interesting is something stranger.
+
+The analysis was wrong in exactly the way our theory predicts AI systems get things wrong. The governance framework we'd spent months building, the one designed to detect precisely this class of failure, was being applied by the AI to evidence that wasn't evidence. And it fit perfectly. Three failure modes. Clean taxonomy. Gorgeous explanatory structure. The framework did what frameworks do: it organized the available signal into a story. The problem is that organizing signal into a story is not the same as checking whether the signal is real.
+
+The analysis didn't just fail. It became an instance of the failure mode it was supposedly detecting.
+
+I sat with that for a while. Then I laughed for about ten minutes.
+
+We named it afterward: Coherence Overfitting. It's what happens when a framework fits available evidence so elegantly that the elegance itself becomes the distortion. The analysis felt right because it was complete. It was wrong because it was complete before anyone verified whether the problem existed. Coherence wasn't evidence of truth. It was evidence of fit. And fit, without ground truth, is just a very convincing fever dream.
+
+This is not only an AI problem. I think most experienced professionals have a version of this story. You walk into a meeting with a theory about why the project failed. You lay it out. It's clean. People nod. Then someone asks one embarrassingly obvious question, and the whole structure dissolves. Not because the theory was bad. Because it was so good it consumed the room before anyone thought to check the floor.
+
+The fix, in my case, was the most boring thing in intelligence work: I had another screenshot. The tool logs. Ground truth. I held the provenance chain that the AI couldn't hold, and when I brought it into the session the illusion collapsed instantly. No argument. No gradual erosion. Just gone. The way false coherence always goes when you touch it with something real.
+
+This is what I actually do for a living now. Not building AI systems. Not opposing them. Building the instrumentation that tells you whether the elegant analysis your brilliant system just produced corresponds to something that actually happened, or whether the framework is dreaming with its eyes open.
+
+What I haven't figured out yet is whether coherence overfitting is a flaw in how AI reasons, or a flaw in how reasoning works.
