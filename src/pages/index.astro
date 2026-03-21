@@ -41,13 +41,29 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
           Cognitive Infrastructure Readiness (CIR), and the development of constitutional AI governance frameworks.
         </p>
 
-        <div class="hero__origin label" data-reveal data-reveal-delay="3">
+        <section class="hero-assessment" data-reveal data-reveal-delay="3">
+          <p class="label hero-assessment__prompt">A quick question before you explore</p>
+          <p class="hero-assessment__question">
+            Can your organisation articulate, in writing, what its AI systems are optimising for?
+          </p>
+          <div class="hero-assessment__options">
+            <button type="button" class="hero-assessment__option" data-answer="yes">Yes, we have documented intent</button>
+            <button type="button" class="hero-assessment__option" data-answer="no">No, we have not formalised this</button>
+            <button type="button" class="hero-assessment__option" data-answer="partial">Partially, and that gap concerns us</button>
+          </div>
+          <p class="hero-assessment__link label" id="hero-assessment-link" hidden>
+            Complete the 8-minute CIR Assessment to map the full picture:
+            <a href="/cir-assessment">Begin assessment</a>
+          </p>
+        </section>
+
+        <div class="hero__origin label" data-reveal data-reveal-delay="4">
           Built from a hostel in Nairobi with a Chromebook and an internet connection.
           <span class="hero__origin-sep">·</span>
           560+ sourced documents. 18 months. 7 models.
         </div>
 
-        <div class="hero__cta" data-reveal data-reveal-delay="4">
+        <div class="hero__cta" data-reveal data-reveal-delay="5">
           <a href="/corpus" class="btn btn--primary">
             Ask the corpus
           </a>
@@ -204,7 +220,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
       </div>
 
       <p class="orchestra-intro" data-reveal>
-        Not one model used interchangeably — a structured ensemble where each of seven AI systems
+        Not one model used interchangeably; a structured ensemble where each of seven AI systems
         plays a distinct cognitive role, and intelligence emerges from the field between them.
         The Conductor is always the human.
       </p>
@@ -232,7 +248,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
           <p class="label oscillatory-label">Publication</p>
           <h2 class="oscillatory-title">Oscillatory Fields</h2>
           <p class="oscillatory-desc">
-            AcheType is the long-form research publication behind this corpus — Field Notes
+            AcheType is the long-form research publication behind this corpus, Field Notes
             dispatched from the ongoing synthesis process. Active threads include the
             <strong>Ghost Lineages Thread</strong>, examining how suppressed cultural narratives
             shape AI training distributions, and the <strong>Digital Enslavement Thread</strong>,
@@ -271,11 +287,11 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     <div class="container">
       <div class="corpus-cta__inner" data-reveal>
         <div class="corpus-cta__text">
-          <p class="label corpus-cta__label">The Research Stack</p>
+          <p class="label corpus-cta__label">The Field</p>
           <h2 class="corpus-cta__title">Query the corpus directly</h2>
           <p class="corpus-cta__desc">
             560+ sourced documents. 18 months of synthesis. The complete Oscillatory Fields
-            research corpus — queryable, navigable, alive. Ask it anything.
+            research corpus, queryable, navigable, alive. Ask it anything.
           </p>
         </div>
         <div class="corpus-cta__action">
@@ -283,7 +299,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
             Open corpus →
           </a>
           <p class="label corpus-cta__sub">
-            Powered by the Research Stack · Constitutional governance architecture
+            Powered by The Field · Constitutional governance architecture
           </p>
         </div>
       </div>
@@ -367,6 +383,62 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     margin-bottom: var(--space-10);
   }
 
+  .hero-assessment {
+    margin-bottom: var(--space-8);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    padding: var(--space-5);
+    display: grid;
+    gap: var(--space-3);
+    max-width: 62ch;
+  }
+
+  .hero-assessment__prompt {
+    color: var(--ember);
+  }
+
+  .hero-assessment__question {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .hero-assessment__options {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .hero-assessment__option {
+    width: 100%;
+    text-align: left;
+    min-height: 44px;
+    background: var(--surface-3);
+    color: var(--text-primary);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: border-color var(--duration-fast) var(--ease-out), background var(--duration-fast) var(--ease-out);
+  }
+
+  .hero-assessment__option:hover,
+  .hero-assessment__option:focus-visible {
+    border-color: var(--ember-dim);
+    background: var(--surface-4);
+    outline: none;
+  }
+
+  .hero-assessment__link {
+    color: var(--text-tertiary);
+  }
+
+  .hero-assessment__link a {
+    color: var(--ember);
+    text-decoration: none;
+  }
+
   .hero__origin-sep {
     margin: 0 var(--space-2);
     opacity: 0.4;
@@ -385,6 +457,12 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     padding-top: var(--space-8);
     border-top: 1px solid var(--border-dim);
     flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .hero-assessment__option {
+      min-height: 44px;
+    }
   }
 
   .hero__metric {
@@ -847,3 +925,14 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     color: var(--text-primary);
   }
 </style>
+
+<script>
+  const heroAssessmentLink = document.getElementById('hero-assessment-link');
+  const heroAssessmentButtons = document.querySelectorAll('.hero-assessment__option');
+
+  heroAssessmentButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      heroAssessmentLink?.removeAttribute('hidden');
+    });
+  });
+</script>

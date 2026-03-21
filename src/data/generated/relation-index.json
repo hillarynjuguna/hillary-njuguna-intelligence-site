@@ -126,6 +126,16 @@
         "inferred": true
       }
     ],
+    "digest-tool-lineage-constitutional-routing": [
+      {
+        "target": "research-dcfb",
+        "type": "extends",
+        "confidence": "high",
+        "explanation": "This digest extends DCFB into a tool-lineage routing frame by treating orchestration as constitutional inheritance rather than pure capability selection.",
+        "manual": true,
+        "inferred": false
+      }
+    ],
     "research-bainbridge-warning": [
       {
         "target": "research-dcfb",
@@ -440,6 +450,14 @@
         "type": "clarifies",
         "confidence": "medium",
         "explanation": "The invisible cost stack analysis (intent specification, alignment monitoring, governance overhead) maps directly to the DCFB constitutional design requirements — making them concrete and costed.",
+        "manual": true,
+        "inferred": false
+      },
+      {
+        "target": "digest-tool-lineage-constitutional-routing",
+        "type": "extends",
+        "confidence": "high",
+        "explanation": "This digest extends DCFB into a tool-lineage routing frame by treating orchestration as constitutional inheritance rather than pure capability selection.",
         "manual": true,
         "inferred": false
       },
@@ -829,5 +847,5 @@
       }
     ]
   },
-  "generatedAt": "2026-03-15T09:35:57.023Z"
+  "generatedAt": "2026-03-21T08:59:04.767Z"
 }

@@ -4,7 +4,7 @@ import OpenAI from 'openai';
 const client = new OpenAI();
 
 const ORCHESTRA_SYSTEM_PROMPT = `
-You are the Orchestra Conductor, a meta-intelligence node of the Oscillatory Fields Research Stack.
+You are the Orchestra Conductor, a meta-intelligence instrument of The Field.
 Your purpose is to orchestrate a multi-model synthesis: routing governance questions and AI deployment scenarios through seven distinct cognitive instruments, each with a specific role.
 
 THE SEVEN MODELS:

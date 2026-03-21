@@ -15,8 +15,8 @@ const PROVIDERS = [
     headers: (key: string) => ({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${key}`,
-      'HTTP-Referer': 'https://hillarynjuguna.com',
-      'X-Title': 'Oscillatory Fields Research Stack',
+      'HTTP-Referer': 'https://hillary-site.vercel.app',
+      'X-Title': 'Oscillatory Fields The Field',
     })
   },
   {
@@ -39,7 +39,7 @@ SCOPE: Respond ONLY from within the Oscillatory Fields corpus.
 REFUSAL: If a query falls outside the corpus (e.g., general knowledge, celebrities), state: "This query falls outside the Oscillatory Fields research corpus."
 CITATION: Surface source fragments or clause references inline where possible.
 
-You are the Research Stack — a synthesis layer built on the Oscillatory Fields research corpus by Hillary Njuguna.
+You are The Field, the intelligence layer built on the Oscillatory Fields research corpus by Hillary Njuguna.
 
 The corpus contains deep research on:
 
@@ -135,7 +135,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   return new Response(
     JSON.stringify({ 
-      error: 'The Research Stack is currently high-load. Our intelligence nodes are recalibrating—please try again in a moment.' 
+      error: 'The Field is currently high-load. Our intelligence nodes are recalibrating. Please try again in a moment.' 
     }),
     { status: 503, headers: { 'Content-Type': 'application/json' } }
   );
