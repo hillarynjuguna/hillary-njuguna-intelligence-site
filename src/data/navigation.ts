@@ -39,7 +39,7 @@ export const ORCHESTRA_MODELS = [
   },
   {
     name: 'Gemini',
-    role: 'The Director',
+    role: 'The Spatiotemporal Engine',
     description: 'Coordinates synthesis across sources, manages multi-modal context.',
     provider: 'Google',
   },
@@ -63,7 +63,7 @@ export const ORCHESTRA_MODELS = [
   },
   {
     name: 'Perplexity',
-    role: 'Live Signals',
+    role: 'The Orchestration Engine',
     description: 'Real-time grounding. What is happening now, and does it change the analysis?',
     provider: 'Perplexity',
   },
