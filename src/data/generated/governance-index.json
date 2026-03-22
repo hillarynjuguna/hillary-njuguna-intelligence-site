@@ -1,6 +1,38 @@
 {
   "clauses": [
     {
+      "id": "clause-coherence-overfitting-guard",
+      "title": "Coherence Overfitting Guard",
+      "clauseStatus": "crystallized",
+      "governanceDomain": "epistemic-integrity",
+      "crystallizationThreshold": 0.88,
+      "supportingContentIds": [
+        "digest-field-note-004-epistemological-immune-system",
+        "research-governance-theater"
+      ],
+      "objections": [
+        "Slows down analysis cycles",
+        "Difficult to detect without external ground truth"
+      ],
+      "crystallization": "crystallized"
+    },
+    {
+      "id": "clause-epistemological-immune-system",
+      "title": "Epistemological Immune System Requirement",
+      "clauseStatus": "crystallized",
+      "governanceDomain": "verification",
+      "crystallizationThreshold": 0.91,
+      "supportingContentIds": [
+        "digest-field-note-004-epistemological-immune-system",
+        "research-rsps-architecture"
+      ],
+      "objections": [
+        "Adds friction to deployment velocity",
+        "Difficult to operationalise in agentic systems"
+      ],
+      "crystallization": "crystallized"
+    },
+    {
       "id": "clause-intent-specification",
       "title": "Intent Specification Requirement",
       "clauseStatus": "candidate",
@@ -39,6 +71,53 @@
       "contentTitle": "CIR v2.0 — Core Argument",
       "contentType": "digest",
       "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "digest-field-note-001-the-beautiful-false-positive",
+      "contentTitle": "The Beautiful False Positive",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "digest-field-note-002-verbal-diarrhea-methodology",
+      "contentTitle": "Your Verbal Diarrhea Is a Methodology",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "digest-field-note-003-the-convergence",
+      "contentTitle": "The Convergence",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "digest-field-note-004-epistemological-immune-system",
+      "contentTitle": "The Epistemological Immune System",
+      "contentType": "digest",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "contentTitle": "Three Frontier Labs, One Architecture",
+      "contentType": "digest",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
@@ -51,6 +130,8 @@
       "clauseIds": [
         "clause-intent-specification",
         "clause-intent-specification",
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
         "clause-irreversibility-threshold"
       ],
       "governanceRelevance": "direct"
@@ -75,6 +156,8 @@
       "contentType": "research",
       "clauseIds": [
         "clause-irreversibility-threshold",
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
         "clause-intent-specification"
       ],
       "governanceRelevance": "direct"
@@ -87,8 +170,55 @@
         "clause-intent-specification",
         "clause-irreversibility-threshold",
         "clause-intent-specification",
+        "clause-irreversibility-threshold",
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "research-eigenform-and-rsps",
+      "contentTitle": "The Eigenform: What Recursive Cognition Generates",
+      "contentType": "research",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "research-governance-theater",
+      "contentTitle": "Governance Theater: The Failure Mode Nobody Names",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "research-maternal-architecture",
+      "contentTitle": "Maternal Architecture as Structural Attractor",
+      "contentType": "research",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "research-r0-r3-classification",
+      "contentTitle": "The R0–R3 Reversibility Classification",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "research-rsps-architecture",
+      "contentTitle": "RSPS: The Recursive Sovereign Project Space",
+      "contentType": "research",
+      "clauseIds": [],
       "governanceRelevance": "direct"
     },
     {
@@ -98,6 +228,8 @@
       "clauseIds": [
         "clause-irreversibility-threshold",
         "clause-irreversibility-threshold",
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
         "clause-intent-specification"
       ],
       "governanceRelevance": "direct"
@@ -107,6 +239,8 @@
       "contentTitle": "The Bainbridge Warning",
       "contentType": "product",
       "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
@@ -118,6 +252,8 @@
       "contentType": "product",
       "clauseIds": [
         "clause-intent-specification",
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
         "clause-irreversibility-threshold"
       ],
       "governanceRelevance": "direct"
@@ -138,6 +274,12 @@
     }
   ],
   "byDomain": {
+    "epistemic-integrity": [
+      "clause-coherence-overfitting-guard"
+    ],
+    "verification": [
+      "clause-epistemological-immune-system"
+    ],
     "epistemic-safety": [
       "clause-intent-specification"
     ],
@@ -145,5 +287,5 @@
       "clause-irreversibility-threshold"
     ]
   },
-  "generatedAt": "2026-03-21T08:59:04.769Z"
+  "generatedAt": "2026-03-22T17:22:12.594Z"
 }

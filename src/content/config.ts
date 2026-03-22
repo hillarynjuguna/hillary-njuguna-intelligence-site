@@ -118,9 +118,9 @@ const clauses = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    clauseText: z.string(),
+    clauseText: z.string().optional(),
     sourceContext: z.string().optional(),
-    generatedAt: z.coerce.date(),
+    generatedAt: z.coerce.date().optional(),
     publishedAt: z.coerce.date().optional(),
     // Legacy status field kept for backward compatibility
     status: z.enum(['candidate', 'adopted', 'archived', 'under-review']).default('candidate'),
@@ -129,10 +129,10 @@ const clauses = defineCollection({
     visibility: z.enum(['public', 'private']).default('public'),
     notes: z.string().optional(),
     // Clause-specific governance fields
-    clauseStatus: z.enum(['candidate', 'provisional', 'active', 'retired']).default('candidate'),
+    clauseStatus: z.enum(['candidate', 'provisional', 'active', 'retired', 'crystallized']).default('candidate'),
     governanceDomain: z.enum([
       'retrieval', 'synthesis', 'publishing', 'agentic-behavior',
-      'user-consent', 'lineage', 'epistemic-safety',
+      'user-consent', 'lineage', 'epistemic-safety', 'verification', 'epistemic-integrity',
     ]).optional(),
     crystallizationThreshold: z.number().min(0).max(1).default(0.5),
     supportingContentIds: z.array(z.string()).default([]),

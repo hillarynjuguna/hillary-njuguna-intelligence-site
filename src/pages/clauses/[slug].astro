@@ -52,7 +52,7 @@ const publishedDate = data.publishedAt ?? data.generatedAt;
 
 <BaseLayout
   title={`${data.title} — Governance Clause`}
-  description={data.sourceContext ?? data.clauseText.slice(0, 160)}
+  description={data.sourceContext ?? data.clauseText?.slice(0, 160) ?? data.description ?? data.title}
 >
   <article class="clause-page page-enter">
     <div class="container container--narrow">
@@ -69,9 +69,11 @@ const publishedDate = data.publishedAt ?? data.generatedAt;
           {data.governanceDomain && (
             <span class="clause-domain label">{data.governanceDomain}</span>
           )}
-          <time class="label clause-date" datetime={publishedDate.toISOString()}>
-            Generated {formatDate(publishedDate)}
-          </time>
+          {publishedDate && (
+            <time class="label clause-date" datetime={publishedDate.toISOString()}>
+              Generated {formatDate(publishedDate)}
+            </time>
+          )}
         </div>
 
         <h1 class="clause-title">{data.title}</h1>

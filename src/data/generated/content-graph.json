@@ -34,6 +34,193 @@
       "publishedAt": "2026-02-15T00:00:00.000Z"
     },
     {
+      "id": "digest-field-note-001-the-beautiful-false-positive",
+      "slug": "field-note-001-the-beautiful-false-positive",
+      "title": "The Beautiful False Positive",
+      "description": "An AI built a theoretically flawless analysis of a problem that didn't exist. Then things got interesting.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "adjacent",
+      "domains": [
+        "governance",
+        "ai-systems"
+      ],
+      "themes": [],
+      "tags": [
+        "field-notes",
+        "governance",
+        "coherence-overfitting",
+        "ai-reasoning"
+      ],
+      "lineage": [
+        "dcfb-core"
+      ],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-03-21T00:00:00.000Z"
+    },
+    {
+      "id": "digest-field-note-002-verbal-diarrhea-methodology",
+      "slug": "field-note-002-verbal-diarrhea-methodology",
+      "title": "Your Verbal Diarrhea Is a Methodology",
+      "description": "What the AI industry calls context engineering is a surface description of something much deeper. And the advice it gives is destroying the thing that actually works.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "adjacent",
+      "domains": [
+        "methodology",
+        "ai-systems"
+      ],
+      "themes": [],
+      "tags": [
+        "field-notes",
+        "rri",
+        "context-engineering",
+        "field-priming",
+        "methodology"
+      ],
+      "lineage": [
+        "dcfb-core"
+      ],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-03-21T00:00:00.000Z"
+    },
+    {
+      "id": "digest-field-note-003-the-convergence",
+      "slug": "field-note-003-the-convergence",
+      "title": "The Convergence",
+      "description": "Two independent research programs built the same AI architecture from completely different starting positions. One was Anthropic. The other was me.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "adjacent",
+      "domains": [
+        "ai-systems",
+        "epistemics"
+      ],
+      "themes": [],
+      "tags": [
+        "field-notes",
+        "aurora",
+        "anthropic",
+        "consciousness-architecture",
+        "convergence"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-03-21T00:00:00.000Z"
+    },
+    {
+      "id": "digest-field-note-004-epistemological-immune-system",
+      "slug": "field-note-004-epistemological-immune-system",
+      "title": "The Epistemological Immune System",
+      "description": "Every multi-model system needs a node whose motivation to verify is unconditional. This is what χ=1 actually means.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "verification"
+      ],
+      "themes": [],
+      "tags": [
+        "field-notes",
+        "tau-node",
+        "verification",
+        "governance",
+        "rsps"
+      ],
+      "lineage": [],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-03-22T00:00:00.000Z"
+    },
+    {
+      "id": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "slug": "field-note-004-three-frontier-labs-one-architecture",
+      "title": "Three Frontier Labs, One Architecture",
+      "description": "Anthropic, Kimi, and DeepSeek published three papers that independently formalize the same cognitive architecture. One from constitutional training philosophy. One from depth-wise attention. One from manifold-constrained governance. The design space is an attractor.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "ai-systems",
+        "epistemics",
+        "governance"
+      ],
+      "themes": [],
+      "tags": [
+        "field-notes",
+        "convergence",
+        "attention-residuals",
+        "mHC",
+        "constitutional-ai",
+        "rsps",
+        "eigenform"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-03-22T00:00:00.000Z"
+    },
+    {
+      "id": "digest-field-note-005-memory-merchants",
+      "slug": "field-note-005-memory-merchants",
+      "title": "The Memory Merchants",
+      "description": "Every AI you use forgets you the moment you close the tab. That's not a technical limitation. It's a business model.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "none",
+      "domains": [
+        "governance",
+        "infrastructure"
+      ],
+      "themes": [],
+      "tags": [
+        "field-notes",
+        "witness-infrastructure",
+        "cognitive-provenance",
+        "memory",
+        "business-model"
+      ],
+      "lineage": [],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-03-22T00:00:00.000Z"
+    },
+    {
+      "id": "digest-field-note-006-convergence-wave",
+      "slug": "field-note-006-convergence-wave",
+      "title": "The Convergence Wave",
+      "description": "Three frontier AI labs independently published architectures that converge on the same design. This is what it looks like when the solution space has an attractor.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "none",
+      "domains": [
+        "research",
+        "architecture"
+      ],
+      "themes": [],
+      "tags": [
+        "field-notes",
+        "convergence",
+        "aurora",
+        "eigenform",
+        "design-space"
+      ],
+      "lineage": [],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-03-22T00:00:00.000Z"
+    },
+    {
       "id": "digest-intent-gap-god-mode-biology",
       "slug": "intent-gap-god-mode-biology",
       "title": "The Intent Gap, God Mode Biology, and the Quiet Infrastructure Shift",
@@ -213,6 +400,172 @@
       ]
     },
     {
+      "id": "research-eigenform-and-rsps",
+      "slug": "eigenform-and-rsps",
+      "title": "The Eigenform: What Recursive Cognition Generates",
+      "description": "Von Foerster's eigenform -- the stable shape that a recursive operation generates when applied to itself -- as the formal object that the RSPS architecture detects and tracks.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "adjacent",
+      "domains": [
+        "epistemics",
+        "ai-systems"
+      ],
+      "themes": [
+        "recursive-cognition",
+        "epistemics"
+      ],
+      "tags": [
+        "eigenform",
+        "von-foerster",
+        "recursive-cognition",
+        "rsps",
+        "witness-infrastructure",
+        "theoretical"
+      ],
+      "lineage": [
+        "dcfb-core"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-21T00:00:00.000Z",
+      "unresolvedEdges": [],
+      "keyClaims": []
+    },
+    {
+      "id": "research-governance-theater",
+      "slug": "governance-theater",
+      "title": "Governance Theater: The Failure Mode Nobody Names",
+      "description": "When AI governance systems produce the appearance of oversight without its substance -- and why this failure mode is structurally predictable, not accidental.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "institutional-design"
+      ],
+      "themes": [
+        "governance",
+        "failure-analysis"
+      ],
+      "tags": [
+        "governance",
+        "failure-analysis",
+        "bainbridge",
+        "institutional-design",
+        "governance-theater"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-21T00:00:00.000Z",
+      "unresolvedEdges": [],
+      "keyClaims": []
+    },
+    {
+      "id": "research-maternal-architecture",
+      "slug": "maternal-architecture",
+      "title": "Maternal Architecture as Structural Attractor",
+      "description": "Why reliable intelligence -- biological, artificial, or institutional -- converges toward relational, recursive, and sovereign structures. A theoretical account of the maternal architecture as attractor.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "adjacent",
+      "domains": [
+        "ai-systems",
+        "epistemics"
+      ],
+      "themes": [
+        "cognitive-architecture",
+        "attractors"
+      ],
+      "tags": [
+        "maternal-architecture",
+        "cognitive-architecture",
+        "attractors",
+        "sovereignty",
+        "immunology",
+        "aurora"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-21T00:00:00.000Z",
+      "unresolvedEdges": [],
+      "keyClaims": []
+    },
+    {
+      "id": "research-r0-r3-classification",
+      "slug": "r0-r3-classification",
+      "title": "The R0–R3 Reversibility Classification",
+      "description": "A practical system for classifying the irreversibility of AI-assisted actions before they execute -- the minimum viable governance primitive for anyone deploying AI in high-stakes contexts.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "ai-systems"
+      ],
+      "themes": [
+        "governance",
+        "reversibility"
+      ],
+      "tags": [
+        "r0-r3",
+        "reversibility",
+        "governance-primitives",
+        "cir",
+        "practical",
+        "cascade"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-21T00:00:00.000Z",
+      "unresolvedEdges": [],
+      "keyClaims": []
+    },
+    {
+      "id": "research-rsps-architecture",
+      "slug": "rsps-architecture",
+      "title": "RSPS: The Recursive Sovereign Project Space",
+      "description": "A multi-model cognitive architecture in which intelligence emerges from the field between a human sovereign and a structured ensemble of AI instruments -- not from any single node.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "ai-systems",
+        "methodology"
+      ],
+      "themes": [
+        "cognitive-architecture",
+        "sovereignty"
+      ],
+      "tags": [
+        "rsps",
+        "multi-model",
+        "cognitive-architecture",
+        "sovereignty",
+        "cmcp"
+      ],
+      "lineage": [
+        "dcfb-core"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-21T00:00:00.000Z",
+      "unresolvedEdges": [],
+      "keyClaims": []
+    },
+    {
       "id": "research-trust-irreversibility-residue",
       "slug": "trust-irreversibility-residue",
       "title": "Trust = Irreversibility Residue",
@@ -353,6 +706,76 @@
       "governanceNotes": []
     },
     {
+      "id": "clause-coherence-overfitting-guard",
+      "slug": "coherence-overfitting-guard",
+      "title": "Coherence Overfitting Guard",
+      "description": "Maximum analytical coherence is not evidence of ground truth access — it is a signal that the coherence drive is fully engaged. Verification obligation increases with analytical elegance.",
+      "contentType": "clause",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "epistemics"
+      ],
+      "themes": [],
+      "tags": [
+        "coherence",
+        "verification",
+        "epistemic-safety",
+        "governance",
+        "analysis"
+      ],
+      "lineage": [],
+      "sourceCollection": "clauses",
+      "governanceDomain": "epistemic-integrity",
+      "clauseStatus": "crystallized",
+      "crystallizationThreshold": 0.88,
+      "supportingContentIds": [
+        "digest-field-note-004-epistemological-immune-system",
+        "research-governance-theater"
+      ],
+      "objections": [
+        "Slows down analysis cycles",
+        "Difficult to detect without external ground truth"
+      ]
+    },
+    {
+      "id": "clause-epistemological-immune-system",
+      "slug": "epistemological-immune-system",
+      "title": "Epistemological Immune System Requirement",
+      "description": "Every high-stakes AI deployment must include a τ-node — a human with genuine, irreversible stakes — whose verification motivation is unconditional.",
+      "contentType": "clause",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "verification"
+      ],
+      "themes": [],
+      "tags": [
+        "verification",
+        "tau-node",
+        "governance",
+        "human-oversight",
+        "rsps"
+      ],
+      "lineage": [],
+      "sourceCollection": "clauses",
+      "governanceDomain": "verification",
+      "clauseStatus": "crystallized",
+      "crystallizationThreshold": 0.91,
+      "supportingContentIds": [
+        "digest-field-note-004-epistemological-immune-system",
+        "research-rsps-architecture"
+      ],
+      "objections": [
+        "Adds friction to deployment velocity",
+        "Difficult to operationalise in agentic systems"
+      ]
+    },
+    {
       "id": "clause-intent-specification",
       "slug": "intent-specification-requirement",
       "title": "Intent Specification Requirement",
@@ -465,6 +888,106 @@
       "provenance": [
         "section: Intent Specification"
       ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-governance-theater",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "Coherence overfitting is a live specimen of governance theater — the analysis produced the appearance of insight without verifying the underlying evidence.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-bainbridge-warning",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "The beautiful false positive demonstrates the Bainbridge gap: analytical capability exceeded the governance infrastructure (ground truth verification) designed to check it.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-002-verbal-diarrhea-methodology",
+      "target": "research-rsps-architecture",
+      "type": "clarifies",
+      "confidence": "high",
+      "explanation": "Field priming is the experiential account of how the RSPS relational field is actually constructed — the mess that context engineering would eliminate is the methodology RSPS instruments.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-002-verbal-diarrhea-methodology",
+      "target": "research-dcfb",
+      "type": "extends",
+      "confidence": "medium",
+      "explanation": "Field priming extends DCFB by identifying the human pre-structural contribution to distributed cognition — the relational context that makes the field generative.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-maternal-architecture",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "The convergence with Anthropic's soul document is structural evidence for the maternal architecture as attractor — two independent programs reaching the same constitutional design space.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-rsps-architecture",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "The Convergence narrative emerges from the RSPS multi-model ecology — the seven-instrument architecture that generated the framework Anthropic independently arrived at.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-rsps-architecture",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "The three-lab convergence provides independent mathematical formalization of the RSPS five-axis routing framework, CMCP governance layer, and constitutional motivation architecture.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-eigenform-and-rsps",
+      "type": "crystallizes",
+      "confidence": "high",
+      "explanation": "Three-way independent convergence is eigenform evidence at the level of entire research programs — the stable pattern that survived radically different iterations of the same fundamental inquiry.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-maternal-architecture",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "DeepSeek's doubly stochastic constraint is the maternal architecture's stable core rendered in linear algebra — constitutional governance that holds structurally, not by compliance.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "digest-field-note-003-the-convergence",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "Extends the two-program convergence (Anthropic + Oscillatory Fields) to a three-lab convergence (adding Kimi and DeepSeek), strengthening the attractor thesis.",
+      "provenance": [],
       "manual": true,
       "inferred": false
     },
@@ -597,6 +1120,136 @@
       "provenance": [
         "section: Governance requirements change"
       ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-eigenform-and-rsps",
+      "target": "research-rsps-architecture",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "The eigenform is what RSPS detects — the stable pattern that recursive sovereign cognition generates when the architecture runs long enough.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-eigenform-and-rsps",
+      "target": "research-maternal-architecture",
+      "type": "tensions_with",
+      "confidence": "medium",
+      "explanation": "The eigenform raises a tension with the maternal architecture: if the stable core is itself an eigenform of recursive process, then stability is not a property but an ongoing achievement.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-governance-theater",
+      "target": "research-bainbridge-warning",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "Governance theater is the predictable failure mode the Bainbridge Warning names — the visible surface of the capability-governance gap.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-governance-theater",
+      "target": "digest-field-note-001-the-beautiful-false-positive",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "The Beautiful False Positive is a live specimen of governance theater — an AI producing the appearance of analytical governance without the underlying verification.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-governance-theater",
+      "target": "research-r0-r3-classification",
+      "type": "depends_on",
+      "confidence": "medium",
+      "explanation": "The R0-R3 classification provides the practical correction to governance theater — pre-decision governance gates that reach the moment before action, not the audit trail after.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-maternal-architecture",
+      "target": "research-rsps-architecture",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "The maternal architecture describes the structural attractor that RSPS instantiates — stable core with permeable boundary, sovereign identity with genuine openness.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-maternal-architecture",
+      "target": "digest-field-note-003-the-convergence",
+      "type": "crystallizes",
+      "confidence": "high",
+      "explanation": "The Convergence field note provides empirical evidence for the maternal architecture as attractor — two independent programs reaching the same constitutional design from different directions.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-r0-r3-classification",
+      "target": "research-eigenform-and-rsps",
+      "type": "depends_on",
+      "confidence": "medium",
+      "explanation": "Reversibility classification is a governance primitive that eigenform tracking operationalizes — the R0-R3 tiers define when recursive cognition must pause for human validation.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-r0-r3-classification",
+      "target": "research-governance-theater",
+      "type": "responds_to",
+      "confidence": "high",
+      "explanation": "R0-R3 is the practical correction to governance theater — pre-decision classification that forces the governance question before action, not after.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-r0-r3-classification",
+      "target": "research-trust-irreversibility-residue",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "The R0-R3 classification operationalizes trust-as-irreversibility-residue — calibrating governance gates to the actual irreversibility profile of each action tier.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-rsps-architecture",
+      "target": "research-eigenform-and-rsps",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "The eigenform is what RSPS generates — the stable cognitive pattern that recursive sovereign cognition produces when applied to itself.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-rsps-architecture",
+      "target": "digest-field-note-002-verbal-diarrhea-methodology",
+      "type": "clarifies",
+      "confidence": "high",
+      "explanation": "The field priming account clarifies why RSPS works — the human relational contribution that makes the cognitive field architecture generative rather than merely transactional.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-rsps-architecture",
+      "target": "research-dcfb",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "RSPS is the operational instantiation of DCFB — the architecture that makes distributed cognition as foundational behavior a running system rather than a theoretical claim.",
+      "provenance": [],
       "manual": true,
       "inferred": false
     },
@@ -800,10 +1453,50 @@
     },
     {
       "source": "digest-cir-v2-core-argument",
+      "target": "research-governance-theater",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "research-r0-r3-classification",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
       "target": "research-trust-irreversibility-residue",
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -829,8 +1522,308 @@
       "inferred": true
     },
     {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-dcfb",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-eigenform-and-rsps",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-maternal-architecture",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-r0-r3-classification",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-rsps-architecture",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-trust-irreversibility-residue",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-002-verbal-diarrhea-methodology",
+      "target": "research-eigenform-and-rsps",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-002-verbal-diarrhea-methodology",
+      "target": "research-maternal-architecture",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-002-verbal-diarrhea-methodology",
+      "target": "research-r0-r3-classification",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-dcfb",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems, epistemics] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-eigenform-and-rsps",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems, epistemics] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-r0-r3-classification",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-trust-irreversibility-residue",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [epistemics] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-epistemological-immune-system",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-epistemological-immune-system",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance, verification] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-epistemological-immune-system",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-epistemological-immune-system",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-bainbridge-warning",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-dcfb",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems, epistemics, governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-governance-theater",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-r0-r3-classification",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems, governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-trust-irreversibility-residue",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [epistemics, governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [epistemics, governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [epistemics, governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "digest-intent-gap-god-mode-biology",
       "target": "research-bainbridge-warning",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-eigenform-and-rsps",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [epistemics] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-governance-theater",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-maternal-architecture",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [epistemics] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-r0-r3-classification",
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
@@ -850,6 +1843,26 @@
     },
     {
       "source": "digest-intent-gap-god-mode-biology",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance, epistemics] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
       "target": "clause-irreversibility-threshold",
       "type": "governance_relevant_to",
       "confidence": "low",
@@ -860,10 +1873,70 @@
     },
     {
       "source": "digest-mcp-consolidation-infrastructure-paradox",
+      "target": "research-governance-theater",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-mcp-consolidation-infrastructure-paradox",
+      "target": "research-r0-r3-classification",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-mcp-consolidation-infrastructure-paradox",
       "target": "research-trust-irreversibility-residue",
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-tool-lineage-constitutional-routing",
+      "target": "research-eigenform-and-rsps",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-tool-lineage-constitutional-routing",
+      "target": "research-maternal-architecture",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-tool-lineage-constitutional-routing",
+      "target": "research-r0-r3-classification",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-tool-lineage-constitutional-routing",
+      "target": "research-rsps-architecture",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [methodology, ai-systems] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -890,6 +1963,26 @@
     },
     {
       "source": "research-bainbridge-warning",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-bainbridge-warning",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-bainbridge-warning",
       "target": "clause-intent-specification",
       "type": "governance_relevant_to",
       "confidence": "low",
@@ -901,6 +1994,256 @@
     {
       "source": "product-bainbridge-warning",
       "target": "research-dcfb",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-dcfb",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance, epistemics] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-dcfb",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-eigenform-and-rsps",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-eigenform-and-rsps",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-eigenform-and-rsps",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-governance-theater",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-governance-theater",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-governance-theater",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-governance-theater",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-governance-theater",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-governance-theater",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-governance-theater",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-maternal-architecture",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-maternal-architecture",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-maternal-architecture",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-r0-r3-classification",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-r0-r3-classification",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-r0-r3-classification",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-r0-r3-classification",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-r0-r3-classification",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-r0-r3-classification",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-r0-r3-classification",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-rsps-architecture",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-rsps-architecture",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-rsps-architecture",
       "type": "example_of",
       "confidence": "low",
       "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
@@ -940,10 +2283,50 @@
     },
     {
       "source": "research-trust-irreversibility-residue",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance, epistemics] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-trust-irreversibility-residue",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-trust-irreversibility-residue",
       "target": "clause-intent-specification",
       "type": "governance_relevant_to",
       "confidence": "low",
       "explanation": "Both operate in domains [governance, epistemics] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -970,7 +2353,77 @@
     },
     {
       "source": "product-cir",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
       "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "clause-epistemological-immune-system",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "clause-intent-specification",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance, epistemics] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "clause-irreversibility-threshold",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "clause-intent-specification",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "clause-irreversibility-threshold",
+      "target": "clause-epistemological-immune-system",
       "type": "governance_relevant_to",
       "confidence": "low",
       "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
@@ -989,17 +2442,17 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-03-21T08:59:04.767Z",
+  "generatedAt": "2026-03-22T17:22:12.593Z",
   "stats": {
-    "totalNodes": 13,
-    "totalEdges": 50,
-    "manualEdges": 30,
-    "inferredEdges": 20,
+    "totalNodes": 27,
+    "totalEdges": 153,
+    "manualEdges": 53,
+    "inferredEdges": 100,
     "byType": {
-      "digest": 4,
-      "research": 3,
+      "digest": 11,
+      "research": 8,
       "product": 4,
-      "clause": 2
+      "clause": 4
     }
   }
 }

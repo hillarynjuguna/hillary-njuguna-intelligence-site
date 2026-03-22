@@ -4,19 +4,27 @@
       "label": "governance",
       "contentIds": [
         "digest-cir-v2-core-argument",
+        "digest-field-note-001-the-beautiful-false-positive",
+        "digest-field-note-004-epistemological-immune-system",
+        "digest-field-note-004-three-frontier-labs-one-architecture",
+        "digest-field-note-005-memory-merchants",
         "digest-intent-gap-god-mode-biology",
         "digest-mcp-consolidation-infrastructure-paradox",
         "research-bainbridge-warning",
         "research-dcfb",
+        "research-governance-theater",
+        "research-r0-r3-classification",
         "research-trust-irreversibility-residue",
         "product-bainbridge-warning",
         "product-cir",
         "product-clearbid",
         "product-martha",
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
-      "count": 12
+      "count": 20
     },
     "constitutional-design": {
       "label": "constitutional-design",
@@ -26,45 +34,84 @@
       ],
       "count": 2
     },
-    "epistemics": {
-      "label": "epistemics",
+    "ai-systems": {
+      "label": "ai-systems",
       "contentIds": [
-        "digest-intent-gap-god-mode-biology",
+        "digest-field-note-001-the-beautiful-false-positive",
+        "digest-field-note-002-verbal-diarrhea-methodology",
+        "digest-field-note-003-the-convergence",
+        "digest-field-note-004-three-frontier-labs-one-architecture",
+        "digest-tool-lineage-constitutional-routing",
         "research-dcfb",
-        "research-trust-irreversibility-residue",
-        "clause-intent-specification"
+        "research-eigenform-and-rsps",
+        "research-maternal-architecture",
+        "research-r0-r3-classification",
+        "research-rsps-architecture"
       ],
-      "count": 4
-    },
-    "infrastructure": {
-      "label": "infrastructure",
-      "contentIds": [
-        "digest-mcp-consolidation-infrastructure-paradox"
-      ],
-      "count": 1
+      "count": 10
     },
     "methodology": {
       "label": "methodology",
       "contentIds": [
-        "digest-tool-lineage-constitutional-routing"
+        "digest-field-note-002-verbal-diarrhea-methodology",
+        "digest-tool-lineage-constitutional-routing",
+        "research-rsps-architecture"
+      ],
+      "count": 3
+    },
+    "epistemics": {
+      "label": "epistemics",
+      "contentIds": [
+        "digest-field-note-003-the-convergence",
+        "digest-field-note-004-three-frontier-labs-one-architecture",
+        "digest-intent-gap-god-mode-biology",
+        "research-dcfb",
+        "research-eigenform-and-rsps",
+        "research-maternal-architecture",
+        "research-trust-irreversibility-residue",
+        "clause-coherence-overfitting-guard",
+        "clause-intent-specification"
+      ],
+      "count": 9
+    },
+    "verification": {
+      "label": "verification",
+      "contentIds": [
+        "digest-field-note-004-epistemological-immune-system",
+        "clause-epistemological-immune-system"
+      ],
+      "count": 2
+    },
+    "infrastructure": {
+      "label": "infrastructure",
+      "contentIds": [
+        "digest-field-note-005-memory-merchants",
+        "digest-mcp-consolidation-infrastructure-paradox"
+      ],
+      "count": 2
+    },
+    "research": {
+      "label": "research",
+      "contentIds": [
+        "digest-field-note-006-convergence-wave"
       ],
       "count": 1
     },
-    "ai-systems": {
-      "label": "ai-systems",
+    "architecture": {
+      "label": "architecture",
       "contentIds": [
-        "digest-tool-lineage-constitutional-routing",
-        "research-dcfb"
+        "digest-field-note-006-convergence-wave"
       ],
-      "count": 2
+      "count": 1
     },
     "institutional-design": {
       "label": "institutional-design",
       "contentIds": [
         "research-bainbridge-warning",
+        "research-governance-theater",
         "product-bainbridge-warning"
       ],
-      "count": 2
+      "count": 3
     },
     "failure-analysis": {
       "label": "failure-analysis",
@@ -110,9 +157,11 @@
         "digest-intent-gap-god-mode-biology",
         "digest-mcp-consolidation-infrastructure-paradox",
         "research-bainbridge-warning",
-        "research-dcfb"
+        "research-dcfb",
+        "research-governance-theater",
+        "research-r0-r3-classification"
       ],
-      "count": 5
+      "count": 7
     },
     "constitutional-design": {
       "label": "constitutional-design",
@@ -144,9 +193,10 @@
     "epistemics": {
       "label": "epistemics",
       "contentIds": [
-        "digest-intent-gap-god-mode-biology"
+        "digest-intent-gap-god-mode-biology",
+        "research-eigenform-and-rsps"
       ],
-      "count": 1
+      "count": 2
     },
     "infrastructure": {
       "label": "infrastructure",
@@ -159,9 +209,10 @@
     "failure-analysis": {
       "label": "failure-analysis",
       "contentIds": [
-        "research-bainbridge-warning"
+        "research-bainbridge-warning",
+        "research-governance-theater"
       ],
-      "count": 1
+      "count": 2
     },
     "constitutional-ai": {
       "label": "constitutional-ai",
@@ -181,6 +232,42 @@
       "label": "human-ai-collaboration",
       "contentIds": [
         "research-dcfb"
+      ],
+      "count": 1
+    },
+    "recursive-cognition": {
+      "label": "recursive-cognition",
+      "contentIds": [
+        "research-eigenform-and-rsps"
+      ],
+      "count": 1
+    },
+    "cognitive-architecture": {
+      "label": "cognitive-architecture",
+      "contentIds": [
+        "research-maternal-architecture",
+        "research-rsps-architecture"
+      ],
+      "count": 2
+    },
+    "attractors": {
+      "label": "attractors",
+      "contentIds": [
+        "research-maternal-architecture"
+      ],
+      "count": 1
+    },
+    "reversibility": {
+      "label": "reversibility",
+      "contentIds": [
+        "research-r0-r3-classification"
+      ],
+      "count": 1
+    },
+    "sovereignty": {
+      "label": "sovereignty",
+      "contentIds": [
+        "research-rsps-architecture"
       ],
       "count": 1
     },
@@ -210,9 +297,10 @@
     "cir": {
       "label": "cir",
       "contentIds": [
-        "digest-cir-v2-core-argument"
+        "digest-cir-v2-core-argument",
+        "research-r0-r3-classification"
       ],
-      "count": 1
+      "count": 2
     },
     "cognitive-infrastructure": {
       "label": "cognitive-infrastructure",
@@ -232,14 +320,205 @@
       "label": "constitutional-ai",
       "contentIds": [
         "digest-cir-v2-core-argument",
+        "digest-field-note-004-three-frontier-labs-one-architecture",
         "research-trust-irreversibility-residue"
       ],
-      "count": 2
+      "count": 3
     },
     "framework": {
       "label": "framework",
       "contentIds": [
         "digest-cir-v2-core-argument"
+      ],
+      "count": 1
+    },
+    "field-notes": {
+      "label": "field-notes",
+      "contentIds": [
+        "digest-field-note-001-the-beautiful-false-positive",
+        "digest-field-note-002-verbal-diarrhea-methodology",
+        "digest-field-note-003-the-convergence",
+        "digest-field-note-004-epistemological-immune-system",
+        "digest-field-note-004-three-frontier-labs-one-architecture",
+        "digest-field-note-005-memory-merchants",
+        "digest-field-note-006-convergence-wave"
+      ],
+      "count": 7
+    },
+    "governance": {
+      "label": "governance",
+      "contentIds": [
+        "digest-field-note-001-the-beautiful-false-positive",
+        "digest-field-note-004-epistemological-immune-system",
+        "digest-mcp-consolidation-infrastructure-paradox",
+        "research-governance-theater",
+        "research-trust-irreversibility-residue",
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification"
+      ],
+      "count": 8
+    },
+    "coherence-overfitting": {
+      "label": "coherence-overfitting",
+      "contentIds": [
+        "digest-field-note-001-the-beautiful-false-positive"
+      ],
+      "count": 1
+    },
+    "ai-reasoning": {
+      "label": "ai-reasoning",
+      "contentIds": [
+        "digest-field-note-001-the-beautiful-false-positive"
+      ],
+      "count": 1
+    },
+    "rri": {
+      "label": "rri",
+      "contentIds": [
+        "digest-field-note-002-verbal-diarrhea-methodology",
+        "digest-tool-lineage-constitutional-routing"
+      ],
+      "count": 2
+    },
+    "context-engineering": {
+      "label": "context-engineering",
+      "contentIds": [
+        "digest-field-note-002-verbal-diarrhea-methodology"
+      ],
+      "count": 1
+    },
+    "field-priming": {
+      "label": "field-priming",
+      "contentIds": [
+        "digest-field-note-002-verbal-diarrhea-methodology"
+      ],
+      "count": 1
+    },
+    "methodology": {
+      "label": "methodology",
+      "contentIds": [
+        "digest-field-note-002-verbal-diarrhea-methodology",
+        "digest-tool-lineage-constitutional-routing"
+      ],
+      "count": 2
+    },
+    "aurora": {
+      "label": "aurora",
+      "contentIds": [
+        "digest-field-note-003-the-convergence",
+        "digest-field-note-006-convergence-wave",
+        "research-maternal-architecture"
+      ],
+      "count": 3
+    },
+    "anthropic": {
+      "label": "anthropic",
+      "contentIds": [
+        "digest-field-note-003-the-convergence"
+      ],
+      "count": 1
+    },
+    "consciousness-architecture": {
+      "label": "consciousness-architecture",
+      "contentIds": [
+        "digest-field-note-003-the-convergence"
+      ],
+      "count": 1
+    },
+    "convergence": {
+      "label": "convergence",
+      "contentIds": [
+        "digest-field-note-003-the-convergence",
+        "digest-field-note-004-three-frontier-labs-one-architecture",
+        "digest-field-note-006-convergence-wave"
+      ],
+      "count": 3
+    },
+    "tau-node": {
+      "label": "tau-node",
+      "contentIds": [
+        "digest-field-note-004-epistemological-immune-system",
+        "clause-epistemological-immune-system"
+      ],
+      "count": 2
+    },
+    "verification": {
+      "label": "verification",
+      "contentIds": [
+        "digest-field-note-004-epistemological-immune-system",
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system"
+      ],
+      "count": 3
+    },
+    "rsps": {
+      "label": "rsps",
+      "contentIds": [
+        "digest-field-note-004-epistemological-immune-system",
+        "digest-field-note-004-three-frontier-labs-one-architecture",
+        "research-eigenform-and-rsps",
+        "research-rsps-architecture",
+        "clause-epistemological-immune-system"
+      ],
+      "count": 5
+    },
+    "attention-residuals": {
+      "label": "attention-residuals",
+      "contentIds": [
+        "digest-field-note-004-three-frontier-labs-one-architecture"
+      ],
+      "count": 1
+    },
+    "mHC": {
+      "label": "mHC",
+      "contentIds": [
+        "digest-field-note-004-three-frontier-labs-one-architecture"
+      ],
+      "count": 1
+    },
+    "eigenform": {
+      "label": "eigenform",
+      "contentIds": [
+        "digest-field-note-004-three-frontier-labs-one-architecture",
+        "digest-field-note-006-convergence-wave",
+        "research-eigenform-and-rsps"
+      ],
+      "count": 3
+    },
+    "witness-infrastructure": {
+      "label": "witness-infrastructure",
+      "contentIds": [
+        "digest-field-note-005-memory-merchants",
+        "research-eigenform-and-rsps"
+      ],
+      "count": 2
+    },
+    "cognitive-provenance": {
+      "label": "cognitive-provenance",
+      "contentIds": [
+        "digest-field-note-005-memory-merchants"
+      ],
+      "count": 1
+    },
+    "memory": {
+      "label": "memory",
+      "contentIds": [
+        "digest-field-note-005-memory-merchants"
+      ],
+      "count": 1
+    },
+    "business-model": {
+      "label": "business-model",
+      "contentIds": [
+        "digest-field-note-005-memory-merchants"
+      ],
+      "count": 1
+    },
+    "design-space": {
+      "label": "design-space",
+      "contentIds": [
+        "digest-field-note-006-convergence-wave"
       ],
       "count": 1
     },
@@ -296,15 +575,6 @@
       ],
       "count": 1
     },
-    "governance": {
-      "label": "governance",
-      "contentIds": [
-        "digest-mcp-consolidation-infrastructure-paradox",
-        "research-trust-irreversibility-residue",
-        "clause-intent-specification"
-      ],
-      "count": 3
-    },
     "cost-accounting": {
       "label": "cost-accounting",
       "contentIds": [
@@ -321,20 +591,6 @@
     },
     "lineage": {
       "label": "lineage",
-      "contentIds": [
-        "digest-tool-lineage-constitutional-routing"
-      ],
-      "count": 1
-    },
-    "rri": {
-      "label": "rri",
-      "contentIds": [
-        "digest-tool-lineage-constitutional-routing"
-      ],
-      "count": 1
-    },
-    "methodology": {
-      "label": "methodology",
       "contentIds": [
         "digest-tool-lineage-constitutional-routing"
       ],
@@ -410,6 +666,141 @@
       ],
       "count": 1
     },
+    "von-foerster": {
+      "label": "von-foerster",
+      "contentIds": [
+        "research-eigenform-and-rsps"
+      ],
+      "count": 1
+    },
+    "recursive-cognition": {
+      "label": "recursive-cognition",
+      "contentIds": [
+        "research-eigenform-and-rsps"
+      ],
+      "count": 1
+    },
+    "theoretical": {
+      "label": "theoretical",
+      "contentIds": [
+        "research-eigenform-and-rsps"
+      ],
+      "count": 1
+    },
+    "failure-analysis": {
+      "label": "failure-analysis",
+      "contentIds": [
+        "research-governance-theater"
+      ],
+      "count": 1
+    },
+    "bainbridge": {
+      "label": "bainbridge",
+      "contentIds": [
+        "research-governance-theater"
+      ],
+      "count": 1
+    },
+    "institutional-design": {
+      "label": "institutional-design",
+      "contentIds": [
+        "research-governance-theater"
+      ],
+      "count": 1
+    },
+    "governance-theater": {
+      "label": "governance-theater",
+      "contentIds": [
+        "research-governance-theater"
+      ],
+      "count": 1
+    },
+    "maternal-architecture": {
+      "label": "maternal-architecture",
+      "contentIds": [
+        "research-maternal-architecture"
+      ],
+      "count": 1
+    },
+    "cognitive-architecture": {
+      "label": "cognitive-architecture",
+      "contentIds": [
+        "research-maternal-architecture",
+        "research-rsps-architecture"
+      ],
+      "count": 2
+    },
+    "attractors": {
+      "label": "attractors",
+      "contentIds": [
+        "research-maternal-architecture"
+      ],
+      "count": 1
+    },
+    "sovereignty": {
+      "label": "sovereignty",
+      "contentIds": [
+        "research-maternal-architecture",
+        "research-rsps-architecture"
+      ],
+      "count": 2
+    },
+    "immunology": {
+      "label": "immunology",
+      "contentIds": [
+        "research-maternal-architecture"
+      ],
+      "count": 1
+    },
+    "r0-r3": {
+      "label": "r0-r3",
+      "contentIds": [
+        "research-r0-r3-classification"
+      ],
+      "count": 1
+    },
+    "reversibility": {
+      "label": "reversibility",
+      "contentIds": [
+        "research-r0-r3-classification"
+      ],
+      "count": 1
+    },
+    "governance-primitives": {
+      "label": "governance-primitives",
+      "contentIds": [
+        "research-r0-r3-classification"
+      ],
+      "count": 1
+    },
+    "practical": {
+      "label": "practical",
+      "contentIds": [
+        "research-r0-r3-classification"
+      ],
+      "count": 1
+    },
+    "cascade": {
+      "label": "cascade",
+      "contentIds": [
+        "research-r0-r3-classification"
+      ],
+      "count": 1
+    },
+    "multi-model": {
+      "label": "multi-model",
+      "contentIds": [
+        "research-rsps-architecture"
+      ],
+      "count": 1
+    },
+    "cmcp": {
+      "label": "cmcp",
+      "contentIds": [
+        "research-rsps-architecture"
+      ],
+      "count": 1
+    },
     "trust": {
       "label": "trust",
       "contentIds": [
@@ -425,6 +816,34 @@
         "clause-irreversibility-threshold"
       ],
       "count": 2
+    },
+    "coherence": {
+      "label": "coherence",
+      "contentIds": [
+        "clause-coherence-overfitting-guard"
+      ],
+      "count": 1
+    },
+    "epistemic-safety": {
+      "label": "epistemic-safety",
+      "contentIds": [
+        "clause-coherence-overfitting-guard"
+      ],
+      "count": 1
+    },
+    "analysis": {
+      "label": "analysis",
+      "contentIds": [
+        "clause-coherence-overfitting-guard"
+      ],
+      "count": 1
+    },
+    "human-oversight": {
+      "label": "human-oversight",
+      "contentIds": [
+        "clause-epistemological-immune-system"
+      ],
+      "count": 1
     },
     "intent": {
       "label": "intent",
@@ -468,11 +887,20 @@
       "label": "dcfb-core",
       "contentIds": [
         "digest-cir-v2-core-argument",
+        "digest-field-note-001-the-beautiful-false-positive",
+        "digest-field-note-002-verbal-diarrhea-methodology",
+        "digest-field-note-003-the-convergence",
+        "digest-field-note-004-three-frontier-labs-one-architecture",
         "digest-intent-gap-god-mode-biology",
         "digest-mcp-consolidation-infrastructure-paradox",
         "digest-tool-lineage-constitutional-routing",
         "research-bainbridge-warning",
         "research-dcfb",
+        "research-eigenform-and-rsps",
+        "research-governance-theater",
+        "research-maternal-architecture",
+        "research-r0-r3-classification",
+        "research-rsps-architecture",
         "research-trust-irreversibility-residue",
         "product-bainbridge-warning",
         "product-cir",
@@ -480,21 +908,26 @@
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
-      "count": 12
+      "count": 21
     },
     "constitutional-ai": {
       "label": "constitutional-ai",
       "contentIds": [
         "digest-cir-v2-core-argument",
+        "digest-field-note-003-the-convergence",
+        "digest-field-note-004-three-frontier-labs-one-architecture",
         "digest-tool-lineage-constitutional-routing",
         "research-dcfb",
+        "research-governance-theater",
+        "research-maternal-architecture",
+        "research-r0-r3-classification",
         "research-trust-irreversibility-residue",
         "product-cir",
         "product-martha",
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
-      "count": 8
+      "count": 13
     },
     "bainbridge-core": {
       "label": "bainbridge-core",
@@ -506,5 +939,5 @@
       "count": 3
     }
   },
-  "generatedAt": "2026-03-21T08:59:04.768Z"
+  "generatedAt": "2026-03-22T17:22:12.594Z"
 }

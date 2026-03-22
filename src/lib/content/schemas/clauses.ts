@@ -1,6 +1,6 @@
 import type { BaseContentFrontmatter } from './base';
 
-export type ClauseStatus = 'candidate' | 'provisional' | 'active' | 'retired';
+export type ClauseStatus = 'candidate' | 'provisional' | 'active' | 'retired' | 'crystallized';
 
 export type GovernanceDomain =
   | 'retrieval'
@@ -9,7 +9,9 @@ export type GovernanceDomain =
   | 'agentic-behavior'
   | 'user-consent'
   | 'lineage'
-  | 'epistemic-safety';
+  | 'epistemic-safety'
+  | 'verification'
+  | 'epistemic-integrity';
 
 export const ALL_GOVERNANCE_DOMAINS: GovernanceDomain[] = [
   'retrieval',
@@ -19,6 +21,8 @@ export const ALL_GOVERNANCE_DOMAINS: GovernanceDomain[] = [
   'user-consent',
   'lineage',
   'epistemic-safety',
+  'verification',
+  'epistemic-integrity',
 ];
 
 export const ALL_CLAUSE_STATUSES: ClauseStatus[] = [
@@ -26,6 +30,7 @@ export const ALL_CLAUSE_STATUSES: ClauseStatus[] = [
   'provisional',
   'active',
   'retired',
+  'crystallized',
 ];
 
 export interface ClauseFrontmatter extends BaseContentFrontmatter {
