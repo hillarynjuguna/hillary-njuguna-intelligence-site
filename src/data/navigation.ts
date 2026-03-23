@@ -18,6 +18,7 @@ export const FOOTER_LINKS = {
   ],
   tools: [
     { label: 'The Orchestra', href: '/orchestra-operation' },
+    { label: 'Dual-Invariant Demo', href: '/tools/dual-invariant-demo' },
     { label: 'Corpus', href: '/corpus' },
     { label: 'Bainbridge Diagnostic', href: '/bainbridge-diagnostic' },
     { label: 'CIR Assessment', href: '/cir-assessment' },

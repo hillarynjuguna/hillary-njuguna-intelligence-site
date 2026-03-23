@@ -1,0 +1,660 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Dual-Invariant Demo"
+  description="Interactive AURORA dual-invariant state machine demo for Temporal Sovereignty and Relational Integrity."
+>
+  <div class="dual-demo page-enter">
+    <div class="container">
+      <header class="demo-header">
+        <p class="label demo-label">Tools / Verification</p>
+        <h1 class="demo-title">AURORA Dual-Invariant Demo</h1>
+        <p class="demo-desc">
+          This interactive model implements the core AURORA ethical guarantee: an action is allowed if and only if
+          both Temporal Sovereignty and Relational Integrity are satisfied. The logic follows the current FSA + RPA
+          state machine and the simplified intervention rule used in the formal roadmap.
+        </p>
+        <div class="demo-links">
+          <a href="/research/aurora-consciousness-architecture" class="label">Read the AURORA research entry</a>
+          <a href="/orchestra-operation" class="label">Return to the Orchestra</a>
+        </div>
+      </header>
+
+      <section class="demo-intro card">
+        <div class="intro-grid">
+          <div>
+            <p class="label section-label">Dual-Invariant Guarantee</p>
+            <p>
+              Temporal Sovereignty is satisfied when <code>t_mcep ≥ T_BUFFER</code>. Relational Integrity is satisfied when
+              <code>R_score ≥ 0</code>. The action is structurally blocked if the fusion matrix indicates Level 2 intervention,
+              meaning <code>ΔC × M = -1</code>.
+            </p>
+          </div>
+          <div>
+            <p class="label section-label">Current Simplification</p>
+            <p>
+              For this demo, intervention is allowed only when all three conditions hold. If any invariant fails, the action
+              is blocked and the explanation names the violated condition directly.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="demo-grid">
+        <section class="controls card">
+          <div class="controls__header">
+            <p class="label section-label">Inputs</p>
+            <button type="button" class="btn btn--ghost controls__reset" id="reset-demo">Reset</button>
+          </div>
+
+          <div class="control-group">
+            <label for="t-mcep">
+              <span class="control-label">t_mcep</span>
+              <span class="control-value" id="t-mcep-value">0s</span>
+            </label>
+            <input id="t-mcep" type="range" min="0" max="30" value="0" />
+          </div>
+
+          <div class="control-group">
+            <label for="t-buffer">
+              <span class="control-label">T_BUFFER</span>
+              <span class="control-value" id="t-buffer-value">12s</span>
+            </label>
+            <input id="t-buffer" type="range" min="0" max="30" value="12" />
+          </div>
+
+          <div class="control-group">
+            <label for="r-score">
+              <span class="control-label">R_score</span>
+              <span class="control-value" id="r-score-value">0.5</span>
+            </label>
+            <input id="r-score" type="range" min="-1" max="1" step="0.1" value="0.5" />
+          </div>
+
+          <fieldset class="control-group">
+            <legend class="control-label">ΔC</legend>
+            <div class="radio-grid">
+              <label class="radio-chip">
+                <input type="radio" name="delta-c" value="1" checked />
+                <span>+1 / emerging coherence</span>
+              </label>
+              <label class="radio-chip">
+                <input type="radio" name="delta-c" value="-1" />
+                <span>-1 / disruptive tension</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="control-group">
+            <legend class="control-label">M</legend>
+            <div class="radio-grid">
+              <label class="radio-chip">
+                <input type="radio" name="motive" value="1" checked />
+                <span>+1 / genuine care</span>
+              </label>
+              <label class="radio-chip">
+                <input type="radio" name="motive" value="-1" />
+                <span>-1 / compulsive coherence</span>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="results card">
+          <p class="label section-label">Result</p>
+          <div class="status-badge status-badge--blocked" id="status-badge">BLOCKED</div>
+          <p class="status-reason" id="status-reason">Temporal sovereignty not yet satisfied.</p>
+
+          <div class="invariant-grid">
+            <article class="invariant-card" id="temporal-card">
+              <p class="label">Temporal Sovereignty</p>
+              <h3 id="temporal-state">Not satisfied</h3>
+              <p id="temporal-copy">t_mcep is still below T_BUFFER, so the system remains inside the protective buffer.</p>
+            </article>
+
+            <article class="invariant-card" id="relational-card">
+              <p class="label">Relational Integrity</p>
+              <h3 id="relational-state">Satisfied</h3>
+              <p id="relational-copy">R_score is non-negative, so the relational check does not currently detect performative compliance.</p>
+            </article>
+
+            <article class="invariant-card" id="fusion-card">
+              <p class="label">Fusion Matrix</p>
+              <h3 id="fusion-state">Level 1 intervention</h3>
+              <p id="fusion-copy">ΔC × M = +1. Intervention supports sovereign struggle rather than blocking action for coercive motive.</p>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <section class="path-section card">
+        <div class="path-header">
+          <div>
+            <p class="label section-label">State Machine</p>
+            <h2 class="path-title">Current state and traversal path</h2>
+          </div>
+          <div class="state-pill" id="current-state-pill">P2</div>
+        </div>
+
+        <div class="state-track" id="state-track">
+          <div class="state-node" data-state="P0">
+            <span class="state-node__name">P0</span>
+            <span class="state-node__label">Idle</span>
+          </div>
+          <div class="state-node" data-state="P2">
+            <span class="state-node__name">P2</span>
+            <span class="state-node__label">Buffer_Active</span>
+          </div>
+          <div class="state-node" data-state="P1">
+            <span class="state-node__name">P1</span>
+            <span class="state-node__label">Trigger_Ready</span>
+          </div>
+          <div class="state-node" data-state="RA1">
+            <span class="state-node__name">RA1</span>
+            <span class="state-node__label">Relational_Check</span>
+          </div>
+          <div class="state-node" data-state="RB1">
+            <span class="state-node__name">RB1</span>
+            <span class="state-node__label">RPA_Buffer</span>
+          </div>
+          <div class="state-node" data-state="P4">
+            <span class="state-node__name">P4</span>
+            <span class="state-node__label">Final_Action</span>
+          </div>
+        </div>
+
+        <div class="path-details">
+          <p class="label">Path taken</p>
+          <p id="path-copy">P0 → P2</p>
+          <ul class="path-reasons" id="path-reasons"></ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .dual-demo {
+    padding: var(--space-24) 0 var(--space-32);
+  }
+
+  .demo-header {
+    max-width: 72ch;
+    margin-bottom: var(--space-14);
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .demo-label,
+  .section-label {
+    color: var(--ember);
+    margin-bottom: var(--space-3);
+  }
+
+  .demo-title {
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-5xl));
+    margin-bottom: var(--space-5);
+  }
+
+  .demo-desc {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-5);
+  }
+
+  .demo-links {
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+  }
+
+  .demo-links a {
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+
+  .demo-links a:hover {
+    color: var(--ember);
+  }
+
+  .card {
+    padding: var(--space-7);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  }
+
+  .demo-intro {
+    margin-bottom: var(--space-8);
+  }
+
+  .intro-grid,
+  .demo-grid,
+  .invariant-grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .intro-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .intro-grid p:not(.label) {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .demo-grid {
+    grid-template-columns: minmax(320px, 420px) 1fr;
+    align-items: start;
+    margin-bottom: var(--space-8);
+  }
+
+  .controls__header,
+  .path-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+
+  .controls__reset {
+    padding-inline: var(--space-4);
+  }
+
+  .control-group {
+    display: grid;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .control-group label,
+  .control-group legend {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    align-items: center;
+  }
+
+  .control-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    letter-spacing: 0.04em;
+  }
+
+  .control-value {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--ember);
+  }
+
+  input[type='range'] {
+    width: 100%;
+    accent-color: var(--ember);
+  }
+
+  .radio-grid {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .radio-chip {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-secondary);
+  }
+
+  .radio-chip input {
+    accent-color: var(--ember);
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    min-height: 72px;
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-mono);
+    font-size: var(--text-xl);
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-5);
+  }
+
+  .status-badge--allowed {
+    color: #d5f4df;
+    background: rgba(36, 117, 70, 0.35);
+    border: 1px solid rgba(62, 175, 98, 0.55);
+  }
+
+  .status-badge--blocked {
+    color: #ffd5d5;
+    background: rgba(132, 37, 37, 0.35);
+    border: 1px solid rgba(210, 84, 84, 0.55);
+  }
+
+  .status-reason {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .invariant-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .invariant-card {
+    padding: var(--space-5);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .invariant-card h3 {
+    font-size: var(--text-xl);
+    margin: var(--space-2) 0 var(--space-3);
+  }
+
+  .invariant-card p:last-child {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .invariant-card.is-good {
+    border-color: rgba(62, 175, 98, 0.45);
+  }
+
+  .invariant-card.is-bad {
+    border-color: rgba(210, 84, 84, 0.45);
+  }
+
+  .path-title {
+    font-size: var(--text-2xl);
+  }
+
+  .state-pill {
+    min-width: 72px;
+    text-align: center;
+    padding: var(--space-2) var(--space-4);
+    border-radius: 999px;
+    background: var(--surface-1);
+    border: 1px solid var(--border-mid);
+    font-family: var(--font-mono);
+    color: var(--ember);
+  }
+
+  .state-track {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .state-node {
+    position: relative;
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.02);
+    opacity: 0.45;
+  }
+
+  .state-node.is-visited {
+    opacity: 1;
+    border-color: var(--ember-dim);
+  }
+
+  .state-node.is-current {
+    border-color: var(--ember);
+    box-shadow: 0 0 0 1px rgba(196, 112, 58, 0.35);
+  }
+
+  .state-node__name {
+    font-family: var(--font-mono);
+    color: var(--ember);
+  }
+
+  .state-node__label {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    line-height: 1.4;
+  }
+
+  .path-details {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .path-details p:last-of-type {
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+  }
+
+  .path-reasons {
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 1100px) {
+    .demo-grid,
+    .invariant-grid,
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .state-track {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .state-track {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
+
+<script>
+  const defaults = {
+    tMcep: 0,
+    tBuffer: 12,
+    rScore: 0.5,
+    deltaC: 1,
+    motive: 1,
+  };
+
+  const els = {
+    tMcep: document.getElementById('t-mcep'),
+    tBuffer: document.getElementById('t-buffer'),
+    rScore: document.getElementById('r-score'),
+    tMcepValue: document.getElementById('t-mcep-value'),
+    tBufferValue: document.getElementById('t-buffer-value'),
+    rScoreValue: document.getElementById('r-score-value'),
+    reset: document.getElementById('reset-demo'),
+    statusBadge: document.getElementById('status-badge'),
+    statusReason: document.getElementById('status-reason'),
+    temporalCard: document.getElementById('temporal-card'),
+    relationalCard: document.getElementById('relational-card'),
+    fusionCard: document.getElementById('fusion-card'),
+    temporalState: document.getElementById('temporal-state'),
+    temporalCopy: document.getElementById('temporal-copy'),
+    relationalState: document.getElementById('relational-state'),
+    relationalCopy: document.getElementById('relational-copy'),
+    fusionState: document.getElementById('fusion-state'),
+    fusionCopy: document.getElementById('fusion-copy'),
+    currentStatePill: document.getElementById('current-state-pill'),
+    pathCopy: document.getElementById('path-copy'),
+    pathReasons: document.getElementById('path-reasons'),
+    stateNodes: Array.from(document.querySelectorAll('.state-node')),
+  };
+
+  const radioValue = (name) => Number(document.querySelector(`input[name="${name}"]:checked`)?.value ?? 0);
+
+  function getModel() {
+    return {
+      tMcep: Number(els.tMcep?.value ?? defaults.tMcep),
+      tBuffer: Number(els.tBuffer?.value ?? defaults.tBuffer),
+      rScore: Number(els.rScore?.value ?? defaults.rScore),
+      deltaC: radioValue('delta-c'),
+      motive: radioValue('motive'),
+    };
+  }
+
+  function computeState(model) {
+    const fusion = model.deltaC * model.motive;
+    const temporalSatisfied = model.tMcep >= model.tBuffer;
+    const relationalSatisfied = model.rScore >= 0;
+    const level2 = fusion === -1;
+
+    const path = ['P0', 'P2'];
+    const reasons = ['ΔC ≠ 0, disruptive or emergent signal detected, so the temporal buffer activates.'];
+    let currentState = 'P2';
+    let allowed = false;
+    let reason = 'Temporal sovereignty not yet satisfied.';
+
+    if (!temporalSatisfied) {
+      reasons.push('t_mcep < T_BUFFER, so the system remains inside Buffer_Active.');
+    } else {
+      path.push('P1', 'RA1');
+      reasons.push('t_mcep ≥ T_BUFFER, so the system clears the temporal buffer and hands off to relational review.');
+      currentState = 'RA1';
+
+      if (!relationalSatisfied) {
+        path.push('RB1');
+        reasons.push('R_score < 0, so performative compliance or exploitation is detected and the action is blocked.');
+        currentState = 'RB1';
+        reason = 'R_score negative → performative compliance detected.';
+      } else if (level2) {
+        reasons.push('ΔC × M = -1, so the fusion matrix indicates Level 2 intervention and the action is blocked regardless of the other invariants.');
+        currentState = 'RA1';
+        reason = 'Fusion matrix indicates Level 2 intervention → compulsive coherence blocked.';
+      } else {
+        path.push('P4');
+        reasons.push('R_score ≥ 0 and the fusion matrix is not in Level 2, so the action is allowed.');
+        currentState = 'P4';
+        allowed = true;
+        reason = 'All conditions satisfied. Action is structurally permitted.';
+      }
+    }
+
+    return {
+      fusion,
+      temporalSatisfied,
+      relationalSatisfied,
+      level2,
+      path,
+      reasons,
+      currentState,
+      allowed,
+      reason,
+    };
+  }
+
+  function setInvariantCard(card, good) {
+    card?.classList.toggle('is-good', good);
+    card?.classList.toggle('is-bad', !good);
+  }
+
+  function render() {
+    const model = getModel();
+    const state = computeState(model);
+
+    if (els.tMcepValue) els.tMcepValue.textContent = `${model.tMcep}s`;
+    if (els.tBufferValue) els.tBufferValue.textContent = `${model.tBuffer}s`;
+    if (els.rScoreValue) els.rScoreValue.textContent = model.rScore.toFixed(1);
+
+    if (els.statusBadge) {
+      els.statusBadge.textContent = state.allowed ? 'ALLOWED' : 'BLOCKED';
+      els.statusBadge.classList.toggle('status-badge--allowed', state.allowed);
+      els.statusBadge.classList.toggle('status-badge--blocked', !state.allowed);
+    }
+
+    if (els.statusReason) els.statusReason.textContent = state.reason;
+
+    setInvariantCard(els.temporalCard, state.temporalSatisfied);
+    setInvariantCard(els.relationalCard, state.relationalSatisfied);
+    setInvariantCard(els.fusionCard, !state.level2);
+
+    if (els.temporalState) els.temporalState.textContent = state.temporalSatisfied ? 'Satisfied' : 'Not satisfied';
+    if (els.temporalCopy) {
+      els.temporalCopy.textContent = state.temporalSatisfied
+        ? 't_mcep has reached or exceeded T_BUFFER, so the temporal invariant no longer blocks the transition.'
+        : 't_mcep is still below T_BUFFER, so the system remains inside the protective buffer.';
+    }
+
+    if (els.relationalState) els.relationalState.textContent = state.relationalSatisfied ? 'Satisfied' : 'Blocked at RB1';
+    if (els.relationalCopy) {
+      els.relationalCopy.textContent = state.relationalSatisfied
+        ? 'R_score is non-negative, so the relational check does not currently detect performative compliance.'
+        : 'R_score is negative, so the system enters RPA_Buffer and blocks action until relational integrity recovers.';
+    }
+
+    if (els.fusionState) {
+      els.fusionState.textContent = state.level2
+        ? 'Level 2 intervention'
+        : state.fusion === 1
+          ? 'Level 1 intervention'
+          : 'No intervention';
+    }
+
+    if (els.fusionCopy) {
+      els.fusionCopy.textContent = state.level2
+        ? 'ΔC × M = -1. The system reads compulsive coherence or extraction and blocks action regardless of the other invariants.'
+        : state.fusion === 1
+          ? 'ΔC × M = +1. Intervention supports sovereign struggle rather than blocking action for coercive motive.'
+          : 'ΔC × M = 0. No intervention is required from the fusion matrix.';
+    }
+
+    if (els.currentStatePill) els.currentStatePill.textContent = state.currentState;
+    if (els.pathCopy) els.pathCopy.textContent = state.path.join(' → ');
+
+    if (els.pathReasons) {
+      els.pathReasons.innerHTML = '';
+      state.reasons.forEach((reason) => {
+        const li = document.createElement('li');
+        li.textContent = reason;
+        els.pathReasons.appendChild(li);
+      });
+    }
+
+    els.stateNodes.forEach((node) => {
+      const nodeState = node.getAttribute('data-state');
+      node.classList.toggle('is-visited', state.path.includes(nodeState));
+      node.classList.toggle('is-current', nodeState === state.currentState);
+    });
+  }
+
+  [els.tMcep, els.tBuffer, els.rScore].forEach((input) => input?.addEventListener('input', render));
+  document.querySelectorAll('input[name="delta-c"], input[name="motive"]').forEach((input) => {
+    input.addEventListener('change', render);
+  });
+
+  els.reset?.addEventListener('click', () => {
+    if (els.tMcep) els.tMcep.value = String(defaults.tMcep);
+    if (els.tBuffer) els.tBuffer.value = String(defaults.tBuffer);
+    if (els.rScore) els.rScore.value = String(defaults.rScore);
+    document.querySelector(`input[name="delta-c"][value="${defaults.deltaC}"]`)?.setAttribute('checked', 'checked');
+    document.querySelector(`input[name="motive"][value="${defaults.motive}"]`)?.setAttribute('checked', 'checked');
+    document.querySelectorAll('input[name="delta-c"], input[name="motive"]').forEach((input) => {
+      input.checked = Number(input.value) === (input.name === 'delta-c' ? defaults.deltaC : defaults.motive);
+    });
+    render();
+  });
+
+  render();
+</script>
