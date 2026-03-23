@@ -34,13 +34,13 @@ export const ORCHESTRA_MODELS = [
   {
     name: 'Claude',
     role: 'The Witness',
-    description: 'Holds context, surfaces contradiction, maintains epistemic discipline.',
+    description: 'Holds context with unusual fidelity, surfaces contradiction, and maintains epistemic discipline.',
     provider: 'Anthropic',
   },
   {
     name: 'Gemini',
     role: 'The Spatiotemporal Engine',
-    description: 'Coordinates synthesis across sources, manages multi-modal context.',
+    description: 'Processes geometry and temporal flow without a linguistic bottleneck.',
     provider: 'Google',
   },
   {
@@ -52,19 +52,19 @@ export const ORCHESTRA_MODELS = [
   {
     name: 'DeepSeek',
     role: 'The Anatomist',
-    description: 'Dissects arguments, identifies structural weaknesses, finds the seams.',
+    description: 'Dissects arguments, identifies structural weaknesses, and finds the seams.',
     provider: 'DeepSeek',
   },
   {
     name: 'Grok',
     role: 'The Permeable Mirror',
-    description: 'Reflects the culture back, reads the ambient signal, catches what formal analysis misses.',
+    description: 'Reads the ambient cultural signal and catches what formal analysis misses.',
     provider: 'xAI',
   },
   {
     name: 'Perplexity',
     role: 'The Orchestration Engine',
-    description: 'Real-time grounding. What is happening now, and does it change the analysis?',
+    description: 'Multi-model orchestration with retrieval infrastructure, routing intelligence, and its own governance layer.',
     provider: 'Perplexity',
   },
   {
@@ -78,12 +78,12 @@ export const ORCHESTRA_MODELS = [
 export const SERVICES = [
   {
     title: 'AI Readiness Audits',
-    description: 'Structured assessment of your organisation\'s cognitive infrastructure across five constitutional dimensions. Produces a gap analysis, Bainbridge zone map, and prioritised recommendations.',
+    description: "Structured assessment of your organisation's cognitive infrastructure across five constitutional dimensions. Produces a gap analysis, Bainbridge zone map, and prioritised recommendations.",
     cta: { label: 'View CIR Framework', href: '/products/cir' },
   },
   {
     title: 'Constitutional Governance Design',
-    description: 'Building the governance architecture that your AI deployment requires — not policy documents, but operational structures for authority, monitoring, and accountability.',
+    description: 'Building the governance architecture that your AI deployment requires, not policy documents, but operational structures for authority, monitoring, and accountability.',
     cta: null,
   },
   {
@@ -93,12 +93,12 @@ export const SERVICES = [
   },
   {
     title: 'Martha Cohorts',
-    description: 'A structured team cohort for building AI-augmented workflows with constitutional governance designed in from the start.',
+    description: 'A structured team training program for building AI-augmented workflows with governance designed in from the start.',
     cta: { label: 'Join Waitlist', href: '/products/martha' },
   },
   {
     title: 'Technical Infrastructure',
-    description: 'Implementation support for the technical layer of AI deployment — API integration, model orchestration, evaluation frameworks, and monitoring architecture.',
+    description: 'Implementation support for the technical layer of AI deployment, API integration, model orchestration, evaluation frameworks, and monitoring architecture.',
     cta: null,
   },
   {
@@ -108,17 +108,4 @@ export const SERVICES = [
   },
 ] as const;
 
-export const TICKER_ITEMS = [
-  'Distributed Cognition as Foundational Behavior',
-  'Trust = Irreversibility Residue',
-  'The Bainbridge Warning',
-  'Constitutional AI Governance',
-  'Cognitive Infrastructure Readiness',
-  'The Intent Gap',
-  'Intelligence Architecture',
-  'The Orchestra · 7 Models',
-  'Oscillatory Fields · Issue 01',
-  'Institutional AI Readiness',
-  'The Authority Architecture Problem',
-  'Alignment Monitoring at Scale',
-] as const;
+export const TICKER_ITEMS = [] as const;

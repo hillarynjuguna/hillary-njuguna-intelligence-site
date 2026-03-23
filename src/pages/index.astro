@@ -2,7 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import AudienceRouter from '@components/ui/AudienceRouter.astro';
 import { getFeaturedDigestEntries, getFeaturedResearch, getFeaturedProducts, getCurrentSignal, formatDate } from '@lib/content';
-import { TICKER_ITEMS, SERVICES, ORCHESTRA_MODELS } from '@data/navigation';
+import { SERVICES, ORCHESTRA_MODELS } from '@data/navigation';
 import { SITE } from '@data/site';
 
 const [digestEntries, researchEntries, products, signal] = await Promise.all([
@@ -12,14 +12,55 @@ const [digestEntries, researchEntries, products, signal] = await Promise.all([
   getCurrentSignal(),
 ]);
 
-const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite scroll
+const researchPriority = ['research-aurora', 'research-bainbridge-warning', 'research-dcfb'];
+const homepageResearch = researchPriority
+  .map((id) => researchEntries.find((entry) => (entry.data.id ?? `research-${entry.slug}`) === id))
+  .filter(Boolean);
+
+const orchestraDemo = [
+  {
+    model: 'Claude',
+    role: 'The Witness',
+    insight:
+      'The first governance failure is epistemic. You are trusting a warning signal without knowing whether the signal can distinguish between a real anomaly and a patterned false alarm.',
+  },
+  {
+    model: 'GPT',
+    role: 'The Architect',
+    insight:
+      'Treat this as a governance stack problem, not a single classifier problem. You need provenance for the alert, verification criteria for the flagging mechanism, and a clear escalation path when those two diverge.',
+  },
+  {
+    model: 'Gemini',
+    role: 'The Spatiotemporal Engine',
+    insight:
+      'The trustworthiness question is temporal as much as logical. A flag that is accurate in one context but unstable across time, data shifts, or input modality is not governance-grade instrumentation.',
+  },
+  {
+    model: 'Perplexity',
+    role: 'The Orchestration Engine',
+    insight:
+      'Verification requires external grounding. Compare the flagging model against independent evidence sources, audit logs, and retrieval-backed traces before you let the flag trigger action downstream.',
+  },
+];
+
+const heroAssessmentResponses = {
+  yes: {
+    insight:
+      "That puts you ahead of 88% of organisations. The next question is whether your documented intent matches your system's actual optimization target. The CIR assessment tests exactly that gap.",
+  },
+  no: {
+    insight:
+      'That gap is where structurally predictable failure originates. The Bainbridge Warning documents the pattern: high capability plus undocumented intent produces outcomes that are catastrophic in reality and obvious in retrospect.',
+  },
+  partial: {
+    insight:
+      'The partial case is the most common and the most dangerous. Partial documentation creates the appearance of governance without its substance. The CIR assessment identifies which dimensions are covered and which are exposed.',
+  },
+};
 ---
 
-<BaseLayout
-  title={undefined}
-  description={SITE.description}
->
-  <!-- Hero -->
+<BaseLayout title={undefined} description={SITE.description}>
   <section class="hero">
     <div class="container">
       <div class="hero__inner">
@@ -31,14 +72,14 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
         )}
 
         <h1 class="hero__headline" data-reveal data-reveal-delay="1">
-          Fear isn't a feeling —<br />
-          it's an architecture.
+          Fear isn't a feeling.<br />
+          It's an architecture.
         </h1>
 
         <p class="hero__sub" data-reveal data-reveal-delay="2">
-          Intelligence architecture for institutions navigating AI deployment, governance,
-          and the constitutional design of human-machine systems. Specializing in DCFB theory, 
-          Cognitive Infrastructure Readiness (CIR), and the development of constitutional AI governance frameworks.
+          Intelligence architecture for institutions navigating AI deployment.
+          When capability outpaces governance, failures become structurally predictable.
+          We build the governance layer that makes them visible before they occur.
         </p>
 
         <section class="hero-assessment" data-reveal data-reveal-delay="3">
@@ -51,10 +92,10 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
             <button type="button" class="hero-assessment__option" data-answer="no">No, we have not formalised this</button>
             <button type="button" class="hero-assessment__option" data-answer="partial">Partially, and that gap concerns us</button>
           </div>
-          <p class="hero-assessment__link label" id="hero-assessment-link" hidden>
-            Complete the 8-minute CIR Assessment to map the full picture:
-            <a href="/cir-assessment">Begin assessment</a>
-          </p>
+          <div class="hero-assessment__response" id="hero-assessment-response" hidden>
+            <p class="hero-assessment__insight" id="hero-assessment-insight"></p>
+            <a href="/cir-assessment" class="btn btn--primary">Begin assessment</a>
+          </div>
         </section>
 
         <div class="hero__origin label" data-reveal data-reveal-delay="4">
@@ -63,13 +104,9 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
           560+ sourced documents. 18 months. 7 models.
         </div>
 
-        <div class="hero__cta" data-reveal data-reveal-delay="5">
-          <a href="/corpus" class="btn btn--primary">
-            Ask the corpus
-          </a>
-          <a href="/research" class="btn btn--ghost">
-            Research archive →
-          </a>
+        <div class="hero__links label" data-reveal data-reveal-delay="5">
+          <a href="/corpus">Ask the corpus</a>
+          <a href="/research">Research archive</a>
         </div>
 
         {signal && (
@@ -86,41 +123,65 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     </div>
   </section>
 
-  <!-- Audience Router -->
   <div class="container">
     <AudienceRouter />
   </div>
 
-  <!-- Ticker -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker__inner">
-      {tickerItems.map((item) => (
-        <span class="ticker__item">{item}</span>
-      ))}
-    </div>
-  </div>
+  <section class="section section--demo">
+    <div class="container">
+      <div class="section__header" data-reveal>
+        <p class="label section__label">Demonstration</p>
+        <h2 class="section__title">What Constitutional Governance Analysis Looks Like</h2>
+      </div>
 
-  <!-- Featured research -->
-  {researchEntries.length > 0 && (
+      <div class="demo-card" data-reveal>
+        <div class="demo-card__prompt">
+          <span class="label">Query</span>
+          <p>"An AI system flagged a governance concern but we can't verify if the flagging mechanism itself is trustworthy."</p>
+        </div>
+
+        <div class="demo-card__grid">
+          {orchestraDemo.map((item) => (
+            <article class="demo-contribution">
+              <p class="label demo-contribution__meta">{item.model} · {item.role}</p>
+              <p>{item.insight}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="demo-card__note">
+          <p class="label">Conductor's Note</p>
+          <p>
+            This is the pattern the Orchestra is designed to surface: before you trust the governance alert, verify the governance instrument.
+            When the mechanism and the mandate cannot be independently audited, the institution starts treating opacity as evidence.
+          </p>
+        </div>
+
+        <a href="/orchestra-operation" class="btn btn--primary">Run your own governance query</a>
+      </div>
+    </div>
+  </section>
+
+  {homepageResearch.length > 0 && (
     <section class="section">
       <div class="container">
         <div class="section__header" data-reveal>
           <p class="label section__label">Research</p>
           <h2 class="section__title">The Intellectual Corpus</h2>
-          <a href="/research" class="section__link label">All research →</a>
+          <a href="/research" class="section__link label">All research</a>
         </div>
 
         <div class="research-grid card-grid">
-          {researchEntries.slice(0, 3).map((entry) => (
-            <a href={`/research/${entry.slug}`} class="research-card hover-lift">
+          {homepageResearch.map((entry) => (
+            <a href={`/research/${entry!.slug}`} class="research-card hover-lift">
               <div class="research-card__meta">
-                {entry.data.themes.slice(0, 2).map((t) => (
-                  <span class="label research-card__theme">{t}</span>
+                {entry!.data.themes.slice(0, 2).map((theme) => (
+                  <span class="label research-card__theme">{theme}</span>
                 ))}
               </div>
-              <h3 class="research-card__title">{entry.data.title}</h3>
-              <p class="research-card__summary">{entry.data.summary}</p>
-              <span class="research-card__cta label">Read →</span>
+              <h3 class="research-card__title">{entry!.data.title}</h3>
+              <p class="research-card__summary">{entry!.data.summary}</p>
+              <span class="research-card__cta label">Read</span>
             </a>
           ))}
         </div>
@@ -128,14 +189,13 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     </section>
   )}
 
-  <!-- Products -->
   {products.length > 0 && (
     <section class="section section--dark">
       <div class="container">
         <div class="section__header" data-reveal>
           <p class="label section__label">Products</p>
           <h2 class="section__title">Applied Frameworks</h2>
-          <a href="/products" class="section__link label">All products →</a>
+          <a href="/products" class="section__link label">All products</a>
         </div>
 
         <div class="products-grid card-grid">
@@ -145,9 +205,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
                 <span class={`badge ${product.data.status === 'live' ? 'badge--live' : product.data.status === 'development' ? 'badge--dev' : 'badge--soon'}`}>
                   {product.data.status === 'live' ? 'Live' : product.data.status === 'development' ? 'In Development' : 'Coming Soon'}
                 </span>
-                {product.data.price && (
-                  <span class="product-card__price label">{product.data.price}</span>
-                )}
+                {product.data.price && <span class="product-card__price label">{product.data.price}</span>}
               </div>
               <h3 class="product-card__title">{product.data.title}</h3>
               <p class="product-card__summary">{product.data.summary}</p>
@@ -158,14 +216,13 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     </section>
   )}
 
-  <!-- Intelligence Digest -->
   {digestEntries.length > 0 && (
     <section class="section">
       <div class="container">
         <div class="section__header" data-reveal>
           <p class="label section__label">Intelligence Digest</p>
           <h2 class="section__title">Field Notes from Active Synthesis</h2>
-          <a href="/digest" class="section__link label">All entries →</a>
+          <a href="/digest" class="section__link label">All entries</a>
         </div>
 
         <div class="digest-grid card-grid">
@@ -178,7 +235,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
                 </time>
               </div>
               <h3 class="digest-card__title">{entry.data.title}</h3>
-              <p class="digest-card__excerpt">{entry.data.excerpt ?? entry.data.summary.slice(0, 120)}…</p>
+              <p class="digest-card__excerpt">{entry.data.excerpt ?? `${entry.data.summary.slice(0, 120)}...`}</p>
               {entry.data.tags.slice(0, 3).map((tag) => (
                 <span class="tag">{tag}</span>
               ))}
@@ -187,11 +244,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
         </div>
 
         <div class="digest-subscribe" data-reveal>
-          <form
-            action="https://formspree.io/f/maqdrora"
-            method="POST"
-            class="subscribe-form"
-          >
+          <form action="https://formspree.io/f/maqdrora" method="POST" class="subscribe-form">
             <input
               type="email"
               name="email"
@@ -201,28 +254,26 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
               aria-label="Email address"
             />
             <button type="submit" class="btn btn--ember subscribe-btn">
-              Get the next synthesis →
+              Get the next synthesis
             </button>
           </form>
-          <p class="label subscribe-note">Intelligence Digest · Field notes from active synthesis</p>
+          <p class="label subscribe-note">Intelligence Digest, research dispatches written during the synthesis process.</p>
         </div>
       </div>
     </section>
   )}
 
-  <!-- The Orchestra -->
   <section class="section section--dark">
     <div class="container">
       <div class="section__header" data-reveal>
         <p class="label section__label">Methodology</p>
         <h2 class="section__title">The Orchestra</h2>
-        <a href="/orchestra" class="section__link label">Full methodology →</a>
+        <a href="/orchestra-operation" class="section__link label">Full methodology</a>
       </div>
 
       <p class="orchestra-intro" data-reveal>
-        Not one model used interchangeably; a structured ensemble where each of seven AI systems
-        plays a distinct cognitive role, and intelligence emerges from the field between them.
-        The Conductor is always the human.
+        The Orchestra is seven AI models, each playing a specific cognitive role, with the human as conductor.
+        Not one model used interchangeably, but a structured ensemble where routing decisions shape the quality of the answer.
       </p>
 
       <div class="orchestra-grid" data-reveal>
@@ -232,15 +283,14 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
             <span class="label orchestra-chip__role">{model.role}</span>
           </div>
         ))}
-        <a href="/orchestra" class="orchestra-chip orchestra-chip--more">
+        <a href="/orchestra-operation" class="orchestra-chip orchestra-chip--more">
           <span class="orchestra-chip__name">+ {ORCHESTRA_MODELS.length - 4} more</span>
-          <span class="label orchestra-chip__role">View all instruments →</span>
+          <span class="label orchestra-chip__role">View all instruments</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Oscillatory Fields / AcheType -->
   <section class="section">
     <div class="container">
       <div class="oscillatory-inner" data-reveal>
@@ -248,20 +298,13 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
           <p class="label oscillatory-label">Publication</p>
           <h2 class="oscillatory-title">Oscillatory Fields</h2>
           <p class="oscillatory-desc">
-            AcheType is the long-form research publication behind this corpus, Field Notes
-            dispatched from the ongoing synthesis process. Active threads include the
-            <strong>Ghost Lineages Thread</strong>, examining how suppressed cultural narratives
-            shape AI training distributions, and the <strong>Digital Enslavement Thread</strong>,
-            tracing the infrastructure of cognitive dependency beneath convenience interfaces.
+            AcheType is the long-form research publication behind this corpus, with research dispatches written during the synthesis process.
+            Active threads include the <strong>Ghost Lineages Thread</strong>, examining how suppressed cultural narratives shape AI training distributions,
+            and the <strong>Digital Enslavement Thread</strong>, tracing the infrastructure of cognitive dependency beneath convenience interfaces.
             Each thread is a live research strand, not a finished argument.
           </p>
-          <a
-            href="https://substack.com/@achetype1"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn--ghost oscillatory-cta"
-          >
-            AcheType Field Notes ↗
+          <a href="https://substack.com/@achetype1" target="_blank" rel="noopener noreferrer" class="btn btn--ghost oscillatory-cta">
+            AcheType Field Notes
           </a>
         </div>
         <div class="oscillatory-meta label">
@@ -282,7 +325,6 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     </div>
   </section>
 
-  <!-- Corpus CTA -->
   <section class="corpus-cta">
     <div class="container">
       <div class="corpus-cta__inner" data-reveal>
@@ -290,29 +332,25 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
           <p class="label corpus-cta__label">The Field</p>
           <h2 class="corpus-cta__title">Query the corpus directly</h2>
           <p class="corpus-cta__desc">
-            560+ sourced documents. 18 months of synthesis. The complete Oscillatory Fields
-            research corpus, queryable, navigable, alive. Ask it anything.
+            560+ sourced documents. 18 months of synthesis. The live synthesis layer is queryable now, while the raw archive traceability layer is still under construction.
           </p>
         </div>
         <div class="corpus-cta__action">
-          <a href="/corpus" class="btn btn--primary corpus-cta__btn">
-            Open corpus →
-          </a>
+          <a href="/corpus" class="btn btn--primary corpus-cta__btn">Open corpus</a>
           <p class="label corpus-cta__sub">
-            Powered by The Field · Constitutional governance architecture
+            Powered by The Field, constitutional governance architecture.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services -->
   <section class="section">
     <div class="container">
       <div class="section__header" data-reveal>
         <p class="label section__label">Services</p>
         <h2 class="section__title">How We Work Together</h2>
-        <a href="/contact" class="section__link label">Start a conversation →</a>
+        <a href="/contact" class="section__link label">Start a conversation</a>
       </div>
 
       <div class="services-grid card-grid">
@@ -322,7 +360,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
             <p class="service-card__desc">{service.description}</p>
             {service.cta && (
               <a href={service.cta.href} class="service-card__link label">
-                {service.cta.label} →
+                {service.cta.label}
               </a>
             )}
           </div>
@@ -333,17 +371,15 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
 </BaseLayout>
 
 <style>
-  /* ── Hero ─────────────────────────────────────────────────────────────── */
   .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     padding: 120px 0 var(--space-20);
-    position: relative;
   }
 
   .hero__inner {
-    max-width: 72ch;
+    max-width: 74ch;
   }
 
   .hero__signal {
@@ -374,24 +410,19 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     font-size: var(--text-lg);
     line-height: var(--leading-relaxed);
     color: var(--text-secondary);
-    max-width: 60ch;
-    margin-bottom: var(--space-5);
-  }
-
-  .hero__origin {
-    color: var(--text-tertiary);
-    margin-bottom: var(--space-10);
+    max-width: 62ch;
+    margin-bottom: var(--space-6);
   }
 
   .hero-assessment {
     margin-bottom: var(--space-8);
     border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
-    background: var(--surface-2);
-    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+    padding: var(--space-6);
     display: grid;
-    gap: var(--space-3);
-    max-width: 62ch;
+    gap: var(--space-4);
+    max-width: 64ch;
   }
 
   .hero-assessment__prompt {
@@ -411,7 +442,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
   .hero-assessment__option {
     width: 100%;
     text-align: left;
-    min-height: 44px;
+    min-height: 48px;
     background: var(--surface-3);
     color: var(--text-primary);
     border: 1px solid var(--border-mid);
@@ -424,19 +455,28 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
   }
 
   .hero-assessment__option:hover,
-  .hero-assessment__option:focus-visible {
+  .hero-assessment__option:focus-visible,
+  .hero-assessment__option.is-selected {
     border-color: var(--ember-dim);
     background: var(--surface-4);
     outline: none;
   }
 
-  .hero-assessment__link {
-    color: var(--text-tertiary);
+  .hero-assessment__response {
+    display: grid;
+    gap: var(--space-4);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--border-dim);
   }
 
-  .hero-assessment__link a {
-    color: var(--ember);
-    text-decoration: none;
+  .hero-assessment__insight {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .hero__origin {
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-6);
   }
 
   .hero__origin-sep {
@@ -444,11 +484,20 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     opacity: 0.4;
   }
 
-  .hero__cta {
+  .hero__links {
     display: flex;
-    gap: var(--space-4);
+    gap: var(--space-5);
     flex-wrap: wrap;
     margin-bottom: var(--space-12);
+  }
+
+  .hero__links a {
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+
+  .hero__links a:hover {
+    color: var(--ember);
   }
 
   .hero__metrics {
@@ -457,12 +506,6 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     padding-top: var(--space-8);
     border-top: 1px solid var(--border-dim);
     flex-wrap: wrap;
-  }
-
-  @media (max-width: 768px) {
-    .hero-assessment__option {
-      min-height: 44px;
-    }
   }
 
   .hero__metric {
@@ -482,7 +525,6 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     text-transform: capitalize;
   }
 
-  /* ── Sections ─────────────────────────────────────────────────────────── */
   .section {
     padding: var(--space-24) 0;
   }
@@ -491,6 +533,10 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     background: var(--surface-1);
     border-top: 1px solid var(--border-dim);
     border-bottom: 1px solid var(--border-dim);
+  }
+
+  .section--demo {
+    padding-top: var(--space-18);
   }
 
   .section__header {
@@ -515,88 +561,147 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     color: var(--text-tertiary);
     text-decoration: none;
     margin-left: auto;
-    transition: color var(--duration-fast) var(--ease-out);
     flex-shrink: 0;
   }
+
   .section__link:hover {
     color: var(--ember);
   }
 
-  /* ── Research grid ────────────────────────────────────────────────────── */
-  .research-grid {
+  .demo-card {
+    display: grid;
+    gap: var(--space-8);
+    padding: var(--space-8);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  }
+
+  .demo-card__prompt,
+  .demo-card__note {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .demo-card__prompt p,
+  .demo-card__note p:last-child {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-lg);
+  }
+
+  .demo-card__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .demo-contribution {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .demo-contribution__meta {
+    color: var(--ember);
+  }
+
+  .demo-contribution p:last-child {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .research-grid,
+  .digest-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: var(--space-5);
   }
 
-  .research-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    padding: var(--space-6);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    background: var(--surface-2);
-    transition: all var(--duration-mid) var(--ease-out);
-  }
-
-  .research-card:hover {
-    border-color: var(--border-bright);
-    background: var(--surface-3);
-  }
-
-  .research-card__meta {
-    display: flex;
-    gap: var(--space-3);
-    flex-wrap: wrap;
-  }
-
-  .research-card__theme {
-    color: var(--ash-light);
-    text-transform: capitalize;
-  }
-
-  .research-card__title {
-    font-size: var(--text-lg);
-    color: var(--text-primary);
-    line-height: var(--leading-snug);
-  }
-
-  .research-card__summary {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    line-height: var(--leading-relaxed);
-    flex: 1;
-  }
-
-  .research-card__cta {
-    color: var(--ember);
-    margin-top: var(--space-2);
-  }
-
-  /* ── Products grid ────────────────────────────────────────────────────── */
   .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: var(--space-5);
   }
 
-  .product-card {
+  .research-card,
+  .digest-card,
+  .product-card,
+  .service-card {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
     padding: var(--space-6);
-    border: 1px solid var(--border-mid);
     border-radius: var(--radius-md);
+    background: var(--surface-2);
     text-decoration: none;
-    background: var(--surface-3);
-    transition: all var(--duration-mid) var(--ease-out);
   }
 
+  .research-card,
+  .digest-card {
+    border: 1px solid var(--border-dim);
+  }
+
+  .product-card {
+    border: 1px solid var(--border-mid);
+    background: var(--surface-3);
+  }
+
+  .service-card {
+    border: 1px solid var(--border-dim);
+  }
+
+  .research-card:hover,
+  .digest-card:hover,
   .product-card:hover {
-    border-color: var(--ember-dim);
-    background: var(--surface-4);
+    background: var(--surface-3);
+  }
+
+  .research-card__meta,
+  .digest-card__meta {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .research-card__theme,
+  .digest-card__date,
+  .product-card__price,
+  .digest-card__category {
+    color: var(--text-tertiary);
+  }
+
+  .digest-card__category {
+    color: var(--ember);
+  }
+
+  .research-card__title,
+  .product-card__title,
+  .digest-card__title {
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+  }
+
+  .research-card__summary,
+  .product-card__summary,
+  .digest-card__excerpt,
+  .service-card__desc {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    line-height: var(--leading-relaxed);
+    flex: 1;
+  }
+
+  .research-card__cta,
+  .service-card__link {
+    color: var(--ember);
+    margin-top: auto;
+    text-decoration: none;
   }
 
   .product-card__header {
@@ -606,181 +711,6 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     gap: var(--space-3);
   }
 
-  .product-card__price {
-    color: var(--pale-gold);
-  }
-
-  .product-card__title {
-    font-size: var(--text-lg);
-    color: var(--text-primary);
-    line-height: var(--leading-snug);
-  }
-
-  .product-card__summary {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    line-height: var(--leading-relaxed);
-    flex: 1;
-  }
-
-  /* ── Digest grid ─────────────────────────────────────────────────────── */
-  .digest-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--space-5);
-  }
-
-  .digest-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    padding: var(--space-6);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    background: var(--surface-2);
-    transition: all var(--duration-mid) var(--ease-out);
-  }
-
-  .digest-card:hover {
-    border-color: var(--border-bright);
-    background: var(--surface-3);
-  }
-
-  .digest-card__meta {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    justify-content: space-between;
-  }
-
-  .digest-card__category {
-    color: var(--ember);
-  }
-
-  .digest-card__date {
-    color: var(--text-tertiary);
-  }
-
-  .digest-card__title {
-    font-size: var(--text-lg);
-    color: var(--text-primary);
-    line-height: var(--leading-snug);
-  }
-
-  .digest-card__excerpt {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    line-height: var(--leading-relaxed);
-    flex: 1;
-  }
-
-  /* ── Corpus CTA ──────────────────────────────────────────────────────── */
-  .corpus-cta {
-    background: var(--surface-2);
-    border-top: 1px solid var(--border-mid);
-    border-bottom: 1px solid var(--border-mid);
-    padding: var(--space-20) 0;
-  }
-
-  .corpus-cta__inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: var(--space-12);
-    align-items: center;
-  }
-
-  @media (max-width: 768px) {
-    .corpus-cta__inner {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .corpus-cta__label {
-    color: var(--ember);
-    margin-bottom: var(--space-3);
-  }
-
-  .corpus-cta__title {
-    font-size: var(--text-3xl);
-    margin-bottom: var(--space-4);
-  }
-
-  .corpus-cta__desc {
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-    max-width: 60ch;
-  }
-
-  .corpus-cta__action {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-3);
-    flex-shrink: 0;
-  }
-
-  .corpus-cta__btn {
-    white-space: nowrap;
-  }
-
-  .corpus-cta__sub {
-    color: var(--text-tertiary);
-    max-width: 30ch;
-  }
-
-  /* ── Services grid ───────────────────────────────────────────────────── */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-5);
-  }
-
-  @media (max-width: 900px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 600px) {
-    .services-grid { grid-template-columns: 1fr; }
-  }
-
-  .service-card {
-    padding: var(--space-6);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
-    background: var(--surface-2);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .service-card__title {
-    font-size: var(--text-md);
-    color: var(--text-primary);
-    font-family: var(--font-mono);
-    font-weight: 400;
-    letter-spacing: 0.03em;
-  }
-
-  .service-card__desc {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    line-height: var(--leading-relaxed);
-    flex: 1;
-  }
-
-  .service-card__link {
-    color: var(--ember);
-    text-decoration: none;
-    transition: color var(--duration-fast) var(--ease-out);
-    margin-top: auto;
-  }
-
-  .service-card__link:hover {
-    color: var(--ember-bright);
-  }
-
-  /* ── Digest subscribe ────────────────────────────────────────────────── */
   .digest-subscribe {
     margin-top: var(--space-10);
     padding-top: var(--space-8);
@@ -804,23 +734,12 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     color: var(--text-primary);
     font-family: var(--font-mono);
     font-size: var(--text-sm);
-    outline: none;
-    transition: border-color var(--duration-fast) var(--ease-out);
-  }
-
-  .subscribe-input:focus {
-    border-color: var(--ember);
-  }
-
-  .subscribe-btn {
-    white-space: nowrap;
   }
 
   .subscribe-note {
     color: var(--text-tertiary);
   }
 
-  /* ── Orchestra section ───────────────────────────────────────────────── */
   .orchestra-intro {
     max-width: 68ch;
     color: var(--text-secondary);
@@ -843,17 +762,11 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     border: 1px solid var(--border-dim);
     border-radius: var(--radius-md);
     background: var(--surface-2);
-    transition: border-color var(--duration-mid) var(--ease-out);
     text-decoration: none;
-  }
-
-  .orchestra-chip:hover {
-    border-color: var(--border-bright);
   }
 
   .orchestra-chip--more {
     border-style: dashed;
-    cursor: pointer;
   }
 
   .orchestra-chip__name {
@@ -869,46 +782,37 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     letter-spacing: 0.08em;
   }
 
-  /* ── Oscillatory Fields / AcheType ──────────────────────────────────── */
-  .oscillatory-inner {
+  .oscillatory-inner,
+  .corpus-cta__inner {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: var(--space-16);
+    gap: var(--space-12);
     align-items: center;
   }
 
-  @media (max-width: 768px) {
-    .oscillatory-inner {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .oscillatory-label {
+  .oscillatory-label,
+  .corpus-cta__label {
     color: var(--ember);
     margin-bottom: var(--space-3);
   }
 
-  .oscillatory-title {
+  .oscillatory-title,
+  .corpus-cta__title {
     font-size: var(--text-3xl);
     margin-bottom: var(--space-5);
   }
 
-  .oscillatory-desc {
+  .oscillatory-desc,
+  .corpus-cta__desc {
     color: var(--text-secondary);
     line-height: var(--leading-relaxed);
     max-width: 65ch;
-    margin-bottom: var(--space-6);
-  }
-
-  .oscillatory-cta {
-    display: inline-flex;
   }
 
   .oscillatory-meta {
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
-    flex-shrink: 0;
     color: var(--text-tertiary);
     text-align: right;
   }
@@ -924,15 +828,84 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     font-size: var(--text-2xl);
     color: var(--text-primary);
   }
+
+  .corpus-cta {
+    background: var(--surface-2);
+    border-top: 1px solid var(--border-mid);
+    border-bottom: 1px solid var(--border-mid);
+    padding: var(--space-20) 0;
+  }
+
+  .corpus-cta__action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .corpus-cta__sub {
+    color: var(--text-tertiary);
+    max-width: 30ch;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .service-card__title {
+    font-size: var(--text-md);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 900px) {
+    .services-grid,
+    .oscillatory-inner,
+    .corpus-cta__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+      padding-top: 110px;
+    }
+
+    .hero__links,
+    .hero__metrics {
+      gap: var(--space-4);
+    }
+
+    .subscribe-form {
+      flex-direction: column;
+    }
+
+    .subscribe-btn {
+      width: 100%;
+    }
+  }
 </style>
 
-<script>
-  const heroAssessmentLink = document.getElementById('hero-assessment-link');
+<script define:vars={{ heroAssessmentResponses }}>
   const heroAssessmentButtons = document.querySelectorAll('.hero-assessment__option');
+  const heroAssessmentResponse = document.getElementById('hero-assessment-response');
+  const heroAssessmentInsight = document.getElementById('hero-assessment-insight');
 
-  heroAssessmentButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      heroAssessmentLink?.removeAttribute('hidden');
+  heroAssessmentButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const answer = button.getAttribute('data-answer');
+      const copy = answer ? heroAssessmentResponses[answer]?.insight : '';
+      heroAssessmentButtons.forEach((item) => item.classList.remove('is-selected'));
+      button.classList.add('is-selected');
+      if (copy && heroAssessmentInsight && heroAssessmentResponse) {
+        heroAssessmentInsight.textContent = copy;
+        heroAssessmentResponse.removeAttribute('hidden');
+      }
     });
   });
 </script>

@@ -22,7 +22,8 @@ const CONTENT_ROOT = join(process.cwd(), 'src', 'content');
 
 export function loadCollection(collection: CollectionName): RawEntry[] {
   const dir = join(CONTENT_ROOT, collection);
-  const files = fg.sync(`${dir}/**/*.{md,mdx}`, { absolute: true });
+  const pattern = `${dir.replace(/\\/g, '/')}/**/*.{md,mdx}`;
+  const files = fg.sync(pattern, { absolute: true });
 
   return files.map((filePath) => {
     const raw = readFileSync(filePath, 'utf8');

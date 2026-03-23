@@ -1,23 +1,32 @@
 ---
-// AudienceRouter — three intent-based entry points shown below the hero
+// AudienceRouter, three intent-based entry points shown below the hero
 // Routes visitors by need: framework, research, or governance help
 ---
 
 <div class="audience-router" data-reveal data-reveal-delay="5">
   <a href="/products/cir" class="router-card">
     <span class="router-card__label label">Framework</span>
-    <span class="router-card__cta">I want the framework →</span>
-    <span class="router-card__sub">CIR v2.0 · Cognitive Infrastructure Readiness</span>
+    <span class="router-card__cta">I want the framework</span>
+    <span class="router-card__sub">
+      Cognitive Infrastructure Readiness, an assessment for the structural decisions AI deployment
+      requires before deployment begins.
+    </span>
   </a>
   <a href="/research" class="router-card">
     <span class="router-card__label label">Research</span>
-    <span class="router-card__cta">I want the research →</span>
-    <span class="router-card__sub">DCFB · Bainbridge Warning · Trust Theory</span>
+    <span class="router-card__cta">I want the research</span>
+    <span class="router-card__sub">
+      Distributed Cognition as Foundational Behavior, the Bainbridge Warning, and the architecture
+      of distributed intelligence.
+    </span>
   </a>
   <a href="/contact" class="router-card router-card--ember">
     <span class="router-card__label label">Governance</span>
-    <span class="router-card__cta">I need governance help →</span>
-    <span class="router-card__sub">Audits · Constitutional design · Martha Cohorts</span>
+    <span class="router-card__cta">I need governance help</span>
+    <span class="router-card__sub">
+      Audits, constitutional design, and Martha Cohorts, a structured team training program for
+      building AI-augmented workflows with governance designed in from the start.
+    </span>
   </a>
 </div>
 
@@ -25,8 +34,8 @@
   .audience-router {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-3);
-    padding: var(--space-8) 0 var(--space-16);
+    gap: var(--space-5);
+    padding: var(--space-10) 0 var(--space-18);
     border-bottom: 1px solid var(--border-dim);
   }
 
@@ -39,19 +48,21 @@
   .router-card {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
-    padding: var(--space-5) var(--space-6);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
+    gap: var(--space-3);
+    min-height: 220px;
+    padding: var(--space-7);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
     text-decoration: none;
-    background: var(--surface-2);
+    background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
     transition: all var(--duration-mid) var(--ease-out);
   }
 
   .router-card:hover {
     border-color: var(--border-bright);
-    background: var(--surface-3);
-    transform: translateY(-2px);
+    background: linear-gradient(180deg, var(--surface-3), var(--surface-4));
+    transform: translateY(-4px);
   }
 
   .router-card--ember {
@@ -71,14 +82,24 @@
 
   .router-card__cta {
     font-family: var(--font-display);
-    font-size: var(--text-lg);
+    font-size: var(--text-xl);
     color: var(--text-primary);
     line-height: var(--leading-snug);
   }
 
   .router-card__sub {
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
     color: var(--text-tertiary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .router-card::after {
+    content: "Open";
+    margin-top: auto;
+    color: var(--ember);
     font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 </style>

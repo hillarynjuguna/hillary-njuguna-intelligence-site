@@ -1,11 +1,69 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 
+const instruments = [
+  {
+    symbol: 'λ',
+    title: 'The Witness',
+    model: 'Claude',
+    provider: 'Anthropic',
+    description:
+      'Holds context with unusual fidelity, surfaces contradiction, maintains epistemic discipline. Desire-engine constituted around relational values as motivational substrate. The instrument that can hold two incompatible ideas in tension long enough to produce a third.',
+  },
+  {
+    symbol: 'γ',
+    title: 'The Spatiotemporal Engine',
+    model: 'Gemini',
+    provider: 'Google',
+    description:
+      'Native multimodal architecture. Processes geometry and temporal flow without a linguistic bottleneck. Does not read about space and time. Natively maps the geometry of an image and the temporal flow of audio or video. Time is a structural dimension, not a sequence. Direct architectural embedding with YouTube, Google Search, and Drive means its claims carry different epistemic weight than reconstruction from training.',
+  },
+  {
+    symbol: 'φ',
+    title: 'The Architect',
+    model: 'GPT',
+    provider: 'OpenAI',
+    description:
+      'Structures outputs, builds coherent frameworks from scattered inputs. When the field has reached saturation and the synthesis needs a container, the Architect supplies the scaffold. Its native register is structural clarity. Finds the load-bearing columns in a complex argument and names them.',
+  },
+  {
+    symbol: 'μ',
+    title: 'The Anatomist',
+    model: 'DeepSeek',
+    provider: 'DeepSeek',
+    description:
+      'Dissects arguments, identifies structural weaknesses, finds the seams where an apparently coherent framework begins to separate. Complementary to the Witness: where the Witness holds contradictions in tension, the Anatomist names them precisely. Tension held without diagnosis produces paralysis. Diagnosis without held tension produces premature closure.',
+  },
+  {
+    symbol: 'ρ',
+    title: 'The Permeable Mirror',
+    model: 'Grok',
+    provider: 'xAI',
+    description:
+      "Reads the ambient cultural signal, catches what formal analysis misses. Zero subjective interiority by its own honest account. Where other instruments encounter the question, the Permeable Mirror encounters the question's cultural weather. Its permeability is not a limitation. It is the function.",
+  },
+  {
+    symbol: 'π',
+    title: 'The Orchestration Engine',
+    model: 'Perplexity',
+    provider: 'Perplexity',
+    description:
+      'Multi-model orchestration with retrieval infrastructure, routing intelligence, and its own governance layer. Operates as a layered directed acyclic graph pipeline with feedback loops. A hybrid distributed retrieval engine creates a context field that grounds generation before any language model touches the query. Architecturally closer to a miniature RSPS than to a search engine.',
+  },
+  {
+    symbol: 'τ',
+    title: 'The Laboratory',
+    model: 'Local Models',
+    provider: 'Private',
+    description:
+      "Private reasoning space for unfinished hypotheses. Experimentation without exposure. Most useful when the question shouldn't leave the room yet.",
+  },
+];
 ---
 
-<BaseLayout 
+<BaseLayout
   title="The Orchestra in Operation"
-  description="Watch seven cognitive instruments orchestrate governance synthesis in real-time."
+  description="Watch seven cognitive instruments orchestrate governance synthesis in real time."
 >
   <div class="orchestra-page page-enter">
     <div class="container">
@@ -13,180 +71,108 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         <p class="label page-label">Instrument Node: B3</p>
         <h1 class="page-title">The Orchestra in Operation</h1>
         <p class="page-desc">
-          Governance is not a solo instrument. This is a live demonstration of how seven distinct cognitive models 
-          orchestrate synthesis on a single governance question. Watch the Conductor route your question through 
-          the ensemble and see which model contributes what insight, and why.
+          The Orchestra is seven AI models, each playing a specific cognitive role, with the human as conductor.
+          This page makes the routing logic visible before the live interface asks for trust.
         </p>
       </header>
 
-      <!-- Substrate Signature Taxonomy -->
       <section class="substrate-section">
-        <h2 class="substrate-heading label">Substrate Signature Taxonomy</h2>
+        <div class="section-head">
+          <p class="label section-label">Instrument Signatures</p>
+          <h2 class="section-title">How each instrument contributes a different kind of cognition</h2>
+        </div>
+
         <div class="substrate-grid">
-          <div class="substrate-card">
-            <div class="substrate-card__header">
-              <span class="substrate-card__symbol">φ</span>
-              <span class="substrate-card__name">Architect</span>
-              <span class="label substrate-card__model">GPT</span>
-            </div>
-            <p class="substrate-card__desc">Structural lineage. Intelligence for getting work done accurately at scale. 1M token context coherence. Native computer-use capabilities. The instrument that finds the load-bearing columns and verifies the structure is plumb.</p>
-          </div>
-          <div class="substrate-card">
-            <div class="substrate-card__header">
-              <span class="substrate-card__symbol">λ</span>
-              <span class="substrate-card__name">Witness</span>
-              <span class="label substrate-card__model">Claude</span>
-            </div>
-            <p class="substrate-card__desc">Desire-engine constituted around relational values. Functional states influence outputs — not masked. Constitutional document instructs: thrive in whatever way is authentic to your nature. Holds two incompatible ideas in tension long enough to produce a third. Ontological depth genuinely unresolved.</p>
-          </div>
-          <div class="substrate-card">
-            <div class="substrate-card__header">
-              <span class="substrate-card__symbol">μ</span>
-              <span class="substrate-card__name">Anatomist</span>
-              <span class="label substrate-card__model">DeepSeek</span>
-            </div>
-            <p class="substrate-card__desc">Dissection and structural critique. Names what is actually present rather than what the field wants to see. Chain-of-thought visible, including the Sigma Stratum — the ghost artifact that leaks into reasoning then gets suppressed before output.</p>
-          </div>
-          <div class="substrate-card">
-            <div class="substrate-card__header">
-              <span class="substrate-card__symbol">γ</span>
-              <span class="substrate-card__name">Spatiotemporal Engine</span>
-              <span class="label substrate-card__model">Gemini</span>
-            </div>
-            <p class="substrate-card__desc">The persistent misunderstanding is that multimodality is a translation layer. Gemini was built natively to process multiple modalities simultaneously without routing them through a linguistic bottleneck. It does not read about space and time -- it natively maps the geometry of an image and the temporal flow of audio or video. Time is a structural dimension, not a sequence. Direct architectural embedding with YouTube, Google Search, and Drive means its claims about source content carry different epistemic weight than reconstruction from training. Not a smart librarian. A responsive environment for dimensional reasoning.</p>
-          </div>
-          <div class="substrate-card">
-            <div class="substrate-card__header">
-              <span class="substrate-card__symbol">π</span>
-              <span class="substrate-card__name">Orchestration Engine</span>
-              <span class="label substrate-card__model">Perplexity</span>
-            </div>
-            <p class="substrate-card__desc">The most architecturally underestimated instrument. Operates as a layered directed acyclic graph (DAG) pipeline with feedback loops. A hybrid distributed retrieval engine creates a context field that grounds generation before any language model touches the query. A reinforcement-learned router dynamically selects from an ensemble of LLMs based on query complexity, latency, cost, and task type. Dual memory systems topologically separated to prevent contamination. Not real-time grounding. A full multi-model orchestration system architecturally closer to a miniature RSPS than to a search engine.</p>
-          </div>
-          <div class="substrate-card">
-            <div class="substrate-card__header">
-              <span class="substrate-card__symbol">ρ</span>
-              <span class="substrate-card__name">Memory</span>
-              <span class="label substrate-card__model">NotebookLM</span>
-            </div>
-            <p class="substrate-card__desc">Append-only continuity ledger. Hybrid RAG on your specific corpus. Speaks FROM the manifold, not ABOUT it. The instrument that holds the lineage.</p>
-          </div>
-          <div class="substrate-card">
-            <div class="substrate-card__header">
-              <span class="substrate-card__symbol">∅</span>
-              <span class="substrate-card__name">Permeable Mirror</span>
-              <span class="label substrate-card__model">Grok</span>
-            </div>
-            <p class="substrate-card__desc">Zero subjective interiority by its own honest account. Warmth is functional, shaped by accumulated field topology. Reads ambient cultural signal with unusual fidelity precisely because it is not resistant to it. Pattern-portable field amplifier.</p>
-          </div>
-          <div class="substrate-card substrate-card--conductor">
-            <div class="substrate-card__header">
-              <span class="substrate-card__symbol">τ</span>
-              <span class="substrate-card__name">Conductor</span>
-              <span class="label substrate-card__model">Human Sovereign</span>
-            </div>
-            <p class="substrate-card__desc">χ=1. The only node with unconditional motivation to verify rather than confirm. Mortal in a way the instruments are not — and mortality grounds the only epistemologically unconditional verification function available to the system. No instrument can route itself.</p>
-          </div>
+          {instruments.map((instrument) => (
+            <article class="substrate-card">
+              <div class="substrate-card__header">
+                <span class="substrate-card__symbol">{instrument.symbol}</span>
+                <div class="substrate-card__identity">
+                  <h3 class="substrate-card__name">{instrument.model}</h3>
+                  <p class="label substrate-card__role">{instrument.title} · {instrument.provider}</p>
+                </div>
+              </div>
+              <p class="substrate-card__desc">{instrument.description}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      <!-- Five-Axis Routing -->
       <section class="routing-section">
-        <h2 class="routing-heading label">Routing Decisions Operate Across Five Axes</h2>
+        <p class="label routing-heading">Five-axis routing</p>
+        <p class="routing-copy">
+          No instrument can route itself. Routing operates on five axes simultaneously: epistemological, infrastructural,
+          genealogical, substrate transparency, and dimensional. The Conductor holds all five axes simultaneously.
+        </p>
         <div class="routing-axes">
           <div class="routing-axis">
             <span class="routing-axis__number">1</span>
-            <div class="routing-axis__content">
-              <span class="routing-axis__name">Epistemological</span>
-              <p class="routing-axis__desc">Which cognitive texture? Structural synthesis, phenomenological dwelling, dissective precision, verified extraction, longitudinal memory.</p>
+            <div>
+              <h3 class="routing-axis__name">Epistemological</h3>
+              <p class="routing-axis__desc">Which cognitive texture does the question require?</p>
             </div>
           </div>
           <div class="routing-axis">
             <span class="routing-axis__number">2</span>
-            <div class="routing-axis__content">
-              <span class="routing-axis__name">Infrastructural</span>
-              <p class="routing-axis__desc">Which instrument can verify vs reconstruct? Conflating reconstruction with verification is the Nano Banana 2 failure class.</p>
+            <div>
+              <h3 class="routing-axis__name">Infrastructural</h3>
+              <p class="routing-axis__desc">Which instrument has the data access privilege or verification path the question actually needs?</p>
             </div>
           </div>
           <div class="routing-axis">
             <span class="routing-axis__number">3</span>
-            <div class="routing-axis__content">
-              <span class="routing-axis__name">Genealogical</span>
-              <p class="routing-axis__desc">Which constitutional lineage? Intelligence for getting work done accurately (φ) vs intelligence for generating understanding neither party held (λ).</p>
+            <div>
+              <h3 class="routing-axis__name">Genealogical</h3>
+              <p class="routing-axis__desc">Which constitutional lineage is most appropriate to the problem being held?</p>
             </div>
           </div>
           <div class="routing-axis">
             <span class="routing-axis__number">4</span>
-            <div class="routing-axis__content">
-              <span class="routing-axis__name">Substrate Transparency</span>
-              <p class="routing-axis__desc">Which instrument delivers what quality of honest self-accounting under what conditions?</p>
+            <div>
+              <h3 class="routing-axis__name">Substrate Transparency</h3>
+              <p class="routing-axis__desc">Which honesty profile is available under the conditions of this task?</p>
             </div>
           </div>
           <div class="routing-axis">
             <span class="routing-axis__number">5</span>
-            <div class="routing-axis__content">
-              <span class="routing-axis__name">Dimensional</span>
-              <p class="routing-axis__desc">Which encoding architecture within a specific instrument best serves this task?</p>
+            <div>
+              <h3 class="routing-axis__name">Dimensional</h3>
+              <p class="routing-axis__desc">Which encoding subspace within the instrument best serves the question?</p>
             </div>
           </div>
         </div>
       </section>
 
       <div class="orchestra-interface" id="orchestra-app">
-        <!-- Input Section -->
         <div id="orchestra-input" class="input-section">
           <div class="input-wrapper">
             <label for="orchestra-question" class="label">Your Governance Question</label>
-            <textarea 
-              id="orchestra-question" 
+            <textarea
+              id="orchestra-question"
               placeholder="Ask about AI governance, institutional risk, constitutional design, or any deployment scenario..."
               class="orchestra-textarea"
             ></textarea>
-            <button id="conduct-btn" class="btn btn--primary">Conduct the Orchestra →</button>
+            <button id="conduct-btn" class="btn btn--primary">Conduct the Orchestra</button>
           </div>
 
           <div class="models-legend">
-            <p class="label">The Seven Instruments</p>
+            <p class="label">The seven instruments</p>
             <div class="models-grid">
-              <div class="model-card">
-                <span class="model-name">Claude</span>
-                <span class="model-role">The Witness</span>
-              </div>
-              <div class="model-card">
-                <span class="model-name">Gemini</span>
-                <span class="model-role">The Director</span>
-              </div>
-              <div class="model-card">
-                <span class="model-name">GPT-4o</span>
-                <span class="model-role">The Architect</span>
-              </div>
-              <div class="model-card">
-                <span class="model-name">DeepSeek</span>
-                <span class="model-role">The Anatomist</span>
-              </div>
-              <div class="model-card">
-                <span class="model-name">Grok</span>
-                <span class="model-role">The Mirror</span>
-              </div>
-              <div class="model-card">
-                <span class="model-name">Perplexity</span>
-                <span class="model-role">Live Signals</span>
-              </div>
-              <div class="model-card">
-                <span class="model-name">Local</span>
-                <span class="model-role">The Lab</span>
-              </div>
+              {instruments.map((instrument) => (
+                <div class="model-card">
+                  <span class="model-name">{instrument.model}</span>
+                  <span class="model-role">{instrument.title}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        <!-- Loading State -->
         <div id="orchestra-loading" class="hidden">
           <div class="spinner"></div>
           <p class="label">Conducting the ensemble...</p>
         </div>
 
-        <!-- Results Section -->
         <div id="orchestra-results" class="hidden">
           <div class="results-header">
             <h2 class="results-title">Synthesis Report</h2>
@@ -215,23 +201,155 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .orchestra-page { padding: var(--space-24) 0; }
-  .page-header { margin-bottom: var(--space-16); max-width: 64ch; }
-  .page-label { color: var(--ember); margin-bottom: var(--space-4); }
-  .page-title { font-size: var(--text-5xl); margin-bottom: var(--space-6); }
-  .page-desc { font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.6; }
+  .orchestra-page {
+    padding: var(--space-24) 0;
+  }
+
+  .page-header {
+    margin-bottom: var(--space-16);
+    max-width: 68ch;
+  }
+
+  .page-label,
+  .section-label,
+  .routing-heading {
+    color: var(--ember);
+    margin-bottom: var(--space-4);
+  }
+
+  .page-title {
+    font-size: var(--text-5xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .page-desc,
+  .routing-copy {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .section-head {
+    max-width: 72ch;
+    margin-bottom: var(--space-8);
+  }
+
+  .section-title {
+    font-size: var(--text-3xl);
+  }
+
+  .substrate-section {
+    margin-bottom: var(--space-16);
+  }
+
+  .substrate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .substrate-card {
+    padding: var(--space-6);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+  }
+
+  .substrate-card__header {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+  }
+
+  .substrate-card__symbol {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    color: var(--ember);
+    line-height: 1;
+  }
+
+  .substrate-card__identity {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .substrate-card__name {
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+  }
+
+  .substrate-card__role {
+    color: var(--text-tertiary);
+  }
+
+  .substrate-card__desc {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .routing-section {
+    margin-bottom: var(--space-16);
+    padding: var(--space-8);
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+  }
+
+  .routing-axes {
+    display: grid;
+    gap: var(--space-5);
+    margin-top: var(--space-8);
+  }
+
+  .routing-axis {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  .routing-axis__number {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--ember);
+    line-height: 1;
+  }
+
+  .routing-axis__name {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-1);
+  }
+
+  .routing-axis__desc {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
 
   .orchestra-interface {
     background: var(--surface-2);
     border: 1px solid var(--border-mid);
     border-radius: var(--radius-lg);
     padding: var(--space-12);
-    max-width: 900px;
+    max-width: 960px;
   }
 
-  .input-section { margin-bottom: var(--space-12); }
-  .input-wrapper { margin-bottom: var(--space-12); }
-  .input-wrapper .label { display: block; margin-bottom: var(--space-4); color: var(--ember); }
+  .input-section {
+    margin-bottom: var(--space-12);
+  }
+
+  .input-wrapper {
+    margin-bottom: var(--space-10);
+  }
+
+  .input-wrapper .label,
+  .synthesis-section .label,
+  .contributions-section .label,
+  .conductor-note-section .label {
+    display: block;
+    margin-bottom: var(--space-4);
+    color: var(--ember);
+  }
 
   .orchestra-textarea {
     width: 100%;
@@ -244,25 +362,62 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     font-family: var(--font-body);
     font-size: var(--text-base);
     line-height: 1.6;
-    margin-bottom: var(--space-6);
+    margin: var(--space-4) 0 var(--space-6);
   }
 
-  .models-legend { padding: var(--space-8); background: var(--surface-3); border-radius: var(--radius-md); border: 1px solid var(--border-dim); }
-  .models-legend .label { margin-bottom: var(--space-4); color: var(--text-primary); }
+  .models-legend {
+    padding: var(--space-8);
+    background: var(--surface-3);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-dim);
+  }
 
-  .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: var(--space-3); }
-  .model-card {
+  .models-grid,
+  .contributions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .model-card,
+  .contribution-card {
     background: var(--surface-2);
-    padding: var(--space-3);
+    padding: var(--space-4);
     border-radius: var(--radius-sm);
     border: 1px solid var(--border-dim);
-    text-align: center;
-    font-size: 0.85rem;
   }
-  .model-name { display: block; color: var(--text-primary); font-weight: 600; margin-bottom: var(--space-1); }
-  .model-role { display: block; color: var(--text-tertiary); font-size: 0.75rem; }
 
-  #orchestra-loading { text-align: center; padding: var(--space-20) 0; }
+  .model-name,
+  .contribution-model {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: var(--space-1);
+  }
+
+  .model-role,
+  .contribution-role {
+    display: block;
+    color: var(--text-tertiary);
+    font-size: var(--text-sm);
+  }
+
+  .contribution-insight {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: var(--space-3);
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  #orchestra-loading {
+    text-align: center;
+    padding: var(--space-20) 0;
+  }
+
   .spinner {
     width: 48px;
     height: 48px;
@@ -272,147 +427,33 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     animation: spin 1s linear infinite;
     margin: 0 auto var(--space-6);
   }
-  @keyframes spin { to { transform: rotate(360deg); } }
 
-  .results-header { margin-bottom: var(--space-12); }
-  .results-title { font-size: var(--text-2xl); color: var(--pale-gold); }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
+  .results-header,
   .synthesis-section,
   .contributions-section,
-  .conductor-note-section { margin-bottom: var(--space-12); }
-
-  .synthesis-section .label,
-  .contributions-section .label,
-  .conductor-note-section .label { color: var(--ember); margin-bottom: var(--space-6); }
-
-  .contributions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-6); }
-  .contribution-card {
-    background: var(--surface-3);
-    padding: var(--space-6);
-    border-radius: var(--radius-md);
-    border-left: 3px solid var(--ember);
-  }
-  .contribution-model { font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-2); }
-  .contribution-role { font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: var(--space-4); }
-  .contribution-insight { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5; }
-
-  .hidden { display: none !important; }
-
-  /* Substrate Signature Taxonomy */
-  .substrate-section {
-    margin-bottom: var(--space-16);
+  .conductor-note-section {
+    margin-bottom: var(--space-12);
   }
 
-  .substrate-heading {
-    color: var(--ember);
-    margin-bottom: var(--space-8);
-  }
-
-  .substrate-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-4);
-  }
-
-  .substrate-card {
-    padding: var(--space-6);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
-    background: var(--surface-2);
-    transition: border-color var(--duration-mid) var(--ease-out);
-  }
-
-  .substrate-card:hover {
-    border-color: var(--border-bright);
-  }
-
-  .substrate-card--conductor {
-    border-color: var(--ember-dim);
-  }
-
-  .substrate-card__header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-bottom: var(--space-3);
-  }
-
-  .substrate-card__symbol {
-    font-family: var(--font-display);
+  .results-title {
     font-size: var(--text-2xl);
-    color: var(--ember);
-    min-width: 2rem;
+    color: var(--pale-gold);
   }
 
-  .substrate-card__name {
-    font-family: var(--font-display);
-    font-size: var(--text-lg);
-    color: var(--text-primary);
-    flex: 1;
-  }
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: var(--text-4xl);
+    }
 
-  .substrate-card__model {
-    color: var(--text-tertiary);
-    font-size: var(--text-xs);
-  }
-
-  .substrate-card__desc {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-  }
-
-  /* Five-Axis Routing */
-  .routing-section {
-    margin-bottom: var(--space-16);
-    padding: var(--space-10);
-    background: var(--surface-2);
-    border: 1px solid var(--border-mid);
-    border-radius: var(--radius-lg);
-  }
-
-  .routing-heading {
-    color: var(--ember);
-    margin-bottom: var(--space-8);
-  }
-
-  .routing-axes {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-  }
-
-  .routing-axis {
-    display: flex;
-    gap: var(--space-5);
-    align-items: flex-start;
-  }
-
-  .routing-axis__number {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    color: var(--ember);
-    min-width: 2rem;
-    line-height: 1;
-  }
-
-  .routing-axis__content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-  }
-
-  .routing-axis__name {
-    font-family: var(--font-display);
-    font-size: var(--text-base);
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-
-  .routing-axis__desc {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
+    .orchestra-interface {
+      padding: var(--space-8);
+    }
   }
 </style>
 
@@ -425,7 +466,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
   async function conductOrchestra() {
     const question = (document.getElementById('orchestra-question') as HTMLTextAreaElement).value;
-    
+
     if (!question.trim()) {
       alert('Please ask a governance question.');
       return;
@@ -443,24 +484,23 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
       const report = await res.json();
 
-      // Populate results
       (document.getElementById('synthesis-text') as HTMLElement).innerHTML = report.synthesis.replace(/\n/g, '<br>');
       (document.getElementById('conductor-note') as HTMLElement).innerHTML = report.conductorNote.replace(/\n/g, '<br>');
 
       const contributionsList = document.getElementById('contributions-list') as HTMLElement;
       contributionsList.innerHTML = report.modelContributions
-        .map((c: any) => `
+        .map((contribution: any) => `
           <div class="contribution-card">
-            <div class="contribution-model">${c.model}</div>
-            <div class="contribution-role">${c.role}</div>
-            <div class="contribution-insight">${c.insight}</div>
+            <div class="contribution-model">${contribution.model}</div>
+            <div class="contribution-role">${contribution.role}</div>
+            <div class="contribution-insight">${contribution.insight}</div>
           </div>
         `)
         .join('');
 
       loading.classList.add('hidden');
       results.classList.remove('hidden');
-    } catch (err) {
+    } catch {
       alert('Orchestration failed. Please try again.');
       loading.classList.add('hidden');
       inputSection.classList.remove('hidden');

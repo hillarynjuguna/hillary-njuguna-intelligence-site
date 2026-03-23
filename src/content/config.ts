@@ -74,8 +74,9 @@ const research = defineCollection({
     citations: z.array(z.string()).default([]),
     ogImage: z.string().optional(),
     author: z.string().default('Hillary Njuguna'),
+    structuredDataType: z.enum(['Article', 'ScholarlyArticle', 'TechArticle']).default('Article'),
     // Research-specific topology
-    researchType: z.enum(['essay', 'framework', 'methodology', 'analysis']).optional(),
+    researchType: z.enum(['essay', 'framework', 'methodology', 'analysis', 'theoretical-framework']).optional(),
     keyClaims: z.array(z.string()).default([]),
     unresolvedEdges: z.array(z.string()).default([]),
     dependsOnConcepts: z.array(z.string()).default([]),

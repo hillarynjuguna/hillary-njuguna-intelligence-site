@@ -5,19 +5,18 @@ import { getCurrentSignal } from '@lib/content';
 const signal = await getCurrentSignal();
 
 const examplePrompts = [
-  "What is the core argument of the DCFB framework?",
-  "How does the Bainbridge Warning differ from a standard AI audit?",
-  "Explain trust as irreversibility residue in plain language",
-  "What does cognitive infrastructure readiness actually measure?",
-  "How do the 7 models in the orchestra differ in cognitive posture?",
-  "How does constitutional inheritance shape tool behavior in the Orchestra?",
-  "What is a clause candidate and how are they generated?",
+  'What is Distributed Cognition as Foundational Behavior, and why does it matter for AI governance?',
+  'How does the Bainbridge Warning differ from a standard AI audit?',
+  'Explain trust as irreversibility residue in plain language.',
+  'What does Cognitive Infrastructure Readiness actually measure?',
+  'How do the seven models in the Orchestra differ in cognitive posture?',
+  'What are clause candidates, the governance principles emerging from the research?',
 ];
 ---
 
 <BaseLayout
   title="Corpus"
-  description="Query the Oscillatory Fields research corpus directly. 560+ sourced documents, 18 months of synthesis, the complete intelligence architecture, queryable, navigable, alive."
+  description="Query the Oscillatory Fields synthesis layer directly. 560+ sourced documents, 18 months of synthesis, and a live interface into the published field."
 >
   <div class="corpus-page page-enter">
     <div class="container">
@@ -25,9 +24,10 @@ const examplePrompts = [
         <p class="label corpus-label">The Field</p>
         <h1 class="corpus-title">Enter the Field</h1>
         <p class="corpus-desc">
-          560+ sourced documents. 18 months of synthesis. The complete Oscillatory Fields
-          research corpus, queryable by anyone. Ask about frameworks, research, governance
-          theory, or anything in the intellectual architecture.
+          The Field draws on 560+ source documents accumulated across 18 months of multi-model synthesis.
+          The published interface is growing. What you can query here is the live synthesis layer, not the raw archive.
+          The responses are grounded in the corpus but are not citation-traceable to individual source documents.
+          That traceability layer is under construction.
         </p>
         {signal?.corpusStats && (
           <div class="corpus-stats">
@@ -40,7 +40,7 @@ const examplePrompts = [
             {signal.corpusStats.clauses && (
               <div class="corpus-stat">
                 <span class="corpus-stat__val">{signal.corpusStats.clauses}</span>
-                <span class="label corpus-stat__key">clause candidates</span>
+                <span class="label corpus-stat__key">governance principles emerging from the research</span>
               </div>
             )}
             <div class="corpus-stat">
@@ -52,7 +52,6 @@ const examplePrompts = [
       </header>
 
       <div class="corpus-interface">
-        <!-- Chat surface -->
         <div class="corpus-chat" id="corpus-chat">
           <div class="chat-messages" id="chat-messages" aria-live="polite" aria-label="Conversation">
             <div class="chat-message chat-message--system">
@@ -62,12 +61,11 @@ const examplePrompts = [
               <div class="chat-message__body">
                 <p>
                   <strong>GOVERNANCE NOTE:</strong> This Field is governed by Oscillatory Fields Constitutional Clauses.
-                  Responses draw from the indexed corpus. Author: Hillary Njuguna (he/him).
+                  Responses draw from the indexed synthesis layer. Author: Hillary Njuguna (he/him).
                 </p>
                 <p>
-                  You're speaking directly with The Field, a synthesis layer built
-                  on the Oscillatory Fields corpus. Ask about any framework, concept, or piece
-                  of research. I will answer from the corpus and surface related material where relevant.
+                  Ask about frameworks, governance patterns, or research threads. The Field will answer from the published synthesis
+                  and surface related material where relevant.
                 </p>
               </div>
             </div>
@@ -76,13 +74,13 @@ const examplePrompts = [
           <div class="chat-input-area">
             <div class="quick-prompts">
               <button class="quick-prompt" data-prompt="What is the Bainbridge Warning and how do I know if my organisation has one?">
-                Diagnose a Bainbridge Zone →
+                Diagnose a Bainbridge Zone
               </button>
-              <button class="quick-prompt" data-prompt="Walk me through CIR v2.0, what does it assess and how?">
-                Explain CIR v2.0 →
+              <button class="quick-prompt" data-prompt="Walk me through Cognitive Infrastructure Readiness, what does it assess and how?">
+                Explain CIR
               </button>
-              <button class="quick-prompt" data-prompt="What is DCFB and why does it matter for AI governance?">
-                Introduce DCFB →
+              <button class="quick-prompt" data-prompt="Introduce Distributed Cognition as Foundational Behavior in plain language.">
+                Introduce DCFB
               </button>
             </div>
 
@@ -106,47 +104,46 @@ const examplePrompts = [
                 aria-label="Your question"
               ></textarea>
               <button id="corpus-submit" class="btn btn--primary chat-submit" aria-label="Send">
-                Query →
+                Query
               </button>
             </div>
             <p class="label chat-note">
-              Synthesis mode, responses draw from the corpus and may generate clause candidates.
+              Synthesis mode, responses draw from the live published layer and may generate governance principles emerging from the research.
               <br />
-              <a href="/clauses" class="governance-link">View Constitutional Clauses →</a>
+              <a href="/clauses" class="governance-link">View Constitutional Clauses</a>
             </p>
           </div>
         </div>
 
-        <!-- Sidebar: about the corpus -->
         <aside class="corpus-sidebar">
           <div class="corpus-info">
             <p class="label corpus-info__label">About this corpus</p>
             <h2 class="corpus-info__title">What The Field knows</h2>
             <div class="corpus-info__items">
               <div class="corpus-info__item">
-                <span class="label corpus-info__item-label">DCFB Framework</span>
-                <p class="corpus-info__item-desc">Distributed Cognition as Foundational Behavior, the theoretical foundation</p>
+                <span class="label corpus-info__item-label">DCFB</span>
+                <p class="corpus-info__item-desc">Distributed Cognition as Foundational Behavior, a theory of how intelligence works across systems, not inside them.</p>
               </div>
               <div class="corpus-info__item">
-                <span class="label corpus-info__item-label">CIR Framework</span>
-                <p class="corpus-info__item-desc">Cognitive Infrastructure Readiness across five constitutional dimensions</p>
+                <span class="label corpus-info__item-label">CIR</span>
+                <p class="corpus-info__item-desc">Cognitive Infrastructure Readiness, an assessment for the structural decisions AI deployment requires before deployment begins.</p>
               </div>
               <div class="corpus-info__item">
-                <span class="label corpus-info__item-label">Bainbridge Warning</span>
-                <p class="corpus-info__item-desc">Institutional AI failure pattern analysis and diagnostic</p>
+                <span class="label corpus-info__item-label">The Bainbridge Warning</span>
+                <p class="corpus-info__item-desc">A governance framework for institutional AI failure where high capability and low governance produce predictable catastrophe.</p>
               </div>
               <div class="corpus-info__item">
-                <span class="label corpus-info__item-label">Trust Theory</span>
-                <p class="corpus-info__item-desc">Trust = Irreversibility Residue, structural account of AI trust</p>
+                <span class="label corpus-info__item-label">The Orchestra</span>
+                <p class="corpus-info__item-desc">Seven AI models, each playing a specific cognitive role, with the human as conductor.</p>
               </div>
               <div class="corpus-info__item">
-                <span class="label corpus-info__item-label">Intelligence Digest</span>
-                <p class="corpus-info__item-desc">Live field notes from active synthesis sessions</p>
+                <span class="label corpus-info__item-label">Active Synthesis</span>
+                <p class="corpus-info__item-desc">Research dispatches written during the synthesis process, published as the field evolves.</p>
               </div>
             </div>
             <div class="corpus-info__links">
-              <a href="/research" class="label corpus-info__link">Research archive →</a>
-              <a href="/clauses" class="label corpus-info__link">Clause archive →</a>
+              <a href="/research" class="label corpus-info__link">Research archive</a>
+              <a href="/clauses" class="label corpus-info__link">Clause archive</a>
             </div>
           </div>
         </aside>
@@ -176,15 +173,11 @@ const examplePrompts = [
     margin-bottom: var(--space-5);
   }
 
-  @media (max-width: 768px) {
-    .corpus-title { font-size: var(--text-4xl); }
-  }
-
   .corpus-desc {
     font-size: var(--text-lg);
     color: var(--text-secondary);
     line-height: var(--leading-relaxed);
-    max-width: 64ch;
+    max-width: 68ch;
     margin-bottom: var(--space-8);
   }
 
@@ -208,26 +201,16 @@ const examplePrompts = [
 
   .corpus-stat__key {
     color: var(--text-tertiary);
+    max-width: 24ch;
   }
 
-  /* Interface layout */
   .corpus-interface {
     display: grid;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 1fr 320px;
     gap: var(--space-8);
     align-items: start;
   }
 
-  @media (max-width: 900px) {
-    .corpus-interface {
-      grid-template-columns: 1fr;
-    }
-    .corpus-sidebar {
-      order: -1;
-    }
-  }
-
-  /* Chat */
   .corpus-chat {
     background: var(--surface-2);
     border: 1px solid var(--border-mid);
@@ -253,7 +236,8 @@ const examplePrompts = [
     gap: var(--space-2);
   }
 
-  .chat-message--system {
+  .chat-message--system,
+  .chat-message--assistant {
     background: var(--surface-3);
     border: 1px solid var(--border-dim);
     border-radius: var(--radius-md);
@@ -271,24 +255,9 @@ const examplePrompts = [
     justify-self: end;
   }
 
-  .chat-message--assistant {
-    background: var(--surface-3);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
-    padding: var(--space-5);
-    color: var(--text-secondary);
-  }
-
   .chat-message--assistant-loading {
     opacity: 0.85;
     border-style: dashed;
-  }
-
-  .chat-message--thinking {
-    color: var(--text-tertiary);
-    font-style: italic;
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
   }
 
   .chat-message__meta {
@@ -305,10 +274,9 @@ const examplePrompts = [
   }
 
   .chat-time {
-    color: var(--text-muted, var(--text-tertiary));
+    color: var(--text-tertiary);
     font-size: var(--text-xs);
     font-family: var(--font-mono);
-    letter-spacing: 0.03em;
   }
 
   .chat-message__body {
@@ -318,7 +286,6 @@ const examplePrompts = [
     gap: var(--space-3);
   }
 
-  /* Input area */
   .chat-input-area {
     padding: var(--space-5) var(--space-6);
     border-top: 1px solid var(--border-dim);
@@ -331,62 +298,47 @@ const examplePrompts = [
     z-index: 2;
   }
 
-  .quick-prompts {
+  .quick-prompts,
+  .chat-suggestions__list {
     display: flex;
     gap: var(--space-3);
     flex-wrap: wrap;
-    margin-bottom: var(--space-6);
+  }
+
+  .quick-prompt,
+  .chat-suggestion {
+    font-family: var(--font-mono);
+    background: var(--surface-3);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
   }
 
   .quick-prompt {
-    font-family: var(--font-mono);
     font-size: var(--text-sm);
     color: var(--ember);
-    background: transparent;
-    border: 1px solid var(--ember-dim);
-    border-radius: var(--radius-sm);
     padding: var(--space-3) var(--space-4);
-    cursor: pointer;
-    transition: all var(--duration-fast) var(--ease-out);
-    white-space: nowrap;
-  }
-
-  .quick-prompt:hover {
-    background: var(--ember-dim);
-    border-color: var(--ember);
-    color: var(--text-primary);
-  }
-
-  .chat-suggestions__label {
-    color: var(--text-tertiary);
-    margin-bottom: var(--space-3);
-  }
-
-  .chat-suggestions__list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-bottom: var(--space-2);
   }
 
   .chat-suggestion {
-    font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--text-tertiary);
-    background: var(--surface-3);
-    border: 1px solid var(--border-dim);
-    border-radius: 2px;
     padding: var(--space-2) var(--space-3);
-    cursor: pointer;
     text-align: left;
     line-height: 1.4;
-    transition: all var(--duration-fast) var(--ease-out);
   }
 
+  .quick-prompt:hover,
   .chat-suggestion:hover {
     color: var(--text-primary);
     border-color: var(--border-bright);
     background: var(--surface-4);
+  }
+
+  .chat-suggestions__label,
+  .chat-note {
+    color: var(--text-tertiary);
   }
 
   .chat-input-row {
@@ -405,7 +357,6 @@ const examplePrompts = [
     font-family: var(--font-body);
     font-size: var(--text-base);
     resize: none;
-    transition: border-color var(--duration-fast) var(--ease-out);
     line-height: var(--leading-relaxed);
   }
 
@@ -414,13 +365,8 @@ const examplePrompts = [
     border-color: var(--ember-dim);
   }
 
-  .chat-input::placeholder {
-    color: var(--text-tertiary);
-  }
-
   .chat-submit {
     flex-shrink: 0;
-    align-self: flex-end;
     min-height: 44px;
   }
 
@@ -429,11 +375,6 @@ const examplePrompts = [
     cursor: not-allowed;
   }
 
-  .chat-note {
-    color: var(--text-tertiary);
-  }
-
-  /* Sidebar */
   .corpus-info {
     background: var(--surface-2);
     border: 1px solid var(--border-dim);
@@ -489,17 +430,27 @@ const examplePrompts = [
     gap: var(--space-2);
   }
 
-  .corpus-info__link {
+  .corpus-info__link,
+  .governance-link {
     color: var(--ember);
     text-decoration: none;
-    transition: color var(--duration-fast) var(--ease-out);
   }
 
-  .corpus-info__link:hover {
-    color: var(--ember-bright);
+  @media (max-width: 900px) {
+    .corpus-interface {
+      grid-template-columns: 1fr;
+    }
+
+    .corpus-sidebar {
+      order: -1;
+    }
   }
 
   @media (max-width: 768px) {
+    .corpus-title {
+      font-size: var(--text-4xl);
+    }
+
     .chat-input-row {
       flex-direction: column;
       align-items: stretch;
@@ -581,10 +532,9 @@ const examplePrompts = [
       if (data.reply) {
         appendMessage('assistant', data.reply);
         messageHistory.push({ role: 'assistant', content: data.reply });
-        // Keep last 20 messages
         if (messageHistory.length > 20) messageHistory = messageHistory.slice(-20);
       } else if (data.error) {
-        appendMessage('assistant', `⚠ ${data.error}`);
+        appendMessage('assistant', `Warning: ${data.error}`);
       } else {
         appendMessage('assistant', 'The corpus encountered an issue. Please try again.');
       }
@@ -600,18 +550,18 @@ const examplePrompts = [
 
   submitBtn?.addEventListener('click', () => sendMessage(inputEl.value));
 
-  inputEl?.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
+  inputEl?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
       sendMessage(inputEl.value);
     }
   });
 
   inputEl?.addEventListener('input', setSubmitState);
 
-  suggestions.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const prompt = btn.getAttribute('data-prompt') ?? '';
+  suggestions.forEach((button) => {
+    button.addEventListener('click', () => {
+      const prompt = button.getAttribute('data-prompt') ?? '';
       sendMessage(prompt);
     });
   });
