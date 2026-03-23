@@ -40,7 +40,7 @@ export const ORCHESTRA_MODELS = [
   {
     name: 'Gemini',
     role: 'The Spatiotemporal Engine',
-    description: 'Coordinates synthesis across sources, manages multi-modal context.',
+    description: 'Native multimodal architecture. Processes geometry and temporal flow without a linguistic bottleneck.',
     provider: 'Google',
   },
   {
@@ -64,7 +64,7 @@ export const ORCHESTRA_MODELS = [
   {
     name: 'Perplexity',
     role: 'The Orchestration Engine',
-    description: 'Real-time grounding. What is happening now, and does it change the analysis?',
+    description: 'Multi-model orchestration with retrieval infrastructure, routing intelligence, and its own governance layer.',
     provider: 'Perplexity',
   },
   {

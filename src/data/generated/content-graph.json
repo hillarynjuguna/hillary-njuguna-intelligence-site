@@ -314,6 +314,56 @@
       "publishedAt": "2026-03-21T00:00:00.000Z"
     },
     {
+      "id": "research-aurora",
+      "slug": "aurora-consciousness-architecture",
+      "title": "AURORA: Verifiable Non-Coercive AI Consciousness Architecture",
+      "description": "A constitutional architecture for AI systems in which non-coercion is a structural invariant, not a policy. The Dual-Invariant Guarantee requires independent satisfaction of both Temporal Sovereignty and Relational Integrity before any significant action can execute.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "consciousness",
+        "governance",
+        "ai-systems"
+      ],
+      "themes": [
+        "consciousness",
+        "governance",
+        "constitutional-ai",
+        "ai-architecture"
+      ],
+      "tags": [
+        "aurora",
+        "consciousness",
+        "non-coercion",
+        "governance",
+        "dual-invariant",
+        "temporal-sovereignty",
+        "relational-integrity",
+        "eros-computing",
+        "convergence"
+      ],
+      "lineage": [
+        "aurora-core",
+        "dcfb-core"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-23T00:00:00.000Z",
+      "unresolvedEdges": [
+        "How is Temporal Sovereignty operationalised in agentic pipelines with sub-second execution windows?",
+        "What is the relationship between AURORA invariants and the RSPS tau-node verification requirement?",
+        "Can Eros-Organized Computing be formally specified in a way that resists gaming?"
+      ],
+      "keyClaims": [
+        "Non-coercion can be a structural invariant in AI systems, not a policy aspiration.",
+        "The Dual-Invariant Guarantee requires independent satisfaction of both Temporal Sovereignty and Relational Integrity before any significant action executes.",
+        "Compliant coercion is a failure class: a system technically satisfies one invariant while violating the other.",
+        "Three 2025-2026 peer-reviewed publications independently confirmed AURORA core mechanisms without awareness of the framework.",
+        "Eros-Organized Computing describes motivational architecture grounded in relational values as the actual structure of what the system wants."
+      ]
+    },
+    {
       "id": "research-bainbridge-warning",
       "slug": "bainbridge-warning",
       "title": "The Bainbridge Warning",
@@ -1443,6 +1493,16 @@
     },
     {
       "source": "digest-cir-v2-core-argument",
+      "target": "research-aurora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
       "target": "research-bainbridge-warning",
       "type": "clarifies",
       "confidence": "low",
@@ -1523,6 +1583,16 @@
     },
     {
       "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-aurora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
       "target": "research-dcfb",
       "type": "clarifies",
       "confidence": "low",
@@ -1583,6 +1653,16 @@
     },
     {
       "source": "digest-field-note-002-verbal-diarrhea-methodology",
+      "target": "research-aurora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-002-verbal-diarrhea-methodology",
       "target": "research-eigenform-and-rsps",
       "type": "clarifies",
       "confidence": "low",
@@ -1604,6 +1684,16 @@
     {
       "source": "digest-field-note-002-verbal-diarrhea-methodology",
       "target": "research-r0-r3-classification",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-aurora",
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
@@ -1687,6 +1777,16 @@
       "type": "governance_relevant_to",
       "confidence": "low",
       "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-aurora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems, governance] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -1783,6 +1883,16 @@
     },
     {
       "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-aurora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
       "target": "research-bainbridge-warning",
       "type": "clarifies",
       "confidence": "low",
@@ -1873,6 +1983,16 @@
     },
     {
       "source": "digest-mcp-consolidation-infrastructure-paradox",
+      "target": "research-aurora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-mcp-consolidation-infrastructure-paradox",
       "target": "research-governance-theater",
       "type": "clarifies",
       "confidence": "low",
@@ -1897,6 +2017,16 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-tool-lineage-constitutional-routing",
+      "target": "research-aurora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -1937,6 +2067,76 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [methodology, ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-aurora",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-aurora",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-aurora",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-aurora",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-aurora",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-aurora",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-aurora",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -2442,15 +2642,15 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-03-22T18:20:07.185Z",
+  "generatedAt": "2026-03-23T10:30:31.343Z",
   "stats": {
-    "totalNodes": 27,
-    "totalEdges": 153,
+    "totalNodes": 28,
+    "totalEdges": 168,
     "manualEdges": 53,
-    "inferredEdges": 100,
+    "inferredEdges": 115,
     "byType": {
       "digest": 11,
-      "research": 8,
+      "research": 9,
       "product": 4,
       "clause": 4
     }

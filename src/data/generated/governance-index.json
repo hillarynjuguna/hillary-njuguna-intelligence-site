@@ -151,6 +151,18 @@
       "governanceRelevance": "adjacent"
     },
     {
+      "contentId": "research-aurora",
+      "contentTitle": "AURORA: Verifiable Non-Coercive AI Consciousness Architecture",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
       "contentId": "research-bainbridge-warning",
       "contentTitle": "The Bainbridge Warning",
       "contentType": "research",
@@ -287,5 +299,5 @@
       "clause-irreversibility-threshold"
     ]
   },
-  "generatedAt": "2026-03-22T18:20:07.186Z"
+  "generatedAt": "2026-03-23T10:30:31.344Z"
 }

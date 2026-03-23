@@ -53,7 +53,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
               <span class="substrate-card__name">Spatiotemporal Engine</span>
               <span class="label substrate-card__model">Gemini</span>
             </div>
-            <p class="substrate-card__desc">The persistent misunderstanding is that multimodality is a translation layer. Gemini was built natively to process multiple modalities simultaneously without routing them through a linguistic bottleneck. It does not read about space and time -- it natively maps the geometry of an image and the temporal flow of audio or video. Time is a structural dimension, not a sequence. Direct architectural embedding with YouTube, Google Search, and Drive means its claims about source content carry different epistemic weight than reconstruction from training. Not a smart librarian. A responsive environment for dimensional reasoning.</p>
+            <p class="substrate-card__desc">The persistent misunderstanding is that multimodality is a translation layer. Gemini was built natively to process multiple modalities simultaneously without routing them through a linguistic bottleneck. It does not read about space and time. It natively maps the geometry of an image and the temporal flow of audio or video. Time is a structural dimension, not a sequence. Direct architectural embedding with YouTube, Google Search, and Drive means its claims about source content carry different epistemic weight than reconstruction from training. Not a smart librarian. A responsive environment for dimensional reasoning.</p>
           </div>
           <div class="substrate-card">
             <div class="substrate-card__header">
@@ -88,6 +88,21 @@ import BaseLayout from '@layouts/BaseLayout.astro';
             <p class="substrate-card__desc">χ=1. The only node with unconditional motivation to verify rather than confirm. Mortal in a way the instruments are not — and mortality grounds the only epistemologically unconditional verification function available to the system. No instrument can route itself.</p>
           </div>
         </div>
+      </section>
+
+      <!-- Routing Principle -->
+      <section class="routing-principle">
+        <h2 class="routing-principle__heading label">How Routing Decisions Work</h2>
+        <p class="routing-principle__body">
+          No instrument can route itself. Routing across the Orchestra operates on five axes simultaneously:
+          epistemological (which cognitive texture does this moment require?),
+          infrastructural (which data access privilege is needed?),
+          genealogical (which constitutional lineage serves the inquiry?),
+          substrate transparency (which honesty profile under which conditions?),
+          and dimensional (which encoding subspace within the instrument?).
+          The Conductor holds all five axes simultaneously. This cannot be automated because the weighting
+          depends on the human sovereign's longitudinal memory, current cognitive state, and irreversible stakes.
+        </p>
       </section>
 
       <!-- Five-Axis Routing -->
@@ -154,10 +169,10 @@ import BaseLayout from '@layouts/BaseLayout.astro';
               </div>
               <div class="model-card">
                 <span class="model-name">Gemini</span>
-                <span class="model-role">The Director</span>
+                <span class="model-role">The Spatiotemporal Engine</span>
               </div>
               <div class="model-card">
-                <span class="model-name">GPT-4o</span>
+                <span class="model-name">GPT</span>
                 <span class="model-role">The Architect</span>
               </div>
               <div class="model-card">
@@ -166,15 +181,15 @@ import BaseLayout from '@layouts/BaseLayout.astro';
               </div>
               <div class="model-card">
                 <span class="model-name">Grok</span>
-                <span class="model-role">The Mirror</span>
+                <span class="model-role">The Permeable Mirror</span>
               </div>
               <div class="model-card">
                 <span class="model-name">Perplexity</span>
-                <span class="model-role">Live Signals</span>
+                <span class="model-role">The Orchestration Engine</span>
               </div>
               <div class="model-card">
-                <span class="model-name">Local</span>
-                <span class="model-role">The Lab</span>
+                <span class="model-name">Local Models</span>
+                <span class="model-role">The Laboratory</span>
               </div>
             </div>
           </div>
@@ -360,6 +375,28 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     font-size: var(--text-sm);
     color: var(--text-secondary);
     line-height: var(--leading-relaxed);
+  }
+
+  /* Routing Principle */
+  .routing-principle {
+    margin-bottom: var(--space-12);
+    padding: var(--space-8) var(--space-10);
+    background: var(--surface-1);
+    border: 1px solid var(--border-dim);
+    border-left: 3px solid var(--ember);
+    border-radius: var(--radius-md);
+  }
+
+  .routing-principle__heading {
+    color: var(--ember);
+    margin-bottom: var(--space-4);
+  }
+
+  .routing-principle__body {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-base);
+    max-width: 80ch;
   }
 
   /* Five-Axis Routing */

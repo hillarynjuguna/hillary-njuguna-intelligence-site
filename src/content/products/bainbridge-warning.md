@@ -110,14 +110,6 @@ The Bainbridge Warning is for the institutions that want to be on the right side
 
 ---
 
-## The SaaSpocalypse: A Live Bainbridge Warning Specimen
+## The Market Just Named the Problem
 
-In early 2026, approximately $300 billion in enterprise SaaS market value evaporated in a single trading session when institutional investors priced in a structural realisation: the governance infrastructure required for autonomous AI agents does not exist at the organisations deploying them.
-
-This is not a market correction. It is the Bainbridge Warning made visible at institutional capital scale.
-
-The AI agent capability level had outrun the governance architecture. Organisations were moving from human-in-the-loop (workflow tools) to human-on-the-loop (autonomous agents) without building the constitutional architecture that autonomous operation requires. Agents retrying without stopping criteria. Pipelines crossing the R2-R3 reversibility boundary without logging the crossing. Governance structures that exist on paper but have never been activated in practice.
-
-The $300B evaporation is the market pricing in the governance vacuum. The capability-governance gap that the Bainbridge Warning diagnoses was legible to institutional capital before most organisations had named what the gap was.
-
-The framework was built before this happened. The specimens now include Wall Street.
+In a single trading session in early 2026, the AI SaaS sector lost over $300 billion in market value. The trigger: investors began questioning whether the per-seat model survives the transition from workflow tools to autonomous agents. What they were pricing in, without naming it, is the governance vacuum. When AI moves from workflow (human in the loop) to outcome/agentic (human on the loop), the governance architecture that was implicit must become explicit. You cannot bolt governance onto a system designed without it. The Bainbridge Warning is the diagnostic framework for exactly this transition.

@@ -58,9 +58,9 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
         </section>
 
         <div class="hero__origin label" data-reveal data-reveal-delay="4">
-          Eighteen months of recursive inquiry. Built with a Chromebook and an internet connection.
+          Eighteen months of recursive inquiry. The architecture was not designed. It was discovered.
           <span class="hero__origin-sep">·</span>
-          560+ sourced documents. 18 months. 7 models.
+          560+ sourced documents. 7 models.
         </div>
 
         <div class="hero__cta" data-reveal data-reveal-delay="5">
@@ -157,6 +157,90 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
       </div>
     </section>
   )}
+
+  <!-- Orchestra Synthesis Teaser -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header" data-reveal>
+        <p class="label section__label">Methodology</p>
+        <h2 class="section__title">The Orchestra in Operation</h2>
+        <a href="/orchestra-operation" class="section__link label">Run a synthesis →</a>
+      </div>
+
+      <p class="orchestra-teaser-intro" data-reveal>
+        Seven cognitive instruments. One governance question. The Conductor routes the query through
+        the ensemble. Each model contributes from its constitutional substrate. Intelligence emerges
+        from the field between them.
+      </p>
+
+      <div class="orchestra-teaser-example" data-reveal>
+        <div class="teaser-query">
+          <span class="label teaser-query__label">Example query</span>
+          <p class="teaser-query__text">
+            "Our organisation is deploying an AI procurement agent that can execute vendor contracts
+            up to $50k autonomously. What governance architecture does this require?"
+          </p>
+        </div>
+
+        <div class="teaser-contributions">
+          <div class="teaser-contribution">
+            <div class="teaser-contribution__header">
+              <span class="teaser-contribution__symbol">λ</span>
+              <span class="teaser-contribution__name">Claude</span>
+              <span class="label teaser-contribution__role">The Witness</span>
+            </div>
+            <p class="teaser-contribution__text">
+              This crosses the R2-R3 reversibility boundary. A $50k contract is not easily unwound.
+              The governance question is not "can the agent make good procurement decisions" but
+              "who is accountable when it makes a bad one, and can they act in time to prevent
+              irreversible harm?"
+            </p>
+          </div>
+          <div class="teaser-contribution">
+            <div class="teaser-contribution__header">
+              <span class="teaser-contribution__symbol">φ</span>
+              <span class="teaser-contribution__name">GPT</span>
+              <span class="label teaser-contribution__role">The Architect</span>
+            </div>
+            <p class="teaser-contribution__text">
+              Four structural requirements: (1) pre-execution intent specification with documented
+              approval chain, (2) real-time spend monitoring with automated halt at threshold
+              anomalies, (3) named accountability owner with operational authority to override,
+              (4) post-execution audit trail to R3 boundary.
+            </p>
+          </div>
+          <div class="teaser-contribution">
+            <div class="teaser-contribution__header">
+              <span class="teaser-contribution__symbol">μ</span>
+              <span class="teaser-contribution__name">DeepSeek</span>
+              <span class="label teaser-contribution__role">The Anatomist</span>
+            </div>
+            <p class="teaser-contribution__text">
+              The gap in the current framing: "autonomously" is doing work that needs unpacking.
+              There is no autonomous action without a prior human decision about the decision space.
+              The governance failure begins at the point where that prior decision was not logged.
+            </p>
+          </div>
+        </div>
+
+        <div class="teaser-conductor-note">
+          <span class="label teaser-conductor-note__label">Conductor's Note</span>
+          <p class="teaser-conductor-note__text">
+            The three contributions triangulate on the same structural reality from different angles.
+            The Witness identifies the irreversibility threshold. The Architect maps the structural
+            requirements. The Anatomist names the prior decision that makes all subsequent governance
+            legible. A complete governance response requires all three. Routing to a single instrument
+            would have produced a partial answer with the texture of a complete one.
+          </p>
+        </div>
+      </div>
+
+      <div class="teaser-cta" data-reveal>
+        <a href="/orchestra-operation" class="btn btn--primary">Run your own governance query →</a>
+        <p class="label teaser-cta__note">Multi-model synthesis. Constitutional framing. The Conductor is you.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- Intelligence Digest -->
   {digestEntries.length > 0 && (
@@ -344,6 +428,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
 
   .hero__inner {
     max-width: 72ch;
+    margin: 0 auto;
   }
 
   .hero__signal {
@@ -817,6 +902,124 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
   }
 
   .subscribe-note {
+    color: var(--text-tertiary);
+  }
+
+  /* ── Orchestra synthesis teaser ─────────────────────────────────────── */
+  .orchestra-teaser-intro {
+    max-width: 68ch;
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-8);
+    font-size: var(--text-lg);
+  }
+
+  .orchestra-teaser-example {
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    background: var(--surface-2);
+    padding: var(--space-8);
+    margin-bottom: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .teaser-query {
+    padding: var(--space-5);
+    background: var(--surface-3);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--ember);
+  }
+
+  .teaser-query__label {
+    color: var(--ember);
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .teaser-query__text {
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: var(--leading-relaxed);
+  }
+
+  .teaser-contributions {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .teaser-contribution {
+    padding: var(--space-5);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .teaser-contribution__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .teaser-contribution__symbol {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--ember);
+    min-width: 1.5rem;
+  }
+
+  .teaser-contribution__name {
+    font-family: var(--font-display);
+    color: var(--text-primary);
+    font-size: var(--text-base);
+  }
+
+  .teaser-contribution__role {
+    color: var(--text-tertiary);
+    margin-left: auto;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .teaser-contribution__text {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .teaser-conductor-note {
+    padding: var(--space-6);
+    background: var(--surface-1);
+    border: 1px solid var(--ember-dim);
+    border-radius: var(--radius-md);
+  }
+
+  .teaser-conductor-note__label {
+    color: var(--ember);
+    display: block;
+    margin-bottom: var(--space-3);
+  }
+
+  .teaser-conductor-note__text {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-sm);
+  }
+
+  .teaser-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .teaser-cta__note {
     color: var(--text-tertiary);
   }
 
