@@ -3,6 +3,11 @@ import { NAV_LINKS } from '@data/navigation';
 import { SITE } from '@data/site';
 
 const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+}
 ---
 
 <header class="nav" id="site-nav">
@@ -16,19 +21,13 @@ const currentPath = Astro.url.pathname;
       {NAV_LINKS.map(({ label, href }) => (
         <a
           href={href}
-          class:list={['nav__link', { 'nav__link--active': currentPath.startsWith(href) }]}
-          aria-current={currentPath.startsWith(href) ? 'page' : undefined}
+          class:list={['nav__link', { 'nav__link--active': isActive(href) }]}
+          aria-current={isActive(href) ? 'page' : undefined}
         >
           {label}
         </a>
       ))}
     </nav>
-
-    <div class="nav__cta">
-      <a href="/contact" class="btn btn--ember nav__cta-btn">
-        Contact
-      </a>
-    </div>
 
     <button class="nav__burger" id="nav-burger" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -41,7 +40,6 @@ const currentPath = Astro.url.pathname;
       {NAV_LINKS.map(({ label, href }) => (
         <a href={href} class="nav__mobile-link">{label}</a>
       ))}
-      <a href="/contact" class="nav__mobile-link nav__mobile-link--cta">Contact</a>
     </nav>
   </div>
 </header>
@@ -129,15 +127,6 @@ const currentPath = Astro.url.pathname;
     border-bottom: 1px solid var(--ember);
   }
 
-  .nav__cta {
-    flex-shrink: 0;
-  }
-
-  .nav__cta-btn {
-    padding: var(--space-2) var(--space-4);
-    font-size: var(--text-xs);
-  }
-
   /* Burger */
   .nav__burger {
     display: none;
@@ -202,8 +191,7 @@ const currentPath = Astro.url.pathname;
   }
 
   @media (max-width: 768px) {
-    .nav__links,
-    .nav__cta {
+    .nav__links {
       display: none;
     }
 

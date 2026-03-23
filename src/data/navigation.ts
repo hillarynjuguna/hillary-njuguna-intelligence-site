@@ -1,26 +1,33 @@
 export const NAV_LINKS = [
+  { label: 'About', href: '/about' },
   { label: 'Research', href: '/research' },
+  { label: 'Tools', href: '/orchestra-operation' },
   { label: 'Products', href: '/products' },
-  { label: 'Diagnostic', href: '/bainbridge-diagnostic' },
-  { label: 'Assessment', href: '/cir-assessment' },
-  { label: 'Orchestra', href: '/orchestra-operation' },
-  { label: 'Digest', href: '/digest' },
-  { label: 'Corpus', href: '/corpus' },
+  { label: 'Contact', href: '/contact' },
 ] as const;
 
 export const FOOTER_LINKS = {
-  work: [
-    { label: 'Research', href: '/research' },
-    { label: 'Products', href: '/products' },
+  about: [
+    { label: 'About Oscillatory Fields', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+  ],
+  research: [
+    { label: 'Research Archive', href: '/research' },
+    { label: 'Intelligence Digest', href: '/digest' },
+    { label: 'Clauses', href: '/clauses' },
+  ],
+  tools: [
+    { label: 'The Orchestra', href: '/orchestra-operation' },
+    { label: 'Corpus', href: '/corpus' },
     { label: 'Bainbridge Diagnostic', href: '/bainbridge-diagnostic' },
     { label: 'CIR Assessment', href: '/cir-assessment' },
-    { label: 'The Orchestra', href: '/orchestra-operation' },
-    { label: 'Intelligence Digest', href: '/digest' },
   ],
-  engage: [
-    { label: 'Corpus', href: '/corpus' },
-    { label: 'Clauses', href: '/clauses' },
-    { label: 'Contact', href: '/contact' },
+  products: [
+    { label: 'Products', href: '/products' },
+    { label: 'Cognitive Infrastructure Readiness v2.0', href: '/products/cir' },
+    { label: 'The Bainbridge Warning', href: '/products/bainbridge-warning' },
+    { label: 'Martha Cohort Program', href: '/products/martha' },
+    { label: 'ClearBid', href: '/products/clearbid' },
   ],
   external: [
     { label: 'AcheType on Substack', href: 'https://substack.com/@achetype1' },
@@ -108,4 +115,12 @@ export const SERVICES = [
   },
 ] as const;
 
-export const TICKER_ITEMS = [] as const;
+export const TICKER_ITEMS = [
+  'CIR V2.0 LIVE',
+  'THE BAINBRIDGE WARNING SHIPPING MARCH 2026',
+  'AURORA NOW LIVE IN THE RESEARCH ARCHIVE',
+  '560+ SOURCED DOCUMENTS',
+  '18 MONTHS OF ACTIVE SYNTHESIS',
+  'THE ORCHESTRA, SEVEN AI MODELS WITH THE HUMAN AS CONDUCTOR',
+  'CONSTITUTIONAL GOVERNANCE IS STRUCTURE, NOT POLICY',
+] as const;

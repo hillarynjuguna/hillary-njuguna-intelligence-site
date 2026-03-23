@@ -19,6 +19,10 @@ const entries = await getAllResearchEntries();
           across distributed cognition, constitutional AI governance, and the design of
           intelligent institutional systems.
         </p>
+        <div class="page-links">
+          <a href="/digest" class="label page-link">Intelligence Digest</a>
+          <a href="/clauses" class="label page-link">Clauses</a>
+        </div>
       </header>
 
       {entries.length === 0 ? (
@@ -83,6 +87,22 @@ const entries = await getAllResearchEntries();
     font-size: var(--text-lg);
     color: var(--text-secondary);
     line-height: var(--leading-relaxed);
+  }
+
+  .page-links {
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    margin-top: var(--space-5);
+  }
+
+  .page-link {
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+
+  .page-link:hover {
+    color: var(--ember);
   }
 
   .research-list {

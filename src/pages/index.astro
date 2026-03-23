@@ -2,7 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import AudienceRouter from '@components/ui/AudienceRouter.astro';
 import { getFeaturedDigestEntries, getFeaturedResearch, getFeaturedProducts, getCurrentSignal, formatDate } from '@lib/content';
-import { SERVICES, ORCHESTRA_MODELS } from '@data/navigation';
+import { SERVICES, ORCHESTRA_MODELS, TICKER_ITEMS } from '@data/navigation';
 import { SITE } from '@data/site';
 
 const [digestEntries, researchEntries, products, signal] = await Promise.all([
@@ -58,6 +58,8 @@ const heroAssessmentResponses = {
       'The partial case is the most common and the most dangerous. Partial documentation creates the appearance of governance without its substance. The CIR assessment identifies which dimensions are covered and which are exposed.',
   },
 };
+
+const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
 ---
 
 <BaseLayout title={undefined} description={SITE.description}>
@@ -99,9 +101,9 @@ const heroAssessmentResponses = {
         </section>
 
         <div class="hero__origin label" data-reveal data-reveal-delay="4">
-          Eighteen months of recursive inquiry. Built with a Chromebook and an internet connection.
-          <span class="hero__origin-sep">·</span>
-          560+ sourced documents. 18 months. 7 models.
+          Eighteen months of recursive inquiry. The architecture was not designed. It was discovered.
+          <span class="hero__origin-sep">/</span>
+          560+ sourced documents. 7 models.
         </div>
 
         <div class="hero__links label" data-reveal data-reveal-delay="5">
@@ -127,6 +129,14 @@ const heroAssessmentResponses = {
     <AudienceRouter />
   </div>
 
+  <div class="ticker" aria-label="Current field signals">
+    <div class="ticker__inner">
+      {tickerItems.map((item, index) => (
+        <span class="ticker__item" aria-hidden={index >= TICKER_ITEMS.length}>{item}</span>
+      ))}
+    </div>
+  </div>
+
   <section class="section section--demo">
     <div class="container">
       <div class="section__header" data-reveal>
@@ -143,7 +153,7 @@ const heroAssessmentResponses = {
         <div class="demo-card__grid">
           {orchestraDemo.map((item) => (
             <article class="demo-contribution">
-              <p class="label demo-contribution__meta">{item.model} · {item.role}</p>
+              <p class="label demo-contribution__meta">{item.model} / {item.role}</p>
               <p>{item.insight}</p>
             </article>
           ))}
@@ -525,6 +535,39 @@ const heroAssessmentResponses = {
     text-transform: capitalize;
   }
 
+  .ticker {
+    border-top: 1px solid var(--border-dim);
+    border-bottom: 1px solid var(--border-dim);
+    background: var(--surface-2);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker__inner {
+    display: inline-flex;
+    gap: var(--space-8);
+    min-width: max-content;
+    padding: var(--space-3) 0;
+    animation: ticker-scroll 42s linear infinite;
+  }
+
+  .ticker__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding-left: var(--space-8);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ticker__item::before {
+    content: '•';
+    color: var(--ember);
+  }
+
   .section {
     padding: var(--space-24) 0;
   }
@@ -887,6 +930,16 @@ const heroAssessmentResponses = {
 
     .subscribe-btn {
       width: 100%;
+    }
+  }
+
+  @keyframes ticker-scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
     }
   }
 </style>

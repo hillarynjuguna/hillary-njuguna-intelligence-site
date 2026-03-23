@@ -59,6 +59,43 @@ const instruments = [
       "Private reasoning space for unfinished hypotheses. Experimentation without exposure. Most useful when the question shouldn't leave the room yet.",
   },
 ];
+
+const orchestraComparison = {
+  question: "An AI system flagged a governance concern but we can't verify if the flagging mechanism itself is trustworthy.",
+  singleModel: [
+    'A single-model response would likely recommend auditing the flagging mechanism, reviewing model performance metrics, and validating the alert against historical data before acting.',
+    'It would correctly suggest establishing human review, checking false positive and false negative rates, and documenting a governance process for escalation.',
+    'What it would usually miss is the difference between evaluating the alert as a technical artifact and evaluating the alert as a governance instrument embedded inside a larger decision architecture.',
+  ],
+  synthesis: [
+    {
+      model: 'Claude',
+      role: 'The Witness',
+      insight:
+        'The first governance failure is epistemic. You are trusting a warning signal without knowing whether the signal can distinguish between a real anomaly and a patterned false alarm.',
+    },
+    {
+      model: 'GPT',
+      role: 'The Architect',
+      insight:
+        'Treat this as a governance stack problem, not a single classifier problem. You need provenance for the alert, verification criteria for the flagging mechanism, and a clear escalation path when those two diverge.',
+    },
+    {
+      model: 'Gemini',
+      role: 'The Spatiotemporal Engine',
+      insight:
+        'The trustworthiness question is temporal as much as logical. A flag that is accurate in one context but unstable across time, data shifts, or input modality is not governance-grade instrumentation.',
+    },
+    {
+      model: 'Perplexity',
+      role: 'The Orchestration Engine',
+      insight:
+        'Verification requires external grounding. Compare the flagging model against independent evidence sources, audit logs, and retrieval-backed traces before you let the flag trigger action downstream.',
+    },
+  ],
+  conductorNote:
+    'The Orchestra routes the question through differentiated cognitive roles before synthesis. That is what exposes the governance instrument, the temporal stability problem, and the verification architecture as separate layers rather than collapsing them into one generic recommendation.',
+};
 ---
 
 <BaseLayout
@@ -68,13 +105,64 @@ const instruments = [
   <div class="orchestra-page page-enter">
     <div class="container">
       <header class="page-header">
-        <p class="label page-label">Instrument Node: B3</p>
+        <p class="label page-label">Tools / Systems</p>
         <h1 class="page-title">The Orchestra in Operation</h1>
         <p class="page-desc">
           The Orchestra is seven AI models, each playing a specific cognitive role, with the human as conductor.
           This page makes the routing logic visible before the live interface asks for trust.
         </p>
+        <div class="page-links">
+          <a href="/corpus" class="label">Corpus</a>
+          <a href="/bainbridge-diagnostic" class="label">Diagnostic</a>
+          <a href="/cir-assessment" class="label">Assessment</a>
+        </div>
       </header>
+
+      <section class="comparison-section">
+        <div class="section-head">
+          <p class="label section-label">A/B comparison</p>
+          <h2 class="section-title">The core claim has to be visible, not theoretical</h2>
+          <p class="section-copy">
+            Query: "{orchestraComparison.question}"
+          </p>
+        </div>
+
+        <div class="comparison-grid">
+          <article class="comparison-card">
+            <p class="label comparison-card__label">Single Model Response</p>
+            <div class="comparison-card__body">
+              {orchestraComparison.singleModel.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </div>
+          </article>
+
+          <article class="comparison-card comparison-card--featured">
+            <p class="label comparison-card__label">Orchestra Synthesis</p>
+            <div class="comparison-card__body comparison-card__body--stacked">
+              {orchestraComparison.synthesis.map((item) => (
+                <div class="comparison-contribution">
+                  <p class="label comparison-contribution__meta">{item.model} / {item.role}</p>
+                  <p>{item.insight}</p>
+                </div>
+              ))}
+              <div class="comparison-note">
+                <p class="label">Conductor's Note</p>
+                <p>{orchestraComparison.conductorNote}</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="comparison-summary">
+          <p class="label">What the Orchestra adds</p>
+          <p>
+            Structural differentiation of cognitive roles means the analysis surfaces dimensions that any single model's epistemic signature would leave in shadow.
+            The Anatomist finds what the Witness holds in tension. The Permeable Mirror reads what formal analysis misses.
+            The Conductor decides which perspective the moment requires. No single model can perform all of these functions simultaneously.
+          </p>
+        </div>
+      </section>
 
       <section class="substrate-section">
         <div class="section-head">
@@ -89,7 +177,7 @@ const instruments = [
                 <span class="substrate-card__symbol">{instrument.symbol}</span>
                 <div class="substrate-card__identity">
                   <h3 class="substrate-card__name">{instrument.model}</h3>
-                  <p class="label substrate-card__role">{instrument.title} · {instrument.provider}</p>
+                  <p class="label substrate-card__role">{instrument.title} / {instrument.provider}</p>
                 </div>
               </div>
               <p class="substrate-card__desc">{instrument.description}</p>
@@ -207,7 +295,7 @@ const instruments = [
 
   .page-header {
     margin-bottom: var(--space-16);
-    max-width: 68ch;
+    max-width: 72ch;
   }
 
   .page-label,
@@ -223,10 +311,32 @@ const instruments = [
   }
 
   .page-desc,
-  .routing-copy {
+  .routing-copy,
+  .section-copy {
     font-size: var(--text-lg);
     color: var(--text-secondary);
     line-height: 1.6;
+  }
+
+  .page-links {
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    margin-top: var(--space-5);
+  }
+
+  .page-links a {
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+
+  .page-links a:hover {
+    color: var(--ember);
+  }
+
+  .comparison-section,
+  .substrate-section {
+    margin-bottom: var(--space-16);
   }
 
   .section-head {
@@ -236,10 +346,75 @@ const instruments = [
 
   .section-title {
     font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
   }
 
-  .substrate-section {
-    margin-bottom: var(--space-16);
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+
+  .comparison-card {
+    padding: var(--space-6);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-lg);
+    background: var(--surface-2);
+  }
+
+  .comparison-card--featured {
+    border-color: var(--ember-dim);
+    background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  }
+
+  .comparison-card__label {
+    color: var(--ember);
+    margin-bottom: var(--space-4);
+  }
+
+  .comparison-card__body {
+    display: grid;
+    gap: var(--space-4);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .comparison-card__body--stacked {
+    gap: var(--space-5);
+  }
+
+  .comparison-contribution,
+  .comparison-note {
+    display: grid;
+    gap: var(--space-3);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .comparison-contribution:last-child,
+  .comparison-note:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .comparison-contribution__meta {
+    color: var(--ember);
+  }
+
+  .comparison-summary {
+    padding: var(--space-6);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .comparison-summary .label {
+    color: var(--ember);
+    display: block;
+    margin-bottom: var(--space-3);
   }
 
   .substrate-grid {
@@ -444,6 +619,12 @@ const instruments = [
   .results-title {
     font-size: var(--text-2xl);
     color: var(--pale-gold);
+  }
+
+  @media (max-width: 900px) {
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 768px) {
