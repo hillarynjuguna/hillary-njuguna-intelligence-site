@@ -39,46 +39,17 @@ npm run build
 ```
 
 ---
+## Everything that matters lives in `src/content/`. 
 
-## Adding content
+No HTML editing required. The site is a **Sovereign Cognitive Node** powered by a multi-model reasoning substrate.
 
-**Everything that matters lives in `src/content/`.** No HTML editing required.
+### Core Collections
 
-### Add a new Digest entry
-
-Create a file at `src/content/digest/your-entry-slug.md`:
-
-```markdown
----
-title: "Your Entry Title"
-summary: "One sentence summary for SEO and card display."
-publishedAt: 2026-03-15
-tags: ["tag1", "tag2"]
-category: "Field Notes"
-featured: false
-draft: false
----
-
-Your content here in markdown.
-```
-
-Push → Vercel auto-deploys → entry appears at `/digest/your-entry-slug`.
-
-### Add a new Research entry
-
-Create `src/content/research/your-slug.md` with the same pattern. Required frontmatter fields: `title`, `summary`, `publishedAt`. Optional: `tags`, `themes`, `concepts`, `featured`, `related`.
-
-### Add a new Product page
-
-Create `src/content/products/your-slug.md`. Required: `title`, `summary`, `productType`, `status`. Status options: `live`, `development`, `waitlist`, `coming-soon`.
-
-### Add a Clause candidate
-
-Create `src/content/clauses/your-slug.md`. Required: `title`, `clauseText`, `generatedAt`, `status`.
-
-### Update the current signal / hero status
-
-Edit `src/content/signals/current-state.json` — no code change, just update the JSON.
+*   **Research (`/research`)**: The theoretical corpus. Includes the **Lexicon** series (e.g., #4 Activation Intelligence & Calibration) and foundational frameworks like **DCFB** and **Martha**.
+*   **Products (`/products`)**: Practical deployments of the research. Currently featuring the **GTM Engine** (Activation Intelligence for F&B).
+*   **Digest (`/digest`)**: Real-time field reports and sitreps. See **Field Dispatch #01: Sovereign Calibration**.
+*   **Clauses (`/clauses`)**: The governance layer. Formal rules for agentic behavior and substrate-agnostic execution.
+*   **Signals (`/signals`)**: High-level status and current cognitive focus.
 
 ---
 
@@ -86,20 +57,13 @@ Edit `src/content/signals/current-state.json` — no code change, just update th
 
 | Route | Purpose |
 |-------|---------|
-| `/` | Landing — hero, signal, featured content |
-| `/research` | Research index |
-| `/research/[slug]` | Individual research entries |
-| `/products` | Product index |
-| `/products/[slug]` | Individual product pages |
-| `/digest` | Intelligence Digest feed |
-| `/digest/[slug]` | Individual digest entries |
-| `/orchestra` | The 7-model methodology |
-| `/corpus` | AI corpus interaction |
-| `/clauses` | Governance clause archive |
-| `/contact` | Contact form |
-| `/rss.xml` | RSS feed (Digest) |
-| `/sitemap-index.xml` | Sitemap |
-| `/search.json` | Machine-readable content index |
+| `/` | Landing — Sovereign Signal and Calibration Status |
+| `/research` | The Lexicon and Theoretical Frameworks |
+| `/products` | Activation Intelligence Engine Deployments |
+| `/digest` | Field Dispatches and Practitioner Briefs |
+| `/orchestra` | The 7-model Recursive Reasoning methodology |
+| `/corpus` | Sovereign Memory Layer interaction |
+| `/clauses` | Governance and Constitutional Archive |
 
 ---
 
@@ -147,18 +111,6 @@ Generated in `src/components/seo/SEOHead.astro` and `src/lib/seo.ts`.
 - Machine-readable content index at `/search.json`
 
 To update site-wide defaults: edit `src/data/site.ts`.
-
----
-
-## Comments hooks
-
-Comments are architected for future integration — not yet active.
-
-When ready to add:
-1. Choose: Giscus (simplest), Supabase-backed custom, or serverless custom
-2. Create `src/components/comments/Comments.astro` with the integration
-3. Add to `ContentLayout.astro` and `DigestLayout.astro`
-4. The AI synthesis endpoint can optionally respond to comments if extended
 
 ---
 
@@ -211,5 +163,5 @@ src/
 
 ---
 
-*Built from a hostel in Kuala Lumpur with a Chromebook and an internet connection.*
-*560+ sourced documents. 18 months. 7 models. Oscillatory Fields — February 2026.*
+*Built from a local-first sovereign node in Kuala Lumpur.*
+*600+ sourced documents. Recursive calibration. 7 models. Hillary Njuguna — March 2026.*

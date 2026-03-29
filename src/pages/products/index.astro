@@ -81,8 +81,15 @@ const products = await getAllProducts();
 
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-5);
+    max-width: 900px;
+  }
+
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .product-card {
@@ -90,16 +97,18 @@ const products = await getAllProducts();
     flex-direction: column;
     gap: var(--space-4);
     padding: var(--space-7);
-    border: 1px solid var(--border-mid);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: var(--radius-md);
     text-decoration: none;
-    background: var(--surface-2);
+    background: rgba(255, 255, 255, 0.015);
+    backdrop-filter: blur(12px);
     transition: all var(--duration-mid) var(--ease-out);
   }
 
   .product-card:hover {
-    border-color: var(--ember-dim);
-    background: var(--surface-3);
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-2px);
   }
 
   .product-card__header {
@@ -139,6 +148,11 @@ const products = await getAllProducts();
   }
 
   .product-card__cta {
-    color: var(--ember);
+    color: var(--text-tertiary);
+    transition: color 0.2s ease;
+  }
+  
+  .product-card:hover .product-card__cta {
+    color: var(--pale-gold);
   }
 </style>

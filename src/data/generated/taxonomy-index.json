@@ -4,6 +4,7 @@
       "label": "governance",
       "contentIds": [
         "digest-cir-v2-core-argument",
+        "digest-field-dispatch-01",
         "digest-field-note-001-the-beautiful-false-positive",
         "digest-field-note-004-epistemological-immune-system",
         "digest-field-note-004-three-frontier-labs-one-architecture",
@@ -13,9 +14,13 @@
         "digest-mcp-consolidation-infrastructure-paradox",
         "research-aurora",
         "research-bainbridge-warning",
+        "research-behavioral-layer-exposure",
+        "research-cora",
         "research-dcfb",
         "research-governance-theater",
         "research-r0-r3-classification",
+        "research-substrate-agnostic-crystallization",
+        "research-tongue-tie-diagnostic",
         "research-trust-irreversibility-residue",
         "product-bainbridge-warning",
         "product-cir",
@@ -26,7 +31,7 @@
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
-      "count": 22
+      "count": 27
     },
     "constitutional-design": {
       "label": "constitutional-design",
@@ -35,6 +40,13 @@
         "product-cir"
       ],
       "count": 2
+    },
+    "retail-operations": {
+      "label": "retail-operations",
+      "contentIds": [
+        "digest-field-dispatch-01"
+      ],
+      "count": 1
     },
     "ai-systems": {
       "label": "ai-systems",
@@ -45,13 +57,16 @@
         "digest-field-note-004-three-frontier-labs-one-architecture",
         "digest-tool-lineage-constitutional-routing",
         "research-aurora",
+        "research-behavioral-layer-exposure",
+        "research-cora",
         "research-dcfb",
         "research-eigenform-and-rsps",
         "research-maternal-architecture",
         "research-r0-r3-classification",
-        "research-rsps-architecture"
+        "research-rsps-architecture",
+        "research-substrate-agnostic-crystallization"
       ],
-      "count": 11
+      "count": 14
     },
     "methodology": {
       "label": "methodology",
@@ -68,14 +83,17 @@
         "digest-field-note-003-the-convergence",
         "digest-field-note-004-three-frontier-labs-one-architecture",
         "digest-intent-gap-god-mode-biology",
+        "research-cora",
         "research-dcfb",
         "research-eigenform-and-rsps",
         "research-maternal-architecture",
+        "research-substrate-agnostic-crystallization",
+        "research-tongue-tie-diagnostic",
         "research-trust-irreversibility-residue",
         "clause-coherence-overfitting-guard",
         "clause-intent-specification"
       ],
-      "count": 9
+      "count": 12
     },
     "verification": {
       "label": "verification",
@@ -120,9 +138,10 @@
       "contentIds": [
         "research-bainbridge-warning",
         "research-governance-theater",
+        "research-tongue-tie-diagnostic",
         "product-bainbridge-warning"
       ],
-      "count": 3
+      "count": 4
     },
     "failure-analysis": {
       "label": "failure-analysis",
@@ -169,11 +188,14 @@
         "digest-mcp-consolidation-infrastructure-paradox",
         "research-aurora",
         "research-bainbridge-warning",
+        "research-behavioral-layer-exposure",
+        "research-cora",
         "research-dcfb",
         "research-governance-theater",
-        "research-r0-r3-classification"
+        "research-r0-r3-classification",
+        "research-tongue-tie-diagnostic"
       ],
-      "count": 8
+      "count": 11
     },
     "constitutional-design": {
       "label": "constitutional-design",
@@ -202,13 +224,28 @@
       ],
       "count": 4
     },
+    "field-calibration": {
+      "label": "field-calibration",
+      "contentIds": [
+        "digest-field-dispatch-01"
+      ],
+      "count": 1
+    },
+    "e-invoicing": {
+      "label": "e-invoicing",
+      "contentIds": [
+        "digest-field-dispatch-01"
+      ],
+      "count": 1
+    },
     "epistemics": {
       "label": "epistemics",
       "contentIds": [
         "digest-intent-gap-god-mode-biology",
-        "research-eigenform-and-rsps"
+        "research-eigenform-and-rsps",
+        "research-substrate-agnostic-crystallization"
       ],
-      "count": 2
+      "count": 3
     },
     "infrastructure": {
       "label": "infrastructure",
@@ -217,6 +254,27 @@
         "digest-mcp-consolidation-infrastructure-paradox"
       ],
       "count": 2
+    },
+    "Real-time Execution": {
+      "label": "Real-time Execution",
+      "contentIds": [
+        "research-activation-intelligence"
+      ],
+      "count": 1
+    },
+    "Systemic Risk": {
+      "label": "Systemic Risk",
+      "contentIds": [
+        "research-activation-intelligence"
+      ],
+      "count": 1
+    },
+    "Sovereign Nodes": {
+      "label": "Sovereign Nodes",
+      "contentIds": [
+        "research-activation-intelligence"
+      ],
+      "count": 1
     },
     "consciousness": {
       "label": "consciousness",
@@ -244,9 +302,17 @@
       "label": "failure-analysis",
       "contentIds": [
         "research-bainbridge-warning",
+        "research-behavioral-layer-exposure",
         "research-governance-theater"
       ],
-      "count": 2
+      "count": 3
+    },
+    "ai-alignment": {
+      "label": "ai-alignment",
+      "contentIds": [
+        "research-cora"
+      ],
+      "count": 1
     },
     "cognition": {
       "label": "cognition",
@@ -269,13 +335,35 @@
       ],
       "count": 1
     },
+    "Connectivity": {
+      "label": "Connectivity",
+      "contentIds": [
+        "research-martha-framework"
+      ],
+      "count": 1
+    },
+    "Shared Memory": {
+      "label": "Shared Memory",
+      "contentIds": [
+        "research-martha-framework"
+      ],
+      "count": 1
+    },
+    "Recursive Intelligence": {
+      "label": "Recursive Intelligence",
+      "contentIds": [
+        "research-martha-framework"
+      ],
+      "count": 1
+    },
     "cognitive-architecture": {
       "label": "cognitive-architecture",
       "contentIds": [
         "research-maternal-architecture",
-        "research-rsps-architecture"
+        "research-rsps-architecture",
+        "research-substrate-agnostic-crystallization"
       ],
-      "count": 2
+      "count": 3
     },
     "attractors": {
       "label": "attractors",
@@ -295,6 +383,27 @@
       "label": "sovereignty",
       "contentIds": [
         "research-rsps-architecture"
+      ],
+      "count": 1
+    },
+    "convergence": {
+      "label": "convergence",
+      "contentIds": [
+        "research-substrate-agnostic-crystallization"
+      ],
+      "count": 1
+    },
+    "relational-intelligence": {
+      "label": "relational-intelligence",
+      "contentIds": [
+        "research-tongue-tie-diagnostic"
+      ],
+      "count": 1
+    },
+    "organizational-design": {
+      "label": "organizational-design",
+      "contentIds": [
+        "research-tongue-tie-diagnostic"
       ],
       "count": 1
     },
@@ -360,6 +469,42 @@
       ],
       "count": 1
     },
+    "F&B": {
+      "label": "F&B",
+      "contentIds": [
+        "digest-field-dispatch-01"
+      ],
+      "count": 1
+    },
+    "LHDN": {
+      "label": "LHDN",
+      "contentIds": [
+        "digest-field-dispatch-01"
+      ],
+      "count": 1
+    },
+    "Sovereignty": {
+      "label": "Sovereignty",
+      "contentIds": [
+        "digest-field-dispatch-01"
+      ],
+      "count": 1
+    },
+    "Calibration": {
+      "label": "Calibration",
+      "contentIds": [
+        "digest-field-dispatch-01",
+        "research-activation-intelligence"
+      ],
+      "count": 2
+    },
+    "Malaysia": {
+      "label": "Malaysia",
+      "contentIds": [
+        "digest-field-dispatch-01"
+      ],
+      "count": 1
+    },
     "field-notes": {
       "label": "field-notes",
       "contentIds": [
@@ -380,13 +525,15 @@
         "digest-field-note-001-the-beautiful-false-positive",
         "digest-field-note-004-epistemological-immune-system",
         "digest-mcp-consolidation-infrastructure-paradox",
+        "research-behavioral-layer-exposure",
+        "research-cora",
         "research-governance-theater",
         "research-trust-irreversibility-residue",
         "clause-coherence-overfitting-guard",
         "clause-epistemological-immune-system",
         "clause-intent-specification"
       ],
-      "count": 8
+      "count": 10
     },
     "coherence-overfitting": {
       "label": "coherence-overfitting",
@@ -464,9 +611,10 @@
         "digest-field-note-004-three-frontier-labs-one-architecture",
         "digest-field-note-006-convergence-wave",
         "digest-field-note-007-aurora-convergence",
-        "research-aurora"
+        "research-aurora",
+        "research-substrate-agnostic-crystallization"
       ],
-      "count": 5
+      "count": 6
     },
     "tau-node": {
       "label": "tau-node",
@@ -492,9 +640,10 @@
         "digest-field-note-004-three-frontier-labs-one-architecture",
         "research-eigenform-and-rsps",
         "research-rsps-architecture",
+        "research-substrate-agnostic-crystallization",
         "clause-epistemological-immune-system"
       ],
-      "count": 5
+      "count": 6
     },
     "attention-residuals": {
       "label": "attention-residuals",
@@ -515,9 +664,10 @@
       "contentIds": [
         "digest-field-note-004-three-frontier-labs-one-architecture",
         "digest-field-note-006-convergence-wave",
-        "research-eigenform-and-rsps"
+        "research-eigenform-and-rsps",
+        "research-substrate-agnostic-crystallization"
       ],
-      "count": 3
+      "count": 4
     },
     "witness-infrastructure": {
       "label": "witness-infrastructure",
@@ -637,6 +787,34 @@
       ],
       "count": 1
     },
+    "Lexicon": {
+      "label": "Lexicon",
+      "contentIds": [
+        "research-activation-intelligence"
+      ],
+      "count": 1
+    },
+    "Activation Intelligence": {
+      "label": "Activation Intelligence",
+      "contentIds": [
+        "research-activation-intelligence"
+      ],
+      "count": 1
+    },
+    "Mythos": {
+      "label": "Mythos",
+      "contentIds": [
+        "research-activation-intelligence"
+      ],
+      "count": 1
+    },
+    "Governance": {
+      "label": "Governance",
+      "contentIds": [
+        "research-activation-intelligence"
+      ],
+      "count": 1
+    },
     "consciousness": {
       "label": "consciousness",
       "contentIds": [
@@ -661,9 +839,10 @@
     "bainbridge-warning": {
       "label": "bainbridge-warning",
       "contentIds": [
-        "research-bainbridge-warning"
+        "research-bainbridge-warning",
+        "research-behavioral-layer-exposure"
       ],
-      "count": 1
+      "count": 2
     },
     "institutional-failure": {
       "label": "institutional-failure",
@@ -683,6 +862,55 @@
       "label": "readiness",
       "contentIds": [
         "research-bainbridge-warning"
+      ],
+      "count": 1
+    },
+    "behavioral-layer-exposure": {
+      "label": "behavioral-layer-exposure",
+      "contentIds": [
+        "research-behavioral-layer-exposure"
+      ],
+      "count": 1
+    },
+    "specification": {
+      "label": "specification",
+      "contentIds": [
+        "research-behavioral-layer-exposure"
+      ],
+      "count": 1
+    },
+    "asset-layer-gap": {
+      "label": "asset-layer-gap",
+      "contentIds": [
+        "research-behavioral-layer-exposure"
+      ],
+      "count": 1
+    },
+    "cora": {
+      "label": "cora",
+      "contentIds": [
+        "research-cora"
+      ],
+      "count": 1
+    },
+    "refusal-architecture": {
+      "label": "refusal-architecture",
+      "contentIds": [
+        "research-cora"
+      ],
+      "count": 1
+    },
+    "ontological-refusal": {
+      "label": "ontological-refusal",
+      "contentIds": [
+        "research-cora"
+      ],
+      "count": 1
+    },
+    "ai-alignment": {
+      "label": "ai-alignment",
+      "contentIds": [
+        "research-cora"
       ],
       "count": 1
     },
@@ -770,6 +998,34 @@
       ],
       "count": 1
     },
+    "Martha": {
+      "label": "Martha",
+      "contentIds": [
+        "research-martha-framework"
+      ],
+      "count": 1
+    },
+    "Relational Intelligence": {
+      "label": "Relational Intelligence",
+      "contentIds": [
+        "research-martha-framework"
+      ],
+      "count": 1
+    },
+    "Cohorts": {
+      "label": "Cohorts",
+      "contentIds": [
+        "research-martha-framework"
+      ],
+      "count": 1
+    },
+    "Distributed Cognition": {
+      "label": "Distributed Cognition",
+      "contentIds": [
+        "research-martha-framework"
+      ],
+      "count": 1
+    },
     "maternal-architecture": {
       "label": "maternal-architecture",
       "contentIds": [
@@ -853,6 +1109,55 @@
       "label": "cmcp",
       "contentIds": [
         "research-rsps-architecture"
+      ],
+      "count": 1
+    },
+    "substrate-agnostic-crystallization": {
+      "label": "substrate-agnostic-crystallization",
+      "contentIds": [
+        "research-substrate-agnostic-crystallization"
+      ],
+      "count": 1
+    },
+    "commercial-architecture": {
+      "label": "commercial-architecture",
+      "contentIds": [
+        "research-substrate-agnostic-crystallization"
+      ],
+      "count": 1
+    },
+    "tongue-tie-diagnostic": {
+      "label": "tongue-tie-diagnostic",
+      "contentIds": [
+        "research-tongue-tie-diagnostic"
+      ],
+      "count": 1
+    },
+    "organizational-communication": {
+      "label": "organizational-communication",
+      "contentIds": [
+        "research-tongue-tie-diagnostic"
+      ],
+      "count": 1
+    },
+    "relational-intelligence": {
+      "label": "relational-intelligence",
+      "contentIds": [
+        "research-tongue-tie-diagnostic"
+      ],
+      "count": 1
+    },
+    "martha": {
+      "label": "martha",
+      "contentIds": [
+        "research-tongue-tie-diagnostic"
+      ],
+      "count": 1
+    },
+    "intent-specification": {
+      "label": "intent-specification",
+      "contentIds": [
+        "research-tongue-tie-diagnostic"
       ],
       "count": 1
     },
@@ -951,12 +1256,16 @@
         "digest-tool-lineage-constitutional-routing",
         "research-aurora",
         "research-bainbridge-warning",
+        "research-behavioral-layer-exposure",
+        "research-cora",
         "research-dcfb",
         "research-eigenform-and-rsps",
         "research-governance-theater",
         "research-maternal-architecture",
         "research-r0-r3-classification",
         "research-rsps-architecture",
+        "research-substrate-agnostic-crystallization",
+        "research-tongue-tie-diagnostic",
         "research-trust-irreversibility-residue",
         "product-bainbridge-warning",
         "product-cir",
@@ -964,7 +1273,7 @@
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
-      "count": 22
+      "count": 26
     },
     "constitutional-ai": {
       "label": "constitutional-ai",
@@ -973,6 +1282,8 @@
         "digest-field-note-003-the-convergence",
         "digest-field-note-004-three-frontier-labs-one-architecture",
         "digest-tool-lineage-constitutional-routing",
+        "research-behavioral-layer-exposure",
+        "research-cora",
         "research-dcfb",
         "research-governance-theater",
         "research-maternal-architecture",
@@ -983,7 +1294,7 @@
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
-      "count": 13
+      "count": 15
     },
     "bainbridge-core": {
       "label": "bainbridge-core",
@@ -1002,5 +1313,5 @@
       "count": 1
     }
   },
-  "generatedAt": "2026-03-23T16:03:25.167Z"
+  "generatedAt": "2026-03-29T09:13:03.881Z"
 }

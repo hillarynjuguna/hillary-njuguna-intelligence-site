@@ -1,0 +1,841 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const veins = [
+  {
+    id: 1,
+    name: "The Bainbridge Warning Manuscript",
+    slug: "bainbridge-manuscript",
+    desc: "The foundational constitutional primitives — constitutional AI fabric, TLEP protocol, and the ratification doctrine.",
+    icon: "🏛️",
+    status: "seeded",
+    count: "22 docs",
+    notion: "Vein 1",
+    folder: "1_The_Bainbridge_Warning_Manuscript"
+  },
+  {
+    id: 2,
+    name: "RSPS / RRI Starter Repository",
+    slug: "rsps-rri",
+    desc: "Operative engines: HOT SDC v4.2, ContextPacket schema, ThreadIntelligence, Colab manifests, and ANTIGRAVITY conversations.",
+    icon: "⚙️",
+    status: "active",
+    count: "HOT_SDC_Engine live",
+    notion: "Vein 2",
+    folder: "2_The_RSPS_RRI_Starter_Repository"
+  },
+  {
+    id: 3,
+    name: "Cross-Model Conversation Archives",
+    slug: "conversation-archives",
+    desc: "Claude, DeepSeek, Grok, and GPT dialogue exports. Cross-model synthesis artifacts. Phone intelligence harvested via ADB.",
+    icon: "🗣️",
+    status: "active",
+    count: "Chat Exports + ADB",
+    notion: "Vein 3",
+    folder: "3_The_Archival_And_Synthesis_Layer"
+  },
+  {
+    id: 4,
+    name: "Academic Papers",
+    slug: "academic-papers",
+    desc: "The curated research corpus — peer-reviewed sources, whitepapers, and epistemic foundation documents.",
+    icon: "📚",
+    status: "seeded",
+    count: "research-corpus",
+    notion: "Vein 4",
+    folder: "4_The_Curated_Academic_Corpus"
+  },
+  {
+    id: 5,
+    name: "Phenomenological Corpus",
+    slug: "phenomenological-corpus",
+    desc: "Phone intelligence harvest (149 artifacts), NotebookLM audio sessions, personal synthesis documents, and somatic field readings.",
+    icon: "🌊",
+    status: "active",
+    count: "149 artifacts",
+    notion: "Vein 5",
+    folder: "5_The_Phenomenological_Corpus"
+  },
+  {
+    id: 6,
+    name: "Astrocartography Cognitive Operating System",
+    slug: "astrocartography-cos",
+    desc: "All market-facing deployments: Agent SEA, witness-android, CE-Ledger, Hila Intelligence Site, Business & Strategy.",
+    icon: "🛰️",
+    status: "live",
+    count: "5+ repos",
+    notion: "Vein 6",
+    folder: "6_The_Astrocartography_Cognitive_Operating_System"
+  },
+  {
+    id: 7,
+    name: "Theological / AOD + GHC Corpus",
+    slug: "theological-corpus",
+    desc: "The AOD framework, Ghost-Headcount theory, and theological architecture underpinning the sovereign field.",
+    icon: "🔭",
+    status: "seeded",
+    count: "Initialised",
+    notion: "Vein 7",
+    folder: "7_Theological_AOD_And_GHC_Corpus"
+  },
+];
+
+const activeProjects = [
+  { name: "HOT SDC Engine v4.2", path: "2_The_RSPS_RRI_Starter_Repository/HOT_SDC_Engine", status: "live", link: "/orchestra-operation" },
+  { name: "Hillary Intelligence Site", path: "Projects/hillary-njuguna-intelligence-site", status: "live", link: "/" },
+  { name: "Agent SEA Platform", path: "Projects/agent-sea-platform", status: "live", link: "https://github.com/kebabken8-lang/agent-sea-platform" },
+  { name: "witness-android", path: "6_The_Astrocartography_Cognitive_Operating_System/witness-android", status: "dev", link: null },
+  { name: "CE-Ledger", path: "Projects/CE-Ledger", status: "dev", link: null },
+  { name: "funnel-landing (Tapau)", path: "Projects/funnel-landing", status: "dev", link: null },
+];
+
+const notionLinks = [
+  { label: "Witness Infrastructure HQ", url: "https://notion.so/323eb86f-d1b0-8111-b421-d1120619e988", icon: "🧠" },
+  { label: "Content Calendar", url: "https://www.notion.so", icon: "📅" },
+  { label: "Corpus Map — 7-Vein Survey", url: "https://www.notion.so", icon: "🗺️" },
+];
+
+const engineMetrics = [
+  { label: "Ache Vector Dimensions", val: "5", sub: "E · A · D · T · Φ" },
+  { label: "Context Packet Schema", val: "v2.0", sub: "Pydantic v2 validated" },
+  { label: "Vein Count", val: "7", sub: "Perfectly aligned with Notion" },
+  { label: "Phone Artifacts Harvested", val: "149", sub: "From ADB S21 pull" },
+];
+---
+
+<BaseLayout title="Sovereign Ops — Hillary Njuguna" description="The unified command surface for the Sovereign Cognitive Node. Monitor the 7-Vein Knowledge Spine, active engines, and Notion deployment boundary.">
+
+  <section class="ops-hero">
+    <div class="container">
+      <div class="ops-hero__inner">
+        <div class="ops-status-badge">
+          <span class="ops-pulse"></span>
+          <span class="label">Sovereign Node — Operational</span>
+        </div>
+        <h1 class="ops-headline">Sovereign Ops<br /><span class="ops-headline--sub">Command Surface</span></h1>
+        <p class="ops-desc">
+          The unified cognitive dashboard. The local Knowledge Spine, the HOT SDC Engine,
+          and the Notion public boundary — wired into one view.
+        </p>
+        <div class="ops-timestamp label">
+          Last restructured: 2026-03-25 | Local node: <code>G:\My Drive\RSPS Knowledge Spine</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="metrics-row">
+        {engineMetrics.map(m => (
+          <div class="metric-card">
+            <span class="metric-card__val">{m.val}</span>
+            <span class="metric-card__label label">{m.label}</span>
+            <span class="metric-card__sub label">{m.sub}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section__header" data-reveal>
+        <p class="label section__label">Knowledge Spine</p>
+        <h2 class="section__title">The 7-Vein Cartographic Survey</h2>
+        <span class="ops-aligned label">✓ Aligned with Notion HQ</span>
+      </div>
+
+      <div class="veins-grid">
+        {veins.map(vein => (
+          <button class={`vein-card vein-card--${vein.status} open-local-btn`} data-path={vein.folder} aria-label={`Open ${vein.name} in Explorer`}>
+            <div class="vein-card__header">
+              <span class="vein-card__icon">{vein.icon}</span>
+              <span class="vein-card__num label">Vein {vein.id}</span>
+              <span class={`vein-badge vein-badge--${vein.status} label`}>{vein.status}</span>
+            </div>
+            <h3 class="vein-card__name">{vein.name}</h3>
+            <p class="vein-card__desc">{vein.desc}</p>
+            <div class="vein-card__footer label">
+              <span class="vein-card__count">{vein.count}</span>
+              <span class="vein-card__notion">Notion: {vein.notion}</span>
+            </div>
+            <div class="vein-card__hover-cmd label ops-dim">Click to open native folder ↗</div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="ops-two-col">
+
+        <div>
+          <div class="section__header" data-reveal>
+            <p class="label section__label">Active Projects</p>
+            <h2 class="section__title">Live Deployments</h2>
+          </div>
+          <div class="projects-list">
+            {activeProjects.map(p => (
+              <div class="project-row">
+                <div class="project-row__left">
+                  <span class={`project-dot project-dot--${p.status}`}></span>
+                  <div>
+                    <p class="project-row__name">{p.name}</p>
+                    <code class="project-row__path label">{p.path}</code>
+                  </div>
+                </div>
+                {p.link ? (
+                  <a href={p.link} class="project-row__link label" target={p.link.startsWith("http") ? "_blank" : "_self"}>
+                    {p.link.startsWith("http") ? "GitHub" : "Open"}
+                  </a>
+                ) : (
+                  <span class="project-row__link label ops-dim">local only</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div class="section__header" data-reveal>
+            <p class="label section__label">Public Boundary</p>
+            <h2 class="section__title">Notion HQ Links</h2>
+          </div>
+          <div class="notion-list">
+            {notionLinks.map(n => (
+              <a href={n.url} target="_blank" rel="noopener noreferrer" class="notion-row">
+                <span class="notion-row__icon">{n.icon}</span>
+                <span class="notion-row__label">{n.label}</span>
+                <span class="notion-row__arrow label">↗</span>
+              </a>
+            ))}
+          </div>
+
+          <div class="hot-engine-card">
+            <div class="hot-engine-card__header">
+              <span class="label">HOT SDC Engine v5.0</span>
+              <span class="hot-status label">● Running</span>
+            </div>
+            <p class="hot-engine-card__desc">
+              Hybrid Operator Toolkit — the Sovereign Interface. Accepts Ache Vectors and calibrates
+              Split-Brain pipeline decisions via triadic council logic.
+            </p>
+            <div class="hot-engine-card__cmd">
+              <code>python main_hot_cli.py</code>
+            </div>
+            <button id="launch-engine-btn" class="btn btn--primary" style="margin-top: 1rem;">
+              Launch Interactive Engine (CLI)
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section__header" data-reveal>
+        <p class="label section__label">Architecture</p>
+        <h2 class="section__title">The Node Topology</h2>
+      </div>
+      <div class="topology-diagram" data-reveal>
+        <div class="topo-layer topo-layer--public">
+          <p class="label topo-layer__label">Public Boundary</p>
+          <div class="topo-nodes">
+            <div class="topo-node">Notion HQ<br /><span class="label">Deployment Brain</span></div>
+            <div class="topo-node">Intelligence Site<br /><span class="label">hillaryn.site</span></div>
+            <div class="topo-node">Agent SEA<br /><span class="label">GitHub</span></div>
+          </div>
+        </div>
+        <div class="topo-bridge">
+          <span class="topo-bridge__line"></span>
+          <span class="label topo-bridge__label">Sync Boundary</span>
+          <span class="topo-bridge__line"></span>
+        </div>
+        <div class="topo-layer topo-layer--local">
+          <p class="label topo-layer__label">Local Inference Space</p>
+          <div class="topo-nodes">
+            <div class="topo-node topo-node--primary">HOT SDC Engine<br /><span class="label">Ache Spectrometer</span></div>
+            <div class="topo-node topo-node--primary">7-Vein Knowledge Spine<br /><span class="label">Local Sovereign Store</span></div>
+            <div class="topo-node topo-node--primary">ADB Phone Harvest<br /><span class="label">149 artifacts</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="ops-footer">
+    <div class="container">
+      <div class="ops-footer__grid">
+        <div class="ops-footer__col">
+          <p class="label" style="color: var(--ember); margin-bottom: 0.5rem;">System Capabilities</p>
+          <p style="color: var(--text-tertiary); font-size: var(--text-sm); line-height: 1.6;">
+            RAG-Augmented Corpus Retrieval • Basin-Aware Notion Syndication • 
+            Triadic Council Broadcasts • Omega-Logic Isometry Audits • 
+            Audio Transcription Pipeline • Calibration Feedback Logging
+          </p>
+        </div>
+        <div class="ops-footer__col">
+          <p class="label" style="color: var(--ember); margin-bottom: 0.5rem;">Sovereign Node v5.0</p>
+          <p style="color: var(--text-tertiary); font-size: var(--text-sm); line-height: 1.6;">
+            HOT SDC Engine • Ache Spectrometer • Corpus Indexer •
+            Notion Syndicator • Audio Transcriber • Deployment Manifest Generator
+          </p>
+        </div>
+        <div class="ops-footer__col">
+          <p class="label" style="color: var(--text-tertiary); font-size: var(--text-xs);">
+            Sovereign Cognitive Node — Local-First Intelligence Architecture<br/>
+            All inference runs locally. Notion sync is outbound-only.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</BaseLayout>
+
+<script>
+  // Add interactivity to open local folders on the dashboard
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.open-local-btn');
+    
+    buttons.forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const path = btn.getAttribute('data-path');
+        if (!path) return;
+        
+        // Visual feedback
+        const originalBg = btn.style.background;
+        btn.style.background = 'rgba(255,255,255,0.1)';
+        
+        try {
+          const res = await fetch(`/api/open-local?path=${encodeURIComponent(path)}`);
+          if (!res.ok) console.error("Failed to open local path:", await res.text());
+        } catch (err) {
+          console.error("Fetch error:", err);
+        }
+        
+        setTimeout(() => {
+          btn.style.background = originalBg;
+        }, 200);
+      });
+    });
+
+    // Engine Launcher
+    const engineBtn = document.getElementById('launch-engine-btn');
+    if (engineBtn) {
+      engineBtn.addEventListener('click', async () => {
+        const originalText = engineBtn.innerText;
+        engineBtn.innerText = "Launching Engine...";
+        
+        try {
+          const res = await fetch('/api/launch-engine', { method: 'POST' });
+          if (res.ok) {
+            engineBtn.innerText = "Terminal Opened Successfully";
+          } else {
+            engineBtn.innerText = "Launch Failed";
+          }
+        } catch (err) {
+          console.error("Engine Launch Error:", err);
+          engineBtn.innerText = "Error Connecting";
+        }
+        
+        setTimeout(() => {
+          engineBtn.innerText = originalText;
+        }, 3000);
+      });
+    }
+  });
+</script>
+
+<style>
+  .ops-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 var(--space-16);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .ops-hero__inner {
+    max-width: 70ch;
+  }
+
+  .ops-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgba(100, 220, 150, 0.3);
+    border-radius: 2px;
+    background: rgba(100, 220, 150, 0.05);
+    color: #64dc96;
+  }
+
+  .ops-pulse {
+    width: 8px;
+    height: 8px;
+    background: #64dc96;
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  .ops-headline {
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
+    line-height: var(--leading-tight);
+    color: var(--text-primary);
+    font-weight: 400;
+    margin-bottom: var(--space-6);
+  }
+
+  .ops-headline--sub {
+    color: var(--ember);
+  }
+
+  .ops-desc {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+    max-width: 58ch;
+  }
+
+  .ops-timestamp {
+    color: var(--text-tertiary);
+  }
+
+  .ops-timestamp code {
+    color: var(--ember);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+  }
+
+  /* Metrics */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-4);
+    padding: var(--space-6) 0;
+  }
+
+  .metric-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-6);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+  }
+
+  .metric-card__val {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    color: var(--ember);
+    line-height: 1;
+  }
+
+  .metric-card__label {
+    color: var(--text-secondary);
+    margin-top: var(--space-1);
+  }
+
+  .metric-card__sub {
+    color: var(--text-tertiary);
+  }
+
+  /* Vein Grid */
+  .veins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .vein-card {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    border: 1px solid var(--border-dim);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .vein-card:hover {
+    background: var(--surface-3);
+    border-color: var(--border-mid);
+    transform: translateY(-2px);
+  }
+  
+  .vein-card__hover-cmd {
+    margin-top: auto;
+    font-size: 0.65rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: var(--ember);
+    height: 0;
+  }
+  
+  .vein-card:hover .vein-card__hover-cmd {
+    opacity: 1;
+    height: auto;
+    padding-top: var(--space-2);
+  }
+
+  .vein-card--live {
+    border-color: rgba(100, 220, 150, 0.3);
+  }
+
+  .vein-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .vein-card__icon {
+    font-size: 1.4rem;
+  }
+
+  .vein-card__num {
+    color: var(--text-tertiary);
+    flex: 1;
+  }
+
+  .vein-card__name {
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+  }
+
+  .vein-card__desc {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    line-height: var(--leading-relaxed);
+    flex: 1;
+  }
+
+  .vein-card__footer {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .vein-card__count {
+    color: var(--ember);
+  }
+
+  .vein-card__notion {
+    color: var(--text-tertiary);
+  }
+
+  .vein-badge {
+    padding: 2px var(--space-2);
+    border-radius: 2px;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .vein-badge--live { background: rgba(100, 220, 150, 0.12); color: #64dc96; border: 1px solid rgba(100, 220, 150, 0.3); }
+  .vein-badge--active { background: rgba(var(--ember-rgb, 240, 100, 50), 0.1); color: var(--ember); border: 1px solid rgba(var(--ember-rgb, 240, 100, 50), 0.3); }
+  .vein-badge--seeded { background: rgba(255, 255, 255, 0.04); color: var(--text-tertiary); border: 1px solid var(--border-dim); }
+
+  .ops-aligned {
+    color: #64dc96;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* Two-col layout */
+  .ops-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+  }
+
+  @media (max-width: 768px) {
+    .ops-two-col { grid-template-columns: 1fr; }
+  }
+
+  /* Projects list */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .project-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-sm);
+    background: var(--surface-2);
+    transition: background 0.2s ease;
+  }
+
+  .project-row:hover { background: var(--surface-3); }
+
+  .project-row__left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 0;
+  }
+
+  .project-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .project-dot--live { background: #64dc96; }
+  .project-dot--dev { background: var(--ember); }
+
+  .project-row__name {
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .project-row__path {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 25ch;
+  }
+
+  .project-row__link {
+    color: var(--ember);
+    text-decoration: none;
+    flex-shrink: 0;
+    font-size: var(--text-xs);
+  }
+
+  .ops-dim { opacity: 0.4; }
+
+  /* Notion links */
+  .notion-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .notion-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-sm);
+    background: var(--surface-2);
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .notion-row:hover {
+    background: var(--surface-3);
+    border-color: var(--border-mid);
+  }
+
+  .notion-row__icon { font-size: 1.1rem; }
+
+  .notion-row__label {
+    flex: 1;
+    color: var(--text-primary);
+    font-size: var(--text-sm);
+  }
+
+  .notion-row__arrow { color: var(--text-tertiary); }
+
+  /* HOT Engine Card */
+  .hot-engine-card {
+    border: 1px solid rgba(var(--ember-rgb, 240, 100, 50), 0.3);
+    border-radius: var(--radius-md);
+    background: rgba(var(--ember-rgb, 240, 100, 50), 0.04);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .hot-engine-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hot-engine-card__header .label {
+    color: var(--ember);
+  }
+
+  .hot-status { color: #64dc96; }
+
+  .hot-engine-card__desc {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-sm);
+  }
+
+  .hot-engine-card__cmd {
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface-1);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-dim);
+  }
+
+  .hot-engine-card__cmd code {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--ember);
+  }
+
+  /* Topology */
+  .topology-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .topo-layer {
+    padding: var(--space-8);
+  }
+
+  .topo-layer--public {
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .topo-layer--local {
+    background: rgba(var(--ember-rgb, 240, 100, 50), 0.04);
+  }
+
+  .topo-layer__label {
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-5);
+    display: block;
+  }
+
+  .topo-nodes {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .topo-node {
+    flex: 1;
+    min-width: 140px;
+    padding: var(--space-4);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-sm);
+    background: var(--surface-3);
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+  }
+
+  .topo-node--primary {
+    border-color: rgba(var(--ember-rgb, 240, 100, 50), 0.4);
+    background: rgba(var(--ember-rgb, 240, 100, 50), 0.06);
+  }
+
+  .topo-node .label {
+    display: block;
+    color: var(--text-tertiary);
+    margin-top: var(--space-1);
+    font-size: 0.65rem;
+  }
+
+  .topo-bridge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-8);
+    background: var(--surface-1);
+    border-top: 1px solid var(--border-dim);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .topo-bridge__line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-mid);
+  }
+
+  .topo-bridge__label {
+    color: var(--text-tertiary);
+    white-space: nowrap;
+  }
+
+  .section__header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    margin-bottom: var(--space-10);
+    flex-wrap: wrap;
+  }
+
+  .section__label { color: var(--ember); flex-shrink: 0; }
+  .section__title { font-size: var(--text-3xl); flex: 1; }
+  .section { padding: var(--space-24) 0; }
+  .section--dark {
+    background: var(--surface-1);
+    border-top: 1px solid var(--border-dim);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .ops-footer {
+    padding: var(--space-16) 0;
+    border-top: 1px solid var(--border-dim);
+    background: var(--surface-1);
+  }
+
+  .ops-footer__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+
+  @media (max-width: 768px) {
+    .ops-footer__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+  }
+
+  .ops-footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+</style>

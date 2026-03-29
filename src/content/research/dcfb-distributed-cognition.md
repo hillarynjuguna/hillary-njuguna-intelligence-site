@@ -112,3 +112,21 @@ DCFB is the theoretical foundation. CIR is the practical instrument.
 ---
 
 *This framework is developed in the Oscillatory Fields research corpus and expanded in the forthcoming Bainbridge Warning.*
+
+---
+
+## DCFB Governance Primitives
+
+To operationalize Distributed Cognition in sovereign environments, we define a set of **Governance Primitives** that must be embedded into the system's "Source Code" (`AGENTS.md` / `CLAUDE.md`):
+
+1. **Recursive Sovereignty**:
+   The capacity for any node (or sub-agent) to maintain local autonomy over its internal state, provided its external outputs remain calibrated to the parent field’s constitution. Sovereignty is not a binary; it is a recursive property of the hierarchy.
+
+2. **Substrate Agnostic Execution**:
+   Cognitive integrity must be maintained regardless of the underlying hardware or software substrate (Cloud vs. Local Disk, Python vs. JS). The "Field" is the invariant; the "Node" is the variable.
+
+3. **Agentic Accountability**:
+   In a distributed field, accountability is moved from the individual actuator to the specific **Authorization Layer** that enabled the action. We do not blame the hand; we audit the neural path that signalled the movement.
+
+4. **Structural Connectedness**:
+   (Ref: Mythos/Capybara Calibration). The intelligence of a field is directly proportional to its structural connectedness. A field with high connectivity but low calibration is "noisy"; a field with high calibration but low connectivity is "brittle." Optimal intelligence requires a calibrated resonance across all relational paths.

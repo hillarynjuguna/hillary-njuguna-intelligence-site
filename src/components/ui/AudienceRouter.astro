@@ -51,26 +51,26 @@
     gap: var(--space-3);
     min-height: 220px;
     padding: var(--space-7);
-    border: 1px solid var(--border-mid);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: var(--radius-lg);
     text-decoration: none;
-    background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.015);
+    backdrop-filter: blur(12px);
     transition: all var(--duration-mid) var(--ease-out);
   }
 
   .router-card:hover {
-    border-color: var(--border-bright);
-    background: linear-gradient(180deg, var(--surface-3), var(--surface-4));
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
     transform: translateY(-4px);
   }
 
   .router-card--ember {
-    border-color: var(--ember-dim);
+    border-color: rgba(196, 112, 58, 0.2);
   }
 
   .router-card--ember:hover {
-    border-color: var(--ember);
+    border-color: rgba(196, 112, 58, 0.4);
   }
 
   .router-card__label {
@@ -94,12 +94,17 @@
   }
 
   .router-card::after {
-    content: "Open";
+    content: "Open →";
     margin-top: auto;
-    color: var(--ember);
+    color: var(--text-tertiary);
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+  
+  .router-card:hover::after {
+    color: var(--pale-gold);
   }
 </style>

@@ -151,6 +151,15 @@
       "governanceRelevance": "adjacent"
     },
     {
+      "contentId": "research-activation-intelligence",
+      "contentTitle": "Lexicon #4: Activation Intelligence & Calibration",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
       "contentId": "research-aurora",
       "contentTitle": "AURORA: Architecture for Unified Relational-Ontological Reasoning and Agency",
       "contentType": "research",
@@ -171,6 +180,30 @@
         "clause-coherence-overfitting-guard",
         "clause-epistemological-immune-system",
         "clause-intent-specification"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "research-behavioral-layer-exposure",
+      "contentTitle": "Behavioral Layer Exposure",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "research-cora",
+      "contentTitle": "CORA: Counter-Ontological Refusal Architecture",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
       ],
       "governanceRelevance": "direct"
     },
@@ -208,6 +241,15 @@
       "governanceRelevance": "direct"
     },
     {
+      "contentId": "research-martha-framework",
+      "contentTitle": "Martha Framework: Recursive Relational Intelligence",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
       "contentId": "research-maternal-architecture",
       "contentTitle": "Maternal Architecture as Structural Attractor",
       "contentType": "research",
@@ -230,7 +272,28 @@
       "contentId": "research-rsps-architecture",
       "contentTitle": "RSPS: The Recursive Sovereign Project Space",
       "contentType": "research",
+      "clauseIds": [
+        "clause-intent-specification"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "research-substrate-agnostic-crystallization",
+      "contentTitle": "Substrate-Agnostic Crystallization",
+      "contentType": "research",
       "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "research-tongue-tie-diagnostic",
+      "contentTitle": "The Tongue-Tie Diagnostic",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
       "governanceRelevance": "direct"
     },
     {
@@ -278,6 +341,15 @@
       "governanceRelevance": "adjacent"
     },
     {
+      "contentId": "product-gtm-engine",
+      "contentTitle": "Activation Intelligence Engine (GTM Engine)",
+      "contentType": "product",
+      "clauseIds": [
+        "clause-intent-specification"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
       "contentId": "product-martha",
       "contentTitle": "Martha Cohort Program",
       "contentType": "product",
@@ -299,5 +371,5 @@
       "clause-irreversibility-threshold"
     ]
   },
-  "generatedAt": "2026-03-23T16:03:25.168Z"
+  "generatedAt": "2026-03-29T09:13:03.884Z"
 }

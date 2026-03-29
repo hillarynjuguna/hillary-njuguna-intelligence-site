@@ -3,6 +3,7 @@ export const NAV_LINKS = [
   { label: 'Research', href: '/research' },
   { label: 'Tools', href: '/orchestra-operation' },
   { label: 'Products', href: '/products' },
+  { label: 'Sovereign Ops', href: '/sovereign-ops' },
   { label: 'Contact', href: '/contact' },
 ] as const;
 

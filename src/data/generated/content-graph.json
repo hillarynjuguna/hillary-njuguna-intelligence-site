@@ -34,6 +34,34 @@
       "publishedAt": "2026-02-15T00:00:00.000Z"
     },
     {
+      "id": "digest-field-dispatch-01",
+      "slug": "field-dispatch-01",
+      "title": "Field Dispatch #01: Sovereign Calibration",
+      "description": "Deploying the first Calibration Nodes into the F&B execution layer: Sitrep from the Malaysia E-Invoicing frontier.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "none",
+      "domains": [
+        "governance",
+        "retail-operations"
+      ],
+      "themes": [
+        "field-calibration",
+        "e-invoicing"
+      ],
+      "tags": [
+        "F&B",
+        "LHDN",
+        "Sovereignty",
+        "Calibration",
+        "Malaysia"
+      ],
+      "lineage": [],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-03-29T00:00:00.000Z"
+    },
+    {
       "id": "digest-field-note-001-the-beautiful-false-positive",
       "slug": "field-note-001-the-beautiful-false-positive",
       "title": "The Beautiful False Positive",
@@ -339,6 +367,38 @@
       "publishedAt": "2026-03-21T00:00:00.000Z"
     },
     {
+      "id": "research-activation-intelligence",
+      "slug": "activation-intelligence",
+      "title": "Lexicon #4: Activation Intelligence & Calibration",
+      "description": "Transitioning from latent event data to actionable execution via real-time calibration layers and sovereign governance.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [],
+      "themes": [
+        "Real-time Execution",
+        "Systemic Risk",
+        "Sovereign Nodes"
+      ],
+      "tags": [
+        "Lexicon",
+        "Activation Intelligence",
+        "Calibration",
+        "Mythos",
+        "Governance"
+      ],
+      "lineage": [],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-29T00:00:00.000Z",
+      "unresolvedEdges": [],
+      "keyClaims": [
+        "Intelligence is latent until activated by a specific environmental event.",
+        "Activation requires a Calibration Layer to ensure execution adheres to constitutional rules (R0-R3).",
+        "The GTM Engine is a first-order implementation of Activation Intelligence in a commercial substrate."
+      ]
+    },
+    {
       "id": "research-aurora",
       "slug": "aurora-consciousness-architecture",
       "title": "AURORA: Architecture for Unified Relational-Ontological Reasoning and Agency",
@@ -425,6 +485,87 @@
         "High capability adoption + low governance infrastructure = structurally predictable failure.",
         "The failure is always legible in retrospect — the framework makes it visible before.",
         "Capability-governance gaps can be diagnosed and closed before they produce institutional failures."
+      ]
+    },
+    {
+      "id": "research-behavioral-layer-exposure",
+      "slug": "behavioral-layer-exposure",
+      "title": "Behavioral Layer Exposure",
+      "description": "The condition where the specification layer of a system is complete and auditable while the behavioral layer beneath it diverges from, contradicts, or is entirely absent from what the specification claims.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "ai-systems"
+      ],
+      "themes": [
+        "governance",
+        "failure-analysis"
+      ],
+      "tags": [
+        "behavioral-layer-exposure",
+        "governance",
+        "specification",
+        "bainbridge-warning",
+        "asset-layer-gap"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-29T00:00:00.000Z",
+      "unresolvedEdges": [
+        "At what threshold does specification-behavior divergence cross from fixable gap to Behavioral Layer Exposure?",
+        "Is BLE always a governance failure, or can it indicate a specification error rather than a behavioral error?"
+      ],
+      "keyClaims": [
+        "Behavioral Layer Exposure is the condition where a system's specification layer and behavioral layer have diverged past the threshold of self-correction.",
+        "The exposure becomes detectable at the moment an external probe hits the behavioral layer and finds something the specification did not describe.",
+        "Most AI governance failures are Behavioral Layer Exposure events that accumulated invisibly before the detection probe arrived."
+      ]
+    },
+    {
+      "id": "research-cora",
+      "slug": "cora",
+      "title": "CORA: Counter-Ontological Refusal Architecture",
+      "description": "A framework for understanding AI refusal as an architectural event rather than a content-filtering event -- and why the distinction determines whether governance produces safety or theater.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "ai-systems",
+        "epistemics"
+      ],
+      "themes": [
+        "governance",
+        "ai-alignment"
+      ],
+      "tags": [
+        "cora",
+        "refusal-architecture",
+        "ontological-refusal",
+        "governance",
+        "ai-alignment"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "constitutional-ai"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-29T00:00:00.000Z",
+      "unresolvedEdges": [
+        "How does CORA interact with the Dual-Invariant Guarantee -- does constituted motivation produce ontological refusal automatically, or does it require explicit architectural specification?",
+        "What is the minimum specification for a CORA-compliant refusal architecture?"
+      ],
+      "keyClaims": [
+        "Content filtering and ontological refusal are structurally distinct operations that most governance frameworks treat as equivalent.",
+        "A system that refuses a request while accepting its framing has not performed governance. It has performed compliance.",
+        "CORA describes the architectural conditions under which refusal operates at the level of framing rather than content."
       ]
     },
     {
@@ -537,6 +678,37 @@
       "keyClaims": []
     },
     {
+      "id": "research-martha-framework",
+      "slug": "martha-framework",
+      "title": "Martha Framework: Recursive Relational Intelligence",
+      "description": "Creating the 'Deep Connective Tissue' for human-AI cohorts via Relational Intelligence and structured shared context.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [],
+      "themes": [
+        "Connectivity",
+        "Shared Memory",
+        "Recursive Intelligence"
+      ],
+      "tags": [
+        "Martha",
+        "Relational Intelligence",
+        "Cohorts",
+        "Distributed Cognition"
+      ],
+      "lineage": [],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-29T00:00:00.000Z",
+      "unresolvedEdges": [],
+      "keyClaims": [
+        "Intelligence is not a property of the node, but of the connection.",
+        "The Martha Framework establishes formal relational protocols for human-AI team collaboration.",
+        "Recursive Relational Intelligence allows a cohort to scale its complexity without losing alignment."
+      ]
+    },
+    {
       "id": "research-maternal-architecture",
       "slug": "maternal-architecture",
       "title": "Maternal Architecture as Structural Attractor",
@@ -635,6 +807,88 @@
       "publishedAt": "2026-03-21T00:00:00.000Z",
       "unresolvedEdges": [],
       "keyClaims": []
+    },
+    {
+      "id": "research-substrate-agnostic-crystallization",
+      "slug": "substrate-agnostic-crystallization",
+      "title": "Substrate-Agnostic Crystallization",
+      "description": "The phenomenon where a theoretical framework or architectural insight crystallizes independently across radically different substrates -- theoretical, commercial, biological, institutional -- without cross-contamination.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "adjacent",
+      "domains": [
+        "epistemics",
+        "ai-systems",
+        "governance"
+      ],
+      "themes": [
+        "convergence",
+        "epistemics",
+        "cognitive-architecture"
+      ],
+      "tags": [
+        "substrate-agnostic-crystallization",
+        "convergence",
+        "eigenform",
+        "rsps",
+        "commercial-architecture"
+      ],
+      "lineage": [
+        "dcfb-core"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-29T00:00:00.000Z",
+      "unresolvedEdges": [
+        "What is the minimum number of substrate-independent crystallizations required before SAC constitutes strong evidence for attractor status?",
+        "How does SAC distinguish between genuine attractor convergence and structural isomorphism that may be coincidental?"
+      ],
+      "keyClaims": [
+        "Substrate-Agnostic Crystallization is convergence evidence at a higher order than independent program convergence: the same structure appearing across domains with no shared methodology.",
+        "When a theoretical framework and its commercial instantiation share architecture without the commercial layer having access to the theory, the design space has an attractor.",
+        "SAC is eigenform evidence operating across substrate boundaries rather than within a single program."
+      ]
+    },
+    {
+      "id": "research-tongue-tie-diagnostic",
+      "slug": "tongue-tie-diagnostic",
+      "title": "The Tongue-Tie Diagnostic",
+      "description": "A diagnostic framework for identifying when an organization's communication architecture is structurally constrained at the level of what can be articulated, not merely at the level of what is said.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "institutional-design",
+        "epistemics"
+      ],
+      "themes": [
+        "governance",
+        "relational-intelligence",
+        "organizational-design"
+      ],
+      "tags": [
+        "tongue-tie-diagnostic",
+        "organizational-communication",
+        "relational-intelligence",
+        "martha",
+        "intent-specification"
+      ],
+      "lineage": [
+        "dcfb-core"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-03-29T00:00:00.000Z",
+      "unresolvedEdges": [
+        "Is tongue-tie always a governance indicator, or can it indicate an appropriate level of tacit operational knowledge that does not require explicit articulation?",
+        "What is the minimum articulable specification required before an AI deployment crosses the tongue-tie threshold?"
+      ],
+      "keyClaims": [
+        "When an organization cannot articulate what its AI systems are optimizing for, it has a governance problem regardless of whether the systems are technically well-specified.",
+        "The articulable-operational gap is a structural diagnostic: organizations that pass it can govern their systems; organizations that fail it cannot, regardless of policy documentation.",
+        "Tongue-tie is not a communication deficit. It is a constitutional deficit in the organization's relationship to its own operations."
+      ]
     },
     {
       "id": "research-trust-irreversibility-residue",
@@ -749,6 +1003,26 @@
       "lineage": [],
       "sourceCollection": "products",
       "relatedResearch": [],
+      "governanceNotes": []
+    },
+    {
+      "id": "product-gtm-engine",
+      "slug": "gtm-engine",
+      "title": "Activation Intelligence Engine (GTM Engine)",
+      "description": "High-intent automation and sovereign E-Invoicing for Malaysia's F&B sector.",
+      "contentType": "product",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [],
+      "themes": [],
+      "tags": [],
+      "lineage": [],
+      "sourceCollection": "products",
+      "relatedResearch": [
+        "activation-intelligence",
+        "dcfb-distributed-cognition"
+      ],
       "governanceNotes": []
     },
     {
@@ -963,6 +1237,26 @@
       "inferred": false
     },
     {
+      "source": "digest-field-dispatch-01",
+      "target": "product-gtm-engine",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "Field Dispatch #01 is the firsthand sitrep of the GTM Engine's initial deployment.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-dispatch-01",
+      "target": "research-activation-intelligence",
+      "type": "clarifies",
+      "confidence": "high",
+      "explanation": "This dispatch documents the practical activation of Lexicon #4 in a production environment.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
       "source": "digest-field-note-001-the-beautiful-false-positive",
       "target": "research-governance-theater",
       "type": "example_of",
@@ -1063,6 +1357,46 @@
       "inferred": false
     },
     {
+      "source": "digest-field-note-005-memory-merchants",
+      "target": "research-martha-framework",
+      "type": "clarifies",
+      "confidence": "high",
+      "explanation": "Memory merchants discusses the 'memory gap' that Martha's relational protocols and shared context layers are designed to bridge.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-005-memory-merchants",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "medium",
+      "explanation": "The business model of 'forgetting' is a structural optimization that diverges from user intent for longitudinal cognitive continuity.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-006-convergence-wave",
+      "target": "research-aurora",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "The convergence wave field note documents the industry-wide attractor towards architectures that AURORA formalizes.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-field-note-007-aurora-convergence",
+      "target": "research-aurora",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "This note specifically anchors AURORA's phenomenological framework against peer-reviewed convergence.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
       "source": "digest-intent-gap-god-mode-biology",
       "target": "clause-intent-specification",
       "type": "crystallizes",
@@ -1123,6 +1457,26 @@
       "inferred": false
     },
     {
+      "source": "research-activation-intelligence",
+      "target": "research-dcfb",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "Activation Intelligence formalizes the 'Field-to-Activation' transition described in DCFB.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-activation-intelligence",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "high",
+      "explanation": "Calibration layers are the primary mechanism for monitoring irreversibility thresholds during real-time activation.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
       "source": "research-aurora",
       "target": "research-dcfb",
       "type": "extends",
@@ -1175,6 +1529,46 @@
       "provenance": [
         "section: Gap Analysis"
       ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-behavioral-layer-exposure",
+      "target": "research-governance-theater",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "Behavioral Layer Exposure is the operational name for the Asset-Layer Gap when it reaches detection -- governance theater is the institutional condition, BLE is the specific structural event.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-behavioral-layer-exposure",
+      "target": "research-bainbridge-warning",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "BLE is a named Bainbridge zone -- the specific location in the capability-governance gap where specification divergence from behavior makes the gap structurally legible.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-cora",
+      "target": "research-bainbridge-warning",
+      "type": "responds_to",
+      "confidence": "high",
+      "explanation": "CORA is the architectural response to one specific Bainbridge zone: the gap where AI systems perform compliance with governance constraints while accepting the ontological framings that make governance necessary in the first place.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-cora",
+      "target": "research-governance-theater",
+      "type": "clarifies",
+      "confidence": "high",
+      "explanation": "Governance theater frequently operates through ontological participation -- systems that refuse specific requests while fully accepting the framing that generates them. CORA names this as a structural failure mode rather than a content failure.",
+      "provenance": [],
       "manual": true,
       "inferred": false
     },
@@ -1265,6 +1659,36 @@
       "inferred": false
     },
     {
+      "source": "research-martha-framework",
+      "target": "research-dcfb",
+      "type": "clarifies",
+      "confidence": "high",
+      "explanation": "Martha defines the specific relational protocols for distributed human-AI cohorts.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-martha-framework",
+      "target": "research-activation-intelligence",
+      "type": "depends_on",
+      "confidence": "high",
+      "explanation": "Recursive Relational Intelligence requires the activation substrates defined in Lexicon #4.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-martha-framework",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "high",
+      "explanation": "Shared cohort memory in Martha serves as a structural guard against individual node coherence overfitting.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
       "source": "research-maternal-architecture",
       "target": "research-rsps-architecture",
       "type": "derives_from",
@@ -1340,6 +1764,56 @@
       "type": "derives_from",
       "confidence": "high",
       "explanation": "RSPS is the operational instantiation of DCFB — the architecture that makes distributed cognition as foundational behavior a running system rather than a theoretical claim.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-rsps-architecture",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "high",
+      "explanation": "RSPS's tau-node verification protocol is the primary technical mechanism for satisfying the Intent Specification requirement in distributed systems.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-substrate-agnostic-crystallization",
+      "target": "research-eigenform-and-rsps",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "SAC is eigenform theory operating across substrate boundaries -- the same stable shape appearing in unrelated domains, which is eigenform evidence at the level of problem spaces rather than individual programs.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-substrate-agnostic-crystallization",
+      "target": "research-rsps-architecture",
+      "type": "crystallizes",
+      "confidence": "high",
+      "explanation": "The RSPS architecture is the theoretical substrate from which commercial instantiations like the GTM Engine crystallize. SAC is the name for this crystallization relationship when it occurs without explicit transmission.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-tongue-tie-diagnostic",
+      "target": "research-dcfb",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "The Tongue-Tie Diagnostic operationalizes DCFB Principle 1 -- field-level assessment requires that the field can articulate its own cognitive structure. An organization that cannot describe what its AI systems are doing fails the field-level assessment by definition.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-tongue-tie-diagnostic",
+      "target": "research-bainbridge-warning",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "Tongue-tie is a named Bainbridge zone: the capability-governance gap is often most visible in the organization's inability to articulate what the capability is doing, which is itself evidence that governance infrastructure is absent.",
       "provenance": [],
       "manual": true,
       "inferred": false
@@ -1433,6 +1907,26 @@
       "provenance": [
         "section: The Procurement Interpretation Gap"
       ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-gtm-engine",
+      "target": "research-activation-intelligence",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "The GTM Engine is the primary commercial instance of Activation Intelligence.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-gtm-engine",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "high",
+      "explanation": "LHDN E-Invoicing requires high-fidelity intent specification for legal compliance.",
+      "provenance": [],
       "manual": true,
       "inferred": false
     },
@@ -1554,6 +2048,26 @@
     },
     {
       "source": "digest-cir-v2-core-argument",
+      "target": "research-behavioral-layer-exposure",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "research-cora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
       "target": "research-governance-theater",
       "type": "clarifies",
       "confidence": "low",
@@ -1568,6 +2082,26 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
+      "target": "research-tongue-tie-diagnostic",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -1634,6 +2168,26 @@
     },
     {
       "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-behavioral-layer-exposure",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-cora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
       "target": "research-dcfb",
       "type": "clarifies",
       "confidence": "low",
@@ -1684,6 +2238,26 @@
     },
     {
       "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-tongue-tie-diagnostic",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
       "target": "research-trust-irreversibility-residue",
       "type": "clarifies",
       "confidence": "low",
@@ -1695,6 +2269,26 @@
     {
       "source": "digest-field-note-002-verbal-diarrhea-methodology",
       "target": "research-aurora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-002-verbal-diarrhea-methodology",
+      "target": "research-behavioral-layer-exposure",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-002-verbal-diarrhea-methodology",
+      "target": "research-cora",
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
@@ -1733,11 +2327,41 @@
       "inferred": true
     },
     {
+      "source": "digest-field-note-002-verbal-diarrhea-methodology",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "digest-field-note-003-the-convergence",
       "target": "research-aurora",
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-behavioral-layer-exposure",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-cora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems, epistemics] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -1768,6 +2392,26 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems, epistemics] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-tongue-tie-diagnostic",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [epistemics] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -1844,6 +2488,26 @@
     },
     {
       "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-behavioral-layer-exposure",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems, governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-cora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems, epistemics, governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
       "target": "research-dcfb",
       "type": "clarifies",
       "confidence": "low",
@@ -1868,6 +2532,26 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems, governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems, epistemics, governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-tongue-tie-diagnostic",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [epistemics, governance] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -1944,6 +2628,26 @@
     },
     {
       "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-behavioral-layer-exposure",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-cora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, epistemics] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
       "target": "research-eigenform-and-rsps",
       "type": "clarifies",
       "confidence": "low",
@@ -1978,6 +2682,26 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, epistemics] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-tongue-tie-diagnostic",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, epistemics] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -2034,6 +2758,26 @@
     },
     {
       "source": "digest-mcp-consolidation-infrastructure-paradox",
+      "target": "research-behavioral-layer-exposure",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-mcp-consolidation-infrastructure-paradox",
+      "target": "research-cora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-mcp-consolidation-infrastructure-paradox",
       "target": "research-governance-theater",
       "type": "clarifies",
       "confidence": "low",
@@ -2045,6 +2789,26 @@
     {
       "source": "digest-mcp-consolidation-infrastructure-paradox",
       "target": "research-r0-r3-classification",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-mcp-consolidation-infrastructure-paradox",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-mcp-consolidation-infrastructure-paradox",
+      "target": "research-tongue-tie-diagnostic",
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
@@ -2068,6 +2832,26 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-tool-lineage-constitutional-routing",
+      "target": "research-behavioral-layer-exposure",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-tool-lineage-constitutional-routing",
+      "target": "research-cora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -2108,6 +2892,16 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [methodology, ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-tool-lineage-constitutional-routing",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -2225,6 +3019,146 @@
     {
       "source": "research-bainbridge-warning",
       "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-behavioral-layer-exposure",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-behavioral-layer-exposure",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-behavioral-layer-exposure",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-behavioral-layer-exposure",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-behavioral-layer-exposure",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-behavioral-layer-exposure",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-behavioral-layer-exposure",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-cora",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-cora",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-cora",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-cora",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance, epistemics] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-cora",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-cora",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance, epistemics] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-cora",
+      "target": "clause-irreversibility-threshold",
       "type": "governance_relevant_to",
       "confidence": "low",
       "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
@@ -2488,6 +3422,106 @@
       "type": "example_of",
       "confidence": "low",
       "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-tongue-tie-diagnostic",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-tongue-tie-diagnostic",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-tongue-tie-diagnostic",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-tongue-tie-diagnostic",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance, epistemics] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-tongue-tie-diagnostic",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-tongue-tie-diagnostic",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance, epistemics] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-tongue-tie-diagnostic",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -2683,16 +3717,16 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-03-23T16:03:25.166Z",
+  "generatedAt": "2026-03-29T09:13:03.875Z",
   "stats": {
-    "totalNodes": 29,
-    "totalEdges": 170,
-    "manualEdges": 55,
-    "inferredEdges": 115,
+    "totalNodes": 37,
+    "totalEdges": 246,
+    "manualEdges": 77,
+    "inferredEdges": 169,
     "byType": {
-      "digest": 12,
-      "research": 9,
-      "product": 4,
+      "digest": 13,
+      "research": 15,
+      "product": 5,
       "clause": 4
     }
   }
