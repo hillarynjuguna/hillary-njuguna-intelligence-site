@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { loadTaxonomyIndex } from '@lib/generated/loaders';
 
@@ -33,12 +34,15 @@ const description = "Explore the intellectual architecture of Oscillatory Fields
           </div>
 
           <div class="tag-cloud">
-            {Object.entries(taxonomy[cat.id as keyof typeof taxonomy]).sort((a,b) => b[1].count - a[1].count).map(([slug, group]) => (
-              <a href={`/tags/${slug}`} class="tag-link hover-lift">
-                <span class="tag-link__label">{group.label}</span>
-                <span class="tag-link__count">{group.count}</span>
-              </a>
-            ))}
+            {Object.entries(taxonomy[cat.id as keyof typeof taxonomy]).sort((a,b) => b[1].count - a[1].count).map(([key, group]) => {
+              const slug = key.toLowerCase().replace(/\s+/g, '-');
+              return (
+                <a href={`/tags/${slug}`} class="tag-link hover-lift">
+                  <span class="tag-link__label">{group.label}</span>
+                  <span class="tag-link__count">{group.count}</span>
+                </a>
+              );
+            })}
           </div>
         </section>
       ))}

@@ -314,6 +314,18 @@ abbr[title] {
   position: relative;
 }
 
+.glossary-term {
+  text-decoration: underline dotted var(--border-mid);
+  text-underline-offset: 3px;
+  cursor: help;
+  transition: color var(--duration-fast) var(--ease-out), text-decoration-color var(--duration-fast) var(--ease-out);
+}
+
+.glossary-term:hover {
+  color: var(--ember);
+  text-decoration-color: var(--ember);
+}
+
 /* Collection Accent Borders */
 .accent-border-research { border-left: 3px solid var(--accent-research); }
 .accent-border-digest { border-left: 3px solid var(--accent-digest); }

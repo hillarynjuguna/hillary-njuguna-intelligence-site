@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { loadTaxonomyIndex, loadContentGraph } from '@lib/generated/loaders';
 
@@ -12,17 +13,22 @@ export async function getStaticPaths() {
     ...Object.keys(taxonomy.tags)
   ]);
 
-  return Array.from(allTags).map(tag => ({
-    params: { tag }
-  }));
+  return Array.from(allTags).map(tag => {
+    const slug = tag.toLowerCase().replace(/\s+/g, '-');
+    return {
+      params: { tag: slug },
+      props: { originalTag: tag }
+    };
+  });
 }
 
 const { tag } = Astro.params;
+const { originalTag } = Astro.props;
 const taxonomy = await loadTaxonomyIndex();
 const graph = await loadContentGraph();
 
-// Find the group in any category
-const group = taxonomy.domains[tag] || taxonomy.themes[tag] || taxonomy.tags[tag];
+// Find the group in any category using the original tag label
+const group = taxonomy.domains[originalTag] || taxonomy.themes[originalTag] || taxonomy.tags[originalTag];
 
 if (!group) {
   return Astro.redirect('/404');

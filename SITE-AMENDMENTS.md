@@ -305,4 +305,17 @@ Full architecture is documented in `hillary-site-v4-astro/README.md`.
 
 ---
 
+### J. Astro 5 SSR Hardening & Prerender Canonicality (R3)
+
+**Context**: The site runs in `output: 'server'` mode (Astro 5 + Vercel adapter) to support dynamic API routes (`/api/chat`, etc.).
+**The Danger**: In this mode, Astro treats *all* routes as server-rendered by default. During deployment, this results in `node-entry.js` Rollup bundling failures when complex static pages (like the graph generation or content pipelines) attempt to bundle server dependencies.
+**The Canonical Pattern**:
+Every static-capable route (pages, RSS feeds, JSON endpoints) MUST explicitly declare:
+```typescript
+export const prerender = true;
+```
+This forces Astro to build them at `npm run build` rather than deferring to the Vercel serverless edge. Only files in `src/pages/_api/` should omit this flag. This is a non-negotiable architectural invariant for deployment stability.
+
+---
+
 *This document governs itself: R3 changes to the site's security architecture require this guide to be updated before or immediately after the change is made.*

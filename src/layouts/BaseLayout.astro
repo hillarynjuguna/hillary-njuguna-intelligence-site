@@ -4,8 +4,8 @@ import Footer from '@components/layout/Footer.astro';
 import SearchModal from '@components/search/SearchModal.astro';
 import SEOHead from '@components/seo/SEOHead.astro';
 import { buildSEO, type SEOProps } from '@lib/seo';
-import Analytics from '@vercel/analytics/astro';
-import SpeedInsights from '@vercel/speed-insights/astro';
+// import Analytics from '@vercel/analytics/astro';
+// import SpeedInsights from '@vercel/speed-insights/astro';
 import '@styles/global.css';
 
 interface Props extends SEOProps {
@@ -38,8 +38,8 @@ const seo = buildSEO(seoProps);
       <slot />
     </main>
     <Footer />
-    <Analytics />
-    <SpeedInsights />
+    {/* <Analytics /> */}
+    {/* <SpeedInsights /> */}
     <script>
       // Scroll reveal
       const observer = new IntersectionObserver(
