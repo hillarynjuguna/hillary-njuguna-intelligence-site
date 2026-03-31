@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getAllDigestEntries, formatDate } from '@lib/content';
+import StatusIndicator from '@components/ui/StatusIndicator.astro';
 
 const entries = await getAllDigestEntries();
 ---
@@ -38,7 +39,10 @@ const entries = await getAllDigestEntries();
                 <time class="label digest-entry__date" datetime={entry.data.publishedAt.toISOString()}>
                   {formatDate(entry.data.publishedAt)}
                 </time>
-                <span class="label digest-entry__category" style="color: var(--accent-digest)">{entry.data.category}</span>
+                <div class="digest-status-row">
+                  <span class="label digest-entry__category" style="color: var(--accent-digest)">{entry.data.category}</span>
+                  <StatusIndicator status={entry.data.crystallization} showLabel={false} />
+                </div>
                 {entry.data.featured && (
                   <span class="badge badge--live" style="font-size: 10px;">Featured</span>
                 )}
@@ -144,6 +148,12 @@ const entries = await getAllDigestEntries();
     flex-direction: column;
     gap: var(--space-2);
     padding-top: 4px;
+  }
+
+  .digest-status-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
   }
 
   .digest-entry__date {

@@ -51,6 +51,17 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
 
 <BaseLayout title={undefined} description={SITE.description}>
   <section class="hero">
+    <div class="hero__wave">
+      <svg viewBox="0 0 1000 400" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 200C150 100 350 300 500 200C650 100 850 300 1000 200" stroke="var(--accent-research)" stroke-width="2" stroke-dasharray="10 10" opacity="0.3">
+          <animate attributeName="d" dur="10s" repeatCount="indefinite" values="M0 200C150 100 350 300 500 200C650 100 850 300 1000 200;M0 200C150 300 350 100 500 200C650 300 850 100 1000 200;M0 200C150 100 350 300 500 200C650 100 850 300 1000 200" />
+        </path>
+        <path d="M0 210C150 110 350 310 500 210C650 110 850 310 1000 210" stroke="var(--accent-digest)" stroke-width="1" opacity="0.2">
+          <animate attributeName="d" dur="15s" repeatCount="indefinite" values="M0 210C150 110 350 310 500 210C650 110 850 310 1000 210;M0 210C150 310 350 110 500 210C650 310 850 110 1000 210;M0 210C150 110 350 310 500 210C650 110 850 310 1000 210" />
+        </path>
+      </svg>
+    </div>
+
     <div class="container--wide">
       <div class="hero__inner">
         {signal && (
@@ -67,7 +78,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
 
         <p class="hero__sub" data-reveal data-reveal-delay="2">
           Bridge the gap between latent capability and institutional readiness. 
-          <strong>Ship AI systems with constitutional guarantees, not just capability demos.</strong>
+          <span class="highlight">Ship AI systems with constitutional guarantees, not just capability demos.</span>
         </p>
 
         <div class="hero__actions" data-reveal data-reveal-delay="3">
@@ -97,9 +108,17 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
     </div>
   </section>
 
-  <div class="container--wide">
+  <div class="container--wide" style="margin-bottom: var(--space-20)">
     <AudienceRouter />
-    <ContentExplorer />
+    <section>
+      <div class="container">
+        <h2 class="section-heading">Explore the Research Corpus</h2>
+        <p class="section-subheading">
+          Four interconnected pillars for institutional intelligence architecture, from deep research to applied governance clauses.
+        </p>
+        <ContentExplorer />
+      </div>
+    </section>
   </div>
 
   <div class="ticker" aria-label="Current field signals">
@@ -110,11 +129,11 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
     </div>
   </div>
 
-  <section class="section section--demo">
+  <section>
     <div class="container">
       <div class="section__header" data-reveal>
         <p class="label section__label" style="color: var(--accent-research)">Demonstration</p>
-        <h2 class="section__title">What Constitutional Governance Analysis Looks Like</h2>
+        <h2 class="section-heading" style="text-align: left; margin-bottom: 2rem;">What Constitutional Governance Analysis Looks Like</h2>
       </div>
 
       <div class="demo-card" data-reveal>
@@ -148,11 +167,13 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
   <SocialProof />
 
   {homepageResearch.length > 0 && (
-    <section class="section">
+    <section>
       <div class="container">
         <div class="section__header" data-reveal>
-          <p class="label section__label" style="color: var(--accent-research)">Research</p>
-          <h2 class="section__title">The Intellectual Corpus</h2>
+          <div style="flex: 1">
+            <p class="label section__label" style="color: var(--accent-research)">Research</p>
+            <h2 class="section-heading" style="text-align: left; margin-bottom: 1rem;">The Intellectual Corpus</h2>
+          </div>
           <a href="/research" class="section__link label">All research →</a>
         </div>
 
@@ -319,13 +340,36 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
     min-height: 90vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 140px 0 var(--space-20);
-    background: radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05), transparent 40%),
-                radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.05), transparent 40%);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero__wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: var(--container-wide);
+    height: 400px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.15;
+  }
+
+  .hero__wave svg {
+    width: 100%;
+    height: 100%;
   }
 
   .hero__inner {
-    max-width: 80ch;
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin-inline: auto;
   }
 
   .hero__signal {
@@ -366,6 +410,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
     gap: var(--space-4);
     margin-bottom: var(--space-12);
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .hero__origin {
@@ -374,6 +419,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
     padding-top: var(--space-8);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-4);
     flex-wrap: wrap;
   }
@@ -388,6 +434,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
     gap: var(--space-12);
     margin-top: var(--space-12);
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .hero__metric {

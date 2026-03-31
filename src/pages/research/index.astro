@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getAllResearchEntries, formatDate } from '@lib/content';
+import StatusIndicator from '@components/ui/StatusIndicator.astro';
 
 const entries = await getAllResearchEntries();
 ---
@@ -35,6 +36,7 @@ const entries = await getAllResearchEntries();
                 <time class="label" datetime={entry.data.publishedAt.toISOString()}>
                   {formatDate(entry.data.publishedAt)}
                 </time>
+                <StatusIndicator status={entry.data.crystallization} class="entry-status" />
                 {entry.data.featured && (
                   <span class="badge badge--live">Featured</span>
                 )}
@@ -149,6 +151,10 @@ const entries = await getAllResearchEntries();
 
   .research-entry__meta .label {
     color: var(--text-tertiary);
+  }
+
+  .entry-status {
+    margin-top: 2px;
   }
 
   .research-entry__title {

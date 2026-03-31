@@ -95,6 +95,15 @@
   --max-w-site: 1200px;
   --max-w-narrow: 52ch;
 
+  /* Container System (New) */
+  --container-narrow: 768px;
+  --container-default: 1200px;
+  --container-wide: 1400px;
+  --container-full: 1600px;
+
+  --container-padding-mobile: 1.5rem;
+  --container-padding-desktop: 2.5rem;
+
   /* Border */
   --radius-sm: 3px;
   --radius-md: 6px;

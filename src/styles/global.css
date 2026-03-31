@@ -182,19 +182,51 @@ li {
 }
 
 /* Utility classes */
+/* Container system */
 .container {
   width: 100%;
-  max-width: var(--max-w-site);
-  margin: 0 auto;
-  padding: 0 var(--space-6);
+  max-width: var(--container-default);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-mobile);
 }
 
-.container--narrow {
-  max-width: var(--max-w-prose);
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--container-padding-desktop);
+  }
 }
 
-.container--wide {
-  max-width: var(--max-w-wide);
+.container--narrow { max-width: var(--container-narrow); }
+.container--wide { max-width: var(--container-wide); }
+.container--full { max-width: var(--container-full); }
+
+/* Section spacing & alternate backgrounds */
+section {
+  padding-block: clamp(4rem, 10vw, 8rem);
+  position: relative;
+}
+
+section:nth-of-type(even) {
+  background: var(--void-1);
+}
+
+/* Institutional Headings */
+.section-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  color: var(--warm-white);
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+  text-align: center;
+}
+
+.section-subheading {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+  margin-bottom: var(--space-12);
 }
 
 .sr-only {
@@ -353,14 +385,15 @@ abbr[title] {
   border-color: var(--border-bright);
 }
 
-.btn--ember {
-  background: transparent;
-  color: var(--ember);
-  border-color: var(--ember-dim);
-}
 .btn--ember:hover {
   background: rgba(196, 112, 58, 0.08);
   border-color: var(--ember);
   color: var(--ember-bright);
+}
+
+/* Institutional Button Sizing */
+.btn {
+  padding: 0.875rem 2rem;
+  font-weight: 500;
 }
 

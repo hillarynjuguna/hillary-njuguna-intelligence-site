@@ -31,7 +31,7 @@ const pillars = [
 ];
 ---
 
-<section class="content-explorer" data-reveal>
+<div class="content-explorer" data-reveal>
   <div class="explorer-grid">
     {pillars.map((pillar) => (
       <a href={pillar.href} class="explorer-card hover-lift" style={`--pillar-color: ${pillar.color}`}>
@@ -43,7 +43,7 @@ const pillars = [
       </a>
     ))}
   </div>
-</section>
+</div>
 
 <style>
   .content-explorer {
@@ -75,12 +75,17 @@ const pillars = [
     border-color: var(--border-bright);
   }
 
+  .explorer-card__content {
+    flex: 1; /* Push CTA to bottom */
+  }
+
   .explorer-card__title {
     font-size: var(--text-lg);
     line-height: var(--leading-snug);
     color: var(--text-primary);
     margin-top: var(--space-4);
     font-weight: 500;
+    font-family: var(--font-body); /* Body font for descriptions feels more research-oriented */
   }
 
   .explorer-card__cta {
