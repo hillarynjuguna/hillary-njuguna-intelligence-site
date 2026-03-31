@@ -3,7 +3,7 @@ import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://hillarynjuguna.com',
-  output: 'server',
+  output: 'static',
   adapter: vercel(),
   integrations: []
 });
