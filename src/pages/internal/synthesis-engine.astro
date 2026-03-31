@@ -1,0 +1,241 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Corpus Synthesis Engine"
+  description="Internal tool for multi-corpus synthesis via the Anthropic API."
+>
+  <div class="page page-enter">
+    <div class="container">
+      <div class="engine-layout">
+        <div class="engine-header">
+          <p class="label page-label">Internal Tool</p>
+          <h1 class="page-title">Corpus Synthesis Engine</h1>
+          <p class="page-desc">
+            Submit a synthesis brief. As the sovereign τ-node, you provide the context; 
+            the λ-node will generate emergent connections, draft content, and Insight Log candidates.
+          </p>
+        </div>
+
+        <div class="engine-body">
+          <form id="synthesis-form" class="synthesis-form">
+            <div class="form-group">
+              <label for="brief" class="label form-label">Synthesis Brief</label>
+              <textarea
+                id="brief"
+                name="brief"
+                class="form-input form-textarea"
+                placeholder="Enter multi-corpus connections or questions here..."
+                required></textarea>
+            </div>
+            
+            <div class="form-footer">
+              <button type="submit" class="btn btn--primary form-submit" id="submit-btn">
+                Synthesize
+              </button>
+            </div>
+          </form>
+
+          <div class="output-container" id="output-container" style="display: none;">
+            <div class="output-header">
+              <h2 class="output-title">Synthesis Result</h2>
+              <div class="status-indicator"></div>
+            </div>
+            <div id="loading-indicator" class="loading-indicator" style="display: none;">
+              Processing with λ-node...
+            </div>
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            <div id="result-content" class="result-content markdown-body"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    padding: var(--space-24) 0 var(--space-32);
+  }
+
+  .engine-header {
+    margin-bottom: var(--space-8);
+  }
+
+  .page-label {
+    color: var(--ember);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-title {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-5);
+  }
+
+  .page-desc {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 800px;
+  }
+
+  .engine-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .synthesis-form {
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-label {
+    color: var(--text-tertiary);
+  }
+
+  .form-input {
+    background: var(--surface-3);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    transition: border-color var(--duration-fast) var(--ease-out);
+    width: 100%;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--ember-dim);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 250px;
+    line-height: var(--leading-relaxed);
+  }
+
+  .output-container {
+    background: var(--surface-1);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+  }
+
+  .output-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .output-title {
+    font-size: var(--text-xl);
+    color: var(--text-primary);
+  }
+  
+  .loading-indicator {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    animation: pulse 2s infinite;
+  }
+
+  .error-message {
+    color: var(--ember);
+    padding: var(--space-4);
+    background: var(--surface-2);
+    border-left: 4px solid var(--ember);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+  }
+
+  .result-content {
+    color: var(--text-primary);
+    line-height: var(--leading-loose);
+    white-space: pre-wrap;
+  }
+
+  @keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+  }
+</style>
+
+<script>
+  import { marked } from 'marked';
+  
+  const form = document.getElementById('synthesis-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const outputContainer = document.getElementById('output-container') as HTMLDivElement;
+  const loadingIndicator = document.getElementById('loading-indicator') as HTMLDivElement;
+  const errorMessage = document.getElementById('error-message') as HTMLDivElement;
+  const resultContent = document.getElementById('result-content') as HTMLDivElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const brief = formData.get('brief') as string;
+    
+    if (!brief.trim()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Synthesizing...';
+    
+    outputContainer.style.display = 'block';
+    loadingIndicator.style.display = 'block';
+    errorMessage.style.display = 'none';
+    resultContent.innerHTML = '';
+
+    try {
+      const response = await fetch('/api/synthesize', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ brief }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to synthesize');
+      }
+
+      // We'll use marked if available globally, or just basic text formatting as fallback
+      // Alternatively, we inject it as raw text since it's markdown. We can do simple transformations.
+      try {
+        resultContent.innerHTML = marked.parse(data.result);
+      } catch (err) {
+         // rough fallback
+        resultContent.textContent = data.result;
+      }
+      
+    } catch (err: any) {
+      errorMessage.textContent = err.message || 'An error occurred during synthesis.';
+      errorMessage.style.display = 'block';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Synthesize';
+      loadingIndicator.style.display = 'none';
+    }
+  });
+</script>

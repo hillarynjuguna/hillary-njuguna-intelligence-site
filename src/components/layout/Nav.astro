@@ -27,6 +27,9 @@ function isActive(href: string) {
           {label}
         </a>
       ))}
+      <button id="search-trigger" class="nav__link nav__link--icon" aria-label="Search" title="Search Corpus (⌘K)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
     </nav>
 
     <button class="nav__burger" id="nav-burger" aria-label="Toggle navigation" aria-expanded="false">
@@ -40,6 +43,7 @@ function isActive(href: string) {
       {NAV_LINKS.map(({ label, href }) => (
         <a href={href} class="nav__mobile-link">{label}</a>
       ))}
+      <button id="search-trigger-mobile" class="nav__mobile-link nav__mobile-link--icon">Search Corpus</button>
     </nav>
   </div>
 </header>
@@ -93,8 +97,8 @@ function isActive(href: string) {
   }
 
   .nav__logo-signal {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: var(--sage-bright);
     animation: pulse-slow 2.5s ease-in-out infinite;
@@ -114,8 +118,11 @@ function isActive(href: string) {
     text-transform: uppercase;
     color: var(--text-tertiary);
     text-decoration: none;
-    transition: color var(--duration-fast) var(--ease-out);
+    transition: all var(--duration-fast) var(--ease-out);
     padding: var(--space-1) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
   }
 
   .nav__link:hover,
@@ -125,6 +132,18 @@ function isActive(href: string) {
 
   .nav__link--active {
     border-bottom: 1px solid var(--ember);
+  }
+
+  .nav__link--icon {
+    margin-left: var(--space-2);
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .nav__link--icon:hover {
+    color: var(--ember);
+    transform: scale(1.1);
   }
 
   /* Burger */
@@ -185,7 +204,7 @@ function isActive(href: string) {
     color: var(--text-primary);
   }
 
-  .nav__mobile-link--cta {
+  .nav__mobile-link--icon {
     color: var(--ember);
     margin-top: var(--space-2);
   }
@@ -216,5 +235,19 @@ function isActive(href: string) {
     const isOpen = mobile?.classList.toggle('open');
     burger.setAttribute('aria-expanded', String(isOpen));
     mobile?.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  // Search trigger
+  const searchTriggers = document.querySelectorAll('#search-trigger, #search-trigger-mobile');
+  searchTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('open-search'));
+      // Close mobile menu if open
+      if (mobile?.classList.contains('open')) {
+        mobile.classList.remove('open');
+        burger?.setAttribute('aria-expanded', 'false');
+        mobile.setAttribute('aria-hidden', 'true');
+      }
+    });
   });
 </script>

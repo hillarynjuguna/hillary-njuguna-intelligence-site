@@ -3,10 +3,11 @@ import { getCollection } from 'astro:content';
 
 // Machine-readable content index for search and AIEO retrieval
 export const GET: APIRoute = async () => {
-  const [digest, research, products] = await Promise.all([
+  const [digest, research, products, clauses] = await Promise.all([
     getCollection('digest', ({ data }) => !data.draft),
     getCollection('research', ({ data }) => !data.draft),
     getCollection('products', ({ data }) => !data.draft),
+    getCollection('clauses', ({ data }) => data.publishStatus !== 'draft'),
   ]);
 
   const index = [
@@ -35,13 +36,22 @@ export const GET: APIRoute = async () => {
     })),
     ...products.map((e) => ({
       id: `products/${e.slug}`,
-      type: 'product',
+      type: 'products',
       title: e.data.title,
       summary: e.data.summary,
       excerpt: e.data.excerpt ?? e.data.summary.slice(0, 160),
       status: e.data.status,
       productType: e.data.productType,
       url: `/products/${e.slug}`,
+    })),
+    ...clauses.map((e) => ({
+      id: `clauses/${e.slug}`,
+      type: 'clauses',
+      title: e.data.title,
+      summary: e.data.notes ?? e.data.clauseText ?? '',
+      excerpt: e.data.notes?.slice(0, 160) ?? e.data.clauseText?.slice(0, 160) ?? '',
+      status: e.data.clauseStatus,
+      url: `/clauses/${e.slug}`,
     })),
   ];
 

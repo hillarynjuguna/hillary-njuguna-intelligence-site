@@ -1,5 +1,26 @@
 {
   "domains": {
+    "transmission": {
+      "label": "transmission",
+      "contentIds": [
+        "antigravity-log-001"
+      ],
+      "count": 1
+    },
+    "formatting": {
+      "label": "formatting",
+      "contentIds": [
+        "antigravity-log-001"
+      ],
+      "count": 1
+    },
+    "UI": {
+      "label": "UI",
+      "contentIds": [
+        "antigravity-log-001"
+      ],
+      "count": 1
+    },
     "governance": {
       "label": "governance",
       "contentIds": [
@@ -1313,5 +1334,5 @@
       "count": 1
     }
   },
-  "generatedAt": "2026-03-29T09:13:03.881Z"
+  "generatedAt": "2026-03-31T04:12:51.599Z"
 }

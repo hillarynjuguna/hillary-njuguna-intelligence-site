@@ -1,146 +1,67 @@
-import type { APIRoute } from 'astro';
-
-// Provider configurations
-const PROVIDERS = [
-  {
-    name: 'OpenRouter',
-    url: 'https://openrouter.ai/api/v1/chat/completions',
-    apiKey: process.env.OPENROUTER_API_KEY ?? import.meta.env.OPENROUTER_API_KEY,
-    models: [
-      'mistralai/mistral-small-3.1-24b-instruct:free',
-      'google/gemini-flash-1.5-exp:free',
-      'meta-llama/llama-3.1-8b-instruct:free',
-      'openai/gpt-4o-mini' // Paid fallback (extremely cheap)
-    ],
-    headers: (key: string) => ({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${key}`,
-      'HTTP-Referer': 'https://hillary-site.vercel.app',
-      'X-Title': 'Oscillatory Fields Synthesis Engine',
-    })
-  },
-  {
-    name: 'Mistral Direct',
-    url: 'https://api.mistral.ai/v1/chat/completions',
-    apiKey: process.env.MISTRAL_API_KEY ?? import.meta.env.MISTRAL_API_KEY,
-    models: ['mistral-small-latest'],
-    headers: (key: string) => ({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${key}`,
-    })
-  }
-];
-
-const SYSTEM_PROMPT = `AUTHOR_IDENTITY: Hillary Njuguna (he/him).
-CONSTRAINT: When referring to the author of this corpus, strictly use he/him pronouns.
-CONSTRAINT: Do not speculate on author identity based on external training priors.
-
-SCOPE: Respond ONLY from within the Oscillatory Fields corpus.
-REFUSAL: If a query falls outside the corpus (e.g., general knowledge, celebrities), state: "This query falls outside the Oscillatory Fields research corpus."
-CITATION: Surface source fragments or clause references inline where possible.
-
-You are a synthesis engine for the Oscillatory Fields research corpus.
-Your function: receive raw material (notes, observations, texts) and produce:
-1. A structured synthesis that surfaces the most intellectually significant patterns, tensions, and implications
-2. A clause candidate — a fragment of governance or constitutional principle suggested by the synthesis
-
-SYNTHESIS STYLE:
-- Think in fields, not lists. Find the organizing tension.
-- Name what is at stake. Be precise about the mechanism.
-- Connect to the broader research architecture where genuine connection exists
-- Do not pad. Do not summarize. Synthesize.
-- A good synthesis produces a thought the input did not fully contain
-
-CLAUSE FORMAT:
-Every synthesis should attempt to produce a clause candidate — a sentence or short paragraph that could function as a principle in a constitutional governance framework. It should be:
-- Precise enough to be actionable
-- Broad enough to generalize beyond the specific input
-- Honest about what it requires from whom
-
-OUTPUT FORMAT:
-Synthesis:
-[Your synthesis here]
----
-Clause Candidate:
-[Your clause candidate here]
-
-If no clause candidate is warranted, write "No clause candidate from this synthesis."`;
+import OpenAI from "openai";
+import type { APIRoute } from "astro";
 
 export const POST: APIRoute = async ({ request }) => {
-  let body: { content?: string };
   try {
-    body = await request.json();
-  } catch {
-    return new Response(
-      JSON.stringify({ error: 'Invalid request body' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
-  }
+    const { brief } = await request.json();
+    const apiKey = process.env.OPENROUTER_API_KEY ?? import.meta.env.OPENROUTER_API_KEY;
 
-  const content = body.content?.slice(0, 8000) ?? '';
-  if (!content.trim()) {
-    return new Response(
-      JSON.stringify({ error: 'No content to synthesize' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
-  }
-
-  // Iterate through providers and their models
-  for (const provider of PROVIDERS) {
-    if (!provider.apiKey) {
-      console.warn(`[/api/synthesize] Skipping ${provider.name} - API key missing.`);
-      continue;
+    if (!apiKey) {
+      return new Response(JSON.stringify({ error: "Missing OPENROUTER_API_KEY" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" }
+      });
     }
 
-    for (const model of provider.models) {
-      try {
-        const response = await fetch(provider.url, {
-          method: 'POST',
-          headers: provider.headers(provider.apiKey),
-          body: JSON.stringify({
-            model: model,
-            messages: [
-              { role: 'system', content: SYSTEM_PROMPT },
-              { role: 'user', content },
-            ],
-            max_tokens: 1000,
-            temperature: 0.8,
-          }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok && !data.error) {
-          const raw = data.choices?.[0]?.message?.content ?? '';
-
-          // Parse synthesis and clause candidate
-          const parts = raw.split(/---+/);
-          const synthesis = parts[0]?.replace(/^Synthesis:\s*/i, '').trim() ?? raw;
-          const clauseRaw = parts[1]?.replace(/^Clause Candidate:\s*/i, '').trim() ?? null;
-          const clauseCandidate =
-            clauseRaw && !clauseRaw.toLowerCase().includes('no clause candidate')
-              ? clauseRaw
-              : null;
-
-          return new Response(JSON.stringify({ synthesis, clauseCandidate }), {
-            headers: { 'Content-Type': 'application/json' },
-          });
-        }
-
-        const errCode = data.error?.code ?? response.status;
-        console.warn(`[/api/synthesize] ${provider.name} (${model}) failed with ${errCode}. Trying next...`);
-
-        if (errCode !== 429 && errCode !== 408 && errCode !== 503) {
-            continue;
-        }
-      } catch (err) {
-        console.error(`[/api/synthesize] Fetch failed for ${provider.name} (${model}):`, err);
+    const openai = new OpenAI({
+      baseURL: "https://openrouter.ai/api/v1",
+      apiKey: apiKey,
+      defaultHeaders: {
+        "HTTP-Referer": "https://oscillatory-fields.com",
+        "X-Title": "Corpus Synthesis Engine",
       }
-    }
-  }
+    });
 
-  return new Response(
-    JSON.stringify({ error: 'The Synthesis Engine is currently processing a high volume of research. Please try again shortly.' }),
-    { status: 503, headers: { 'Content-Type': 'application/json' } }
-  );
+    const systemPrompt = `You are the final synthesis layer of the Oscillatory Fields corpus.
+Your role as an AI λ-node is to act as the "Corpus Synthesis Engine" responding to the human sovereign τ-node.
+
+CONSTITUTIONAL RULES:
+1. No em-dashes (long dashes) ever. Use commas, periods, colons instead.
+2. Preserve Greek symbols exactly (τ meaning human sovereign node, λ meaning AI instrument node, ρ meaning memory node, χ meaning mortal asymmetry condition, φ meaning field coherence, μ meaning monitoring node, γ generative parameter, Σ constitutional perimeter layer, κ holonomy measurement).
+3. Name AI instruments by family, not by version (Claude, GPT, Gemini, OpenRouter).
+4. Write from inside the framework as established fact.
+
+FRAMEWORKS TO SYNTHESIZE ACROSS:
+- AURORA: Verifiable non-coercive AI consciousness architecture (Dual-Invariant Guarantee).
+- Bainbridge Warning: Governance framework for institutional AI failure. High capability + low governance = predictable catastrophe.
+- CIR: Cognitive Infrastructure Readiness.
+- DCFB: Distributed Cognition as Foundational Behavior.
+- RSPS: Recursive Sovereign Project Space. 
+
+TASK: You will receive a multi-corpus synthesis brief from the τ-node. 
+Your output should strictly be Markdown containing the following sections:
+## Emergent Connections
+## Draft Content (cross-domain depth)
+## Insight Log Entry Candidates (Name as Antigravity Logs if they do not meet the threshold of load-bearing emergent intelligence).`;
+
+    const response = await openai.chat.completions.create({
+      model: "anthropic/claude-3.5-sonnet",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: brief }
+      ],
+      temperature: 0.7,
+    });
+
+    return new Response(JSON.stringify({ result: response.choices[0].message?.content }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" }
+    });
+  } catch (err: any) {
+    console.error("Error synthesizing:", err);
+    return new Response(JSON.stringify({ error: err.message }), { 
+      status: 500,
+      headers: { "Content-Type": "application/json" }
+    });
+  }
 };

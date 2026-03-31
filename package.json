@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "npm run build:graph && astro build",
+    "build": "npm run validate:content && npm run build:graph && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "build:graph": "tsx scripts/build-graph.ts",
@@ -15,14 +15,20 @@
     "check:governance": "tsx scripts/check-governance.ts"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.8",
     "@astrojs/mdx": "^4.0.0",
     "@astrojs/rss": "^4.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "@astrojs/vercel": "^8.0.0",
+    "@types/d3": "^7.4.3",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "astro": "^5.0.0",
+    "d3": "^7.9.0",
+    "fuse.js": "^7.1.0",
+    "marked": "^17.0.5",
     "openai": "^6.32.0",
+    "typescript": "^5.9.3",
     "zod": "^3.23.0"
   },
   "devDependencies": {

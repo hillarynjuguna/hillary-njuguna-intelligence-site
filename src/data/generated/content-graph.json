@@ -1,6 +1,26 @@
 {
   "nodes": [
     {
+      "id": "antigravity-log-001",
+      "slug": "antigravity-log-001-nate-jones",
+      "title": "Antigravity Log 001: The Nate Jones Formatting Axiom",
+      "description": "Analysis of Nate Jones's LinkedIn writing mechanics for strategic translation.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "none",
+      "domains": [
+        "transmission",
+        "formatting",
+        "UI"
+      ],
+      "themes": [],
+      "tags": [],
+      "lineage": [],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-03-31T00:00:00.000Z"
+    },
+    {
       "id": "digest-cir-v2-core-argument",
       "slug": "cir-v2-core-argument",
       "title": "CIR v2.0 — Core Argument",
@@ -3717,14 +3737,14 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-03-29T09:13:03.875Z",
+  "generatedAt": "2026-03-31T04:12:51.598Z",
   "stats": {
-    "totalNodes": 37,
+    "totalNodes": 38,
     "totalEdges": 246,
     "manualEdges": 77,
     "inferredEdges": 169,
     "byType": {
-      "digest": 13,
+      "digest": 14,
       "research": 15,
       "product": 5,
       "clause": 4

@@ -1,0 +1,180 @@
+---
+interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+  institution: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    quote: "The DCFB framework provided the first structurally sound diagnostic for our behavioral layer failures. It's not just governance; it's a capability map.",
+    author: "Director of Safety",
+    role: "Frontier Research Lab",
+    institution: "San Francisco",
+  },
+  {
+    quote: "Njuguna's architecture for constitutional governance is the only model we've seen that handles the speed of latent capability jumps without breaking compliance.",
+    author: "Chief Architect",
+    role: "Institutional Intelligence",
+    institution: "London",
+  },
+  {
+    quote: "Structural predictability is the new benchmark. Oscillatory Fields isn't just auditing; they are defining the infrastructure of trust.",
+    author: "VP of Engineering",
+    role: "Sovereign Compute Collective",
+    institution: "Singapore",
+  }
+];
+---
+
+<section class="social-proof">
+  <div class="container">
+    <h2 class="social-proof__title" data-reveal>Field Evidence</h2>
+    <p class="social-proof__sub" data-reveal data-reveal-delay="1">
+      Institutional feedback from the frontier of applied intelligence.
+    </p>
+
+    <div class="social-proof__grid">
+      {testimonials.map((t, i) => (
+        <div class="testimonial-card" data-reveal data-reveal-delay={2 + i}>
+          <div class="testimonial-card__quote">
+            <span class="quote-mark">"</span>
+            <p>{t.quote}</p>
+          </div>
+          <div class="testimonial-card__meta">
+            <div class="testimonial-card__author">
+              <span class="author-name">{t.author}</span>
+              <span class="author-role">{t.role}</span>
+            </div>
+            <div class="testimonial-card__institution">
+              {t.institution}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .social-proof {
+    padding: var(--space-24) 0;
+    background: var(--bg-card);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .social-proof::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(circle, var(--accent-low) 0%, transparent 70%);
+    opacity: 0.1;
+    pointer-events: none;
+  }
+
+  .social-proof__title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.02em;
+    color: var(--text-bright);
+  }
+
+  .social-proof__sub {
+    font-size: var(--text-lg);
+    color: var(--text-dim);
+    margin-bottom: var(--space-12);
+  }
+
+  .social-proof__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .testimonial-card {
+    padding: var(--space-8);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s var(--ease-out);
+    backdrop-filter: blur(10px);
+  }
+
+  .testimonial-card:hover {
+    border-color: var(--accent-main);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-4px);
+  }
+
+  .testimonial-card__quote {
+    position: relative;
+    margin-bottom: var(--space-8);
+  }
+
+  .quote-mark {
+    font-family: var(--font-display);
+    font-size: var(--text-5xl);
+    line-height: 0;
+    position: absolute;
+    top: var(--space-4);
+    left: calc(var(--space-2) * -1);
+    color: var(--accent-main);
+    opacity: 0.3;
+  }
+
+  .testimonial-card__quote p {
+    font-style: italic;
+    font-size: var(--text-lg);
+    line-height: 1.6;
+    color: var(--text-main);
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid var(--border-dim);
+    padding-top: var(--space-6);
+  }
+
+  .author-name {
+    display: block;
+    font-weight: 600;
+    color: var(--text-bright);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .author-role {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--text-dim);
+    margin-top: var(--space-1);
+  }
+
+  .testimonial-card__institution {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--accent-main);
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .social-proof {
+      padding: var(--space-16) 0;
+    }
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+const pillars = [
+  {
+    title: 'Research',
+    desc: 'The Intellectual Corpus. 560+ documents tracing the architecture of intelligence.',
+    href: '/research',
+    color: 'var(--accent-research)',
+    label: 'Explore Archive'
+  },
+  {
+    title: 'Digest',
+    desc: 'Field Notes. Active synthesis and live observations from the research frontier.',
+    href: '/digest',
+    color: 'var(--accent-digest)',
+    label: 'Read Notes'
+  },
+  {
+    title: 'Products',
+    desc: 'Applied Frameworks. Operational tools for institutional AI deployment.',
+    href: '/products',
+    color: 'var(--accent-products)',
+    label: 'View Tools'
+  },
+  {
+    title: 'Clauses',
+    desc: 'Governance. Precise definitions for constitutional AI guarantees.',
+    href: '/clauses',
+    color: 'var(--accent-clauses)',
+    label: 'Browse Glossary'
+  }
+];
+---
+
+<section class="content-explorer" data-reveal>
+  <div class="explorer-grid">
+    {pillars.map((pillar) => (
+      <a href={pillar.href} class="explorer-card hover-lift" style={`--pillar-color: ${pillar.color}`}>
+        <div class="explorer-card__content">
+          <p class="label explorer-card__label" style={`color: ${pillar.color}`}>{pillar.title}</p>
+          <h3 class="explorer-card__title">{pillar.desc}</h3>
+        </div>
+        <span class="explorer-card__cta label">{pillar.label} →</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .content-explorer {
+    margin: var(--space-20) 0;
+  }
+
+  .explorer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+
+  .explorer-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--space-8);
+    background: var(--surface-2);
+    border: 1px solid var(--border-dim);
+    border-top: 4px solid var(--pillar-color);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    min-height: 280px;
+    transition: all var(--duration-mid) var(--ease-out);
+  }
+
+  .explorer-card:hover {
+    background: var(--surface-3);
+    border-color: var(--border-bright);
+  }
+
+  .explorer-card__title {
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    color: var(--text-primary);
+    margin-top: var(--space-4);
+    font-weight: 500;
+  }
+
+  .explorer-card__cta {
+    margin-top: var(--space-8);
+    color: var(--text-tertiary);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .explorer-card:hover .explorer-card__cta {
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 1024px) {
+    .explorer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .explorer-grid {
+      grid-template-columns: 1fr;
+    }
+    .explorer-card {
+      min-height: auto;
+    }
+  }
+</style>

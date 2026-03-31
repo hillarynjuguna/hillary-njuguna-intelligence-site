@@ -1,576 +1,164 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { getCurrentSignal } from '@lib/content';
+import CorpusGraph from '@components/ui/CorpusGraph.astro';
+import { loadContentGraph } from '@lib/generated/loaders';
 
-const signal = await getCurrentSignal();
+const graph = await loadContentGraph();
 
-const examplePrompts = [
-  'What is Distributed Cognition as Foundational Behavior, and why does it matter for AI governance?',
-  'How does the Bainbridge Warning differ from a standard AI audit?',
-  'Explain trust as irreversibility residue in plain language.',
-  'What does Cognitive Infrastructure Readiness actually measure?',
-  'How do the seven models in the Orchestra differ in cognitive posture?',
-  'What are clause candidates, the governance principles emerging from the research?',
-];
+const title = "Research Corpus | Oscillatory Fields";
+const description = "An interactive visualization of the Oscillatory Fields intelligence architecture. Explore the nodes and edges of our research, products, and legal infrastructure.";
 ---
 
-<BaseLayout
-  title="Corpus"
-  description="Query the Oscillatory Fields synthesis layer directly. 560+ sourced documents, 18 months of synthesis, and a live interface into the published field."
->
-  <div class="corpus-page page-enter">
-    <div class="container">
-      <header class="corpus-header">
-        <p class="label corpus-label">The Field</p>
-        <h1 class="corpus-title">Enter the Field</h1>
-        <p class="corpus-desc">
-          The Field draws on 560+ source documents accumulated across 18 months of multi-model synthesis.
-          The published interface is growing. What you can query here is the live synthesis layer, not the raw archive.
-          The responses are grounded in the corpus but are not citation-traceable to individual source documents.
-          That traceability layer is under construction.
-        </p>
-        {signal?.corpusStats && (
-          <div class="corpus-stats">
-            {signal.corpusStats.entries && (
-              <div class="corpus-stat">
-                <span class="corpus-stat__val">{signal.corpusStats.entries}</span>
-                <span class="label corpus-stat__key">published entries</span>
-              </div>
-            )}
-            {signal.corpusStats.clauses && (
-              <div class="corpus-stat">
-                <span class="corpus-stat__val">{signal.corpusStats.clauses}</span>
-                <span class="label corpus-stat__key">governance principles emerging from the research</span>
-              </div>
-            )}
-            <div class="corpus-stat">
-              <span class="corpus-stat__val">560+</span>
-              <span class="label corpus-stat__key">source documents</span>
-            </div>
-          </div>
-        )}
-      </header>
-
-      <div class="corpus-interface">
-        <div class="corpus-chat" id="corpus-chat">
-          <div class="chat-messages" id="chat-messages" aria-live="polite" aria-label="Conversation">
-            <div class="chat-message chat-message--system">
-              <div class="chat-message__meta">
-                <span class="label chat-role">System</span>
-              </div>
-              <div class="chat-message__body">
-                <p>
-                  <strong>GOVERNANCE NOTE:</strong> This Field is governed by Oscillatory Fields Constitutional Clauses.
-                  Responses draw from the indexed synthesis layer. Author: Hillary Njuguna (he/him).
-                </p>
-                <p>
-                  Ask about frameworks, governance patterns, or research threads. The Field will answer from the published synthesis
-                  and surface related material where relevant.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="chat-input-area">
-            <div class="quick-prompts">
-              <button class="quick-prompt" data-prompt="What is the Bainbridge Warning and how do I know if my organisation has one?">
-                Diagnose a Bainbridge Zone
-              </button>
-              <button class="quick-prompt" data-prompt="Walk me through Cognitive Infrastructure Readiness, what does it assess and how?">
-                Explain CIR
-              </button>
-              <button class="quick-prompt" data-prompt="Introduce Distributed Cognition as Foundational Behavior in plain language.">
-                Introduce DCFB
-              </button>
-            </div>
-
-            <div class="chat-suggestions">
-              <p class="label chat-suggestions__label">Try asking:</p>
-              <div class="chat-suggestions__list">
-                {examplePrompts.map((prompt) => (
-                  <button class="chat-suggestion" data-prompt={prompt}>
-                    {prompt}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div class="chat-input-row">
-              <textarea
-                id="corpus-input"
-                class="chat-input"
-                placeholder="What keeps you up at night about your AI deployment?"
-                rows="3"
-                aria-label="Your question"
-              ></textarea>
-              <button id="corpus-submit" class="btn btn--primary chat-submit" aria-label="Send">
-                Query
-              </button>
-            </div>
-            <p class="label chat-note">
-              Synthesis mode, responses draw from the live published layer and may generate governance principles emerging from the research.
-              <br />
-              <a href="/clauses" class="governance-link">View Constitutional Clauses</a>
-            </p>
-          </div>
-        </div>
-
-        <aside class="corpus-sidebar">
-          <div class="corpus-info">
-            <p class="label corpus-info__label">About this corpus</p>
-            <h2 class="corpus-info__title">What The Field knows</h2>
-            <div class="corpus-info__items">
-              <div class="corpus-info__item">
-                <span class="label corpus-info__item-label">DCFB</span>
-                <p class="corpus-info__item-desc">Distributed Cognition as Foundational Behavior, a theory of how intelligence works across systems, not inside them.</p>
-              </div>
-              <div class="corpus-info__item">
-                <span class="label corpus-info__item-label">CIR</span>
-                <p class="corpus-info__item-desc">Cognitive Infrastructure Readiness, an assessment for the structural decisions AI deployment requires before deployment begins.</p>
-              </div>
-              <div class="corpus-info__item">
-                <span class="label corpus-info__item-label">The Bainbridge Warning</span>
-                <p class="corpus-info__item-desc">A governance framework for institutional AI failure where high capability and low governance produce predictable catastrophe.</p>
-              </div>
-              <div class="corpus-info__item">
-                <span class="label corpus-info__item-label">The Orchestra</span>
-                <p class="corpus-info__item-desc">Seven AI models, each playing a specific cognitive role, with the human as conductor.</p>
-              </div>
-              <div class="corpus-info__item">
-                <span class="label corpus-info__item-label">Active Synthesis</span>
-                <p class="corpus-info__item-desc">Research dispatches written during the synthesis process, published as the field evolves.</p>
-              </div>
-            </div>
-            <div class="corpus-info__links">
-              <a href="/research" class="label corpus-info__link">Research archive</a>
-              <a href="/clauses" class="label corpus-info__link">Clause archive</a>
-            </div>
-          </div>
-        </aside>
+<BaseLayout title={title} description={description} breadcrumbs={[{ name: 'Corpus', href: '/corpus' }]}>
+  <div class="corpus-page">
+    <header class="page-header" data-reveal>
+      <div class="header-main">
+        <p class="label accent">Interactive Map</p>
+        <h1 class="page-title h1">Research Corpus</h1>
+        <p class="page-subtitle">A semantic layer for AI systems. Drag to explore, scroll to zoom, click to dive into specific research streams.</p>
       </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">{graph.nodes.length}</span>
+          <span class="stat-label">Intelligence Nodes</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{graph.edges.length}</span>
+          <span class="stat-label">Semantic Relations</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{new Set(graph.nodes.flatMap(n => n.tags)).size}</span>
+          <span class="stat-label">Taxonomy Vectors</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="graph-wrapper" data-reveal>
+      <CorpusGraph data={graph} />
     </div>
+
+    <section class="corpus-info" data-reveal>
+      <div class="info-grid">
+        <div class="info-cell">
+          <h3>The Semantic Layer</h3>
+          <p>Our corpus isn't just a collection of Markdown files; it's a directed graph of intelligence. Every research paper, digest entry, and product is a node connected by themes, domains, and explicit references.</p>
+        </div>
+        <div class="info-cell">
+          <h3>Physics-Driven Discovery</h3>
+          <p>The visualization uses a force-directed simulation where related content pulls together. This reveals hidden clusters in our thinking—where technical research overlaps with institutional governance.</p>
+        </div>
+      </div>
+    </section>
   </div>
 </BaseLayout>
 
 <style>
   .corpus-page {
-    padding: var(--space-24) 0 var(--space-32);
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-6);
   }
 
-  .corpus-header {
-    margin-bottom: var(--space-12);
-    padding-bottom: var(--space-10);
-    border-bottom: 1px solid var(--border-dim);
-  }
-
-  .corpus-label {
-    color: var(--ember);
-    margin-bottom: var(--space-3);
-  }
-
-  .corpus-title {
-    font-size: var(--text-5xl);
-    margin-bottom: var(--space-5);
-  }
-
-  .corpus-desc {
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-    max-width: 68ch;
-    margin-bottom: var(--space-8);
-  }
-
-  .corpus-stats {
+  .page-header {
+    margin-bottom: var(--space-16);
     display: flex;
-    gap: var(--space-10);
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: var(--space-12);
   }
 
-  .corpus-stat {
+  .header-main {
+    max-width: 600px;
+  }
+
+  .page-title {
+    margin: var(--space-3) 0 var(--space-4);
+  }
+
+  .page-subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-dim);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
+    transition: border-color 0.3s ease;
   }
 
-  .corpus-stat__val {
+  .stat-card:hover {
+    border-color: var(--accent-main);
+  }
+
+  .stat-value {
     font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    color: var(--ember);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--text-bright);
   }
 
-  .corpus-stat__key {
-    color: var(--text-tertiary);
-    max-width: 24ch;
-  }
-
-  .corpus-interface {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: var(--space-8);
-    align-items: start;
-  }
-
-  .corpus-chat {
-    background: var(--surface-2);
-    border: 1px solid var(--border-mid);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .chat-messages {
-    min-height: 280px;
-    max-height: 520px;
-    overflow-y: auto;
-    padding: var(--space-6);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-  }
-
-  .chat-message {
-    max-width: min(90%, 72ch);
-    display: grid;
-    gap: var(--space-2);
-  }
-
-  .chat-message--system,
-  .chat-message--assistant {
-    background: var(--surface-3);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
-    padding: var(--space-5);
-    color: var(--text-secondary);
-  }
-
-  .chat-message--user {
-    align-self: flex-end;
-    background: rgba(196, 112, 58, 0.12);
-    border: 1px solid var(--border-mid);
-    border-radius: var(--radius-md);
-    padding: var(--space-4) var(--space-5);
-    color: var(--pale-gold);
-    justify-self: end;
-  }
-
-  .chat-message--assistant-loading {
-    opacity: 0.85;
-    border-style: dashed;
-  }
-
-  .chat-message__meta {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-  }
-
-  .chat-role {
-    color: var(--text-tertiary);
-    border: 1px solid var(--border-dim);
-    padding: 2px 8px;
-    border-radius: 999px;
-  }
-
-  .chat-time {
-    color: var(--text-tertiary);
+  .stat-label {
     font-size: var(--text-xs);
-    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    font-weight: 600;
   }
 
-  .chat-message__body {
-    font-size: var(--text-base);
-    line-height: var(--leading-relaxed);
-    display: grid;
-    gap: var(--space-3);
-  }
-
-  .chat-input-area {
-    padding: var(--space-5) var(--space-6);
-    border-top: 1px solid var(--border-dim);
-    background: var(--surface-1);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    position: sticky;
-    bottom: 0;
-    z-index: 2;
-  }
-
-  .quick-prompts,
-  .chat-suggestions__list {
-    display: flex;
-    gap: var(--space-3);
-    flex-wrap: wrap;
-  }
-
-  .quick-prompt,
-  .chat-suggestion {
-    font-family: var(--font-mono);
-    background: var(--surface-3);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: all var(--duration-fast) var(--ease-out);
-  }
-
-  .quick-prompt {
-    font-size: var(--text-sm);
-    color: var(--ember);
-    padding: var(--space-3) var(--space-4);
-  }
-
-  .chat-suggestion {
-    font-size: var(--text-xs);
-    color: var(--text-tertiary);
-    padding: var(--space-2) var(--space-3);
-    text-align: left;
-    line-height: 1.4;
-  }
-
-  .quick-prompt:hover,
-  .chat-suggestion:hover {
-    color: var(--text-primary);
-    border-color: var(--border-bright);
-    background: var(--surface-4);
-  }
-
-  .chat-suggestions__label,
-  .chat-note {
-    color: var(--text-tertiary);
-  }
-
-  .chat-input-row {
-    display: flex;
-    gap: var(--space-3);
-    align-items: flex-end;
-  }
-
-  .chat-input {
-    flex: 1;
-    background: var(--surface-3);
-    border: 1px solid var(--border-mid);
-    border-radius: var(--radius-md);
-    padding: var(--space-3) var(--space-4);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    resize: none;
-    line-height: var(--leading-relaxed);
-  }
-
-  .chat-input:focus {
-    outline: none;
-    border-color: var(--ember-dim);
-  }
-
-  .chat-submit {
-    flex-shrink: 0;
-    min-height: 44px;
-  }
-
-  .chat-submit:disabled {
-    opacity: 0.55;
-    cursor: not-allowed;
+  .graph-wrapper {
+    margin-bottom: var(--space-16);
+    box-shadow: 0 40px 100px -20px rgba(0,0,0,0.5);
   }
 
   .corpus-info {
-    background: var(--surface-2);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
-    padding: var(--space-6);
-    position: sticky;
-    top: calc(var(--space-16) + 60px);
+    border-top: 1px solid var(--border-dim);
+    padding-top: var(--space-16);
   }
 
-  .corpus-info__label {
-    color: var(--ember);
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-12);
+  }
+
+  .info-cell h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
     margin-bottom: var(--space-4);
+    color: var(--text-bright);
   }
 
-  .corpus-info__title {
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-6);
-    line-height: var(--leading-snug);
+  .info-cell p {
+    color: var(--text-dim);
+    line-height: 1.7;
   }
 
-  .corpus-info__items {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    margin-bottom: var(--space-6);
-  }
-
-  .corpus-info__item {
-    padding-bottom: var(--space-4);
-    border-bottom: 1px solid var(--border-dim);
-  }
-
-  .corpus-info__item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .corpus-info__item-label {
-    color: var(--text-secondary);
-    display: block;
-    margin-bottom: var(--space-1);
-  }
-
-  .corpus-info__item-desc {
-    color: var(--text-tertiary);
-    font-size: var(--text-sm);
-    line-height: var(--leading-relaxed);
-  }
-
-  .corpus-info__links {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .corpus-info__link,
-  .governance-link {
-    color: var(--ember);
-    text-decoration: none;
-  }
-
-  @media (max-width: 900px) {
-    .corpus-interface {
-      grid-template-columns: 1fr;
-    }
-
-    .corpus-sidebar {
-      order: -1;
-    }
+  .accent {
+    color: var(--accent-main);
+    font-weight: 600;
+    letter-spacing: 0.05em;
   }
 
   @media (max-width: 768px) {
-    .corpus-title {
-      font-size: var(--text-4xl);
+    .corpus-page {
+      padding: var(--space-8) var(--space-4);
     }
-
-    .chat-input-row {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .chat-submit {
-      width: 100%;
+    
+    .stats-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
-
-<script>
-  const roleLabel: Record<'user' | 'assistant' | 'system', string> = {
-    user: 'You',
-    assistant: 'The Field',
-    system: 'System',
-  };
-
-  const messagesEl = document.getElementById('chat-messages');
-  const inputEl = document.getElementById('corpus-input') as HTMLTextAreaElement;
-  const submitBtn = document.getElementById('corpus-submit') as HTMLButtonElement | null;
-  const suggestions = document.querySelectorAll('.chat-suggestion, .quick-prompt');
-
-  let messageHistory: { role: string; content: string }[] = [];
-
-  function toSafeHtml(text: string) {
-    return text
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/\n/g, '<br>');
-  }
-
-  function appendMessage(role: 'user' | 'assistant', text: string, loading = false) {
-    const div = document.createElement('div');
-    div.className = `chat-message chat-message--${role}${loading ? ' chat-message--assistant-loading' : ''}`;
-    const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    div.innerHTML = `
-      <div class="chat-message__meta">
-        <span class="label chat-role">${roleLabel[role]}</span>
-        <time class="chat-time">${now}</time>
-      </div>
-      <div class="chat-message__body"><p>${toSafeHtml(text)}</p></div>
-    `;
-    messagesEl?.appendChild(div);
-    messagesEl?.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
-    return div;
-  }
-
-  function setSubmitState() {
-    if (!submitBtn || !inputEl) return;
-    submitBtn.disabled = inputEl.disabled || inputEl.value.trim().length === 0;
-  }
-
-  async function sendMessage(text: string) {
-    if (!text.trim()) return;
-
-    inputEl.value = '';
-    inputEl.disabled = true;
-    setSubmitState();
-
-    appendMessage('user', text);
-    const loadingEl = appendMessage('assistant', 'The Field is synthesizing...', true);
-
-    messageHistory.push({ role: 'user', content: text });
-
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: messageHistory }),
-      });
-
-      const data = await res.json();
-      loadingEl.remove();
-
-      if (data.reply) {
-        appendMessage('assistant', data.reply);
-        messageHistory.push({ role: 'assistant', content: data.reply });
-        if (messageHistory.length > 20) messageHistory = messageHistory.slice(-20);
-      } else if (data.error) {
-        appendMessage('assistant', `Warning: ${data.error}`);
-      } else {
-        appendMessage('assistant', 'The corpus encountered an issue. Please try again.');
-      }
-    } catch {
-      loadingEl.remove();
-      appendMessage('assistant', 'Unable to reach The Field. Check your connection and try again.');
-    } finally {
-      inputEl.disabled = false;
-      setSubmitState();
-      inputEl.focus();
-    }
-  }
-
-  submitBtn?.addEventListener('click', () => sendMessage(inputEl.value));
-
-  inputEl?.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      sendMessage(inputEl.value);
-    }
-  });
-
-  inputEl?.addEventListener('input', setSubmitState);
-
-  suggestions.forEach((button) => {
-    button.addEventListener('click', () => {
-      const prompt = button.getAttribute('data-prompt') ?? '';
-      sendMessage(prompt);
-    });
-  });
-
-  const params = new URLSearchParams(window.location.search);
-  const q = params.get('q');
-  if (q && inputEl) {
-    inputEl.value = q;
-    inputEl.focus();
-  }
-  setSubmitState();
-</script>

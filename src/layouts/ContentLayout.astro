@@ -67,7 +67,7 @@ const {
         {tags.length > 0 && (
           <div class="content-tags">
             {tags.map((tag) => (
-              <span class="tag">#{tag}</span>
+              <a href={`/tags/${tag}`} class="tag link--hover">#{tag}</a>
             ))}
           </div>
         )}

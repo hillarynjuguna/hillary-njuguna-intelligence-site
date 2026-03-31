@@ -2,7 +2,7 @@ export const SITE = {
   name: 'Oscillatory Fields',
   tagline: 'Intelligence architecture for institutions that can\'t afford to get it wrong.',
   description:
-    'Research, frameworks, and applied intelligence architecture by Hillary Njuguna. DCFB theory, cognitive infrastructure readiness, and the constitutional governance of AI systems.',
+    'Research and applied intelligence architecture by Hillary Njuguna. We build the governance layers—from distributed cognition theory (DCFB) to institutional readiness (CIR)—that make AI failures visible before they occur.',
   url: 'https://hillary-site.vercel.app',
   author: {
     name: 'Hillary Njuguna',
