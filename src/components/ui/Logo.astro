@@ -1,0 +1,104 @@
+---
+interface Props {
+  size?: number;
+  className?: string;
+  variant?: 'primary' | 'accent' | 'white';
+}
+
+const { size = 32, className = "", variant = 'primary' } = Astro.props;
+
+// Adjust height based on 2:1 aspect ratio for the pill shape
+const height = size * 0.5;
+---
+
+<svg 
+  width={size} 
+  height={height} 
+  viewBox="0 0 120 60" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={["logo-svg", className, `logo--${variant}`]}
+  aria-hidden="true"
+>
+  <defs>
+    <linearGradient id="logo-gradient" x1="20" y1="30" x2="100" y2="30" gradientUnits="userSpaceOnUse">
+      <stop stop-color="currentColor" />
+      <stop offset="1" stop-color="currentColor" stop-opacity="0.6" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Pill boundary -->
+  <rect 
+    x="2" 
+    y="2" 
+    width="116" 
+    height="56" 
+    rx="28" 
+    stroke="currentColor" 
+    stroke-width="1.5" 
+    class="logo__pill"
+  />
+
+  <!-- Primary wave (Latent Capability) -->
+  <path
+    d="M 25 30 Q 40 10, 55 20 T 85 20 T 100 30"
+    stroke="url(#logo-gradient)"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    fill="none"
+    class="logo__wave-1"
+  />
+
+  <!-- Secondary wave (Institutional Safety) -->
+  <path
+    d="M 25 30 Q 40 50, 55 40 T 85 40 T 100 30"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    fill="none"
+    opacity="0.8"
+    class="logo__wave-2"
+  />
+
+  <!-- Interference alignment points -->
+  <circle cx="55" cy="30" r="3.5" fill="currentColor" class="logo__point" />
+  <circle cx="85" cy="30" r="3.5" fill="currentColor" class="logo__point" />
+</svg>
+
+<style>
+  .logo-svg {
+    display: inline-block;
+    vertical-align: middle;
+    transition: transform var(--duration-mid) var(--ease-out);
+  }
+
+  .logo__pill {
+    opacity: 0.15;
+  }
+
+  .logo--primary { color: var(--text-primary); }
+  .logo--accent { color: var(--ember); }
+  .logo--white { color: #ffffff; }
+
+  /* Animation on hover of the parent */
+  :global(.nav__logo:hover) .logo-svg,
+  :global(.footer__logo:hover) .logo-svg {
+    transform: scale(1.05);
+  }
+
+  :global(.nav__logo:hover) .logo__point,
+  :global(.footer__logo:hover) .logo__point {
+    filter: drop-shadow(0 0 4px currentColor);
+    opacity: 1;
+  }
+
+  @keyframes wave-flow {
+    0% { stroke-dashoffset: 24; }
+    100% { stroke-dashoffset: 0; }
+  }
+
+  .logo__wave-1 {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 0;
+  }
+</style>

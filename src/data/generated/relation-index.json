@@ -767,9 +767,9 @@
       },
       {
         "target": "research-cora",
-        "type": "clarifies",
+        "type": "remains_emergent_with",
         "confidence": "low",
-        "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+        "explanation": "Both are emergent and share [dcfb-core, governance] — open edges may be related.",
         "manual": false,
         "inferred": true
       },
@@ -3723,9 +3723,9 @@
       },
       {
         "target": "digest-mcp-consolidation-infrastructure-paradox",
-        "type": "clarifies",
+        "type": "remains_emergent_with",
         "confidence": "low",
-        "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+        "explanation": "Both are emergent and share [dcfb-core, governance] — open edges may be related.",
         "manual": false,
         "inferred": true
       },
@@ -4065,5 +4065,5 @@
       }
     ]
   },
-  "generatedAt": "2026-03-31T04:46:15.421Z"
+  "generatedAt": "2026-03-31T05:16:48.024Z"
 }

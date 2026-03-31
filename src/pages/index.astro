@@ -62,7 +62,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
       </svg>
     </div>
 
-    <div class="container--wide">
+    <div class="container">
       <div class="hero__inner">
         {signal && (
           <div class="hero__signal" data-reveal>
@@ -108,18 +108,18 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
     </div>
   </section>
 
-  <div class="container--wide" style="margin-bottom: var(--space-20)">
-    <AudienceRouter />
-    <section>
-      <div class="container">
+  <section class="section-router">
+    <div class="container">
+      <AudienceRouter />
+      <div class="explorer-wrapper">
         <h2 class="section-heading">Explore the Research Corpus</h2>
         <p class="section-subheading">
           Four interconnected pillars for institutional intelligence architecture, from deep research to applied governance clauses.
         </p>
         <ContentExplorer />
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <div class="ticker" aria-label="Current field signals">
     <div class="ticker__inner">
@@ -368,7 +368,6 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
   .hero__inner {
     position: relative;
     z-index: 1;
-    max-width: 900px;
     margin-inline: auto;
   }
 

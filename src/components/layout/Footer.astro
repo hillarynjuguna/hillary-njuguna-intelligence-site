@@ -1,6 +1,7 @@
 ---
 import { SITE } from '@data/site';
 import { FOOTER_LINKS } from '@data/navigation';
+import Logo from '@components/ui/Logo.astro';
 
 const year = new Date().getFullYear();
 
@@ -15,7 +16,10 @@ const essentialReading = [
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
-        <a href="/" class="footer__logo">Oscillatory Fields</a>
+        <a href="/" class="footer__logo" aria-label={SITE.name}>
+          <Logo size={64} className="footer__logo-img" variant="accent" />
+          <span class="footer__logo-text">Oscillatory Fields</span>
+        </a>
         <p class="footer__tagline">
           Intelligence architecture for institutions navigating AI deployment. 
           Ship AI systems with constitutional guarantees.

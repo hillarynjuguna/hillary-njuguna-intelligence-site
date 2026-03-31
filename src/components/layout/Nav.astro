@@ -1,6 +1,7 @@
 ---
 import { NAV_LINKS } from '@data/navigation';
 import { SITE } from '@data/site';
+import Logo from '@components/ui/Logo.astro';
 
 const currentPath = Astro.url.pathname;
 
@@ -13,8 +14,8 @@ function isActive(href: string) {
 <header class="nav" id="site-nav">
   <div class="nav__inner container">
     <a href="/" class="nav__logo" aria-label={SITE.name}>
+      <Logo size={44} className="nav__logo-img" />
       <span class="nav__logo-text">Oscillatory Fields</span>
-      <span class="nav__logo-signal" aria-hidden="true"></span>
     </a>
 
     <nav class="nav__links" aria-label="Primary navigation">
