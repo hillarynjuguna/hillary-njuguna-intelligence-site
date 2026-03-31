@@ -5,6 +5,8 @@ import vercel from '@astrojs/vercel';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
+import { rehypeGlossary } from './src/lib/plugins/rehype-glossary.mjs';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
@@ -18,6 +20,7 @@ export default defineConfig({
     }),
   ],
   markdown: {
+    rehypePlugins: [rehypeGlossary],
     shikiConfig: {
       theme: 'css-variables',
     },
