@@ -30,6 +30,7 @@ export const FOOTER_LINKS = {
     { label: 'The Bainbridge Warning', href: '/products/bainbridge-warning' },
     { label: 'Martha Cohort Program', href: '/products/martha' },
     { label: 'ClearBid', href: '/products/clearbid' },
+    { label: 'Clarity Garden', href: '/products/clarity-garden' },
   ],
   external: [
     { label: 'AcheType on Substack', href: 'https://substack.com/@achetype1' },
@@ -119,7 +120,9 @@ export const SERVICES = [
 
 export const TICKER_ITEMS = [
   'CIR V2.0 LIVE',
-  'THE BAINBRIDGE WARNING SHIPPING MARCH 2026',
+  'THE BAINBRIDGE WARNING DOCTRINE PAGE LIVE',
+  'CLEARBID SPECIMEN NOW ACTIVE',
+  'CLARITY GARDEN PUBLIC SURFACE IN DEVELOPMENT',
   'AURORA NOW LIVE IN THE RESEARCH ARCHIVE',
   '560+ SOURCED DOCUMENTS',
   '18 MONTHS OF ACTIVE SYNTHESIS',

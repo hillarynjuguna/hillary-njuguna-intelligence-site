@@ -21,6 +21,7 @@ const topologyFields = {
   id: z.string().optional(),
   description: z.string().optional(),
   publishStatus: z.enum(['draft', 'published', 'archived']).default('published'),
+  featuredRank: z.number().default(99),
   domains: normalizeArray(),
   crystallization: z.enum(['emergent', 'developing', 'crystallized']).default('developing'),
   governanceRelevance: z.enum(['none', 'adjacent', 'direct']).default('none'),
