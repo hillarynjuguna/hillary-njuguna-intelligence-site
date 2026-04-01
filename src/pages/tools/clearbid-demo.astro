@@ -1,0 +1,575 @@
+---
+export const prerender = true;
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="ClearBid Demo"
+  description="Interactive ClearBid specimen: turn one ambiguous listing into an audit-grade Deal Packet."
+>
+  <div class="clearbid-demo page-enter">
+    <div class="container">
+      <header class="demo-header">
+        <p class="label section-label">Tools / Live Specimen</p>
+        <h1 class="demo-title">ClearBid Demo</h1>
+        <p class="demo-desc">
+          This is the execution-governance specimen of ClearBid v1: one listing in, deterministic gates first,
+          landed-cost math second, Deal Packet out. The purpose is not to automate commitment. The purpose
+          is to make the decision legible before money, time, or trust are spent.
+        </p>
+        <div class="demo-links">
+          <a href="/products/clearbid" class="label">Read the product entry</a>
+          <a href="/research/bainbridge-warning" class="label">Read the doctrine layer</a>
+          <a href="/research/rsps-architecture" class="label">Read the architecture substrate</a>
+        </div>
+      </header>
+
+      <div class="demo-grid">
+        <section class="controls card">
+          <div class="controls__header">
+            <div>
+              <p class="label section-label">Listing Input</p>
+              <h2 class="section-title">One listing, one packet</h2>
+            </div>
+            <button type="button" class="btn btn--ghost controls__reset" id="load-sample">Load Sample</button>
+          </div>
+
+          <div class="grid-2">
+            <label>
+              <span class="control-label">Source Type</span>
+              <select id="source-type">
+                <option value="telegram">telegram</option>
+                <option value="facebook">facebook</option>
+                <option value="mudah">mudah</option>
+                <option value="ebay">ebay</option>
+                <option value="manual">manual</option>
+              </select>
+            </label>
+            <label>
+              <span class="control-label">Source URL</span>
+              <input id="source-url" type="text" placeholder="https://..." />
+            </label>
+          </div>
+
+          <label>
+            <span class="control-label">Raw Listing Text</span>
+            <textarea id="raw-text" rows="7" placeholder="Paste listing text here"></textarea>
+          </label>
+
+          <div class="grid-2">
+            <label>
+              <span class="control-label">Item Title</span>
+              <input id="item-title" type="text" />
+            </label>
+            <label>
+              <span class="control-label">Part Number</span>
+              <input id="item-part-number" type="text" />
+            </label>
+            <label>
+              <span class="control-label">Category</span>
+              <input id="item-category" type="text" />
+            </label>
+            <label>
+              <span class="control-label">Condition</span>
+              <input id="item-condition" type="text" />
+            </label>
+            <label>
+              <span class="control-label">Seller Name</span>
+              <input id="seller-name" type="text" />
+            </label>
+            <label>
+              <span class="control-label">Seller Reputation</span>
+              <select id="seller-reputation">
+                <option value="unknown">unknown</option>
+                <option value="high">high</option>
+                <option value="medium">medium</option>
+                <option value="low">low</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="grid-2">
+            <label>
+              <span class="control-label">Ask Price</span>
+              <input id="ask-price" type="number" step="0.01" />
+            </label>
+            <label>
+              <span class="control-label">Currency</span>
+              <input id="currency" type="text" />
+            </label>
+            <label>
+              <span class="control-label">Target Resale Value</span>
+              <input id="target-resale" type="number" step="0.01" />
+            </label>
+            <label>
+              <span class="control-label">FX Rate</span>
+              <input id="fx-rate" type="number" step="0.0001" />
+            </label>
+            <label>
+              <span class="control-label">Shipping Estimate</span>
+              <input id="shipping-estimate" type="number" step="0.01" />
+            </label>
+            <label>
+              <span class="control-label">Tax Estimate</span>
+              <input id="tax-estimate" type="number" step="0.01" />
+            </label>
+            <label>
+              <span class="control-label">Fees Estimate</span>
+              <input id="fees-estimate" type="number" step="0.01" />
+            </label>
+          </div>
+
+          <div class="control-actions">
+            <button type="button" class="btn btn--primary" id="run-clearbid">Generate Deal Packet</button>
+          </div>
+        </section>
+
+        <section class="results card">
+          <div class="results__header">
+            <div>
+              <p class="label section-label">Decision Output</p>
+              <h2 class="section-title">Audit-grade packet</h2>
+            </div>
+            <button type="button" class="btn btn--ghost" id="copy-packet">Copy Packet</button>
+          </div>
+
+          <div class="verdict-row">
+            <div class="status-badge status-badge--blocked" id="signal-badge">BLOCKED</div>
+            <div class="status-badge status-badge--blocked" id="recommendation-badge">NO_GO</div>
+            <div class="metric-pill" id="confidence-pill">Confidence 0.50</div>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric-card">
+              <p class="label">True Landed Cost</p>
+              <h3 id="landed-cost">0.00</h3>
+            </article>
+            <article class="metric-card">
+              <p class="label">Projected Margin</p>
+              <h3 id="margin-pct">0.0%</h3>
+            </article>
+            <article class="metric-card">
+              <p class="label">Negotiation Stance</p>
+              <h3 id="stance">BLOCK</h3>
+            </article>
+          </div>
+
+          <div class="reason-box">
+            <p class="label section-label">Primary Question</p>
+            <p id="primary-question">What condition would make this economically viable?</p>
+          </div>
+
+          <div class="gates-grid" id="gates-grid"></div>
+
+          <div class="packet-wrap">
+            <p class="label section-label">Deal Packet</p>
+            <pre id="packet-output"></pre>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .clearbid-demo {
+    padding: var(--space-24) 0 var(--space-32);
+  }
+
+  .demo-header {
+    max-width: 76ch;
+    margin-bottom: var(--space-14);
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .demo-title {
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-5xl));
+    margin-bottom: var(--space-5);
+  }
+
+  .demo-desc {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-5);
+    max-width: 70ch;
+  }
+
+  .demo-links {
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+  }
+
+  .demo-links a {
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+
+  .demo-links a:hover {
+    color: var(--ember);
+  }
+
+  .card {
+    padding: var(--space-7);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: minmax(340px, 430px) 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .controls__header,
+  .results__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .section-title {
+    margin: 0;
+    font-size: var(--text-2xl);
+  }
+
+  .control-label {
+    display: inline-block;
+    margin-bottom: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+  }
+
+  label {
+    display: block;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-mid);
+    background: rgba(12, 14, 20, 0.85);
+    color: var(--text-primary);
+    padding: 0.85rem 0.95rem;
+    font: inherit;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 10rem;
+  }
+
+  .control-actions {
+    margin-top: var(--space-6);
+  }
+
+  .verdict-row {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-6);
+  }
+
+  .status-badge,
+  .metric-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.55rem 0.85rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .status-badge--blocked {
+    background: rgba(141, 53, 53, 0.18);
+    color: #f3a4a4;
+    border: 1px solid rgba(141, 53, 53, 0.35);
+  }
+
+  .status-badge--med {
+    background: rgba(205, 153, 63, 0.18);
+    color: #f4d08a;
+    border: 1px solid rgba(205, 153, 63, 0.35);
+  }
+
+  .status-badge--high {
+    background: rgba(74, 148, 108, 0.18);
+    color: #9fddb9;
+    border: 1px solid rgba(74, 148, 108, 0.35);
+  }
+
+  .metric-pill {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-mid);
+  }
+
+  .metric-grid,
+  .gates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .metric-card,
+  .gate-card,
+  .reason-box,
+  .packet-wrap {
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    background: rgba(10, 12, 16, 0.55);
+    padding: var(--space-5);
+  }
+
+  .metric-card h3,
+  .gate-card h3 {
+    margin: 0;
+    font-size: var(--text-xl);
+  }
+
+  .metric-card p,
+  .gate-card p,
+  .reason-box p {
+    margin-top: 0;
+  }
+
+  .gate-card ul {
+    margin: var(--space-3) 0 0;
+    padding-left: 1rem;
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .packet-wrap pre {
+    margin: 0;
+    white-space: pre-wrap;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 980px) {
+    .demo-grid,
+    .metric-grid,
+    .gates-grid,
+    .grid-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const sample = {
+    source_type: 'telegram',
+    source_url: 'https://t.me/example-listing',
+    raw_text: '1998 Subaru STI transmission. Asking 4500 MYR. Located in Tokyo. Seller can arrange shipping.',
+    ask_price: 4500,
+    currency: 'MYR',
+    target_resale_value: 6500,
+    shipping_estimate: 850,
+    tax_estimate: 250,
+    fees_estimate: 120,
+    fx_rate: 1.0,
+    seller_name: 'sample seller',
+    seller_reputation: 'medium',
+    item_title: 'Subaru STI transmission',
+    item_part_number: 'TY856WB1AA',
+    item_category: 'Automotive',
+    item_condition: 'used',
+    origin_country: 'Japan'
+  };
+
+  const ids = [
+    'source-type', 'source-url', 'raw-text', 'ask-price', 'currency', 'target-resale',
+    'shipping-estimate', 'tax-estimate', 'fees-estimate', 'fx-rate', 'seller-name',
+    'seller-reputation', 'item-title', 'item-part-number', 'item-category',
+    'item-condition', 'origin-country'
+  ];
+
+  function setBadgeClass(el, kind) {
+    el.classList.remove('status-badge--blocked', 'status-badge--med', 'status-badge--high');
+    el.classList.add(kind === 'HIGH' || kind === 'GO' ? 'status-badge--high' : kind === 'MED' || kind === 'HOLD' ? 'status-badge--med' : 'status-badge--blocked');
+  }
+
+  function loadSample() {
+    document.getElementById('source-type').value = sample.source_type;
+    document.getElementById('source-url').value = sample.source_url;
+    document.getElementById('raw-text').value = sample.raw_text;
+    document.getElementById('ask-price').value = sample.ask_price;
+    document.getElementById('currency').value = sample.currency;
+    document.getElementById('target-resale').value = sample.target_resale_value;
+    document.getElementById('shipping-estimate').value = sample.shipping_estimate;
+    document.getElementById('tax-estimate').value = sample.tax_estimate;
+    document.getElementById('fees-estimate').value = sample.fees_estimate;
+    document.getElementById('fx-rate').value = sample.fx_rate;
+    document.getElementById('seller-name').value = sample.seller_name;
+    document.getElementById('seller-reputation').value = sample.seller_reputation;
+    document.getElementById('item-title').value = sample.item_title;
+    document.getElementById('item-part-number').value = sample.item_part_number;
+    document.getElementById('item-category').value = sample.item_category;
+    document.getElementById('item-condition').value = sample.item_condition;
+    document.getElementById('origin-country').value = sample.origin_country;
+    runDemo();
+  }
+
+  function gateStatus(reasonCodes, failCodes = [], reviewCodes = []) {
+    if (reasonCodes.some(code => failCodes.includes(code))) return 'fail';
+    if (reasonCodes.length || reviewCodes.length) return 'review';
+    return 'pass';
+  }
+
+  function runDemo() {
+    const payload = {
+      sourceType: document.getElementById('source-type').value,
+      sourceUrl: document.getElementById('source-url').value.trim(),
+      rawText: document.getElementById('raw-text').value.trim(),
+      askPrice: Number(document.getElementById('ask-price').value || 0),
+      currency: document.getElementById('currency').value.trim() || 'USD',
+      targetResale: Number(document.getElementById('target-resale').value || 0),
+      shipping: Number(document.getElementById('shipping-estimate').value || 0),
+      tax: Number(document.getElementById('tax-estimate').value || 0),
+      fees: Number(document.getElementById('fees-estimate').value || 0),
+      fxRate: Number(document.getElementById('fx-rate').value || 1),
+      sellerName: document.getElementById('seller-name').value.trim(),
+      sellerReputation: document.getElementById('seller-reputation').value.trim().toLowerCase(),
+      itemTitle: document.getElementById('item-title').value.trim(),
+      itemPartNumber: document.getElementById('item-part-number').value.trim(),
+      itemCategory: document.getElementById('item-category').value.trim(),
+      itemCondition: document.getElementById('item-condition').value.trim(),
+      originCountry: document.getElementById('origin-country').value.trim()
+    };
+
+    const textBlob = `${payload.itemTitle} ${payload.rawText} ${payload.itemPartNumber}`.toLowerCase();
+    const identityReasons = [];
+    const identityEvidence = [];
+    if (payload.itemPartNumber) {
+      identityEvidence.push(`part_number:${payload.itemPartNumber}`);
+    } else {
+      identityReasons.push('no_part_number_or_identity_anchor');
+    }
+    if (!payload.itemTitle) identityReasons.push('missing_title');
+    if (['needs repair', 'for parts', 'salvage'].some(token => textBlob.includes(token))) {
+      identityReasons.push('repair_or_salvage_language');
+    }
+    const identityStatus = identityReasons.includes('repair_or_salvage_language') ? 'fail' : identityReasons.length ? 'review' : 'pass';
+
+    const bufferedAsk = payload.askPrice * payload.fxRate * 1.03;
+    const landedCost = bufferedAsk + payload.shipping + payload.tax + payload.fees;
+    const projectedMargin = payload.targetResale - landedCost;
+    const projectedMarginPct = payload.targetResale > 0 ? projectedMargin / payload.targetResale : 0;
+    const economicReasons = [];
+    if (payload.askPrice <= 0) economicReasons.push('non_positive_ask');
+    if (payload.fxRate <= 0) economicReasons.push('invalid_fx_rate');
+    if (payload.targetResale <= 0) economicReasons.push('missing_target_resale');
+    if (payload.targetResale > 0 && projectedMarginPct < 0.2) economicReasons.push('below_margin_floor');
+    const economicStatus = economicReasons.includes('below_margin_floor') ? 'fail' : economicReasons.length ? 'review' : 'pass';
+
+    const reputationReasons = [];
+    if (['low', 'blocked', 'blacklisted'].includes(payload.sellerReputation)) reputationReasons.push('seller_trust_low');
+    else if (['unknown', 'unverified', ''].includes(payload.sellerReputation)) reputationReasons.push('seller_unverified');
+    const reputationStatus = reputationReasons.includes('seller_trust_low') ? 'fail' : reputationReasons.length ? 'review' : 'pass';
+
+    const evidenceReasons = [];
+    if (!payload.rawText) evidenceReasons.push('missing_raw_text');
+    if (!payload.sourceType) evidenceReasons.push('missing_source_type');
+    if (!payload.itemTitle) evidenceReasons.push('missing_item_title');
+    if (!payload.currency) evidenceReasons.push('missing_currency');
+    if (payload.askPrice <= 0) evidenceReasons.push('missing_or_invalid_price');
+    const evidenceStatus = evidenceReasons.length > 2 ? 'fail' : evidenceReasons.length ? 'review' : 'pass';
+
+    const gateList = [identityStatus, economicStatus, reputationStatus, evidenceStatus];
+    let signal = 'HIGH';
+    let recommendation = 'GO';
+    let stance = 'AGGRESSIVE';
+    let primaryQuestion = 'Is the seller willing to confirm this exact condition in writing?';
+    if (gateList.includes('fail')) {
+      signal = 'BLOCKED';
+      recommendation = 'NO_GO';
+      stance = 'BLOCK';
+      primaryQuestion = economicReasons.includes('below_margin_floor')
+        ? 'What condition would make this economically viable?'
+        : 'What evidence would remove the blocking uncertainty?';
+    } else if (gateList.includes('review') || projectedMarginPct < 0.3) {
+      signal = 'MED';
+      recommendation = 'HOLD';
+      stance = projectedMarginPct >= 0.3 && !gateList.includes('review') ? 'NEUTRAL' : 'HOLD';
+      primaryQuestion = 'What single fact would most reduce uncertainty?';
+    }
+
+    let confidence = 1.0;
+    [identityStatus, economicStatus, reputationStatus, evidenceStatus].forEach(status => {
+      if (status === 'fail') confidence -= 0.35;
+      if (status === 'review') confidence -= 0.15;
+    });
+    confidence = Math.max(0, Math.min(1, confidence));
+
+    document.getElementById('signal-badge').textContent = signal;
+    document.getElementById('recommendation-badge').textContent = recommendation;
+    document.getElementById('confidence-pill').textContent = `Confidence ${confidence.toFixed(2)}`;
+    setBadgeClass(document.getElementById('signal-badge'), signal);
+    setBadgeClass(document.getElementById('recommendation-badge'), recommendation);
+    document.getElementById('landed-cost').textContent = `${landedCost.toFixed(2)} ${payload.currency}`;
+    document.getElementById('margin-pct').textContent = `${(projectedMarginPct * 100).toFixed(1)}%`;
+    document.getElementById('stance').textContent = stance;
+    document.getElementById('primary-question').textContent = primaryQuestion;
+
+    const gates = [
+      ['identity_gate', identityStatus, identityReasons, identityEvidence],
+      ['economic_gate', economicStatus, economicReasons, [`buffered_ask=${bufferedAsk.toFixed(2)}`, `true_landed_cost=${landedCost.toFixed(2)}`]],
+      ['reputation_gate', reputationStatus, reputationReasons, [`reputation=${payload.sellerReputation || 'unknown'}`]],
+      ['evidence_completeness_gate', evidenceStatus, evidenceReasons, []]
+    ];
+
+    document.getElementById('gates-grid').innerHTML = gates.map(([name, status, reasons, evidence]) => `
+      <article class="gate-card">
+        <p class="label">${name}</p>
+        <h3>${status.toUpperCase()}</h3>
+        <ul>
+          <li><strong>Reasons:</strong> ${reasons.length ? reasons.join(', ') : 'none'}</li>
+          <li><strong>Evidence:</strong> ${evidence.length ? evidence.join(', ') : 'none'}</li>
+        </ul>
+      </article>
+    `).join('');
+
+    const packet = `# Deal Packet\n\n- \`Verdict\`: **${recommendation}**\n- \`Signal\`: \`${signal}\`\n- \`Confidence\`: \`${confidence.toFixed(3)}\`\n- \`Primary Question\`: ${primaryQuestion}\n- \`Negotiation Stance\`: \`${stance}\`\n\n## Listing\n- \`Source\`: \`${payload.sourceType}\`\n- \`URL\`: ${payload.sourceUrl || 'n/a'}\n- \`Item\`: ${payload.itemTitle || 'n/a'}\n- \`Seller\`: ${payload.sellerName || 'unknown'}\n\n## Economic Analysis\n- \`Ask Price\`: \`${payload.askPrice.toFixed(2)} ${payload.currency}\`\n- \`True Landed Cost\`: \`${landedCost.toFixed(2)} ${payload.currency}\`\n- \`Projected Margin\`: \`${projectedMargin.toFixed(2)} ${payload.currency}\`\n- \`Projected Margin %\`: \`${(projectedMarginPct * 100).toFixed(1)}%\`\n\n## Gates\n- \`identity_gate\`: \`${identityStatus}\`. Reasons: ${identityReasons.length ? identityReasons.join(', ') : 'none'}\n- \`economic_gate\`: \`${economicStatus}\`. Reasons: ${economicReasons.length ? economicReasons.join(', ') : 'none'}\n- \`reputation_gate\`: \`${reputationStatus}\`. Reasons: ${reputationReasons.length ? reputationReasons.join(', ') : 'none'}\n- \`evidence_completeness_gate\`: \`${evidenceStatus}\`. Reasons: ${evidenceReasons.length ? evidenceReasons.join(', ') : 'none'}\n\n## Summary\n${(signal === 'BLOCKED' ? 'Blocked' : signal === 'MED' ? 'Review' : 'Go')} � landed cost ${landedCost.toFixed(2)} ${payload.currency}. Projected margin ${(projectedMarginPct * 100).toFixed(1)}%.`;
+
+    document.getElementById('packet-output').textContent = packet;
+  }
+
+  document.getElementById('load-sample').addEventListener('click', loadSample);
+  document.getElementById('run-clearbid').addEventListener('click', runDemo);
+  document.getElementById('copy-packet').addEventListener('click', async () => {
+    const text = document.getElementById('packet-output').textContent || '';
+    try {
+      await navigator.clipboard.writeText(text);
+      document.getElementById('copy-packet').textContent = 'Copied';
+      setTimeout(() => { document.getElementById('copy-packet').textContent = 'Copy Packet'; }, 1200);
+    } catch {
+      document.getElementById('copy-packet').textContent = 'Copy failed';
+      setTimeout(() => { document.getElementById('copy-packet').textContent = 'Copy Packet'; }, 1200);
+    }
+  });
+
+  loadSample();
+</script>

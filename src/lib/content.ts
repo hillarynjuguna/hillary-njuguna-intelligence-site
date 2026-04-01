@@ -24,7 +24,9 @@ export async function getAllResearchEntries() {
 
 export async function getFeaturedResearch() {
   const all = await getAllResearchEntries();
-  return all.filter((e) => e.data.featured);
+  return all
+    .filter((e) => e.data.featured)
+    .sort((a, b) => (a.data.featuredRank ?? 99) - (b.data.featuredRank ?? 99));
 }
 
 // ── Product helpers ───────────────────────────────────────────────────────────
@@ -35,7 +37,9 @@ export async function getAllProducts() {
 
 export async function getFeaturedProducts() {
   const all = await getAllProducts();
-  return all.filter((p) => p.data.featured);
+  return all
+    .filter((p) => p.data.featured)
+    .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 }
 
 // ── Clause helpers ────────────────────────────────────────────────────────────
