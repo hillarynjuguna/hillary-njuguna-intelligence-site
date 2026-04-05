@@ -21,6 +21,30 @@
       "publishedAt": "2026-03-31T00:00:00.000Z"
     },
     {
+      "id": "digest-bainbridge-warning-read",
+      "slug": "bainbridge-warning-read",
+      "title": "The Bainbridge Warning: Introduction",
+      "description": "The paper from 1983 that most engineers deploying AI agents have not read. And why the warning it contains is more precisely relevant to what is happening in AI deployment right now than almost anything written in the last five years.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "none",
+      "domains": [
+        "governance",
+        "institutional-design"
+      ],
+      "themes": [],
+      "tags": [
+        "bainbridge-warning",
+        "ai-governance",
+        "mortal-measurement",
+        "automation-irony"
+      ],
+      "lineage": [],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-04-05T00:00:00.000Z"
+    },
+    {
       "id": "digest-cir-v2-core-argument",
       "slug": "cir-v2-core-argument",
       "title": "CIR v2.0 — Core Argument",
@@ -468,7 +492,7 @@
       "id": "research-bainbridge-warning",
       "slug": "bainbridge-warning",
       "title": "The Bainbridge Warning",
-      "description": "Framework for understanding institutional AI failure — the structural pattern where high capability and low governance combine to produce entirely predictable catastrophic outcomes.",
+      "description": "A practitioner doctrine for why AI governance fails before it looks like failure, and what durable infrastructure actually requires.",
       "contentType": "research",
       "status": "published",
       "crystallization": "developing",
@@ -496,15 +520,15 @@
         "bainbridge-core"
       ],
       "sourceCollection": "research",
-      "publishedAt": "2026-02-01T00:00:00.000Z",
+      "publishedAt": "2026-03-01T00:00:00.000Z",
       "unresolvedEdges": [
         "What is the minimum viable governance profile for a given capability level?",
         "How do Bainbridge zones interact when multiple gap areas co-exist?"
       ],
       "keyClaims": [
-        "High capability adoption + low governance infrastructure = structurally predictable failure.",
-        "The failure is always legible in retrospect — the framework makes it visible before.",
-        "Capability-governance gaps can be diagnosed and closed before they produce institutional failures."
+        "Capability is moving faster than the infrastructure that makes capability safe to depend on.",
+        "Governance failure is usually visible before the incident, but only if an institution is measuring the right things.",
+        "Action classification, behavioral contracts, instruction-layer governance, and accountable ownership keep the problem of AI governance solvable."
       ]
     },
     {
@@ -800,7 +824,7 @@
       "id": "research-rsps-architecture",
       "slug": "rsps-architecture",
       "title": "RSPS: The Recursive Sovereign Project Space",
-      "description": "A multi-model cognitive architecture in which intelligence emerges from the field between a human sovereign and a structured ensemble of AI instruments -- not from any single node.",
+      "description": "A multi-model cognitive architecture in which intelligence emerges from the field between a human sovereign and a structured ensemble of AI instruments, not from any single node.",
       "contentType": "research",
       "status": "published",
       "crystallization": "crystallized",
@@ -954,10 +978,34 @@
       ]
     },
     {
+      "id": "product-bainbridge-warning-book",
+      "slug": "bainbridge-warning-book",
+      "title": "The Bainbridge Warning — Book",
+      "description": "Why AI agent governance fails and what durable infrastructure actually requires.",
+      "contentType": "product",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "institutional-design"
+      ],
+      "themes": [],
+      "tags": [],
+      "lineage": [
+        "bainbridge-core"
+      ],
+      "sourceCollection": "products",
+      "relatedResearch": [
+        "research-bainbridge-warning"
+      ],
+      "governanceNotes": []
+    },
+    {
       "id": "product-bainbridge-warning",
       "slug": "bainbridge-warning",
       "title": "The Bainbridge Warning",
-      "description": "An institutional AI readiness framework that makes predictable failures visible before they occur.",
+      "description": "A governance assessment for institutions whose AI capability is moving faster than the infrastructure that makes it safe to depend on.",
       "contentType": "product",
       "status": "published",
       "crystallization": "crystallized",
@@ -1006,21 +1054,52 @@
       "governanceNotes": []
     },
     {
-      "id": "product-clearbid",
-      "slug": "clearbid",
-      "title": "ClearBid",
-      "description": "AI-structured deal packets for procurement processes — reducing the interpretation gap between procurement intent and received response.",
+      "id": "product-clarity-garden",
+      "slug": "clarity-garden",
+      "title": "Clarity Garden",
+      "description": "A local-first attention instrument for neurodivergent operators who need non-coercive cognitive infrastructure rather than another productivity system.",
       "contentType": "product",
       "status": "published",
-      "crystallization": "emergent",
+      "crystallization": "developing",
       "governanceRelevance": "adjacent",
       "domains": [
-        "procurement",
-        "governance"
+        "cognitive-infrastructure",
+        "neurodivergence",
+        "attention",
+        "wellness"
       ],
       "themes": [],
       "tags": [],
-      "lineage": [],
+      "lineage": [
+        "rsps",
+        "field-stewardship",
+        "resonance"
+      ],
+      "sourceCollection": "products",
+      "relatedResearch": [],
+      "governanceNotes": []
+    },
+    {
+      "id": "product-clearbid",
+      "slug": "clearbid",
+      "title": "ClearBid",
+      "description": "Audit-grade deal packets for ambiguous high-stakes listings — turning noisy sourcing decisions into GO / HOLD / NO_GO verdicts.",
+      "contentType": "product",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "procurement",
+        "governance",
+        "automotive",
+        "logistics"
+      ],
+      "themes": [],
+      "tags": [],
+      "lineage": [
+        "rsps",
+        "dcfb"
+      ],
       "sourceCollection": "products",
       "relatedResearch": [],
       "governanceNotes": []
@@ -1220,6 +1299,26 @@
     }
   ],
   "edges": [
+    {
+      "source": "digest-bainbridge-warning-read",
+      "target": "product-bainbridge-warning-book",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "This page contains the Introduction to The Bainbridge Warning (v1.3), reproduced in full as a free reading excerpt.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-bainbridge-warning-read",
+      "target": "research-bainbridge-warning",
+      "type": "clarifies",
+      "confidence": "high",
+      "explanation": "The Introduction establishes the core argument that the research dispatch develops at the framework level.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
     {
       "source": "digest-cir-v2-core-argument",
       "target": "research-dcfb",
@@ -1521,9 +1620,9 @@
       "target": "research-dcfb",
       "type": "extends",
       "confidence": "high",
-      "explanation": "The Bainbridge Warning is the applied diagnostic operationalisation of DCFB — translating the five constitutional principles into a gap analysis framework for institutional deployment.",
+      "explanation": "The Bainbridge Warning is the applied diagnostic operationalisation of DCFB — translating constitutional principles into an institutional doctrine of operational readiness.",
       "provenance": [
-        "section: The Diagnostic"
+        "section: What Institutions Must Build"
       ],
       "manual": true,
       "inferred": false
@@ -1533,9 +1632,21 @@
       "target": "product-bainbridge-warning",
       "type": "prototype_for",
       "confidence": "high",
-      "explanation": "This research paper is the theoretical foundation for the Bainbridge Warning product offering — the product operationalises the research as a delivered assessment service.",
+      "explanation": "This doctrine is the foundation for the Bainbridge assessment engagement.",
       "provenance": [
-        "section: The Diagnostic"
+        "section: A Bridge to Practice"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-bainbridge-warning",
+      "target": "product-clearbid",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "ClearBid is a narrow execution-governance specimen of the Bainbridge Warning logic in a transactional domain where consequence, gating, and auditability can be made visible.",
+      "provenance": [
+        "section: Related Specimens"
       ],
       "manual": true,
       "inferred": false
@@ -1545,9 +1656,9 @@
       "target": "research-trust-irreversibility-residue",
       "type": "depends_on",
       "confidence": "high",
-      "explanation": "The Bainbridge Warning gap analysis depends on the irreversibility account of trust — Bainbridge zones are structurally defined by where irreversibility accumulates faster than governance.",
+      "explanation": "The Bainbridge Warning depends on the irreversibility account of trust — where consequence accumulates faster than governance, failure becomes structurally legible.",
       "provenance": [
-        "section: Gap Analysis"
+        "section: Why Governance Fails Before It Looks Like Failure"
       ],
       "manual": true,
       "inferred": false
@@ -1763,7 +1874,7 @@
       "target": "research-eigenform-and-rsps",
       "type": "extends",
       "confidence": "high",
-      "explanation": "The eigenform is what RSPS generates — the stable cognitive pattern that recursive sovereign cognition produces when applied to itself.",
+      "explanation": "The eigenform is what RSPS generates, the stable cognitive pattern that recursive sovereign cognition produces when applied to itself.",
       "provenance": [],
       "manual": true,
       "inferred": false
@@ -1773,7 +1884,7 @@
       "target": "digest-field-note-002-verbal-diarrhea-methodology",
       "type": "clarifies",
       "confidence": "high",
-      "explanation": "The field priming account clarifies why RSPS works — the human relational contribution that makes the cognitive field architecture generative rather than merely transactional.",
+      "explanation": "The field priming account clarifies why RSPS works, the human relational contribution that makes the cognitive field architecture generative rather than merely transactional.",
       "provenance": [],
       "manual": true,
       "inferred": false
@@ -1783,7 +1894,7 @@
       "target": "research-dcfb",
       "type": "derives_from",
       "confidence": "high",
-      "explanation": "RSPS is the operational instantiation of DCFB — the architecture that makes distributed cognition as foundational behavior a running system rather than a theoretical claim.",
+      "explanation": "RSPS is the operational instantiation of DCFB, the architecture that makes distributed cognition as foundational behavior a running system rather than a theoretical claim.",
       "provenance": [],
       "manual": true,
       "inferred": false
@@ -1794,6 +1905,26 @@
       "type": "governance_relevant_to",
       "confidence": "high",
       "explanation": "RSPS's tau-node verification protocol is the primary technical mechanism for satisfying the Intent Specification requirement in distributed systems.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-rsps-architecture",
+      "target": "research-bainbridge-warning",
+      "type": "clarifies",
+      "confidence": "high",
+      "explanation": "The Bainbridge Warning is the public governance doctrine that translates the deeper RSPS architecture into practitioner-facing institutional language.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-rsps-architecture",
+      "target": "product-clearbid",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "ClearBid is a narrow, practical specimen showing how RSPS becomes an execution-governance surface in a transactional domain.",
       "provenance": [],
       "manual": true,
       "inferred": false
@@ -1875,12 +2006,38 @@
       "inferred": false
     },
     {
+      "source": "product-bainbridge-warning-book",
+      "target": "product-cir",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "The book installs the diagnostic frame. The CIR workbook runs the frame against your organisational reality. Both are in the bundle.",
+      "provenance": [
+        "section: The Bundle"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-bainbridge-warning-book",
+      "target": "research-bainbridge-warning",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "The book is the full operationalisation of the Bainbridge Warning framework across five case specimens and four capability specifications.",
+      "provenance": [
+        "section: Research Foundation"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
       "source": "product-bainbridge-warning",
       "target": "research-bainbridge-warning",
       "type": "derives_from",
       "confidence": "high",
-      "explanation": "The product is the delivered-service operationalisation of the Bainbridge Warning research framework — same diagnostic, structured as an assessment engagement.",
-      "provenance": [],
+      "explanation": "The product is the delivered-service operationalisation of the Bainbridge Warning doctrine.",
+      "provenance": [
+        "section: Related Doctrine"
+      ],
       "manual": true,
       "inferred": false
     },
@@ -1889,9 +2046,9 @@
       "target": "product-cir",
       "type": "extends",
       "confidence": "high",
-      "explanation": "The Bainbridge Warning extends CIR by adding a capability profile, gap analysis, and predictability assessment — building on the constitutional foundation CIR establishes.",
+      "explanation": "The Bainbridge Warning extends CIR by adding explicit governance-gap mapping, predictability analysis, and consequence-aware ownership design.",
       "provenance": [
-        "section: The Framework"
+        "section: What It Produces"
       ],
       "manual": true,
       "inferred": false
@@ -1919,13 +2076,73 @@
       "inferred": false
     },
     {
+      "source": "product-clarity-garden",
+      "target": "research-rsps-architecture",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "Clarity Garden is the public-facing cognitive sovereignty branch of the wider RSPS architecture.",
+      "provenance": [
+        "section: Why It Exists"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-clarity-garden",
+      "target": "research-bainbridge-warning",
+      "type": "clarifies",
+      "confidence": "medium",
+      "explanation": "If the Bainbridge Warning governs institutions, Clarity Garden governs the operator's field. Both are concerned with keeping consequence and attention inside the system rather than outsourcing them to abstraction.",
+      "provenance": [
+        "section: Why It Exists"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-clearbid",
+      "target": "research-dcfb",
+      "type": "prototype_for",
+      "confidence": "high",
+      "explanation": "ClearBid is a live product specimen of the broader distributed cognition and constitutional governance architecture described in DCFB.",
+      "provenance": [
+        "section: ClearBid as live specimen"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
       "source": "product-clearbid",
       "target": "product-cir",
       "type": "extends",
       "confidence": "medium",
-      "explanation": "ClearBid applies the intent specification principle from CIR to the procurement domain — closing the gap between what organisations intend to specify and what they receive.",
+      "explanation": "ClearBid applies structured intent and verification logic to transactional ambiguity rather than organizational AI readiness.",
       "provenance": [
-        "section: The Procurement Interpretation Gap"
+        "section: Procurement risk compression"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-clearbid",
+      "target": "research-bainbridge-warning",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "ClearBid is a practical execution-governance specimen of the Bainbridge Warning, showing how action classification, gating, and consequence-aware review become visible in a narrow domain.",
+      "provenance": [
+        "section: Why This Is Governance, Not Just Sourcing"
+      ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "product-clearbid",
+      "target": "research-rsps-architecture",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "ClearBid is one of the clearest public specimens of the wider RSPS architecture.",
+      "provenance": [
+        "section: Related Doctrine"
       ],
       "manual": true,
       "inferred": false
@@ -3607,6 +3824,46 @@
       "inferred": true
     },
     {
+      "source": "product-bainbridge-warning-book",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning-book",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning-book",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning-book",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-bainbridge-warning",
       "target": "clause-coherence-overfitting-guard",
       "type": "governance_relevant_to",
@@ -3668,6 +3925,46 @@
     },
     {
       "source": "product-cir",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-clearbid",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-clearbid",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-clearbid",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-clearbid",
       "target": "clause-irreversibility-threshold",
       "type": "governance_relevant_to",
       "confidence": "low",
@@ -3737,16 +4034,16 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-03-31T16:34:28.026Z",
+  "generatedAt": "2026-04-05T14:10:01.348Z",
   "stats": {
-    "totalNodes": 38,
-    "totalEdges": 246,
-    "manualEdges": 77,
-    "inferredEdges": 169,
+    "totalNodes": 41,
+    "totalEdges": 266,
+    "manualEdges": 89,
+    "inferredEdges": 177,
     "byType": {
-      "digest": 14,
+      "digest": 15,
       "research": 15,
-      "product": 5,
+      "product": 7,
       "clause": 4
     }
   }

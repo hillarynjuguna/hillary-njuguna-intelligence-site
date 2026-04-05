@@ -310,6 +310,18 @@
       "governanceRelevance": "direct"
     },
     {
+      "contentId": "product-bainbridge-warning-book",
+      "contentTitle": "The Bainbridge Warning — Book",
+      "contentType": "product",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
       "contentId": "product-bainbridge-warning",
       "contentTitle": "The Bainbridge Warning",
       "contentType": "product",
@@ -334,11 +346,23 @@
       "governanceRelevance": "direct"
     },
     {
-      "contentId": "product-clearbid",
-      "contentTitle": "ClearBid",
+      "contentId": "product-clarity-garden",
+      "contentTitle": "Clarity Garden",
       "contentType": "product",
       "clauseIds": [],
       "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "product-clearbid",
+      "contentTitle": "ClearBid",
+      "contentType": "product",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
     },
     {
       "contentId": "product-gtm-engine",
@@ -371,5 +395,5 @@
       "clause-irreversibility-threshold"
     ]
   },
-  "generatedAt": "2026-03-31T16:34:28.028Z"
+  "generatedAt": "2026-04-05T14:10:01.350Z"
 }

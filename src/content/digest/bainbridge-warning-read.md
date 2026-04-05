@@ -11,7 +11,7 @@ domains: ["governance", "institutional-design"]
 featured: false
 explicitRelations:
   - targetId: "product-bainbridge-warning-book"
-    type: "excerpt_of"
+    type: "derives_from"
     confidence: "high"
     explanation: "This page contains the Introduction to The Bainbridge Warning (v1.3), reproduced in full as a free reading excerpt."
   - targetId: "research-bainbridge-warning"

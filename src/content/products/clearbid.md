@@ -22,7 +22,7 @@ seoTitle: "ClearBid — Deal Packet Intelligence for Risky Listings"
 seoDescription: "Run a live ClearBid specimen. See how ambiguous listings become landed-cost analysis, gate decisions, and audit-grade Deal Packets."
 excerpt: "The value is not in saying yes faster. The value is in making a rigorous no legible before money, time, or trust are spent."
 explicitRelations:
-  - targetId: research-dcfb-distributed-cognition
+  - targetId: research-dcfb
     type: prototype_for
     confidence: high
     explanation: "ClearBid is a live product specimen of the broader distributed cognition and constitutional governance architecture described in DCFB."
