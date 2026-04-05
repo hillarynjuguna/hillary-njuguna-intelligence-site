@@ -3,12 +3,12 @@ id: product-bainbridge-warning-book
 title: "The Bainbridge Warning — Book"
 description: "Why AI agent governance fails and what durable infrastructure actually requires."
 summary: "58 pages. Five documented failures. Four capabilities. One argument about the infrastructure gap that is already installed — and what to build before it becomes expensive."
-productType: "book"
+productType: "guide"
 productKind: guide
 status: "live"
 price: "Bundle"
 ctaLabel: "Get the Book + Workbook"
-ctaUrl: "https://hillarynjuguna.gumroad.com"
+ctaUrl: "https://hillarynjuguna.gumroad.com/l/cqymkj"
 platform: "Gumroad"
 featured: true
 featuredRank: 0
