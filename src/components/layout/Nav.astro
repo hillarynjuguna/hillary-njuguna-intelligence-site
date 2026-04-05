@@ -1,5 +1,5 @@
 ---
-import { NAV_LINKS } from '@data/navigation';
+import { NAV_ENTRIES, isGroup } from '@data/navigation';
 import { SITE } from '@data/site';
 import Logo from '@components/ui/Logo.astro';
 
@@ -8,6 +8,12 @@ const currentPath = Astro.url.pathname;
 function isActive(href: string) {
   if (href === '/') return currentPath === '/';
   return currentPath === href || currentPath.startsWith(`${href}/`);
+}
+
+function isGroupActive(entry: any) {
+  if (isActive(entry.href)) return true;
+  if (entry.children) return entry.children.some((c: any) => isActive(c.href));
+  return false;
 }
 ---
 
@@ -18,237 +24,139 @@ function isActive(href: string) {
       <span class="nav__logo-text">Oscillatory Fields</span>
     </a>
 
-    <nav class="nav__links" aria-label="Primary navigation">
-      {NAV_LINKS.map(({ label, href }) => (
-        <a
-          href={href}
-          class:list={['nav__link', { 'nav__link--active': isActive(href) }]}
-          aria-current={isActive(href) ? 'page' : undefined}
-        >
-          {label}
-        </a>
-      ))}
-      <button id="search-trigger" class="nav__link nav__link--icon" aria-label="Search" title="Search Corpus (⌘K)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <nav class="nav__desktop" aria-label="Primary navigation">
+      {NAV_ENTRIES.map((entry) =>
+        isGroup(entry) ? (
+          <div class="nav__group" data-dropdown>
+            <button
+              class:list={['nav__link nav__link--trigger', { 'nav__link--active': isGroupActive(entry) }]}
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              {entry.label}
+              <svg class="nav__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+              </svg>
+            </button>
+            <div class="nav__dropdown" role="menu">
+              {entry.children.map((child) => (
+                <a
+                  href={child.href}
+                  class:list={['nav__dropdown-item', { 'nav__dropdown-item--active': isActive(child.href) }]}
+                  role="menuitem"
+                >
+                  <span class="nav__dropdown-label">{child.label}</span>
+                  {child.description && <span class="nav__dropdown-desc">{child.description}</span>}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            href={entry.href}
+            class:list={['nav__link', { 'nav__link--active': isActive(entry.href) }]}
+            aria-current={isActive(entry.href) ? 'page' : undefined}
+          >
+            {entry.label}
+          </a>
+        )
+      )}
+      <button id="search-trigger" class="nav__link nav__search-btn" aria-label="Search" title="Search Corpus">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
       </button>
     </nav>
 
     <button class="nav__burger" id="nav-burger" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
+      <span class="nav__burger-line"></span>
+      <span class="nav__burger-line"></span>
+      <span class="nav__burger-line"></span>
     </button>
   </div>
 
-  <!-- Mobile menu -->
   <div class="nav__mobile" id="nav-mobile" aria-hidden="true">
-    <nav class="nav__mobile-links">
-      {NAV_LINKS.map(({ label, href }) => (
-        <a href={href} class="nav__mobile-link">{label}</a>
-      ))}
-      <button id="search-trigger-mobile" class="nav__mobile-link nav__mobile-link--icon">Search Corpus</button>
+    <nav class="nav__mobile-inner">
+      {NAV_ENTRIES.map((entry) =>
+        isGroup(entry) ? (
+          <div class="nav__mobile-group" data-mobile-accordion>
+            <button class="nav__mobile-trigger" aria-expanded="false">
+              <span>{entry.label}</span>
+              <svg class="nav__mobile-chevron" width="12" height="7" viewBox="0 0 12 7" fill="none">
+                <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </button>
+            <div class="nav__mobile-children" hidden>
+              {entry.children.map((child) => (
+                <a href={child.href} class="nav__mobile-child">
+                  <span class="nav__mobile-child-label">{child.label}</span>
+                  {child.description && <span class="nav__mobile-child-desc">{child.description}</span>}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a href={entry.href} class="nav__mobile-link">{entry.label}</a>
+        )
+      )}
+      <button id="search-trigger-mobile" class="nav__mobile-link nav__mobile-link--search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        Search the corpus
+      </button>
     </nav>
   </div>
 </header>
 
 <style>
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: var(--z-nav);
-    background: rgba(5, 4, 3, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid transparent;
-    transition:
-      border-color var(--duration-mid) var(--ease-out),
-      background var(--duration-mid) var(--ease-out);
-  }
-
-  .nav.scrolled {
-    border-bottom-color: var(--border-dim);
-    background: rgba(5, 4, 3, 0.95);
-  }
-
-  .nav__inner {
-    display: flex;
-    align-items: center;
-    gap: var(--space-8);
-    height: 60px;
-  }
-
-  .nav__logo {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    text-decoration: none;
-    flex-shrink: 0;
-  }
-
-  .nav__logo-text {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    letter-spacing: 0.06em;
-    color: var(--text-primary);
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .nav__logo:hover .nav__logo-text {
-    color: var(--ember);
-  }
-
-  .nav__logo-signal {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--sage-bright);
-    animation: pulse-slow 2.5s ease-in-out infinite;
-  }
-
-  .nav__links {
-    display: flex;
-    align-items: center;
-    gap: var(--space-6);
-    margin-left: auto;
-  }
-
-  .nav__link {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    text-decoration: none;
-    transition: all var(--duration-fast) var(--ease-out);
-    padding: var(--space-1) 0;
-    display: flex;
-    align-items: center;
-    gap: var(--space-1);
-  }
-
-  .nav__link:hover,
-  .nav__link--active {
-    color: var(--text-primary);
-  }
-
-  .nav__link--active {
-    border-bottom: 1px solid var(--ember);
-  }
-
-  .nav__link--icon {
-    margin-left: var(--space-2);
-    color: var(--text-tertiary);
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  .nav__link--icon:hover {
-    color: var(--ember);
-    transform: scale(1.1);
-  }
-
-  /* Burger */
-  .nav__burger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: var(--space-2);
-    margin-left: auto;
-  }
-
-  .nav__burger span {
-    display: block;
-    width: 22px;
-    height: 1px;
-    background: var(--text-secondary);
-    transition: all var(--duration-fast) var(--ease-out);
-  }
-
-  /* Mobile menu */
-  .nav__mobile {
-    display: none;
-    background: var(--surface-1);
-    border-top: 1px solid var(--border-dim);
-    padding: var(--space-4) 0;
-  }
-
-  .nav__mobile.open {
-    display: block;
-  }
-
-  .nav__mobile-links {
-    display: flex;
-    flex-direction: column;
-    padding: 0 var(--space-6);
-  }
-
-  .nav__mobile-link {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: var(--space-3) 0;
-    border-bottom: 1px solid var(--border-dim);
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .nav__mobile-link:last-child {
-    border-bottom: none;
-  }
-
-  .nav__mobile-link:hover {
-    color: var(--text-primary);
-  }
-
-  .nav__mobile-link--icon {
-    color: var(--ember);
-    margin-top: var(--space-2);
-  }
-
-  @media (max-width: 768px) {
-    .nav__links {
-      display: none;
-    }
-
-    .nav__burger {
-      display: flex;
-    }
-  }
+  .nav { position:fixed;top:0;left:0;right:0;z-index:var(--z-nav,100);background:rgba(5,4,3,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s }
+  .nav.scrolled { border-bottom-color:var(--border-dim,rgba(255,255,255,.06));background:rgba(5,4,3,.96) }
+  .nav__inner { display:flex;align-items:center;height:60px }
+  .nav__logo { display:flex;align-items:center;gap:.5rem;text-decoration:none;flex-shrink:0;margin-right:auto }
+  .nav__logo-text { font-family:var(--font-mono,monospace);font-size:.8rem;letter-spacing:.06em;color:var(--text-primary,#faf8f5);transition:color .2s }
+  .nav__logo:hover .nav__logo-text { color:var(--ember,#c2542d) }
+  .nav__desktop { display:flex;align-items:center;gap:.25rem }
+  .nav__link { font-family:var(--font-mono,monospace);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary,rgba(255,255,255,.45));text-decoration:none;padding:.4rem .65rem;border-radius:3px;transition:all .15s;display:flex;align-items:center;gap:.3rem;background:none;border:none;cursor:pointer;white-space:nowrap }
+  .nav__link:hover { color:var(--text-primary,#faf8f5);background:rgba(255,255,255,.04) }
+  .nav__link--active { color:var(--text-primary,#faf8f5) }
+  .nav__chevron { transition:transform .2s;opacity:.5 }
+  .nav__group { position:relative }
+  .nav__dropdown { position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-4px);min-width:280px;background:var(--surface-1,#0a0908);border:1px solid var(--border-dim,rgba(255,255,255,.08));border-radius:6px;padding:.4rem;opacity:0;visibility:hidden;transition:opacity .15s,transform .15s,visibility .15s;box-shadow:0 12px 40px rgba(0,0,0,.5) }
+  .nav__group.open .nav__dropdown { opacity:1;visibility:visible;transform:translateX(-50%) translateY(0) }
+  .nav__group.open .nav__chevron { transform:rotate(180deg) }
+  .nav__dropdown-item { display:flex;flex-direction:column;gap:.15rem;padding:.6rem .75rem;border-radius:4px;text-decoration:none;transition:background .12s }
+  .nav__dropdown-item:hover { background:rgba(255,255,255,.04) }
+  .nav__dropdown-item--active { background:rgba(194,84,45,.08) }
+  .nav__dropdown-label { font-family:var(--font-mono,monospace);font-size:.75rem;letter-spacing:.04em;color:var(--text-primary,#faf8f5) }
+  .nav__dropdown-desc { font-size:.7rem;color:var(--text-tertiary,rgba(255,255,255,.4));line-height:1.4 }
+  .nav__dropdown-item--active .nav__dropdown-label { color:var(--ember,#c2542d) }
+  .nav__search-btn { margin-left:.5rem;padding:.4rem;color:var(--text-tertiary,rgba(255,255,255,.4)) }
+  .nav__search-btn:hover { color:var(--ember,#c2542d) }
+  .nav__burger { display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem }
+  .nav__burger-line { display:block;width:22px;height:1.5px;background:var(--text-secondary,rgba(255,255,255,.6));transition:all .25s;transform-origin:center }
+  .nav__burger.open .nav__burger-line:nth-child(1) { transform:translateY(6.5px) rotate(45deg) }
+  .nav__burger.open .nav__burger-line:nth-child(2) { opacity:0 }
+  .nav__burger.open .nav__burger-line:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg) }
+  .nav__mobile { display:none;background:var(--surface-1,#0a0908);border-top:1px solid var(--border-dim,rgba(255,255,255,.06));max-height:calc(100vh - 60px);overflow-y:auto }
+  .nav__mobile.open { display:block }
+  .nav__mobile-inner { padding:.5rem 1.25rem 1.5rem }
+  .nav__mobile-link,.nav__mobile-trigger { display:flex;align-items:center;justify-content:space-between;width:100%;font-family:var(--font-mono,monospace);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary,rgba(255,255,255,.6));text-decoration:none;padding:.85rem 0;border:none;border-bottom:1px solid var(--border-dim,rgba(255,255,255,.06));background:none;cursor:pointer;transition:color .15s;text-align:left }
+  .nav__mobile-link:hover,.nav__mobile-trigger:hover { color:var(--text-primary,#faf8f5) }
+  .nav__mobile-link--search { color:var(--ember,#c2542d);gap:.5rem;border-bottom:none;margin-top:.5rem }
+  .nav__mobile-chevron { transition:transform .2s;opacity:.4 }
+  .nav__mobile-trigger[aria-expanded="true"] .nav__mobile-chevron { transform:rotate(180deg) }
+  .nav__mobile-children { padding:.25rem 0 .5rem 1rem }
+  .nav__mobile-children[hidden] { display:none }
+  .nav__mobile-child { display:flex;flex-direction:column;gap:.1rem;padding:.6rem 0;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.03) }
+  .nav__mobile-child:last-child { border-bottom:none }
+  .nav__mobile-child-label { font-family:var(--font-mono,monospace);font-size:.8rem;color:var(--text-primary,#faf8f5);letter-spacing:.03em }
+  .nav__mobile-child-desc { font-size:.7rem;color:var(--text-tertiary,rgba(255,255,255,.35));line-height:1.4 }
+  @media (max-width:900px) { .nav__desktop{display:none} .nav__burger{display:flex} }
 </style>
 
 <script>
-  const nav = document.getElementById('site-nav');
-  const burger = document.getElementById('nav-burger');
-  const mobile = document.getElementById('nav-mobile');
-
-  // Scroll state
-  window.addEventListener('scroll', () => {
-    nav?.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
-
-  // Mobile toggle
-  burger?.addEventListener('click', () => {
-    const isOpen = mobile?.classList.toggle('open');
-    burger.setAttribute('aria-expanded', String(isOpen));
-    mobile?.setAttribute('aria-hidden', String(!isOpen));
-  });
-
-  // Search trigger
-  const searchTriggers = document.querySelectorAll('#search-trigger, #search-trigger-mobile');
-  searchTriggers.forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      window.dispatchEvent(new CustomEvent('open-search'));
-      // Close mobile menu if open
-      if (mobile?.classList.contains('open')) {
-        mobile.classList.remove('open');
-        burger?.setAttribute('aria-expanded', 'false');
-        mobile.setAttribute('aria-hidden', 'true');
-      }
-    });
-  });
+  const nav=document.getElementById('site-nav'),burger=document.getElementById('nav-burger'),mobile=document.getElementById('nav-mobile');
+  window.addEventListener('scroll',()=>{nav?.classList.toggle('scrolled',window.scrollY>60)},{passive:!0});
+  burger?.addEventListener('click',()=>{const o=mobile?.classList.toggle('open');burger.classList.toggle('open');burger.setAttribute('aria-expanded',String(!!o));mobile?.setAttribute('aria-hidden',String(!o))});
+  document.querySelectorAll('[data-dropdown]').forEach(g=>{const t=g.querySelector('.nav__link--trigger');let c;t?.addEventListener('click',e=>{e.stopPropagation();const w=g.classList.contains('open');document.querySelectorAll('[data-dropdown]').forEach(x=>x.classList.remove('open'));if(!w)g.classList.add('open');t.setAttribute('aria-expanded',String(!w))});g.addEventListener('mouseenter',()=>{clearTimeout(c);document.querySelectorAll('[data-dropdown]').forEach(x=>{if(x!==g)x.classList.remove('open')});g.classList.add('open');t?.setAttribute('aria-expanded','true')});g.addEventListener('mouseleave',()=>{c=setTimeout(()=>{g.classList.remove('open');t?.setAttribute('aria-expanded','false')},150)})});
+  document.addEventListener('click',()=>{document.querySelectorAll('[data-dropdown]').forEach(g=>{g.classList.remove('open');g.querySelector('.nav__link--trigger')?.setAttribute('aria-expanded','false')})});
+  document.querySelectorAll('[data-mobile-accordion]').forEach(g=>{const t=g.querySelector('.nav__mobile-trigger'),ch=g.querySelector('.nav__mobile-children');t?.addEventListener('click',()=>{const o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));if(ch)ch.hidden=o})});
+  document.querySelectorAll('#search-trigger,#search-trigger-mobile').forEach(t=>{t.addEventListener('click',()=>{window.dispatchEvent(new CustomEvent('open-search'));if(mobile?.classList.contains('open')){mobile.classList.remove('open');burger?.classList.remove('open');burger?.setAttribute('aria-expanded','false');mobile.setAttribute('aria-hidden','true')}})});
 </script>

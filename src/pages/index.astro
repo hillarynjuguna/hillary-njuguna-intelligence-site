@@ -12,59 +12,51 @@ const [digestEntries, researchEntries, products, signal] = await Promise.all([
   getCurrentSignal(),
 ]);
 
-const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite scroll
+const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
 ---
 
-<BaseLayout
-  title={undefined}
-  description={SITE.description}
->
+<BaseLayout title={undefined} description={SITE.description}>
+
   <!-- Hero -->
   <section class="hero">
     <div class="container">
       <div class="hero__inner">
-        {signal && (
-          <div class="hero__signal" data-reveal>
-            <span class="signal-dot"></span>
-            <span class="hero__signal-text label">{signal.currentSignal}</span>
-          </div>
-        )}
-
-        <h1 class="hero__headline" data-reveal data-reveal-delay="1">
+        <h1 class="hero__headline" data-reveal>
           Durable infrastructure<br />
           for consequential intelligence.
         </h1>
 
-        <p class="hero__sub" data-reveal data-reveal-delay="2">
-          Doctrine, specimens, and services for institutions and operators building with AI
-          where consequences are real.
+        <p class="hero__sub" data-reveal data-reveal-delay="1">
+          I study what happens when AI systems fail inside institutions that can't afford it.
+          Then I build the governance architecture that makes those failures visible before they occur.
         </p>
 
-        <div class="hero__origin label" data-reveal data-reveal-delay="3">
-          Built from a hostel in Nairobi with a Chromebook and an internet connection.
+        <div class="hero__origin label" data-reveal data-reveal-delay="2">
+          <span class="hero__origin-name">Hillary Njuguna</span>
           <span class="hero__origin-sep">·</span>
-          560+ sourced documents. 18 months. 7 models.
+          Nairobi → Kuala Lumpur
+          <span class="hero__origin-sep">·</span>
+          560+ sourced documents across 18 months
         </div>
 
-        <div class="hero__cta" data-reveal data-reveal-delay="4">
-          <a href="/research/bainbridge-warning" class="btn btn--primary">
-            Read the doctrine
+        <!-- Intent routing — the first thing a visitor should understand -->
+        <div class="hero__routes" data-reveal data-reveal-delay="3">
+          <a href="/research/bainbridge-warning" class="route-card">
+            <span class="route-card__label label">I want the diagnosis</span>
+            <span class="route-card__title">The Bainbridge Warning</span>
+            <span class="route-card__desc">Why AI governance fails — and what the failure pattern looks like before it becomes catastrophic.</span>
           </a>
-          <a href="/tools/clearbid-demo" class="btn btn--ghost">
-            Run a live specimen
+          <a href="/research" class="route-card">
+            <span class="route-card__label label">I want the research</span>
+            <span class="route-card__title">The Research Corpus</span>
+            <span class="route-card__desc">DCFB, AURORA, RSPS, and the full theoretical architecture behind the governance work.</span>
+          </a>
+          <a href="/cir-assessment" class="route-card">
+            <span class="route-card__label label">I need to assess my team</span>
+            <span class="route-card__title">CIR Assessment</span>
+            <span class="route-card__desc">Five questions that reveal your organisation's AI readiness across constitutional dimensions.</span>
           </a>
         </div>
-
-        {signal && (
-          <div class="hero__metrics" data-reveal data-reveal-delay="5">
-            {signal.metrics && Object.entries(signal.metrics).map(([key, val]) => (
-              <div class="hero__metric">
-                <span class="hero__metric-val">{val}</span>
-                <span class="label hero__metric-key">{key}</span>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   </section>
@@ -78,16 +70,15 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     </div>
   </div>
 
-  <!-- Featured research -->
+  <!-- Research -->
   {researchEntries.length > 0 && (
     <section class="section">
       <div class="container">
         <div class="section__header" data-reveal>
-          <p class="label section__label">Doctrine</p>
-          <h2 class="section__title">The Public Doctrine Layer</h2>
-          <a href="/research" class="section__link label">All research →</a>
+          <p class="label section__label">Research</p>
+          <h2 class="section__title">The Public Doctrine</h2>
+          <a href="/research" class="section__link label">All dispatches →</a>
         </div>
-
         <div class="research-grid card-grid">
           {researchEntries.slice(0, 3).map((entry) => (
             <a href={`/research/${entry.slug}`} class="research-card hover-lift">
@@ -111,11 +102,10 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     <section class="section section--dark">
       <div class="container">
         <div class="section__header" data-reveal>
-          <p class="label section__label">Specimens & Products</p>
-          <h2 class="section__title">Live Surfaces Of The Architecture</h2>
+          <p class="label section__label">Products</p>
+          <h2 class="section__title">Applied Governance</h2>
           <a href="/products" class="section__link label">All products →</a>
         </div>
-
         <div class="products-grid card-grid">
           {products.map((product) => (
             <a href={`/products/${product.slug}`} class="product-card hover-lift">
@@ -123,9 +113,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
                 <span class={`badge ${product.data.status === 'live' ? 'badge--live' : product.data.status === 'development' ? 'badge--dev' : 'badge--soon'}`}>
                   {product.data.status === 'live' ? 'Live' : product.data.status === 'development' ? 'In Development' : 'Coming Soon'}
                 </span>
-                {product.data.price && (
-                  <span class="product-card__price label">{product.data.price}</span>
-                )}
+                {product.data.price && <span class="product-card__price label">{product.data.price}</span>}
               </div>
               <h3 class="product-card__title">{product.data.title}</h3>
               <p class="product-card__summary">{product.data.summary}</p>
@@ -136,16 +124,15 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     </section>
   )}
 
-  <!-- Intelligence Digest -->
+  <!-- Digest -->
   {digestEntries.length > 0 && (
     <section class="section">
       <div class="container">
         <div class="section__header" data-reveal>
-          <p class="label section__label">Intelligence Digest</p>
-          <h2 class="section__title">Field Notes from Active Synthesis</h2>
+          <p class="label section__label">Field Notes</p>
+          <h2 class="section__title">From Active Synthesis</h2>
           <a href="/digest" class="section__link label">All entries →</a>
         </div>
-
         <div class="digest-grid card-grid">
           {digestEntries.map((entry) => (
             <a href={`/digest/${entry.slug}`} class="digest-card hover-lift">
@@ -157,9 +144,6 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
               </div>
               <h3 class="digest-card__title">{entry.data.title}</h3>
               <p class="digest-card__excerpt">{entry.data.excerpt ?? entry.data.summary.slice(0, 120)}…</p>
-              {entry.data.tags.slice(0, 3).map((tag) => (
-                <span class="tag">{tag}</span>
-              ))}
             </a>
           ))}
         </div>
@@ -172,43 +156,36 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
     <div class="container">
       <div class="corpus-cta__inner" data-reveal>
         <div class="corpus-cta__text">
-          <p class="label corpus-cta__label">The Research Stack</p>
-          <h2 class="corpus-cta__title">Query the working corpus directly</h2>
+          <p class="label corpus-cta__label">The Corpus</p>
+          <h2 class="corpus-cta__title">Query the working research directly</h2>
           <p class="corpus-cta__desc">
-            The site is not just a brochure. It is a running research substrate:
-            doctrine, field notes, and product specimens all sourced from the same body of work.
+            This isn't a brochure. The site runs on a live research substrate —
+            every doctrine, field note, and product specimen is sourced from the
+            same body of work and queryable through a single interface.
           </p>
         </div>
         <div class="corpus-cta__action">
-          <a href="/corpus" class="btn btn--primary corpus-cta__btn">
-            Open corpus →
-          </a>
-          <p class="label corpus-cta__sub">
-            Powered by the Research Stack · Constitutional governance architecture
-          </p>
+          <a href="/corpus" class="btn btn--primary corpus-cta__btn">Open corpus →</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Services -->
-  <section class="section">
+  <section class="section section--dark">
     <div class="container">
       <div class="section__header" data-reveal>
         <p class="label section__label">Practice</p>
-        <h2 class="section__title">How This Becomes Practice</h2>
+        <h2 class="section__title">How This Becomes Your Practice</h2>
         <a href="/contact" class="section__link label">Start a conversation →</a>
       </div>
-
       <div class="services-grid card-grid">
         {SERVICES.map((service) => (
           <div class="service-card">
             <h3 class="service-card__title">{service.title}</h3>
             <p class="service-card__desc">{service.description}</p>
             {service.cta && (
-              <a href={service.cta.href} class="service-card__link label">
-                {service.cta.label} →
-              </a>
+              <a href={service.cta.href} class="service-card__link label">{service.cta.label} →</a>
             )}
           </div>
         ))}
@@ -218,388 +195,78 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS]; // double for infinite s
 </BaseLayout>
 
 <style>
-  /* ── Hero ─────────────────────────────────────────────────────────────── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 0 var(--space-20);
-    position: relative;
-  }
+  .hero { min-height:90vh;display:flex;align-items:center;padding:120px 0 var(--space-16) }
+  .hero__inner { max-width:72ch }
+  .hero__headline { font-family:var(--font-display);font-size:clamp(var(--text-4xl),7vw,var(--text-6xl));line-height:var(--leading-tight);color:var(--text-primary);margin-bottom:var(--space-6);font-weight:400 }
+  .hero__sub { font-size:var(--text-lg);line-height:var(--leading-relaxed);color:var(--text-secondary);max-width:58ch;margin-bottom:var(--space-4) }
+  .hero__origin { color:var(--text-tertiary);margin-bottom:var(--space-10) }
+  .hero__origin-name { color:var(--ember) }
+  .hero__origin-sep { margin:0 var(--space-2);opacity:.4 }
 
-  .hero__inner {
-    max-width: 72ch;
-  }
+  /* Intent routing cards */
+  .hero__routes { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-4) }
+  .route-card { display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5);border:1px solid var(--border-dim);border-radius:var(--radius-md);text-decoration:none;background:var(--surface-2);transition:all .2s }
+  .route-card:hover { border-color:var(--ember);background:var(--surface-3);transform:translateY(-2px) }
+  .route-card__label { color:var(--ember);font-size:var(--text-xs) }
+  .route-card__title { font-size:var(--text-base);color:var(--text-primary);font-weight:500 }
+  .route-card__desc { font-size:var(--text-sm);color:var(--text-tertiary);line-height:var(--leading-relaxed) }
 
-  .hero__signal {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-8);
-    padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--border-dim);
-    border-radius: 2px;
-    background: var(--surface-2);
-  }
+  /* Sections */
+  .section { padding:var(--space-24) 0 }
+  .section--dark { background:var(--surface-1);border-top:1px solid var(--border-dim);border-bottom:1px solid var(--border-dim) }
+  .section__header { display:flex;align-items:baseline;gap:var(--space-4);margin-bottom:var(--space-10);flex-wrap:wrap }
+  .section__label { color:var(--ember);flex-shrink:0 }
+  .section__title { font-size:var(--text-3xl);flex:1 }
+  .section__link { color:var(--text-tertiary);text-decoration:none;margin-left:auto;transition:color .15s;flex-shrink:0 }
+  .section__link:hover { color:var(--ember) }
 
-  .hero__signal-text {
-    color: var(--sage-bright);
-  }
+  /* Research cards */
+  .research-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--space-5) }
+  .research-card { display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-6);border:1px solid var(--border-dim);border-radius:var(--radius-md);text-decoration:none;background:var(--surface-2);transition:all .2s }
+  .research-card:hover { border-color:var(--border-bright);background:var(--surface-3) }
+  .research-card__meta { display:flex;gap:var(--space-3);flex-wrap:wrap }
+  .research-card__theme { color:var(--ash-light);text-transform:capitalize }
+  .research-card__title { font-size:var(--text-lg);color:var(--text-primary);line-height:var(--leading-snug) }
+  .research-card__summary { font-size:var(--text-sm);color:var(--text-tertiary);line-height:var(--leading-relaxed);flex:1 }
+  .research-card__cta { color:var(--ember);margin-top:var(--space-2) }
 
-  .hero__headline {
-    font-family: var(--font-display);
-    font-size: clamp(var(--text-4xl), 7vw, var(--text-6xl));
-    line-height: var(--leading-tight);
-    color: var(--text-primary);
-    margin-bottom: var(--space-8);
-    font-weight: 400;
-  }
+  /* Product cards */
+  .products-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-5) }
+  .product-card { display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-5);border:1px solid var(--border-dim);border-radius:var(--radius-md);text-decoration:none;background:var(--surface-2);transition:all .2s }
+  .product-card:hover { border-color:var(--border-bright) }
+  .product-card__header { display:flex;justify-content:space-between;align-items:center }
+  .product-card__price { color:var(--ember) }
+  .product-card__title { font-size:var(--text-base);color:var(--text-primary);font-weight:500 }
+  .product-card__summary { font-size:var(--text-sm);color:var(--text-tertiary);line-height:var(--leading-relaxed) }
 
-  .hero__sub {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
-    color: var(--text-secondary);
-    max-width: 60ch;
-    margin-bottom: var(--space-5);
-  }
+  /* Digest cards */
+  .digest-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--space-5) }
+  .digest-card { display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-5);border:1px solid var(--border-dim);border-radius:var(--radius-md);text-decoration:none;background:var(--surface-2);transition:all .2s }
+  .digest-card:hover { border-color:var(--border-bright) }
+  .digest-card__meta { display:flex;gap:var(--space-4) }
+  .digest-card__category { color:var(--ember) }
+  .digest-card__date { color:var(--text-tertiary) }
+  .digest-card__title { font-size:var(--text-base);color:var(--text-primary);line-height:var(--leading-snug) }
+  .digest-card__excerpt { font-size:var(--text-sm);color:var(--text-tertiary);line-height:var(--leading-relaxed) }
 
-  .hero__origin {
-    color: var(--text-tertiary);
-    margin-bottom: var(--space-10);
-  }
+  /* Corpus CTA */
+  .corpus-cta { padding:var(--space-20) 0 }
+  .corpus-cta__inner { display:flex;align-items:center;gap:var(--space-10);padding:var(--space-10);border:1px solid var(--border-dim);border-radius:var(--radius-lg);background:var(--surface-2);flex-wrap:wrap }
+  .corpus-cta__text { flex:1;min-width:280px }
+  .corpus-cta__label { color:var(--ember) }
+  .corpus-cta__title { font-size:var(--text-2xl);margin:var(--space-2) 0 var(--space-4) }
+  .corpus-cta__desc { color:var(--text-secondary);line-height:var(--leading-relaxed) }
 
-  .hero__origin-sep {
-    margin: 0 var(--space-2);
-    opacity: 0.4;
-  }
+  /* Services */
+  .services-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-5) }
+  .service-card { padding:var(--space-6);border:1px solid var(--border-dim);border-radius:var(--radius-md);background:var(--surface-2) }
+  .service-card__title { font-size:var(--text-base);margin-bottom:var(--space-3);color:var(--text-primary) }
+  .service-card__desc { font-size:var(--text-sm);color:var(--text-tertiary);line-height:var(--leading-relaxed);margin-bottom:var(--space-3) }
+  .service-card__link { color:var(--ember);text-decoration:none }
 
-  .hero__cta {
-    display: flex;
-    gap: var(--space-4);
-    flex-wrap: wrap;
-    margin-bottom: var(--space-12);
-  }
-
-  .hero__metrics {
-    display: flex;
-    gap: var(--space-10);
-    padding-top: var(--space-8);
-    border-top: 1px solid var(--border-dim);
-    flex-wrap: wrap;
-  }
-
-  .hero__metric {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-  }
-
-  .hero__metric-val {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    color: var(--ember);
-  }
-
-  .hero__metric-key {
-    color: var(--text-tertiary);
-    text-transform: capitalize;
-  }
-
-  /* ── Sections ─────────────────────────────────────────────────────────── */
-  .section {
-    padding: var(--space-24) 0;
-  }
-
-  .section--dark {
-    background: var(--surface-1);
-    border-top: 1px solid var(--border-dim);
-    border-bottom: 1px solid var(--border-dim);
-  }
-
-  .section__header {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-4);
-    margin-bottom: var(--space-10);
-    flex-wrap: wrap;
-  }
-
-  .section__label {
-    color: var(--ember);
-    flex-shrink: 0;
-  }
-
-  .section__title {
-    font-size: var(--text-3xl);
-    flex: 1;
-  }
-
-  .section__link {
-    color: var(--text-tertiary);
-    text-decoration: none;
-    margin-left: auto;
-    transition: color var(--duration-fast) var(--ease-out);
-    flex-shrink: 0;
-  }
-  .section__link:hover {
-    color: var(--ember);
-  }
-
-  /* ── Research grid ────────────────────────────────────────────────────── */
-  .research-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--space-5);
-  }
-
-  .research-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    padding: var(--space-6);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    background: var(--surface-2);
-    transition: all var(--duration-mid) var(--ease-out);
-  }
-
-  .research-card:hover {
-    border-color: var(--border-bright);
-    background: var(--surface-3);
-  }
-
-  .research-card__meta {
-    display: flex;
-    gap: var(--space-3);
-    flex-wrap: wrap;
-  }
-
-  .research-card__theme {
-    color: var(--ash-light);
-    text-transform: capitalize;
-  }
-
-  .research-card__title {
-    font-size: var(--text-lg);
-    color: var(--text-primary);
-    line-height: var(--leading-snug);
-  }
-
-  .research-card__summary {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    line-height: var(--leading-relaxed);
-    flex: 1;
-  }
-
-  .research-card__cta {
-    color: var(--ember);
-    margin-top: var(--space-2);
-  }
-
-  /* ── Products grid ────────────────────────────────────────────────────── */
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: var(--space-5);
-  }
-
-  .product-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    padding: var(--space-6);
-    border: 1px solid var(--border-mid);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    background: var(--surface-3);
-    transition: all var(--duration-mid) var(--ease-out);
-  }
-
-  .product-card:hover {
-    border-color: var(--ember-dim);
-    background: var(--surface-4);
-  }
-
-  .product-card__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-3);
-  }
-
-  .product-card__price {
-    color: var(--pale-gold);
-  }
-
-  .product-card__title {
-    font-size: var(--text-lg);
-    color: var(--text-primary);
-    line-height: var(--leading-snug);
-  }
-
-  .product-card__summary {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    line-height: var(--leading-relaxed);
-    flex: 1;
-  }
-
-  /* ── Digest grid ─────────────────────────────────────────────────────── */
-  .digest-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--space-5);
-  }
-
-  .digest-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    padding: var(--space-6);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    background: var(--surface-2);
-    transition: all var(--duration-mid) var(--ease-out);
-  }
-
-  .digest-card:hover {
-    border-color: var(--border-bright);
-    background: var(--surface-3);
-  }
-
-  .digest-card__meta {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    justify-content: space-between;
-  }
-
-  .digest-card__category {
-    color: var(--ember);
-  }
-
-  .digest-card__date {
-    color: var(--text-tertiary);
-  }
-
-  .digest-card__title {
-    font-size: var(--text-lg);
-    color: var(--text-primary);
-    line-height: var(--leading-snug);
-  }
-
-  .digest-card__excerpt {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    line-height: var(--leading-relaxed);
-    flex: 1;
-  }
-
-  /* ── Corpus CTA ──────────────────────────────────────────────────────── */
-  .corpus-cta {
-    background: var(--surface-2);
-    border-top: 1px solid var(--border-mid);
-    border-bottom: 1px solid var(--border-mid);
-    padding: var(--space-20) 0;
-  }
-
-  .corpus-cta__inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: var(--space-12);
-    align-items: center;
-  }
-
-  @media (max-width: 768px) {
-    .corpus-cta__inner {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .corpus-cta__label {
-    color: var(--ember);
-    margin-bottom: var(--space-3);
-  }
-
-  .corpus-cta__title {
-    font-size: var(--text-3xl);
-    margin-bottom: var(--space-4);
-  }
-
-  .corpus-cta__desc {
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-    max-width: 60ch;
-  }
-
-  .corpus-cta__action {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-3);
-    flex-shrink: 0;
-  }
-
-  .corpus-cta__btn {
-    white-space: nowrap;
-  }
-
-  .corpus-cta__sub {
-    color: var(--text-tertiary);
-    max-width: 30ch;
-  }
-
-  /* ── Services grid ───────────────────────────────────────────────────── */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-5);
-  }
-
-  @media (max-width: 900px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 600px) {
-    .services-grid { grid-template-columns: 1fr; }
-  }
-
-  .service-card {
-    padding: var(--space-6);
-    border: 1px solid var(--border-dim);
-    border-radius: var(--radius-md);
-    background: var(--surface-2);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .service-card__title {
-    font-size: var(--text-md);
-    color: var(--text-primary);
-    font-family: var(--font-mono);
-    font-weight: 400;
-    letter-spacing: 0.03em;
-  }
-
-  .service-card__desc {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    line-height: var(--leading-relaxed);
-    flex: 1;
-  }
-
-  .service-card__link {
-    color: var(--ember);
-    text-decoration: none;
-    transition: color var(--duration-fast) var(--ease-out);
-    margin-top: auto;
-  }
-
-  .service-card__link:hover {
-    color: var(--ember-bright);
-  }
+  /* Ticker */
+  .ticker { border-top:1px solid var(--border-dim);border-bottom:1px solid var(--border-dim);padding:var(--space-3) 0;overflow:hidden;background:var(--surface-1) }
+  .ticker__inner { display:flex;gap:var(--space-8);animation:ticker 40s linear infinite;white-space:nowrap }
+  .ticker__item { font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.12em;color:var(--text-tertiary);text-transform:uppercase }
+  @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 </style>
