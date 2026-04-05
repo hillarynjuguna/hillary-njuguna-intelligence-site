@@ -206,6 +206,12 @@ const fieldSignals = defineCollection({
     crystallizedAt: z.string().optional(),
     crystallizedBy: z.string().optional(),
 
+    // Coherence scoring (v3.0 soft-gate)
+    coherenceScore: z.number().min(0).max(1).optional(),
+    autoPublished: z.boolean().optional(),
+    coherenceDimensions: z.string().optional(), // JSON string of dimension scores
+    coherenceFlags: z.array(z.string()).default([]),
+
     // Standard topology fields
     ...topologyFields,
   }),

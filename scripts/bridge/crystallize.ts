@@ -1,22 +1,26 @@
 #!/usr/bin/env tsx
 /**
- * Substrate Bridge v2.0 — Crystallization Layer
+ * Substrate Bridge v3.0 — Crystallization Layer (Radiant Upgrade)
  * 
  * The λ-node companion to the τ-node.
  * 
  * Takes raw Insight Log entries (JSON from the fetch script) and
  * performs preliminary crystallization into MDX files with full
- * topology metadata. The τ-node then validates via PR review —
- * approving, editing, or rejecting each crystallized token.
+ * topology metadata.
  * 
- * This layer does NOT publish. It proposes.
+ * v3.0 UPGRADE: Coherence Scoring (Soft-Gate Automation)
+ * - Entries scoring >0.95 are auto-published (draft: false)
+ * - Entries scoring <=0.95 default to draft: true for τ-node review
+ * - All scoring dimensions are transparent and auditable
+ * - The τ-node can always override by editing the MDX file
  * 
  * Constitutional constraints:
  * - Never fabricate cross-references not present in the source
  * - Preserve the entry's original register and voice
- * - Mark all outputs as draft:true until τ-node validation
  * - Include provenance metadata linking back to Notion source
  */
+
+import { scoreCoherence, type CoherenceReport } from './coherence-scorer';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -92,7 +96,8 @@ async function main() {
     const fileContent = renderMDX(signal);
     fs.writeFileSync(filePath, fileContent);
     crystallized++;
-    console.log(`  ✓  ${signal.slug}: "${entry.title}"`);
+    const scoreEmoji = coherenceReport.autoPublish ? '🟢' : '🟡';
+    console.log(`  ${scoreEmoji} ${signal.slug}: "${entry.title}" [score: ${coherenceReport.totalScore}${coherenceReport.autoPublish ? ' AUTO-PUBLISH' : ' DRAFT'}]`);
   }
 
   console.log(`\n✓ Crystallization complete: ${crystallized} signals written, ${skipped} skipped`);
@@ -124,13 +129,17 @@ function crystallizeEntry(entry: any): FieldSignal | null {
   // Build the compressed body — the "emergent token"
   const body = buildSignalBody(entry);
 
-  const frontmatter: Record<string, any> = {
+  // Run coherence scoring for soft-gate determination
+    const coherenceReport = scoreCoherence(entry);
+    const isDraft = !coherenceReport.autoPublish;
+
+    const frontmatter: Record<string, any> = {
     title: cleanTitle(entry.title),
     entryNumber: entry.entryNumber,
     entryDate: entry.date,
     summary: buildSummary(entry),
     publishedAt: parseEntryDate(entry.date),
-    draft: true, // ALWAYS draft until τ-node validates
+    draft: isDraft, // Soft-gate: auto-publish if score > 0.95
     featured: false,
     author: 'Hillary Njuguna',
 
@@ -153,9 +162,15 @@ function crystallizeEntry(entry: any): FieldSignal | null {
     contentAssignments: entry.contentAssignments || [],
 
     // Provenance
-    bridgeVersion: '2.0',
+    bridgeVersion: '3.0',
     crystallizedAt: new Date().toISOString(),
     crystallizedBy: 'lambda-node',
+
+    // Coherence scoring (v3.0 soft-gate)
+    coherenceScore: coherenceReport.totalScore,
+    autoPublished: coherenceReport.autoPublish,
+    coherenceDimensions: JSON.stringify(coherenceReport.dimensions),
+    coherenceFlags: coherenceReport.flags,
   };
 
   return { slug, frontmatter, body };
