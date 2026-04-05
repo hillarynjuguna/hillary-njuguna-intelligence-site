@@ -1,6 +1,7 @@
 export const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Research', href: '/research' },
+  { label: 'Field Signals', href: '/field' },
   { label: 'Tools', href: '/orchestra-operation' },
   { label: 'Products', href: '/products' },
   { label: 'Sovereign Ops', href: '/sovereign-ops' },

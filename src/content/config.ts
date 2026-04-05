@@ -174,4 +174,41 @@ const signals = defineCollection({
   }),
 });
 
-export const collections = { digest, research, products, clauses, signals };
+// ── Field Signals (Crystallized Insight Log entries) ──────────────────────────
+const fieldSignals = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    entryNumber: z.number(),
+    entryDate: z.string().optional(),
+    summary: z.string(),
+    publishedAt: z.coerce.date(),
+    draft: z.boolean().default(true), // ALWAYS true until τ-node validates
+    featured: z.boolean().default(false),
+    author: z.string().default('Hillary Njuguna'),
+
+    // Signal-specific fields
+    signalType: z.enum([
+      'convergence', 'specimen', 'architectural', 'methodological',
+      'diagnostic', 'synthesis', 'phenomenological',
+    ]).default('synthesis'),
+    notionSourceId: z.string().optional(),
+    notionSourceUrl: z.string().url().optional(),
+
+    // Extracted structure from Insight Log format
+    lexiconCandidates: normalizeArray(),
+    newTerms: z.array(z.string()).default([]),
+    crossReferences: z.array(z.string()).default([]),
+    contentAssignments: z.array(z.string()).default([]),
+
+    // Provenance
+    bridgeVersion: z.string().optional(),
+    crystallizedAt: z.string().optional(),
+    crystallizedBy: z.string().optional(),
+
+    // Standard topology fields
+    ...topologyFields,
+  }),
+});
+
+export const collections = { digest, research, products, clauses, signals, 'field-signals': fieldSignals };

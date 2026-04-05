@@ -1,0 +1,284 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const signals = await getCollection('field-signals', ({ data }) => !data.draft);
+  return signals.map(signal => ({
+    params: { slug: signal.slug },
+    props: { signal },
+  }));
+}
+
+const { signal } = Astro.props;
+const { Content } = await signal.render();
+---
+
+<BaseLayout
+  title={`Signal #${signal.data.entryNumber}: ${signal.data.title}`}
+  description={signal.data.summary}
+>
+  <main id="main-content" class="signal-page">
+    <nav class="signal-breadcrumb">
+      <a href="/field">Field Signals</a>
+      <span class="separator">/</span>
+      <span>Signal #{signal.data.entryNumber}</span>
+    </nav>
+
+    <header class="signal-header">
+      <div class="signal-meta-row">
+        <span class="signal-number">#{signal.data.entryNumber}</span>
+        <span class="signal-type" data-type={signal.data.signalType}>{signal.data.signalType}</span>
+        {signal.data.entryDate && <time>{signal.data.entryDate}</time>}
+        {signal.data.crystallization && (
+          <span class="crystal-state" data-state={signal.data.crystallization}>
+            {signal.data.crystallization}
+          </span>
+        )}
+      </div>
+      <h1>{signal.data.title}</h1>
+      <p class="signal-summary">{signal.data.summary}</p>
+    </header>
+
+    <!-- Topology sidebar -->
+    <div class="signal-layout">
+      <article class="signal-content prose">
+        <Content />
+      </article>
+
+      <aside class="signal-sidebar">
+        {signal.data.domains && (signal.data.domains as string[]).length > 0 && (
+          <div class="sidebar-section">
+            <h3>Domains</h3>
+            <div class="tag-list">
+              {(signal.data.domains as string[]).map((d: string) => (
+                <span class="domain-tag">{d}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {signal.data.lineage && (signal.data.lineage as string[]).length > 0 && (
+          <div class="sidebar-section">
+            <h3>Lineage</h3>
+            <div class="tag-list">
+              {(signal.data.lineage as string[]).map((l: string) => (
+                <span class="lineage-tag">{l}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {signal.data.newTerms && signal.data.newTerms.length > 0 && (
+          <div class="sidebar-section">
+            <h3>Terms Crystallized</h3>
+            <div class="tag-list">
+              {signal.data.newTerms.map((t: string) => (
+                <span class="term-tag">{t}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {signal.data.crossReferences && signal.data.crossReferences.length > 0 && (
+          <div class="sidebar-section">
+            <h3>Cross-References</h3>
+            <ul class="xref-list">
+              {signal.data.crossReferences.slice(0, 10).map((ref: string) => (
+                <li>{ref}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Provenance -->
+        <div class="sidebar-section provenance">
+          <h3>Provenance</h3>
+          <dl>
+            <dt>Source</dt>
+            <dd>Notion Insight Log</dd>
+            {signal.data.bridgeVersion && (
+              <>
+                <dt>Bridge</dt>
+                <dd>v{signal.data.bridgeVersion}</dd>
+              </>
+            )}
+            {signal.data.crystallizedBy && (
+              <>
+                <dt>Crystallized by</dt>
+                <dd>{signal.data.crystallizedBy}</dd>
+              </>
+            )}
+            <dt>Governance Relevance</dt>
+            <dd>{signal.data.governanceRelevance}</dd>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .signal-page {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .signal-breadcrumb {
+    font-size: 0.8rem;
+    font-family: var(--font-mono, monospace);
+    color: var(--color-text-tertiary, rgba(255,255,255,0.4));
+    margin-bottom: 2rem;
+  }
+
+  .signal-breadcrumb a {
+    color: var(--color-accent, #64ffda);
+    text-decoration: none;
+  }
+
+  .signal-breadcrumb .separator {
+    margin: 0 0.5rem;
+    opacity: 0.4;
+  }
+
+  .signal-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border, rgba(255,255,255,0.08));
+  }
+
+  .signal-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    font-family: var(--font-mono, monospace);
+    color: var(--color-text-tertiary, rgba(255,255,255,0.4));
+  }
+
+  .signal-number {
+    color: var(--color-accent, #64ffda);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .signal-type {
+    padding: 0.15rem 0.5rem;
+    background: rgba(100, 255, 218, 0.08);
+    border: 1px solid rgba(100, 255, 218, 0.15);
+    border-radius: 2px;
+    color: var(--color-accent, #64ffda);
+  }
+
+  .crystal-state {
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.7rem;
+  }
+  .crystal-state[data-state="emergent"] { background: rgba(255,200,50,0.1); color: #ffc832; }
+  .crystal-state[data-state="developing"] { background: rgba(100,180,255,0.1); color: #64b4ff; }
+  .crystal-state[data-state="crystallized"] { background: rgba(100,255,218,0.1); color: #64ffda; }
+
+  .signal-header h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.2;
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .signal-summary {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary, rgba(255,255,255,0.65));
+    line-height: 1.6;
+    max-width: 48rem;
+  }
+
+  .signal-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .signal-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .signal-content {
+    min-width: 0;
+  }
+
+  .signal-sidebar {
+    position: sticky;
+    top: 2rem;
+    font-size: 0.85rem;
+  }
+
+  .sidebar-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border, rgba(255,255,255,0.06));
+  }
+
+  .sidebar-section h3 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-tertiary, rgba(255,255,255,0.4));
+    margin: 0 0 0.5rem;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .domain-tag, .lineage-tag, .term-tag {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    font-family: var(--font-mono, monospace);
+  }
+
+  .domain-tag { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6); }
+  .lineage-tag { background: rgba(100,180,255,0.08); color: #64b4ff; }
+  .term-tag { background: rgba(255,200,50,0.08); color: #ffc832; }
+
+  .xref-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary, rgba(255,255,255,0.55));
+  }
+
+  .xref-list li {
+    padding: 0.2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+
+  .provenance dl {
+    margin: 0;
+  }
+
+  .provenance dt {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-tertiary, rgba(255,255,255,0.35));
+    margin-top: 0.5rem;
+  }
+
+  .provenance dd {
+    margin: 0;
+    color: var(--color-text-secondary, rgba(255,255,255,0.55));
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+  }
+</style>
