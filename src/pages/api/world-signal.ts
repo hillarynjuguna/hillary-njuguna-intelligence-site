@@ -1,3 +1,4 @@
+export const prerender = false;
 /**
  * Substrate Bridge v3.0 — World Signal Endpoint
  * POST /api/world-signal
