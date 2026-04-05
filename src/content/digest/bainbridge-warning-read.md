@@ -5,10 +5,9 @@ summary: "The paper from 1983 that most engineers deploying AI agents have not r
 publishedAt: 2026-04-05
 author: "Hillary Njuguna"
 category: "Field Notes"
-digestType: "excerpt"
+digestType: "note"
 tags: ["bainbridge-warning", "ai-governance", "mortal-measurement", "automation-irony"]
 domains: ["governance", "institutional-design"]
-themes: ["failure-analysis", "governance-infrastructure"]
 featured: false
 explicitRelations:
   - targetId: "product-bainbridge-warning-book"
