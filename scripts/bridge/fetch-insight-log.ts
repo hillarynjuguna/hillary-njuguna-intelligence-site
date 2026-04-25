@@ -18,6 +18,10 @@ import { Client } from '@notionhq/client';
 import { NotionToMarkdown } from 'notion-to-md';
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const INSIGHT_LOG_PAGE_ID = '323eb86fd1b08127a7acfa79076bf208';
 const OUTPUT_DIR = path.resolve(__dirname, '../../src/data/bridge');
