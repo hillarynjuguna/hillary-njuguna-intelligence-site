@@ -1,0 +1,870 @@
+---
+export const prerender = true;
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
+---
+
+<BaseLayout
+  title="Governed Intelligence Specification v1.1 — Oscillatory Fields"
+  description="The formal architecture specification for sovereign multi-agent systems. 50+ pages, 12 modules, mathematical integrity statement. Individual $249. Enterprise $3,995/year."
+>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Hero -->
+  <section class="gi-hero">
+    <div class="container">
+      <div class="gi-hero__brand" data-reveal>
+        <span class="mono-tag">Oscillatory Fields — Constitutional and Architectural Design</span>
+      </div>
+
+      <div class="gi-hero__title-block" data-reveal>
+        <div class="gi-hero__version">GIS v1.1</div>
+        <h1 class="gi-hero__title">Governed Intelligence<br />Specification</h1>
+      </div>
+
+      <p class="gi-hero__sub" data-reveal>
+        The formal architecture for sovereign, verifiable multi-agent systems operating
+        under constitutional constraint.
+      </p>
+
+      <div class="gi-hero__status-row" data-reveal>
+        <div class="gi-hero__stat">
+          <span class="stat-num">50+</span>
+          <span class="stat-label">Pages</span>
+        </div>
+        <div class="gi-hero__stat">
+          <span class="stat-num">12</span>
+          <span class="stat-label">Modules</span>
+        </div>
+        <div class="gi-hero__stat">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Epistemic grades</span>
+        </div>
+        <div class="gi-hero__stat">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Sovereignty conditions</span>
+        </div>
+      </div>
+
+      <div class="gi-hero__cta-row" data-reveal>
+        <a href="mailto:hillarynjuguna@protonmail.com?subject=GIS v1.1 Individual" class="cta-primary">
+          Get Individual Specification
+        </a>
+        <a href="mailto:hillarynjuguna@protonmail.com?subject=GIS v1.1 Enterprise" class="cta-secondary">
+          Enterprise Licensing
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What It Is -->
+  <section class="gi-section" id="overview">
+    <div class="container container--narrow">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">00</span>
+        <h2 class="section-title">What This Specification Is</h2>
+      </div>
+
+      <div class="gi-overview-body" data-reveal>
+        <p>
+          The Governed Intelligence Specification v1.1 is the formal architecture for
+          deploying AI agent systems under constitutional constraint. It specifies the
+          structures, contracts, verification methods, and enforcement mechanisms required
+          to maintain sovereign human control while allowing autonomous agent operation.
+        </p>
+        <p>
+          Where the Bainbridge Warning names the failure pattern and CIR measures readiness,
+          GIS v1.1 specifies what to build. Every module addresses a concrete architectural
+          requirement. Every claim carries an epistemic grade. Nothing is left to interpretation.
+        </p>
+        <div class="gi-overview-derivation">
+          <span class="section-eyebrow">Provenance</span>
+          <p>
+            This specification derives from two prior frameworks: The Bainbridge Warning
+            (v1.2) — the civilizational-scale diagnostic framework — and The AURORA
+            Framework — the formal methods and phenomenological hybrid governance framework.
+            Formalized through the Oscillatory Fields intelligence architecture practice
+            (Insight Log Entries 001-098, January-April 2026).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 Modules -->
+  <section class="gi-section" id="modules">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">01</span>
+        <h2 class="section-title">The Twelve Modules</h2>
+      </div>
+
+      <div class="modules-grid">
+        {[
+          {
+            num: '01',
+            title: 'Constitutional Foundations',
+            body: 'The Sovereignty Mandate, Constitutional Hierarchy, and Architectural Invariants. Formal definition of sovereignty as a topological constraint, not a policy preference. No agent in Cognition may directly invoke Execution. Status: Formally Specified.',
+            status: 'formal'
+          },
+          {
+            num: '02',
+            title: 'The MA-Kernel Architecture',
+            body: 'Four-layer canonical structure with τ-nodes, φ-nodes, λ-nodes, and μ-nodes. Node role definitions. Compositional signature algebra. Layer separation as architectural invariant, not advisory. Status: Formally Specified.',
+            status: 'formal'
+          },
+          {
+            num: '03',
+            title: 'Permit Algebra and Reversibility',
+            body: 'Formal permit algebra (P, ⊗, 1) with five axioms. Classification of all actions by reversibility. Consequence class taxonomy. BVL (Bounded Verifiability Latency) derivation from reversibility. Status: Formally Specified.',
+            status: 'formal'
+          },
+          {
+            num: '04',
+            title: 'The Assurance Ledger',
+            body: 'Hash-chained, append-only audit spine. Evidence Monoid (E, \u2295, \u03b5) with monoidal axioms. Every governance action produces exactly one Evidence Monoid element. Tamper-evident by construction. Status: Formally Specified.',
+            status: 'formal'
+          },
+          {
+            num: '05',
+            title: 'The \u03c4-Lock: Sovereign Override',
+            body: 'Human-controlled circuit breaker that revokes all active permits, freezes the execution plane, and transfers full authority to a designated sovereign entity. Euler characteristic implementation (\u03c7=-1). Modal logic upgrade: \u25a1(Action \u2192 \u25c7Recall). Status: Provisionally Specified.',
+            status: 'provisional'
+          },
+          {
+            num: '06',
+            title: 'Enforcement Architecture',
+            body: 'Three-layer PBP enforcement. Trust boundaries between cognitive, governance, and execution planes. Six failure zones with specified mitigations. Status: Mixed (structural model defined; empirical validation pending).',
+            status: 'mixed'
+          },
+          {
+            num: '07',
+            title: 'Verification Methods',
+            body: 'UPPAAL model-checking of finite state machines. The Sovereignty Coherence Theorem (five conditions jointly imply Jacobian stability). The Four Views Theorem (individual necessity via multiplicative \u03a9-logic). Status: Mixed (model-checking verified; core theorems provisionally specified).',
+            status: 'mixed'
+          },
+          {
+            num: '08',
+            title: 'Deployment Topology',
+            body: 'Three-plane production architecture: Cognitive Plane (proposes), Orchestration Plane (governs), Execution Plane (acts). No entity in Cognition may directly invoke Execution. Enterprise integration paths for open-infrastructure and closed-garden platforms. Status: Provisionally Specified.',
+            status: 'provisional'
+          },
+          {
+            num: '09',
+            title: 'The Surface Divergence Audit',
+            body: 'Governance phenomenon in which identical model weights produce observably different epistemic behaviour solely due to access surface. Four divergence types. SDA declaration schema. Status: Formally Specified.',
+            status: 'formal'
+          },
+          {
+            num: '10',
+            title: 'Formalisation Entropy and Corpus Integrity',
+            body: 'The constitutional vulnerability of static artifacts. Information loss when living generative process converts to static record. Sigma Stratum Ghost Artifact, Memory Provenance Gap, Vocabulary Load Effect. Status: Epistemic Boundary (partially unresolved).',
+            status: 'boundary'
+          },
+          {
+            num: '11',
+            title: 'Stage 0 Empirical Validation Protocol',
+            body: '2x2 factorial ECS Reality Test with blinding protocol. Primary, secondary, and tertiary pass criteria. Permanent moat if executed. Status: Empirically Pending.',
+            status: 'pending'
+          },
+          {
+            num: '12',
+            title: 'Glossary',
+            body: 'Complete definitions of all governed intelligence terms: \u03c4-node, \u03c6-node, Evidence Monoid, Birkhoff-admissibility, Consequence Class, Field Constitution, Annihilation Commands. Status: Complete.',
+            status: 'complete'
+          }
+        ].map((mod) => (
+          <div class={`module-card module-card--${mod.status}`} data-reveal>
+            <div class="module-card__header">
+              <span class="module-card__num">{mod.num}</span>
+              <div class="module-card__status-dot" title={mod.status}></div>
+            </div>
+            <h3 class="module-card__title">{mod.title}</h3>
+            <p class="module-card__body">{mod.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="modules-legend" data-reveal>
+        {[
+          { color: 'formal', label: 'Formally Specified' },
+          { color: 'provisional', label: 'Provisionally Specified' },
+          { color: 'mixed', label: 'Mixed (structural verified)' },
+          { color: 'pending', label: 'Empirically Pending' },
+          { color: 'boundary', label: 'Epistemic Boundary' },
+          { color: 'complete', label: 'Complete' }
+        ].map(l => (
+          <div class="legend-item">
+            <span class={`legend-dot legend-dot--${l.color}`}></span>
+            <span class="legend-label">{l.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Mathematical Integrity -->
+  <section class="gi-section" id="integrity">
+    <div class="container container--narrow">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">02</span>
+        <h2 class="section-title">Mathematical Integrity</h2>
+      </div>
+
+      <div class="gi-integrity-card" data-reveal>
+        <p class="gi-integrity-intro">
+          The GIS v1.1 is accompanied by a Mathematical Integrity Statement independently
+          produced by φ-node (GPT) through the Oscillatory Fields RSPS verification
+          architecture. Every formal claim in the specification is graded according to
+          one of four epistemic categories.
+        </p>
+
+        <div class="gi-integrity-grades">
+          {[
+            {
+              grade: 'Formally Verified',
+              desc: 'Claims verified through mathematical proof or UPPAAL model-checking.'
+            },
+            {
+              grade: 'Provisionally Specified',
+              desc: 'Claims with strong theoretical grounding, pending complete mathematical formalisation. The specific outstanding proof obligation is identified.'
+            },
+            {
+              grade: 'Empirically Pending',
+              desc: 'Claims requiring execution of a designed experimental protocol. Structural role established; behavioral parameter values pending.'
+            },
+            {
+              grade: 'Permanent Epistemic Boundary',
+              desc: 'Claims describing structural limits on what any governance architecture can observe, regardless of implementation.'
+            }
+          ].map((g) => (
+            <div class="gi-grade">
+              <span class="gi-grade__name">{g.grade}</span>
+              <span class="gi-grade__desc">{g.desc}</span>
+            </div>
+          ))}
+        </div>
+
+        <p class="gi-integrity-statement">
+          Governed intelligence requires that governance frameworks be subject to the same
+          evidentiary standards they impose on others.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="gi-section" id="pricing">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">03</span>
+        <h2 class="section-title">Licensing</h2>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card" data-reveal>
+          <div class="pricing-card__header">
+            <span class="pricing-card__tier">Individual</span>
+            <div class="pricing-card__price">$249</div>
+            <p class="pricing-card__desc">PDF specification. Personal use license. One year of updates.</p>
+          </div>
+          <ul class="pricing-card__features">
+            <li>Full Governed Intelligence Specification v1.1 (50+ pages)</li>
+            <li>Companion Mathematical Integrity Statement</li>
+            <li>Personal use license</li>
+            <li>One year of specification updates</li>
+          </ul>
+          <a href="mailto:hillarynjuguna@protonmail.com?subject=GIS v1.1 Individual" class="pricing-card__cta">
+            Get Individual Specification
+          </a>
+        </div>
+
+        <div class="pricing-card pricing-card--featured" data-reveal>
+          <div class="pricing-card__badge">Most Popular</div>
+          <div class="pricing-card__header">
+            <span class="pricing-card__tier">Enterprise Site License</span>
+            <div class="pricing-card__price">$3,995<span>/year</span></div>
+            <p class="pricing-card__desc">Unlimited internal distribution. Full implementation support.</p>
+          </div>
+          <ul class="pricing-card__features">
+            <li>Unlimited internal distribution</li>
+            <li>Implementation schemas and deployment templates</li>
+            <li>Email support for architectural questions</li>
+            <li>Quarterly specification updates</li>
+            <li>Right to use as basis for internal governance audits</li>
+            <li>Optional: half-day architectural review call (+$1,500)</li>
+          </ul>
+          <a href="mailto:hillarynjuguna@protonmail.com?subject=GIS v1.1 Enterprise" class="pricing-card__cta pricing-card__cta--featured">
+            Enterprise Licensing
+          </a>
+        </div>
+
+        <div class="pricing-card" data-reveal>
+          <div class="pricing-card__header">
+            <span class="pricing-card__tier">Integrated Governance</span>
+            <div class="pricing-card__price pricing-card__price--inquiry">Inquire</div>
+            <p class="pricing-card__desc">Custom deployment architecture. Advisory engagement.</p>
+          </div>
+          <ul class="pricing-card__features">
+            <li>Custom deployment architecture design</li>
+            <li>Team training on Governed Intelligence implementation</li>
+            <li>MA-Kernel integration support</li>
+            <li>Ongoing governance council advisory</li>
+          </ul>
+          <a href="mailto:hillarynjuguna@protonmail.com?subject=GIS v1.1 Integrated Governance" class="pricing-card__cta">
+            Start a Conversation
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Funnel Banner -->
+  <div class="container">
+    <ProductFunnelBanner activeTier={3} />
+  </div>
+</BaseLayout>
+
+<style>
+  .grain-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+  }
+
+  .container {
+    max-width: var(--max-w-site);
+    margin: 0 auto;
+    padding: 0 var(--container-padding-desktop);
+  }
+  .container--narrow { max-width: 760px; }
+
+  .mono-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  }
+  [data-reveal].is-visible { opacity: 1; transform: none; }
+
+  /* ── Hero ───────────────────────────────────────────────────── */
+  .gi-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--space-32) 0 var(--space-20);
+    border-bottom: 1px solid var(--border-dim);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gi-hero::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    border: 1px solid rgba(196, 112, 58, 0.04);
+    border-radius: 50%;
+  }
+
+  .gi-hero::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    right: -5%;
+    width: 700px;
+    height: 700px;
+    border: 1px solid rgba(196, 112, 58, 0.03);
+    border-radius: 50%;
+  }
+
+  .gi-hero .container { position: relative; z-index: 1; }
+
+  .gi-hero__brand { margin-bottom: var(--space-10); }
+
+  .gi-hero__title-block {
+    margin-bottom: var(--space-8);
+  }
+
+  .gi-hero__version {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.2em;
+    color: var(--ember);
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+  }
+
+  .gi-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .gi-hero__sub {
+    font-size: var(--text-xl);
+    color: var(--text-secondary);
+    line-height: var(--leading-snug);
+    max-width: 580px;
+    font-weight: 300;
+    margin-bottom: var(--space-12);
+  }
+
+  .gi-hero__status-row {
+    display: flex;
+    gap: var(--space-10);
+    margin-bottom: var(--space-12);
+    padding: var(--space-6) 0;
+    border-top: 1px solid var(--border-dim);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .gi-hero__stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    color: var(--ember);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .gi-hero__cta-row {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-primary {
+    display: inline-block;
+    padding: var(--space-4) var(--space-8);
+    background: var(--ember);
+    color: var(--void);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast), transform var(--duration-fast);
+    white-space: nowrap;
+  }
+  .cta-primary:hover { background: var(--ember-bright); transform: translateY(-1px); }
+
+  .cta-secondary {
+    display: inline-block;
+    padding: var(--space-4) var(--space-8);
+    border: 1px solid var(--border-bright);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: border-color var(--duration-fast), background var(--duration-fast);
+    white-space: nowrap;
+  }
+  .cta-secondary:hover {
+    border-color: var(--ember);
+    background: rgba(196, 112, 58, 0.06);
+  }
+
+  /* ── Sections ───────────────────────────────────────────────── */
+  .gi-section {
+    padding: var(--space-24) 0;
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .section-header { margin-bottom: var(--space-12); }
+
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    color: var(--ember);
+    display: block;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: var(--leading-tight);
+  }
+
+  /* ── Overview ───────────────────────────────────────────────── */
+  .gi-overview-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .gi-overview-body p {
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+  .gi-overview-derivation {
+    margin-top: var(--space-4);
+    padding: var(--space-6);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-1);
+  }
+  .gi-overview-derivation p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-3);
+    font-style: italic;
+  }
+
+  /* ── Modules ────────────────────────────────────────────────── */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  @media (max-width: 1000px) {
+    .modules-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .modules-grid { grid-template-columns: 1fr; }
+  }
+
+  .module-card {
+    padding: var(--space-6);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: border-color var(--duration-mid);
+  }
+  .module-card:hover { border-color: var(--border-mid); }
+
+  .module-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .module-card__num {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ember);
+    letter-spacing: 0.1em;
+  }
+
+  .module-card__status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .module-card--formal .module-card__status-dot { background: #4ade80; box-shadow: 0 0 6px rgba(74,222,128,0.4); }
+  .module-card--provisional .module-card__status-dot { background: var(--ember); box-shadow: 0 0 6px rgba(196,112,58,0.4); }
+  .module-card--mixed .module-card__status-dot { background: #facc15; box-shadow: 0 0 6px rgba(250,204,21,0.4); }
+  .module-card--pending .module-card__status-dot { background: #94a3b8; }
+  .module-card--boundary .module-card__status-dot { background: #f87171; }
+  .module-card--complete .module-card__status-dot { background: #4ade80; box-shadow: 0 0 6px rgba(74,222,128,0.4); }
+
+  .module-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+  }
+
+  .module-card__body {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    flex: 1;
+  }
+
+  .modules-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-8);
+    padding: var(--space-6);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-1);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-dot--formal, .legend-dot--complete { background: #4ade80; }
+  .legend-dot--provisional { background: var(--ember); }
+  .legend-dot--mixed { background: #facc15; }
+  .legend-dot--pending { background: #94a3b8; }
+  .legend-dot--boundary { background: #f87171; }
+
+  .legend-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  /* ── Integrity card ─────────────────────────────────────────── */
+  .gi-integrity-card {
+    padding: var(--space-10);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    background: var(--surface-1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gi-integrity-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ember), transparent);
+  }
+
+  .gi-integrity-intro {
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-8);
+  }
+
+  .gi-integrity-grades {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  @media (max-width: 640px) {
+    .gi-integrity-grades { grid-template-columns: 1fr; }
+  }
+
+  .gi-grade {
+    padding: var(--space-5);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .gi-grade__name {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+
+  .gi-grade__desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .gi-integrity-statement {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+    padding-left: var(--space-6);
+    border-left: 2px solid var(--ember);
+  }
+
+  /* ── Pricing ────────────────────────────────────────────────── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  @media (max-width: 900px) {
+    .pricing-grid { grid-template-columns: 1fr; max-width: 500px; }
+  }
+
+  .pricing-card {
+    padding: var(--space-8);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-lg);
+    background: var(--surface-1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    position: relative;
+    transition: border-color var(--duration-mid);
+  }
+  .pricing-card:hover { border-color: var(--border-mid); }
+
+  .pricing-card--featured {
+    border-color: var(--ember);
+    background: rgba(196, 112, 58, 0.04);
+  }
+
+  .pricing-card__badge {
+    position: absolute;
+    top: -1px;
+    left: var(--space-6);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--ember);
+    color: var(--void);
+    padding: 3px var(--space-3);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  }
+
+  .pricing-card__tier {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    display: block;
+    margin-bottom: var(--space-3);
+  }
+
+  .pricing-card__price {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: var(--space-3);
+  }
+
+  .pricing-card__price span {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-weight: 300;
+  }
+
+  .pricing-card__price--inquiry {
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .pricing-card__desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .pricing-card__features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    flex: 1;
+  }
+
+  .pricing-card__features li {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .pricing-card__features li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--ember);
+    flex-shrink: 0;
+    margin-top: 0.5em;
+  }
+
+  .pricing-card__cta {
+    display: block;
+    text-align: center;
+    padding: var(--space-4) var(--space-6);
+    border: 1px solid var(--border-bright);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast);
+  }
+  .pricing-card__cta:hover {
+    background: rgba(196, 112, 58, 0.08);
+    border-color: var(--ember);
+  }
+
+  .pricing-card__cta--featured {
+    background: var(--ember);
+    color: var(--void);
+    border-color: var(--ember);
+  }
+  .pricing-card__cta--featured:hover {
+    background: var(--ember-bright);
+    border-color: var(--ember-bright);
+    color: var(--void);
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 var(--container-padding-mobile); }
+    .gi-hero__status-row { flex-wrap: wrap; gap: var(--space-6); }
+  }
+</style>

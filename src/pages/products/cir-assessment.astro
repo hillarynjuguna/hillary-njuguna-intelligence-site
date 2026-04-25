@@ -1,0 +1,743 @@
+---
+export const prerender = true;
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
+---
+
+<BaseLayout
+  title="CIR v2.0 — Cognitive Infrastructure Readiness Assessment"
+  description="The self-assessment framework for institutional AI readiness. Five constitutional dimensions. Practitioner workbook for executive teams and governance leads."
+>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Hero -->
+  <section class="cir-hero">
+    <div class="container">
+      <div class="cir-hero__grid">
+        <div class="cir-hero__content">
+          <div class="cir-hero__label" data-reveal>
+            <span class="mono-tag">Cognitive Infrastructure Readiness</span>
+          </div>
+
+          <h1 class="cir-hero__title" data-reveal>
+            CIR v2.0
+          </h1>
+
+          <p class="cir-hero__sub" data-reveal>
+            AI readiness is not a technical question. It is a constitutional one.
+          </p>
+
+          <p class="cir-hero__desc" data-reveal>
+            A self-assessment framework for organisations evaluating their AI readiness
+            across five constitutional dimensions. Available now.
+          </p>
+
+          <div class="cir-hero__cta" data-reveal>
+            <a
+              href="https://hillarynjuguna.gumroad.com/l/xlwin"
+              class="cta-primary"
+              target="_blank"
+              rel="noopener"
+            >
+              Get CIR v2.0 — $49
+            </a>
+            <span class="cta-sub">Immediate digital delivery via Gumroad</span>
+          </div>
+        </div>
+
+        <div class="cir-hero__viz" data-reveal>
+          <canvas id="radar-canvas" width="420" height="420" aria-label="CIR five-dimension radar chart"></canvas>
+          <div class="radar-labels">
+            <span class="rl rl--top">Intent<br/>Specification</span>
+            <span class="rl rl--tr">Authority<br/>Architecture</span>
+            <span class="rl rl--br">Alignment<br/>Monitoring</span>
+            <span class="rl rl--bl">Governance<br/>Scalability</span>
+            <span class="rl rl--tl">Failure Mode<br/>Literacy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Premise -->
+  <section class="cir-section" id="premise">
+    <div class="container container--narrow">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">01</span>
+        <h2 class="section-title">The Constitutional Premise</h2>
+      </div>
+
+      <div class="premise-body" data-reveal>
+        <p>
+          Most organisations approach AI readiness as a technology question. Which model.
+          Which vendor. Which use case.
+        </p>
+        <p>
+          CIR starts from a different premise: before you can deploy an intelligent system
+          responsibly, you need to have made foundational decisions about authority,
+          accountability, and alignment. These decisions are your organisation's AI
+          constitution — whether you have written it down or not.
+        </p>
+        <p class="premise-conclusion">
+          The problem: most organisations are discovering their implicit constitution
+          through failure.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Five Dimensions -->
+  <section class="cir-section" id="dimensions">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">02</span>
+        <h2 class="section-title">The Five Constitutional Dimensions</h2>
+      </div>
+
+      <div class="dimensions-grid">
+        {[
+          {
+            num: '01',
+            id: 'IS',
+            title: 'Intent Specification',
+            question: 'Can you articulate, in writing, what your AI systems are optimising for — at the organisational intent level, not just the feature level?',
+            signal: 'Absent specification produces mandate drift. Systems begin optimising for measurable proxies rather than stated intent.'
+          },
+          {
+            num: '02',
+            id: 'AA',
+            title: 'Authority Architecture',
+            question: 'When the system produces unexpected output, who has authority to act? Is that authority clear and exercisable under pressure?',
+            signal: 'Diffuse authority produces governance theater. Everyone is responsible. Nobody can stop it.'
+          },
+          {
+            num: '03',
+            id: 'AM',
+            title: 'Alignment Monitoring',
+            question: 'What is your live mechanism for detecting when system behaviour drifts from intent? How quickly can you detect and respond?',
+            signal: 'Latency between drift and detection is the most dangerous variable in production AI governance.'
+          },
+          {
+            num: '04',
+            id: 'GS',
+            title: 'Governance Scalability',
+            question: 'As you add more AI systems, does your governance architecture scale with them — or does it remain fixed while exposure grows?',
+            signal: 'Static governance against expanding deployment is compounding governance debt, not stable infrastructure.'
+          },
+          {
+            num: '05',
+            id: 'FL',
+            title: 'Failure Mode Literacy',
+            question: 'Do your decision-makers understand the specific failure modes of the systems they are accountable for — at the level of consequence and response?',
+            signal: 'Accountability without literacy is liability without leverage. You cannot govern what you cannot name.'
+          }
+        ].map((dim) => (
+          <div class="dimension-card" data-reveal>
+            <div class="dimension-card__header">
+              <div class="dimension-card__id">
+                <span class="dimension-card__num">{dim.num}</span>
+                <span class="dimension-card__abbr">{dim.id}</span>
+              </div>
+              <h3 class="dimension-card__title">{dim.title}</h3>
+            </div>
+            <div class="dimension-card__question">
+              <span class="dimension-card__q-label">Diagnostic question</span>
+              <p>{dim.question}</p>
+            </div>
+            <div class="dimension-card__signal">
+              <span class="dimension-card__s-label">Failure signal</span>
+              <p>{dim.signal}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What You Get -->
+  <section class="cir-section" id="deliverables">
+    <div class="container container--narrow">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">03</span>
+        <h2 class="section-title">What You Get</h2>
+      </div>
+
+      <div class="deliverables-list" data-reveal>
+        {[
+          'Complete self-assessment instrument across all five dimensions',
+          'Scoring rubrics with qualitative and quantitative guidance',
+          'Interpretation guide: what your scores mean and what they predict',
+          'Prioritised recommendations by dimension',
+          'Governance vocabulary for internal alignment conversations',
+          'Foundation for a more complete Bainbridge Warning assessment if needed'
+        ].map((item) => (
+          <div class="deliverable-item">
+            <span class="deliverable-item__marker" aria-hidden="true">—</span>
+            <span class="deliverable-item__text">{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Access -->
+  <section class="cir-section" id="access">
+    <div class="container container--narrow">
+      <div class="cir-access-card" data-reveal>
+        <div class="cir-access-card__top">
+          <div>
+            <span class="section-eyebrow">Individual Access</span>
+            <h2 class="cir-access-card__price">$49</h2>
+            <p class="cir-access-card__desc">Immediate digital delivery. Full assessment instrument.</p>
+          </div>
+          <a
+            href="https://hillarynjuguna.gumroad.com/l/xlwin"
+            class="cta-primary"
+            target="_blank"
+            rel="noopener"
+          >
+            Get CIR v2.0
+          </a>
+        </div>
+
+        <div class="cir-access-divider"></div>
+
+        <div class="cir-access-card__enterprise">
+          <span class="section-eyebrow">Enterprise and Team Access</span>
+          <p>
+            For organisations needing team licenses, facilitated delivery, or volume pricing,
+            contact directly.
+          </p>
+          <a href="mailto:hillarynjuguna@protonmail.com?subject=CIR v2.0 Enterprise" class="contact-link">
+            hillarynjuguna@protonmail.com
+          </a>
+        </div>
+
+        <div class="cir-access-divider"></div>
+
+        <div class="cir-access-card__sequence">
+          <span class="section-eyebrow">Recommended Sequence</span>
+          <p>
+            CIR v2.0 is the companion workbook to The Bainbridge Warning. Reading the book
+            first installs the diagnostic frame the workbook operationalises. The sequence
+            matters. The bundle is available on Gumroad.
+          </p>
+          <a
+            href="/products/bainbridge-warning"
+            class="contact-link"
+          >
+            The Bainbridge Warning (Book + Workbook Bundle) &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Funnel Banner -->
+  <div class="container">
+    <ProductFunnelBanner activeTier={2} />
+  </div>
+</BaseLayout>
+
+<style>
+  .grain-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+  }
+
+  .container {
+    max-width: var(--max-w-site);
+    margin: 0 auto;
+    padding: 0 var(--container-padding-desktop);
+  }
+  .container--narrow { max-width: 760px; }
+
+  .mono-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  /* ── Hero ───────────────────────────────────────────────────── */
+  .cir-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--space-32) 0 var(--space-20);
+  }
+
+  .cir-hero .container { width: 100%; }
+
+  .cir-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .cir-hero__grid {
+      grid-template-columns: 1fr;
+    }
+    .cir-hero__viz {
+      order: -1;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .cir-hero__label {
+    margin-bottom: var(--space-6);
+  }
+
+  .cir-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-6);
+  }
+
+  .cir-hero__sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-xl);
+    color: var(--ember);
+    margin-bottom: var(--space-4);
+    line-height: var(--leading-snug);
+  }
+
+  .cir-hero__desc {
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-10);
+    max-width: 480px;
+  }
+
+  .cir-hero__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  /* ── Radar wrapper ──────────────────────────────────────────── */
+  .cir-hero__viz {
+    position: relative;
+  }
+
+  #radar-canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .radar-labels {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .rl {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .rl--top  { top: 2%;  left: 50%; transform: translateX(-50%); }
+  .rl--tr   { top: 28%; right: 2%; text-align: right; }
+  .rl--br   { bottom: 20%; right: 2%; text-align: right; }
+  .rl--bl   { bottom: 20%; left: 2%; text-align: left; }
+  .rl--tl   { top: 28%; left: 2%; text-align: left; }
+
+  /* ── Sections ───────────────────────────────────────────────── */
+  .cir-section {
+    padding: var(--space-24) 0;
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .section-header { margin-bottom: var(--space-12); }
+
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    color: var(--ember);
+    display: block;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: var(--leading-tight);
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  }
+  [data-reveal].is-visible { opacity: 1; transform: none; }
+
+  /* ── Premise ────────────────────────────────────────────────── */
+  .premise-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .premise-body p {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+  }
+  .premise-conclusion {
+    font-style: italic;
+    color: var(--text-primary) !important;
+    padding-left: var(--space-6);
+    border-left: 2px solid var(--ember);
+  }
+
+  /* ── Dimensions grid ────────────────────────────────────────── */
+  .dimensions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    max-width: 1000px;
+  }
+
+  @media (max-width: 768px) {
+    .dimensions-grid { grid-template-columns: 1fr; }
+  }
+
+  .dimension-card {
+    padding: var(--space-6);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    transition: border-color var(--duration-mid);
+  }
+  .dimension-card:hover { border-color: var(--border-mid); }
+
+  .dimension-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .dimension-card__id {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .dimension-card__num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ember);
+    letter-spacing: 0.1em;
+  }
+
+  .dimension-card__abbr {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ember);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    background: rgba(196, 112, 58, 0.1);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(196, 112, 58, 0.2);
+  }
+
+  .dimension-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: var(--leading-tight);
+  }
+
+  .dimension-card__q-label,
+  .dimension-card__s-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-2);
+  }
+
+  .dimension-card__question p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+
+  .dimension-card__signal p {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Deliverables ───────────────────────────────────────────── */
+  .deliverables-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    border-top: 1px solid var(--border-dim);
+    padding-top: var(--space-6);
+  }
+
+  .deliverable-item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .deliverable-item__marker {
+    font-family: var(--font-mono);
+    color: var(--ember);
+    flex-shrink: 0;
+    font-size: var(--text-sm);
+  }
+
+  .deliverable-item__text {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Access card ────────────────────────────────────────────── */
+  .cir-access-card {
+    padding: var(--space-12);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    background: var(--surface-1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cir-access-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ember), transparent);
+  }
+
+  .cir-access-card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+  }
+
+  .cir-access-card__price {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    margin: var(--space-2) 0;
+  }
+
+  .cir-access-card__desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  .cir-access-divider {
+    height: 1px;
+    background: var(--border-dim);
+    margin: var(--space-8) 0;
+  }
+
+  .cir-access-card__enterprise,
+  .cir-access-card__sequence {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .cir-access-card__enterprise p,
+  .cir-access-card__sequence p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .contact-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--ember);
+    text-decoration: none;
+    transition: opacity var(--duration-fast);
+  }
+  .contact-link:hover { opacity: 0.7; }
+
+  /* ── CTAs ───────────────────────────────────────────────────── */
+  .cta-primary {
+    display: inline-block;
+    padding: var(--space-4) var(--space-8);
+    background: var(--ember);
+    color: var(--void);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast), transform var(--duration-fast);
+    white-space: nowrap;
+  }
+  .cta-primary:hover {
+    background: var(--ember-bright);
+    transform: translateY(-1px);
+  }
+
+  .cta-sub {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 var(--container-padding-mobile); }
+    .cir-access-card { padding: var(--space-8) var(--space-6); }
+    .cir-access-card__top { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<script>
+  // ── Radar Chart ───────────────────────────────────────────────
+  const canvas = document.getElementById('radar-canvas') as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext('2d')!;
+    const cx = 210, cy = 210, R = 160;
+    const labels = ['Intent Specification','Authority Architecture','Alignment Monitoring','Governance Scalability','Failure Mode Literacy'];
+    const N = 5;
+    let progress = 0;
+    let started = false;
+
+    const angles = labels.map((_, i) => (Math.PI * 2 * i / N) - Math.PI / 2);
+    const targetScores = [0.82, 0.68, 0.55, 0.72, 0.45]; // demo distribution
+    const targetRef    = [1.0, 1.0, 1.0, 1.0, 1.0];
+
+    const point = (angle: number, r: number) => ({
+      x: cx + r * Math.cos(angle),
+      y: cy + r * Math.sin(angle),
+    });
+
+    const draw = (t: number) => {
+      ctx.clearRect(0, 0, 420, 420);
+
+      // grid rings
+      for (let ring = 1; ring <= 5; ring++) {
+        ctx.beginPath();
+        angles.forEach((a, i) => {
+          const p = point(a, R * ring / 5);
+          i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+        });
+        ctx.closePath();
+        ctx.strokeStyle = 'rgba(196,112,58,0.08)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      // spokes
+      angles.forEach(a => {
+        const p = point(a, R);
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(p.x, p.y);
+        ctx.strokeStyle = 'rgba(196,112,58,0.12)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+
+      // reference shape (full)
+      ctx.beginPath();
+      angles.forEach((a, i) => {
+        const p = point(a, R * targetRef[i]);
+        i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+      });
+      ctx.closePath();
+      ctx.strokeStyle = 'rgba(196,112,58,0.15)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // animated score shape
+      const scores = targetScores.map(s => s * t);
+      ctx.beginPath();
+      angles.forEach((a, i) => {
+        const p = point(a, R * scores[i]);
+        i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+      });
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(196,112,58,0.12)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(196,112,58,0.7)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // dots
+      angles.forEach((a, i) => {
+        const p = point(a, R * scores[i]);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(196,112,58,0.9)';
+        ctx.fill();
+      });
+    };
+
+    const animate = () => {
+      if (progress < 1) {
+        progress = Math.min(1, progress + 0.012);
+        draw(progress);
+        requestAnimationFrame(animate);
+      }
+    };
+
+    // Start on intersection
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !started) {
+          started = true;
+          animate();
+        }
+      });
+    }, { threshold: 0.2 });
+    obs.observe(canvas);
+
+    draw(0); // static initial render
+  }
+</script>

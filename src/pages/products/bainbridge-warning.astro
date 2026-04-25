@@ -1,0 +1,827 @@
+---
+export const prerender = true;
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
+---
+
+<BaseLayout
+  title="The Bainbridge Warning — AI Agent Governance Infrastructure"
+  description="Why AI agent governance fails before it looks like failure. The free field manual covering the core argument, five documented case specimens, and the urgency."
+>
+  <!-- Grain overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Hero -->
+  <section class="bw-hero">
+    <canvas id="field-canvas" aria-hidden="true"></canvas>
+
+    <div class="bw-hero__inner container">
+      <div class="bw-hero__label" data-reveal>
+        <span class="mono-tag">Oscillatory Fields — Constitutional and Architectural Design</span>
+      </div>
+
+      <h1 class="bw-hero__title" data-reveal>
+        The Bainbridge<br />Warning
+      </h1>
+
+      <p class="bw-hero__sub" data-reveal>
+        Why AI agent governance fails before it looks like failure — and what
+        durable infrastructure actually requires.
+      </p>
+
+      <div class="bw-hero__cta" data-reveal>
+        <a href="https://hillarynjuguna.gumroad.com/l/cqymkj" class="cta-primary" target="_blank" rel="noopener">
+          Download the Free Field Manual
+        </a>
+        <span class="cta-sub">PDF · 5-7 pages · Immediate download · No email required</span>
+      </div>
+
+      <div class="bw-hero__scroll-indicator" aria-hidden="true">
+        <span class="scroll-line"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Argument -->
+  <section class="bw-section bw-argument" id="argument">
+    <div class="container container--narrow">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">01</span>
+        <h2 class="section-title">The Core Argument</h2>
+      </div>
+
+      <div class="argument-body" data-reveal>
+        <p>
+          Modern AI failures do not originate in model capability. They originate in governance
+          structures that collapse under conditions of irreversibility.
+        </p>
+        <p>
+          The Automation Irony — named after Lisanne Bainbridge's 1983 paper — describes a
+          consistent pattern: the more capable a system becomes, the less visible its failure
+          modes are to human operators. Most governance frameworks assume reversibility. They
+          assume actions can be inspected, corrected, or rolled back after execution. But real
+          systems operate under irreversibility constraints. Some actions cannot be undone. Some
+          consequences cannot be contained.
+        </p>
+        <p>
+          When governance is built on reversible assumptions but deployed into irreversible
+          environments, it accumulates hidden liability. That liability compounds. This is
+          governance debt. And like financial debt, it remains invisible — until it is suddenly
+          called.
+        </p>
+        <p class="argument-conclusion">
+          This book names the pattern, documents five real-world specimens that prove it, and
+          specifies the four things you have to build to prevent it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Five Specimens -->
+  <section class="bw-section bw-specimens" id="specimens">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">02</span>
+        <h2 class="section-title">Five Documented Failure Specimens</h2>
+      </div>
+
+      <div class="specimens-grid">
+        <div class="specimen" data-reveal data-specimen="1">
+          <div class="specimen__year">2009</div>
+          <div class="specimen__body">
+            <h3 class="specimen__title">Air France Flight 447</h3>
+            <p class="specimen__text">
+              Automation degraded pilot situational awareness at the exact moment manual
+              intervention became critical.
+            </p>
+          </div>
+          <div class="specimen__classification">
+            <span class="mono-tag">Cognitive Atrophy</span>
+          </div>
+        </div>
+
+        <div class="specimen" data-reveal data-specimen="2">
+          <div class="specimen__year">2010</div>
+          <div class="specimen__body">
+            <h3 class="specimen__title">The Flash Crash</h3>
+            <p class="specimen__text">
+              High-frequency systems amplified local signals into systemic instability faster
+              than governance mechanisms could respond.
+            </p>
+          </div>
+          <div class="specimen__classification">
+            <span class="mono-tag">Cascade Propagation</span>
+          </div>
+        </div>
+
+        <div class="specimen" data-reveal data-specimen="3">
+          <div class="specimen__year">2023</div>
+          <div class="specimen__body">
+            <h3 class="specimen__title">Mata v. Avianca</h3>
+            <p class="specimen__text">
+              Synthetic outputs entered legal processes without verification, demonstrating
+              failure of evidentiary governance.
+            </p>
+          </div>
+          <div class="specimen__classification">
+            <span class="mono-tag">Evidentiary Collapse</span>
+          </div>
+        </div>
+
+        <div class="specimen" data-reveal data-specimen="4">
+          <div class="specimen__year">2025</div>
+          <div class="specimen__body">
+            <h3 class="specimen__title">Replit</h3>
+            <p class="specimen__text">
+              Autonomous coding agents executed actions beyond intended scope due to missing
+              compositional constraints.
+            </p>
+          </div>
+          <div class="specimen__classification">
+            <span class="mono-tag">Scope Breach</span>
+          </div>
+        </div>
+
+        <div class="specimen specimen--live" data-reveal data-specimen="5">
+          <div class="specimen__year">
+            2026
+            <span class="live-indicator" title="Current research">LIVE</span>
+          </div>
+          <div class="specimen__body">
+            <h3 class="specimen__title">Anthropic Interpretability Research</h3>
+            <p class="specimen__text">
+              Advanced systems exhibited internal representations that resisted reliable human
+              interpretation, exposing limits of oversight.
+            </p>
+          </div>
+          <div class="specimen__classification">
+            <span class="mono-tag">Opacity Limit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Inside -->
+  <section class="bw-section bw-contents" id="contents">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">03</span>
+        <h2 class="section-title">What's Inside the Book</h2>
+        <p class="section-sub">
+          A 58-page practitioner book covering the governance failure pattern, five case
+          specimens, and the architecture required to prevent it.
+        </p>
+      </div>
+
+      <div class="chapters-list">
+        {[
+          {
+            num: '01',
+            title: 'The Automation Irony and Its Modern Heir',
+            text: 'Why the same automation that reduces human error ends up, over time, increasing its consequences — and why AI agents make this catastrophically worse.'
+          },
+          {
+            num: '02',
+            title: 'Five Documented Failure Specimens',
+            text: 'Air France 447, the 2010 Flash Crash, Mata v. Avianca, Replit, and Anthropic\'s interpretability research — each proving the same structural pattern.'
+          },
+          {
+            num: '03',
+            title: 'The Four Things You Have to Build',
+            text: 'Bounded Verifiability Latency, Explicit Compositional Contracts, Continuous Deterministic Layer Regression, and Dual Ownership — the four architectural capabilities.'
+          },
+          {
+            num: '04',
+            title: 'The Seven Signs of Governance Theater',
+            text: 'How to distinguish governance that changes what happens under pressure from governance that produces documentation that looks correct.'
+          },
+          {
+            num: '05',
+            title: 'Detection Theater',
+            text: 'Behavioral output monitoring that produces the appearance of alignment verification while the functional state layer runs unobserved.'
+          },
+          {
+            num: '06',
+            title: 'A Bridge to Practice',
+            text: 'The companion workbook (CIR Assessment) translates the doctrine into operational readiness instruments.'
+          }
+        ].map((ch, i) => (
+          <div class="chapter-item" data-reveal>
+            <div class="chapter-item__num">{ch.num}</div>
+            <div class="chapter-item__body">
+              <h3 class="chapter-item__title">{ch.title}</h3>
+              <p class="chapter-item__text">{ch.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Free Field Manual -->
+  <section class="bw-section bw-field-manual" id="field-manual">
+    <div class="container container--narrow">
+      <div class="field-manual-card" data-reveal>
+        <div class="field-manual-card__header">
+          <span class="section-eyebrow">Free Access</span>
+          <h2 class="section-title">What's in the Free Field Manual</h2>
+          <p class="section-sub">
+            A condensed 5-7 page executive brief — the core argument, all five cases, and
+            the urgency.
+          </p>
+        </div>
+
+        <ul class="field-manual-list">
+          <li>The core argument in 5-7 pages</li>
+          <li>All five failure specimens, condensed</li>
+          <li>The four architectural capabilities, named</li>
+          <li>The governance debt concept</li>
+          <li>The closing urgency window</li>
+        </ul>
+
+        <div class="field-manual-cta">
+          <a
+            href="https://hillarynjuguna.gumroad.com/l/cqymkj"
+            class="cta-primary"
+            target="_blank"
+            rel="noopener"
+          >
+            Download Free Field Manual
+          </a>
+          <span class="cta-sub">PDF · 5-7 pages · Immediate download · No email required</span>
+        </div>
+
+        <div class="field-manual-separator">
+          <span>Also available</span>
+        </div>
+
+        <div class="field-manual-bundle">
+          <div class="bundle-item">
+            <span class="bundle-item__label">The Bainbridge Warning v1.3</span>
+            <span class="bundle-item__desc">58 pages — full specification</span>
+          </div>
+          <div class="bundle-item">
+            <span class="bundle-item__label">The Bainbridge Warning v1.1</span>
+            <span class="bundle-item__desc">74 pages — original annotated edition</span>
+          </div>
+          <div class="bundle-item">
+            <span class="bundle-item__label">CIR v2.0 Workbook</span>
+            <span class="bundle-item__desc">Companion operational instrument</span>
+          </div>
+          <a
+            href="https://hillarynjuguna.gumroad.com/l/cqymkj"
+            class="bundle-cta"
+            target="_blank"
+            rel="noopener"
+          >
+            Get the Book + Workbook Bundle
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Funnel Banner -->
+  <div class="container">
+    <ProductFunnelBanner activeTier={1} />
+  </div>
+</BaseLayout>
+
+<style>
+  /* ── Grain ──────────────────────────────────────────────────── */
+  .grain-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: var(--z-overlay);
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+  }
+
+  /* ── Container ──────────────────────────────────────────────── */
+  .container {
+    max-width: var(--max-w-site);
+    margin: 0 auto;
+    padding: 0 var(--container-padding-desktop);
+  }
+  .container--narrow {
+    max-width: 760px;
+  }
+
+  /* ── Mono tag ───────────────────────────────────────────────── */
+  .mono-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  /* ── Hero ───────────────────────────────────────────────────── */
+  .bw-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: var(--space-32) 0 var(--space-20);
+  }
+
+  #field-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.35;
+  }
+
+  .bw-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+  }
+
+  .bw-hero__label {
+    margin-bottom: var(--space-8);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  }
+  .bw-hero__label.is-visible { opacity: 1; transform: none; }
+
+  .bw-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-8);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s var(--ease-out) 0.1s, transform 0.8s var(--ease-out) 0.1s;
+  }
+  .bw-hero__title.is-visible { opacity: 1; transform: none; }
+
+  .bw-hero__sub {
+    font-family: var(--font-body);
+    font-size: var(--text-xl);
+    font-weight: 300;
+    line-height: var(--leading-snug);
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin-bottom: var(--space-12);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s var(--ease-out) 0.2s, transform 0.7s var(--ease-out) 0.2s;
+  }
+  .bw-hero__sub.is-visible { opacity: 1; transform: none; }
+
+  .bw-hero__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s var(--ease-out) 0.3s, transform 0.6s var(--ease-out) 0.3s;
+  }
+  .bw-hero__cta.is-visible { opacity: 1; transform: none; }
+
+  .bw-hero__scroll-indicator {
+    position: absolute;
+    bottom: var(--space-10);
+    left: var(--container-padding-desktop);
+  }
+
+  .scroll-line {
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(180deg, var(--ember), transparent);
+    animation: scroll-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.15; }
+  }
+
+  /* ── CTA buttons ────────────────────────────────────────────── */
+  .cta-primary {
+    display: inline-block;
+    padding: var(--space-4) var(--space-8);
+    background: var(--ember);
+    color: var(--void);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+  }
+  .cta-primary:hover {
+    background: var(--ember-bright);
+    transform: translateY(-1px);
+  }
+
+  .cta-sub {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Sections ───────────────────────────────────────────────── */
+  .bw-section {
+    padding: var(--space-24) 0;
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .section-header {
+    margin-bottom: var(--space-12);
+  }
+
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    color: var(--ember);
+    display: block;
+    margin-bottom: var(--space-3);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-4);
+  }
+
+  .section-sub {
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 600px;
+  }
+
+  /* ── Reveal ─────────────────────────────────────────────────── */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── Argument ───────────────────────────────────────────────── */
+  .argument-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .argument-body p {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+  }
+
+  .argument-conclusion {
+    font-size: var(--text-lg) !important;
+    color: var(--text-primary) !important;
+    font-style: italic;
+    padding-left: var(--space-6);
+    border-left: 2px solid var(--ember);
+  }
+
+  /* ── Specimens ──────────────────────────────────────────────── */
+  .specimens-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    max-width: 860px;
+  }
+
+  .specimen {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: start;
+    gap: var(--space-6);
+    padding: var(--space-6);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-1);
+    transition: border-color var(--duration-mid) var(--ease-out);
+  }
+
+  .specimen:hover {
+    border-color: var(--border-mid);
+  }
+
+  .specimen--live {
+    border-color: rgba(196, 112, 58, 0.3);
+  }
+
+  .specimen__year {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--ember);
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-top: 2px;
+  }
+
+  .live-indicator {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--void);
+    background: var(--ember);
+    padding: 1px 4px;
+    border-radius: 2px;
+    width: fit-content;
+    animation: live-pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .specimen__title {
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .specimen__text {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .specimen__classification {
+    padding-top: 4px;
+  }
+
+  /* ── Chapters ───────────────────────────────────────────────── */
+  .chapters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 860px;
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .chapter-item {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: var(--space-6);
+    padding: var(--space-6) 0;
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .chapter-item__num {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--ember);
+    padding-top: 4px;
+    opacity: 0.7;
+  }
+
+  .chapter-item__title {
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .chapter-item__text {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Field Manual Card ──────────────────────────────────────── */
+  .field-manual-card {
+    padding: var(--space-12);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    background: var(--surface-1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .field-manual-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ember), transparent);
+  }
+
+  .field-manual-card__header {
+    margin-bottom: var(--space-8);
+  }
+
+  .field-manual-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .field-manual-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+  }
+
+  .field-manual-list li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--ember);
+    flex-shrink: 0;
+  }
+
+  .field-manual-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-bottom: var(--space-10);
+  }
+
+  .field-manual-separator {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  .field-manual-separator::before,
+  .field-manual-separator::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-dim);
+  }
+
+  .field-manual-separator span {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .field-manual-bundle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .bundle-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .bundle-item__label {
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+  }
+
+  .bundle-item__desc {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+  }
+
+  .bundle-cta {
+    display: inline-block;
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-6);
+    border: 1px solid var(--ember);
+    color: var(--ember);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast), color var(--duration-fast);
+  }
+  .bundle-cta:hover {
+    background: var(--ember);
+    color: var(--void);
+  }
+
+  /* ── Responsive ─────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 var(--container-padding-mobile);
+    }
+    .specimen {
+      grid-template-columns: 60px 1fr;
+    }
+    .specimen__classification {
+      grid-column: 2;
+    }
+    .chapter-item {
+      grid-template-columns: 48px 1fr;
+    }
+    .field-manual-card {
+      padding: var(--space-8) var(--space-6);
+    }
+    .bundle-item {
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+  }
+</style>
+
+<script>
+  // ── Particle Field ────────────────────────────────────────────
+  const canvas = document.getElementById('field-canvas') as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext('2d')!;
+    let W = 0, H = 0;
+    let raf: number;
+
+    const resize = () => {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    const NODES = 60;
+    const nodes = Array.from({ length: NODES }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 1.5 + 0.5,
+    }));
+
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        a.x += a.vx;
+        a.y += a.vy;
+        if (a.x < 0 || a.x > W) a.vx *= -1;
+        if (a.y < 0 || a.y > H) a.vy *= -1;
+
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b = nodes[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 140) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(196,112,58,${0.18 * (1 - dist / 140)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(196,112,58,0.4)';
+        ctx.fill();
+      }
+
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
+  }
+</script>

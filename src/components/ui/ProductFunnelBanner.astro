@@ -1,0 +1,314 @@
+---
+interface Props {
+  activeTier: 1 | 2 | 3;
+}
+const { activeTier } = Astro.props;
+
+const tiers = [
+  {
+    num: 1,
+    label: 'The Bainbridge Warning',
+    tag: 'Founding doctrine',
+    sub: 'diagnostic',
+    price: 'Free',
+    href: '/products/bainbridge-warning',
+    description: 'Free Field Manual. The diagnostic frame.'
+  },
+  {
+    num: 2,
+    label: 'CIR Assessment',
+    tag: 'Practitioner workbook',
+    sub: 'operational',
+    price: '$49',
+    href: '/products/cir-assessment',
+    description: 'Five-dimension readiness instrument.'
+  },
+  {
+    num: 3,
+    label: 'Governed Intelligence Specification',
+    tag: 'Formal architecture',
+    sub: 'enterprise',
+    price: '$249 - $3,995',
+    href: '/governed-intelligence',
+    description: 'The full sovereign architecture specification.'
+  }
+];
+---
+
+<section class="funnel-banner" aria-label="Product architecture tiers">
+  <div class="funnel-banner__header">
+    <span class="funnel-banner__eyebrow">Architecture Funnel</span>
+    <p class="funnel-banner__context">Three instruments. One doctrine. Sequential by design.</p>
+  </div>
+
+  <div class="funnel-banner__tiers">
+    {tiers.map((tier, i) => {
+      const isActive = tier.num === activeTier;
+      const isPast = tier.num < activeTier;
+      return (
+        <div
+          class={`funnel-tier ${isActive ? 'funnel-tier--active' : ''} ${isPast ? 'funnel-tier--past' : ''}`}
+          data-tier={tier.num}
+        >
+          {i < tiers.length - 1 && <div class="funnel-connector" />}
+
+          <a href={tier.href} class="funnel-tier__inner" aria-current={isActive ? 'page' : undefined}>
+            <div class="funnel-tier__number">
+              <span>{String(tier.num).padStart(2, '0')}</span>
+            </div>
+
+            <div class="funnel-tier__body">
+              <div class="funnel-tier__meta">
+                <span class="funnel-tier__tag">{tier.tag}</span>
+                <span class="funnel-tier__dot">·</span>
+                <span class="funnel-tier__sub">{tier.sub}</span>
+              </div>
+              <h3 class="funnel-tier__label">{tier.label}</h3>
+              <p class="funnel-tier__desc">{tier.description}</p>
+            </div>
+
+            <div class="funnel-tier__price">
+              <span class="funnel-tier__price-value">{tier.price}</span>
+            </div>
+          </a>
+
+          {isActive && (
+            <div class="funnel-tier__you-are-here" aria-label="Current product">
+              <span class="yah-marker">YOU ARE HERE</span>
+              <span class="yah-arrow">▼</span>
+            </div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+</section>
+
+<style>
+  .funnel-banner {
+    margin-top: var(--space-24);
+    padding: var(--space-16) var(--space-8);
+    border-top: 1px solid var(--border-dim);
+    position: relative;
+  }
+
+  .funnel-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ember), transparent);
+    opacity: 0.4;
+  }
+
+  .funnel-banner__header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .funnel-banner__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ember);
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .funnel-banner__context {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  .funnel-banner__tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .funnel-tier {
+    position: relative;
+  }
+
+  .funnel-connector {
+    position: absolute;
+    left: 28px;
+    bottom: 0;
+    width: 1px;
+    height: 100%;
+    background: var(--border-dim);
+    z-index: 0;
+  }
+
+  .funnel-tier__inner {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-6);
+    text-decoration: none;
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-3);
+    background: var(--surface-1);
+    transition: border-color var(--duration-mid) var(--ease-out),
+                background var(--duration-mid) var(--ease-out);
+    position: relative;
+    z-index: 1;
+  }
+
+  .funnel-tier__inner:hover {
+    border-color: var(--border-mid);
+    background: var(--surface-2);
+  }
+
+  .funnel-tier--active .funnel-tier__inner {
+    border-color: var(--ember);
+    background: rgba(196, 112, 58, 0.06);
+  }
+
+  .funnel-tier--past .funnel-tier__inner {
+    opacity: 0.55;
+  }
+
+  .funnel-tier__number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: var(--surface-2);
+  }
+
+  .funnel-tier--active .funnel-tier__number {
+    border-color: var(--ember);
+    background: rgba(196, 112, 58, 0.15);
+  }
+
+  .funnel-tier__number span {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+
+  .funnel-tier--active .funnel-tier__number span {
+    color: var(--ember);
+  }
+
+  .funnel-tier__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-1);
+  }
+
+  .funnel-tier__tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .funnel-tier--active .funnel-tier__tag {
+    color: var(--ember);
+  }
+
+  .funnel-tier__dot {
+    color: var(--text-tertiary);
+    font-size: var(--text-xs);
+  }
+
+  .funnel-tier__sub {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .funnel-tier__label {
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-1);
+  }
+
+  .funnel-tier__desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-snug);
+  }
+
+  .funnel-tier__price {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .funnel-tier__price-value {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  .funnel-tier--active .funnel-tier__price-value {
+    color: var(--ember);
+  }
+
+  .funnel-tier__you-are-here {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-6);
+    margin-top: calc(-1 * var(--space-2));
+    margin-bottom: var(--space-2);
+  }
+
+  .yah-marker {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ember);
+    font-weight: 500;
+  }
+
+  .yah-arrow {
+    font-size: 8px;
+    color: var(--ember);
+    animation: yah-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes yah-pulse {
+    0%, 100% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 0.4; transform: translateY(2px); }
+  }
+
+  @media (max-width: 600px) {
+    .funnel-tier__inner {
+      grid-template-columns: 40px 1fr;
+      grid-template-rows: auto auto;
+    }
+    .funnel-tier__price {
+      grid-column: 2;
+      text-align: left;
+    }
+    .funnel-banner {
+      padding: var(--space-12) var(--space-4);
+    }
+  }
+</style>
