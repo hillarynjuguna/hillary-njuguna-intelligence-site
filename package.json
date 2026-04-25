@@ -33,9 +33,11 @@
     "zod": "^3.23.0"
   },
   "devDependencies": {
+    "@notionhq/client": "^5.20.0",
     "@types/node": "^20.0.0",
     "fast-glob": "^3.3.3",
     "gray-matter": "^4.0.3",
+    "notion-to-md": "^3.1.9",
     "tsx": "^4.21.0"
   }
 }
