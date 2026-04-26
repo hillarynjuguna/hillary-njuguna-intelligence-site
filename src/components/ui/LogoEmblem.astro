@@ -1,0 +1,95 @@
+---
+// LogoEmblem.astro
+// Hero-scale logo with a single dot orbiting the pill perimeter.
+// The dot traces the boundary of the interference field — oscillation as form.
+interface Props {
+  size?: number;
+  className?: string;
+}
+const { size = 160, className = "" } = Astro.props;
+const h = size * 0.5;
+const uid = `e${Math.random().toString(36).slice(2, 7)}`;
+---
+
+<div class:list={["logo-emblem", className]} aria-hidden="true">
+  <svg
+    width={size}
+    height={h}
+    viewBox="0 0 120 60"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="logo-emblem__svg"
+  >
+    <defs>
+      <linearGradient id={`${uid}-g`} x1="20" y1="30" x2="100" y2="30" gradientUnits="userSpaceOnUse">
+        <stop stop-color="var(--ember)" />
+        <stop offset="1" stop-color="var(--ember)" stop-opacity="0.45" />
+      </linearGradient>
+
+      <filter id={`${uid}-glow`} x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+
+      <!-- Pill perimeter: clockwise, four quarter-arcs, unambiguous geometry -->
+      <path
+        id={`${uid}-pill`}
+        d="M 30,2 L 90,2 A 28,28 0 0,1 118,30 A 28,28 0 0,1 90,58 L 30,58 A 28,28 0 0,1 2,30 A 28,28 0 0,1 30,2 Z"
+      />
+    </defs>
+
+    <!-- Pill boundary -->
+    <use href={`#${uid}-pill`} stroke="var(--ember)" stroke-width="1.5" fill="none" opacity="0.2" />
+
+    <!-- Primary wave: Latent Capability -->
+    <path
+      d="M 25 30 Q 40 10, 55 20 T 85 20 T 100 30"
+      stroke={`url(#${uid}-g)`}
+      stroke-width="2.5"
+      stroke-linecap="round"
+      fill="none"
+    />
+
+    <!-- Secondary wave: Institutional Safety -->
+    <path
+      d="M 25 30 Q 40 50, 55 40 T 85 40 T 100 30"
+      stroke="var(--ember)"
+      stroke-width="2"
+      stroke-linecap="round"
+      fill="none"
+      opacity="0.7"
+    />
+
+    <!-- Interference alignment nodes -->
+    <circle cx="55" cy="30" r="3.5" fill="var(--ember)" class="logo-emblem__node" />
+    <circle cx="85" cy="30" r="3.5" fill="var(--ember)" class="logo-emblem__node" />
+
+    <!-- Orbiting dot: 8s period, traces pill perimeter -->
+    <circle r="3" fill="var(--ember)" filter={`url(#${uid}-glow)`} class="logo-emblem__dot">
+      <animateMotion dur="8s" repeatCount="indefinite">
+        <mpath href={`#${uid}-pill`} />
+      </animateMotion>
+    </circle>
+  </svg>
+</div>
+
+<style>
+  .logo-emblem {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-emblem__svg {
+    display: block;
+    overflow: visible;
+  }
+  .logo-emblem__node { opacity: 0.85; }
+  .logo-emblem__dot  { opacity: 0.9; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-emblem__dot { display: none; }
+  }
+</style>

@@ -3,6 +3,7 @@ export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getFeaturedDigestEntries, getFeaturedResearch, getFeaturedProducts, getCurrentSignal, formatDate } from '@lib/content';
 import { TICKER_ITEMS, SERVICES } from '@data/navigation';
+import LogoEmblem from '@components/ui/LogoEmblem.astro';
 import { SITE } from '@data/site';
 
 const [digestEntries, researchEntries, products, signal] = await Promise.all([
@@ -21,7 +22,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
   <section class="hero">
     <div class="container">
       <div class="hero__inner">
-        <h1 class="hero__headline" data-reveal>
+        <h1 class="hero__headline" data-reveal="fade">
           Durable infrastructure<br />
           for consequential intelligence.
         </h1>
@@ -31,7 +32,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
           Then I build the governance architecture that makes those failures visible before they occur.
         </p>
 
-        <div class="hero__origin label" data-reveal data-reveal-delay="2">
+        <div class="hero__origin label" data-reveal="fade" data-reveal-delay="2">
           <span class="hero__origin-name">Hillary Njuguna</span>
           <span class="hero__origin-sep">·</span>
           Nairobi → Kuala Lumpur
@@ -40,7 +41,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
         </div>
 
         <!-- Intent routing — the first thing a visitor should understand -->
-        <div class="hero__routes" data-reveal data-reveal-delay="3">
+        <div class="hero__routes" data-reveal="sweep-group">
           <a href="/research/bainbridge-warning" class="route-card">
             <span class="route-card__label label">I want the diagnosis</span>
             <span class="route-card__title">The Bainbridge Warning</span>
@@ -74,7 +75,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
   {researchEntries.length > 0 && (
     <section class="section">
       <div class="container">
-        <div class="section__header" data-reveal>
+        <div class="section__header" data-reveal="fade">
           <p class="label section__label">Research</p>
           <h2 class="section__title">The Public Doctrine</h2>
           <a href="/research" class="section__link label">All dispatches →</a>
@@ -101,7 +102,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
   {products.length > 0 && (
     <section class="section section--dark">
       <div class="container">
-        <div class="section__header" data-reveal>
+        <div class="section__header" data-reveal="fade">
           <p class="label section__label">Products</p>
           <h2 class="section__title">Applied Governance</h2>
           <a href="/products" class="section__link label">All products →</a>
@@ -128,7 +129,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
   {digestEntries.length > 0 && (
     <section class="section">
       <div class="container">
-        <div class="section__header" data-reveal>
+        <div class="section__header" data-reveal="fade">
           <p class="label section__label">Field Notes</p>
           <h2 class="section__title">From Active Synthesis</h2>
           <a href="/digest" class="section__link label">All entries →</a>
@@ -154,7 +155,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
   <!-- Corpus CTA -->
   <section class="corpus-cta">
     <div class="container">
-      <div class="corpus-cta__inner" data-reveal>
+      <div class="corpus-cta__inner" data-reveal="fade">
         <div class="corpus-cta__text">
           <p class="label corpus-cta__label">The Corpus</p>
           <h2 class="corpus-cta__title">Query the working research directly</h2>
@@ -174,7 +175,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
   <!-- Services -->
   <section class="section section--dark">
     <div class="container">
-      <div class="section__header" data-reveal>
+      <div class="section__header" data-reveal="fade">
         <p class="label section__label">Practice</p>
         <h2 class="section__title">How This Becomes Your Practice</h2>
         <a href="/contact" class="section__link label">Start a conversation →</a>
@@ -195,6 +196,8 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
 </BaseLayout>
 
 <style>
+  .hero__emblem-wrap { margin-bottom: var(--space-8); }
+  .hero__emblem { display: block; }
   .hero { min-height:90vh;display:flex;align-items:center;padding:120px 0 var(--space-16) }
   .hero__inner { width:100% }
   .hero__headline { font-family:var(--font-display);font-size:clamp(var(--text-4xl),7vw,var(--text-6xl));line-height:var(--leading-tight);color:var(--text-primary);margin-bottom:var(--space-6);font-weight:400 }

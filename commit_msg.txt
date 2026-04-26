@@ -1,1 +1,0 @@
-fix: remove hero__inner width constraint + glass-morphic route cards  
