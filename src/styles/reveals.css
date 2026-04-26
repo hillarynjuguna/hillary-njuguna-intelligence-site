@@ -1,0 +1,95 @@
+/* ── ManifoldReveal System ──────────────────────────────────────────────────
+   Two-mode scroll-triggered reveal. Activated by IntersectionObserver
+   adding class .is-visible (using the existing observer in BaseLayout).
+
+   data-reveal="sweep"         headline: clips left to right
+   data-reveal="sweep-group"   staggered child sweeps
+   data-reveal="type"          monospace typewriter with caret
+   data-reveal="fade"          prose: opacity + subtle lift
+
+   Usage:
+     <h1 data-reveal="sweep">The Bainbridge Warning</h1>
+     <code data-reveal="type" style="--chars:22">bounded-verifiability</code>
+     <div data-reveal="sweep-group"><span>A</span><span>B</span></div>
+────────────────────────────────────────────────────────────────────────── */
+
+/* ── Sweep: headline mask ────────────────────────────────────────────────── */
+[data-reveal="sweep"] {
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+  transition: clip-path 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-reveal="sweep"].is-visible {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ── Sweep group: staggered children ─────────────────────────────────────── */
+[data-reveal="sweep-group"] > * {
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+  transition: clip-path 0.88s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-reveal="sweep-group"].is-visible > *:nth-child(1) { clip-path: inset(0 0% 0 0); transition-delay: 0.00s; }
+[data-reveal="sweep-group"].is-visible > *:nth-child(2) { clip-path: inset(0 0% 0 0); transition-delay: 0.08s; }
+[data-reveal="sweep-group"].is-visible > *:nth-child(3) { clip-path: inset(0 0% 0 0); transition-delay: 0.16s; }
+[data-reveal="sweep-group"].is-visible > *:nth-child(4) { clip-path: inset(0 0% 0 0); transition-delay: 0.24s; }
+[data-reveal="sweep-group"].is-visible > *:nth-child(5) { clip-path: inset(0 0% 0 0); transition-delay: 0.32s; }
+[data-reveal="sweep-group"].is-visible > *:nth-child(6) { clip-path: inset(0 0% 0 0); transition-delay: 0.40s; }
+[data-reveal="sweep-group"].is-visible > *:nth-child(7) { clip-path: inset(0 0% 0 0); transition-delay: 0.48s; }
+[data-reveal="sweep-group"].is-visible > *:nth-child(8) { clip-path: inset(0 0% 0 0); transition-delay: 0.56s; }
+[data-reveal="sweep-group"].is-visible > *:nth-child(n+9) { clip-path: inset(0 0% 0 0); transition-delay: 0.64s; }
+
+/* ── Typewriter: technical terms ─────────────────────────────────────────── */
+[data-reveal="type"] {
+  --chars: 20;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 0;
+  vertical-align: bottom;
+}
+[data-reveal="type"].is-visible {
+  animation: typer calc(var(--chars) * 0.05s) steps(var(--chars), end) forwards;
+}
+@keyframes typer {
+  from { max-width: 0; }
+  to   { max-width: 100ch; }
+}
+[data-reveal="type"].is-visible::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 0.82em;
+  background: var(--gold, #c9955a);
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: caret-blink 0.72s step-end 5;
+}
+@keyframes caret-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Fade: prose blocks ───────────────────────────────────────────────────── */
+[data-reveal="fade"] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.76s ease, transform 0.76s ease;
+}
+[data-reveal="fade"].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Reduced motion: disable all reveals ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal="sweep-group"] > * {
+    clip-path: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    max-width: unset !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

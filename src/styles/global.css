@@ -2,6 +2,7 @@
 @import './tokens.css';
 @import './prose.css';
 @import './motion.css';
+@import './reveals.css';
 
 /* Reset & base */
 *, *::before, *::after {
@@ -409,3 +410,104 @@ abbr[title] {
   font-weight: 500;
 }
 
+
+/* ── Ambient Lighting Layer ─────────────────────────────────────────────────
+   Dynamic light source anchors updated by scrollAmbience.ts.
+   Creates sensation of content moving through a field as user scrolls.
+──────────────────────────────────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at var(--amb-a1x, 13%) var(--amb-a1y, 18%), rgba(196, 112, 58, 0.038) 0%, transparent 56%),
+    radial-gradient(ellipse at var(--amb-a2x, 87%) var(--amb-a2y, 82%), rgba(201, 149, 90, 0.024) 0%, transparent 52%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Grain Overlay — Universal, Fixed ──────────────────────────────────────
+   Replaces all per-page grain-overlay divs.
+   Pre-rendered SVG noise at 3.8% opacity. mix-blend-mode: overlay adds
+   material texture without washing out the void background.
+──────────────────────────────────────────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.038;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+/* ── Full-Bleed Section Fix ─────────────────────────────────────────────────
+   Every <section> extends edge to edge. Width constraint lives on .container
+   inside the section, not on the section itself.
+──────────────────────────────────────────────────────────────────────────── */
+section {
+  width: 100%;
+  position: relative;
+  max-width: none;
+}
+
+/* ── Hero Sections: Cinematic, Edge-to-Edge ─────────────────────────────── */
+.hero-section,
+.bw-hero,
+.cir-hero,
+.gi-hero {
+  width: 100%;
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Canvas inside hero should fill the full hero section, not the container */
+.bw-hero canvas,
+.hero-section canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Hero content sits above canvas */
+.bw-hero__inner,
+.cir-hero__grid,
+.gi-hero {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Audience Grid Fix ──────────────────────────────────────────────────────
+   Full-bleed grid. No double max-width constraint.
+──────────────────────────────────────────────────────────────────────────── */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  width: 100%;
+  gap: 1px;
+}
+
+/* ── Epistemic Dot Breathing ────────────────────────────────────────────────
+   Formally-specified status dots pulse — system is alive, not decorative.
+──────────────────────────────────────────────────────────────────────────── */
+@keyframes dot-breathe {
+  0%, 100% { box-shadow: 0 0 0 0px rgba(90, 122, 98, 0.5); }
+  50%       { box-shadow: 0 0 0 4px rgba(90, 122, 98, 0);   }
+}
+.status-dot.formally-specified,
+.status-dot.formal {
+  animation: dot-breathe 3.6s ease-in-out infinite;
+}
+
+/* ── Per-page grain-overlay: replaced by body::after ───────────────────── */
+/* Kept for backward compat — now transparent */
+.grain-overlay {
+  display: none;
+}

@@ -1,0 +1,187 @@
+---
+// GoldFlakeField.astro
+// Three-layer depth field. Near/Mid/Far planes with distinct size, velocity, opacity.
+// Lissajous drift paths (figure-8 orbital). Mouse repeller at 160px radius.
+// Pauses on hidden tab. Respects prefers-reduced-motion.
+---
+
+<canvas id="gold-field" aria-hidden="true"></canvas>
+
+<style>
+  #gold-field {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    animation: gf-fadein 3.2s ease forwards 0.8s;
+  }
+
+  @keyframes gf-fadein {
+    to { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #gold-field {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+(function () {
+  const canvas = document.getElementById('gold-field') as HTMLCanvasElement;
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Depth layers: Near (large, slow, bright) / Mid / Far (small, fast, dim)
+  const LAYERS = [
+    { count: 8,  sMin: 5.5, sMax: 10,  vMin: 0.035, vMax: 0.065, oMin: 0.07, oMax: 0.15, px: 0.012 },
+    { count: 24, sMin: 2.4, sMax: 5.2, vMin: 0.016, vMax: 0.038, oMin: 0.03, oMax: 0.09, px: 0.038 },
+    { count: 44, sMin: 0.9, sMax: 2.2, vMin: 0.007, vMax: 0.018, oMin: 0.01, oMax: 0.05, px: 0.072 },
+  ] as const;
+
+  const MR = 160;   // mouse repeller radius px
+  const MF = 0.36;  // repeller force
+  const GOLD = '#c9955a';
+
+  const rnd = (a: number, b: number) => a + Math.random() * (b - a);
+
+  interface Flake {
+    ox: number; oy: number;
+    vx: number; vy: number;
+    sz: number;
+    rot: number; rv: number;
+    bOp: number;
+    sph: number; spd: number;
+    px: number;
+    lxA: number; lyA: number;
+    lxF: number; lyF: number;
+    lxP: number; lyP: number;
+  }
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function makeFlake(cfg: typeof LAYERS[number]): Flake {
+    const spd = rnd(cfg.vMin, cfg.vMax);
+    return {
+      ox: rnd(0, canvas.width  || window.innerWidth),
+      oy: rnd(0, canvas.height || window.innerHeight),
+      vx: rnd(-0.5, 0.5) * spd,
+      vy: -rnd(0.18, 0.72) * spd,
+      sz: rnd(cfg.sMin, cfg.sMax),
+      rot: rnd(0, Math.PI * 2),
+      rv:  rnd(-0.006, 0.006),
+      bOp: rnd(cfg.oMin, cfg.oMax),
+      sph: rnd(0, Math.PI * 2),
+      spd: rnd(0.0004, 0.0015),
+      px: cfg.px,
+      lxA: rnd(12, 42), lyA: rnd(8, 22),
+      lxF: rnd(0.00006, 0.00015), lyF: rnd(0.00008, 0.00019),
+      lxP: rnd(0, Math.PI * 2), lyP: rnd(0, Math.PI * 2),
+    };
+  }
+
+  let flakes: Flake[] = [];
+  let mx = -9999, my = -9999, sy = 0, raf = 0;
+
+  function build() {
+    flakes = [];
+    LAYERS.forEach(cfg => {
+      for (let i = 0; i < cfg.count; i++) flakes.push(makeFlake(cfg));
+    });
+  }
+
+  function drawFlake(f: Flake, now: number) {
+    // Shimmer: opacity oscillates at each flake's own frequency
+    f.sph += f.spd * 16;
+    const shine = (Math.sin(f.sph) + 1) * 0.5;
+    const op = f.bOp * (0.50 + shine * 0.50);
+
+    // Linear drift
+    f.ox += f.vx;
+    f.oy += f.vy;
+    const W = canvas.width, H = canvas.height;
+    if (f.ox < -20) f.ox = W + 20;
+    if (f.ox > W + 20) f.ox = -20;
+    if (f.oy < -20) f.oy = H + 20;
+    if (f.oy > H + 20) f.oy = -20;
+
+    // Lissajous orbital overlay
+    let fx = f.ox + f.lxA * Math.sin(f.lxF * now + f.lxP);
+    let fy = f.oy + f.lyA * Math.sin(f.lyF * now + f.lyP) - sy * f.px;
+
+    // Mouse repeller
+    const dx = fx - mx, dy = fy - my;
+    const d  = Math.sqrt(dx * dx + dy * dy);
+    if (d < MR && d > 0) {
+      const force = (1 - d / MR) * MF;
+      fx += (dx / d) * force;
+      fy += (dy / d) * force;
+    }
+
+    f.rot += f.rv;
+
+    // Slim skewed quadrilateral catches light at angle — differentiates from circles
+    ctx.save();
+    ctx.translate(fx, fy);
+    ctx.rotate(f.rot);
+    ctx.globalAlpha = op;
+    ctx.fillStyle = GOLD;
+
+    const w = f.sz * 2.4, h = f.sz * 0.74, sk = h * 0.14;
+    ctx.beginPath();
+    ctx.moveTo(-w / 2 - sk, -h / 2);
+    ctx.lineTo( w / 2,      -h / 2 + sk);
+    ctx.lineTo( w / 2 + sk,  h / 2);
+    ctx.lineTo(-w / 2,       h / 2 - sk);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function tick(now: number) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    flakes.forEach(f => drawFlake(f, now));
+    raf = requestAnimationFrame(tick);
+  }
+
+  function staticRender() {
+    resize(); build();
+    flakes.forEach(f => {
+      ctx.save();
+      ctx.translate(f.ox, f.oy);
+      ctx.rotate(f.rot);
+      ctx.globalAlpha = f.bOp;
+      ctx.fillStyle = GOLD;
+      const w = f.sz * 2.4, h = f.sz * 0.74, sk = h * 0.14;
+      ctx.beginPath();
+      ctx.moveTo(-w / 2 - sk, -h / 2); ctx.lineTo(w / 2, -h / 2 + sk);
+      ctx.lineTo(w / 2 + sk,  h / 2);  ctx.lineTo(-w / 2, h / 2 - sk);
+      ctx.closePath(); ctx.fill(); ctx.restore();
+    });
+  }
+
+  if (REDUCED) { staticRender(); return; }
+
+  resize(); build();
+  window.addEventListener('resize', () => { resize(); build(); });
+  document.addEventListener('mousemove', (e: MouseEvent) => { mx = e.clientX; my = e.clientY; });
+  window.addEventListener('scroll', () => { sy = window.scrollY; }, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(raf);
+    else raf = requestAnimationFrame(tick);
+  });
+
+  raf = requestAnimationFrame(tick);
+})();
+</script>

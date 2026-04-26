@@ -1,0 +1,101 @@
+---
+// MagneticCursor.astro
+// Gold ring cursor with 12% LERP lag. Expands over interactive elements.
+// Auto-disables on touch / coarse-pointer devices and reduced-motion.
+---
+
+<div id="mc-ring" aria-hidden="true"></div>
+<div id="mc-dot"  aria-hidden="true"></div>
+
+<style>
+  #mc-ring,
+  #mc-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+    transform: translate(-50%, -50%);
+    display: none;
+  }
+
+  @media (pointer: fine) {
+    body { cursor: none; }
+    a, button, [role="button"], [data-magnetic], label, select, input { cursor: none; }
+    #mc-ring, #mc-dot { display: block; }
+  }
+
+  #mc-ring {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(201, 149, 90, 0.42);
+    background: transparent;
+    transition: width 0.2s var(--ease-out, cubic-bezier(0.16,1,0.3,1)),
+                height 0.2s var(--ease-out, cubic-bezier(0.16,1,0.3,1)),
+                border-color 0.2s ease;
+  }
+
+  #mc-dot {
+    width: 4px;
+    height: 4px;
+    background: rgba(201, 149, 90, 0.80);
+  }
+
+  #mc-ring.over-interactive {
+    width: 48px;
+    height: 48px;
+    border-color: rgba(201, 149, 90, 0.70);
+  }
+
+  #mc-ring.over-text {
+    width: 64px;
+    height: 64px;
+    border-color: rgba(201, 149, 90, 0.22);
+    mix-blend-mode: difference;
+  }
+</style>
+
+<script>
+(function () {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const ring = document.getElementById('mc-ring');
+  const dot  = document.getElementById('mc-dot');
+  if (!ring || !dot) return;
+
+  let tx = 0, ty = 0, rx = 0, ry = 0, raf = 0;
+  const LERP = 0.12;
+  const INTERACTIVE = 'a, button, [role="button"], [data-magnetic], label, select, input, textarea';
+
+  document.addEventListener('mousemove', (e: MouseEvent) => {
+    tx = e.clientX; ty = e.clientY;
+    dot.style.transform = `translate(calc(${tx}px - 50%), calc(${ty}px - 50%))`;
+  });
+
+  document.addEventListener('mouseover', (e: MouseEvent) => {
+    const t = e.target as Element;
+    if (t.closest && t.closest(INTERACTIVE)) ring.classList.add('over-interactive');
+  });
+  document.addEventListener('mouseout', (e: MouseEvent) => {
+    const t = e.target as Element;
+    if (t.closest && t.closest(INTERACTIVE)) ring.classList.remove('over-interactive');
+  });
+
+  function tick() {
+    rx += (tx - rx) * LERP;
+    ry += (ty - ry) * LERP;
+    ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
+    raf = requestAnimationFrame(tick);
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(raf);
+    else raf = requestAnimationFrame(tick);
+  });
+
+  raf = requestAnimationFrame(tick);
+})();
+</script>

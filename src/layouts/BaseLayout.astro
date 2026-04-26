@@ -3,9 +3,9 @@ import Nav from '@components/layout/Nav.astro';
 import Footer from '@components/layout/Footer.astro';
 import SearchModal from '@components/search/SearchModal.astro';
 import SEOHead from '@components/seo/SEOHead.astro';
+import GoldFlakeField from '@components/ui/GoldFlakeField.astro';
+import MagneticCursor from '@components/ui/MagneticCursor.astro';
 import { buildSEO, type SEOProps } from '@lib/seo';
-// import Analytics from '@vercel/analytics/astro';
-// import SpeedInsights from '@vercel/speed-insights/astro';
 import '@styles/global.css';
 
 interface Props extends SEOProps {
@@ -33,15 +33,22 @@ const seo = buildSEO(seoProps);
   </head>
   <body class={className}>
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Gold Flake Field: fixed, z-index 0, behind all content -->
+    <GoldFlakeField />
+
     <Nav />
     <main id="main-content" tabindex="-1">
       <slot />
     </main>
     <Footer />
-    {/* <Analytics /> */}
-    {/* <SpeedInsights /> */}
+
+    <!-- Magnetic Cursor: fixed, z-index 9999, above all content -->
+    <MagneticCursor />
+
     <script>
-      // Scroll reveal
+      // Scroll reveal — ManifoldReveal observer
+      // Existing observer uses is-visible; reveals.css keys on .is-visible
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -55,6 +62,14 @@ const seo = buildSEO(seoProps);
       );
       document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
     </script>
+
+    <script>
+      // Scroll ambience: dynamic ambient lighting anchors
+      import('/src/scripts/scrollAmbience.ts')
+        .then((m) => { if (m.initScrollAmbience) m.initScrollAmbience(); })
+        .catch(() => {});
+    </script>
+
     <SearchModal />
   </body>
 </html>
