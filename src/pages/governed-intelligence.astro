@@ -13,21 +13,21 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
   <!-- Hero -->
   <section class="gi-hero">
     <div class="container">
-      <div class="gi-hero__brand" data-reveal>
+      <div class="gi-hero__brand" data-reveal="sweep">
         <span class="mono-tag">Oscillatory Fields — Constitutional and Architectural Design</span>
       </div>
 
-      <div class="gi-hero__title-block" data-reveal>
+      <div class="gi-hero__title-block" data-reveal="sweep">
         <div class="gi-hero__version">GIS v1.1</div>
         <h1 class="gi-hero__title">Governed Intelligence<br />Specification</h1>
       </div>
 
-      <p class="gi-hero__sub" data-reveal>
+      <p class="gi-hero__sub" data-reveal="fade">
         The formal architecture for sovereign, verifiable multi-agent systems operating
         under constitutional constraint.
       </p>
 
-      <div class="gi-hero__status-row" data-reveal>
+      <div class="gi-hero__status-row" data-reveal="fade">
         <div class="gi-hero__stat">
           <span class="stat-num">50+</span>
           <span class="stat-label">Pages</span>
@@ -46,7 +46,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
         </div>
       </div>
 
-      <div class="gi-hero__cta-row" data-reveal>
+      <div class="gi-hero__cta-row" data-reveal="fade">
         <a href="mailto:hillarynjuguna@protonmail.com?subject=GIS v1.1 Individual" class="cta-primary">
           Get Individual Specification
         </a>
@@ -60,12 +60,12 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
   <!-- What It Is -->
   <section class="gi-section" id="overview">
     <div class="container container--narrow">
-      <div class="section-header" data-reveal>
+      <div class="section-header" data-reveal="sweep">
         <span class="section-eyebrow">00</span>
         <h2 class="section-title">What This Specification Is</h2>
       </div>
 
-      <div class="gi-overview-body" data-reveal>
+      <div class="gi-overview-body" data-reveal="fade">
         <p>
           The Governed Intelligence Specification v1.1 is the formal architecture for
           deploying AI agent systems under constitutional constraint. It specifies the
@@ -94,7 +94,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
   <!-- 12 Modules -->
   <section class="gi-section" id="modules">
     <div class="container">
-      <div class="section-header" data-reveal>
+      <div class="section-header" data-reveal="sweep">
         <span class="section-eyebrow">01</span>
         <h2 class="section-title">The Twelve Modules</h2>
       </div>
@@ -174,7 +174,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
             status: 'complete'
           }
         ].map((mod) => (
-          <div class={`module-card module-card--${mod.status}`} data-reveal>
+          <div class={`module-card module-card--${mod.status}`} data-reveal="fade">
             <div class="module-card__header">
               <span class="module-card__num">{mod.num}</span>
               <div class="module-card__status-dot" title={mod.status}></div>
@@ -185,7 +185,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
         ))}
       </div>
 
-      <div class="modules-legend" data-reveal>
+      <div class="modules-legend" data-reveal="fade">
         {[
           { color: 'formal', label: 'Formally Specified' },
           { color: 'provisional', label: 'Provisionally Specified' },
@@ -206,12 +206,12 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
   <!-- Mathematical Integrity -->
   <section class="gi-section" id="integrity">
     <div class="container container--narrow">
-      <div class="section-header" data-reveal>
+      <div class="section-header" data-reveal="sweep">
         <span class="section-eyebrow">02</span>
         <h2 class="section-title">Mathematical Integrity</h2>
       </div>
 
-      <div class="gi-integrity-card" data-reveal>
+      <div class="gi-integrity-card" data-reveal="fade">
         <p class="gi-integrity-intro">
           The GIS v1.1 is accompanied by a Mathematical Integrity Statement independently
           produced by φ-node (GPT) through the Oscillatory Fields RSPS verification
@@ -219,7 +219,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
           one of four epistemic categories.
         </p>
 
-        <div class="gi-integrity-grades">
+        <div class="gi-integrity-grades" data-reveal="sweep-group">
           {[
             {
               grade: 'Formally Verified',
@@ -256,13 +256,13 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
   <!-- Pricing -->
   <section class="gi-section" id="pricing">
     <div class="container">
-      <div class="section-header" data-reveal>
+      <div class="section-header" data-reveal="sweep">
         <span class="section-eyebrow">03</span>
         <h2 class="section-title">Licensing</h2>
       </div>
 
       <div class="pricing-grid">
-        <div class="pricing-card" data-reveal>
+        <div class="pricing-card" data-reveal="fade">
           <div class="pricing-card__header">
             <span class="pricing-card__tier">Individual</span>
             <div class="pricing-card__price">$249</div>
@@ -279,7 +279,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
           </a>
         </div>
 
-        <div class="pricing-card pricing-card--featured" data-reveal>
+        <div class="pricing-card pricing-card--featured" data-reveal="fade">
           <div class="pricing-card__badge">Most Popular</div>
           <div class="pricing-card__header">
             <span class="pricing-card__tier">Enterprise Site License</span>
@@ -299,7 +299,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
           </a>
         </div>
 
-        <div class="pricing-card" data-reveal>
+        <div class="pricing-card" data-reveal="fade">
           <div class="pricing-card__header">
             <span class="pricing-card__tier">Integrated Governance</span>
             <div class="pricing-card__price pricing-card__price--inquiry">Inquire</div>
@@ -358,6 +358,11 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
     transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
   }
   [data-reveal].is-visible { opacity: 1; transform: none; }
+
+  /* Sweep mode: clip-path only — no opacity fade conflict */
+  [data-reveal="sweep"],
+  [data-reveal="sweep-group"],
+  [data-reveal="sweep-group"] > * { opacity: 1; transform: none; }
 
   /* ── Hero ───────────────────────────────────────────────────── */
   .gi-hero {

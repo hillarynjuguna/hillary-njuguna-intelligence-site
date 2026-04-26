@@ -45,12 +45,12 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
   <!-- Core Argument -->
   <section class="bw-section bw-argument" id="argument">
     <div class="container container--narrow">
-      <div class="section-header" data-reveal>
+      <div class="section-header" data-reveal="sweep">
         <span class="section-eyebrow">01</span>
         <h2 class="section-title">The Core Argument</h2>
       </div>
 
-      <div class="argument-body" data-reveal>
+      <div class="argument-body" data-reveal="fade">
         <p>
           Modern AI failures do not originate in model capability. They originate in governance
           structures that collapse under conditions of irreversibility.
@@ -80,13 +80,13 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
   <!-- Five Specimens -->
   <section class="bw-section bw-specimens" id="specimens">
     <div class="container">
-      <div class="section-header" data-reveal>
+      <div class="section-header" data-reveal="sweep">
         <span class="section-eyebrow">02</span>
         <h2 class="section-title">Five Documented Failure Specimens</h2>
       </div>
 
-      <div class="specimens-grid">
-        <div class="specimen" data-reveal data-specimen="1">
+      <div class="specimens-grid" data-reveal="sweep-group">
+        <div class="specimen" data-specimen="1">
           <div class="specimen__year">2009</div>
           <div class="specimen__body">
             <h3 class="specimen__title">Air France Flight 447</h3>
@@ -100,7 +100,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
           </div>
         </div>
 
-        <div class="specimen" data-reveal data-specimen="2">
+        <div class="specimen" data-specimen="2">
           <div class="specimen__year">2010</div>
           <div class="specimen__body">
             <h3 class="specimen__title">The Flash Crash</h3>
@@ -114,7 +114,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
           </div>
         </div>
 
-        <div class="specimen" data-reveal data-specimen="3">
+        <div class="specimen" data-specimen="3">
           <div class="specimen__year">2023</div>
           <div class="specimen__body">
             <h3 class="specimen__title">Mata v. Avianca</h3>
@@ -128,7 +128,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
           </div>
         </div>
 
-        <div class="specimen" data-reveal data-specimen="4">
+        <div class="specimen" data-specimen="4">
           <div class="specimen__year">2025</div>
           <div class="specimen__body">
             <h3 class="specimen__title">Replit</h3>
@@ -142,7 +142,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
           </div>
         </div>
 
-        <div class="specimen specimen--live" data-reveal data-specimen="5">
+        <div class="specimen specimen--live" data-specimen="5">
           <div class="specimen__year">
             2026
             <span class="live-indicator" title="Current research">LIVE</span>
@@ -165,7 +165,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
   <!-- What's Inside -->
   <section class="bw-section bw-contents" id="contents">
     <div class="container">
-      <div class="section-header" data-reveal>
+      <div class="section-header" data-reveal="sweep">
         <span class="section-eyebrow">03</span>
         <h2 class="section-title">What's Inside the Book</h2>
         <p class="section-sub">
@@ -207,7 +207,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
             text: 'The companion workbook (CIR Assessment) translates the doctrine into operational readiness instruments.'
           }
         ].map((ch, i) => (
-          <div class="chapter-item" data-reveal>
+          <div class="chapter-item" data-reveal="fade">
             <div class="chapter-item__num">{ch.num}</div>
             <div class="chapter-item__body">
               <h3 class="chapter-item__title">{ch.title}</h3>
@@ -222,7 +222,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
   <!-- Free Field Manual -->
   <section class="bw-section bw-field-manual" id="field-manual">
     <div class="container container--narrow">
-      <div class="field-manual-card" data-reveal>
+      <div class="field-manual-card" data-reveal="fade">
         <div class="field-manual-card__header">
           <span class="section-eyebrow">Free Access</span>
           <h2 class="section-title">What's in the Free Field Manual</h2>
@@ -482,6 +482,11 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
     opacity: 1;
     transform: none;
   }
+
+  /* Sweep mode: clip-path only — no opacity fade conflict */
+  [data-reveal="sweep"],
+  [data-reveal="sweep-group"],
+  [data-reveal="sweep-group"] > * { opacity: 1; transform: none; }
 
   /* ── Argument ───────────────────────────────────────────────── */
   .argument-body {
