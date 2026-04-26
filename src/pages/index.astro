@@ -196,7 +196,7 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
 
 <style>
   .hero { min-height:90vh;display:flex;align-items:center;padding:120px 0 var(--space-16) }
-  .hero__inner { max-width:72ch }
+  .hero__inner { width:100% }
   .hero__headline { font-family:var(--font-display);font-size:clamp(var(--text-4xl),7vw,var(--text-6xl));line-height:var(--leading-tight);color:var(--text-primary);margin-bottom:var(--space-6);font-weight:400 }
   .hero__sub { font-size:var(--text-lg);line-height:var(--leading-relaxed);color:var(--text-secondary);max-width:58ch;margin-bottom:var(--space-4) }
   .hero__origin { color:var(--text-tertiary);margin-bottom:var(--space-10) }
@@ -205,8 +205,8 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
 
   /* Intent routing cards */
   .hero__routes { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-4) }
-  .route-card { display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5);border:1px solid var(--border-dim);border-radius:var(--radius-md);text-decoration:none;background:var(--surface-2);transition:all .2s }
-  .route-card:hover { border-color:var(--ember);background:var(--surface-3);transform:translateY(-2px) }
+  .route-card { display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5);border:1px solid rgba(196,112,58,0.18);border-radius:var(--radius-md);text-decoration:none;background:rgba(12,10,8,0.55);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);box-shadow:0 8px 32px -8px rgba(0,0,0,0.6),inset 0 1px 0 rgba(196,112,58,0.08);transition:all .25s var(--ease-out) }
+  .route-card:hover { border-color:rgba(196,112,58,0.38);background:rgba(12,10,8,0.68);transform:translateY(-2px);box-shadow:0 16px 48px -12px rgba(0,0,0,0.7),inset 0 1px 0 rgba(196,112,58,0.14) }
   .route-card__label { color:var(--ember);font-size:var(--text-xs) }
   .route-card__title { font-size:var(--text-base);color:var(--text-primary);font-weight:500 }
   .route-card__desc { font-size:var(--text-sm);color:var(--text-tertiary);line-height:var(--leading-relaxed) }
