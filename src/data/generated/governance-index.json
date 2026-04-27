@@ -196,6 +196,18 @@
       "governanceRelevance": "direct"
     },
     {
+      "contentId": "research-cmcp",
+      "contentTitle": "CMCP: Constitutive Meaning-Preservation Extension",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
       "contentId": "research-cora",
       "contentTitle": "CORA: Counter-Ontological Refusal Architecture",
       "contentType": "research",
@@ -395,5 +407,5 @@
       "clause-irreversibility-threshold"
     ]
   },
-  "generatedAt": "2026-04-26T02:27:47.178Z"
+  "generatedAt": "2026-04-27T19:46:00.880Z"
 }

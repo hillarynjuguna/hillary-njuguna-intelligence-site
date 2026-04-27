@@ -37,6 +37,7 @@
         "research-aurora",
         "research-bainbridge-warning",
         "research-behavioral-layer-exposure",
+        "research-cmcp",
         "research-cora",
         "research-dcfb",
         "research-governance-theater",
@@ -54,7 +55,7 @@
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
-      "count": 29
+      "count": 30
     },
     "institutional-design": {
       "label": "institutional-design",
@@ -93,6 +94,7 @@
         "digest-tool-lineage-constitutional-routing",
         "research-aurora",
         "research-behavioral-layer-exposure",
+        "research-cmcp",
         "research-cora",
         "research-dcfb",
         "research-eigenform-and-rsps",
@@ -101,7 +103,7 @@
         "research-rsps-architecture",
         "research-substrate-agnostic-crystallization"
       ],
-      "count": 14
+      "count": 15
     },
     "methodology": {
       "label": "methodology",
@@ -256,13 +258,14 @@
         "research-aurora",
         "research-bainbridge-warning",
         "research-behavioral-layer-exposure",
+        "research-cmcp",
         "research-cora",
         "research-dcfb",
         "research-governance-theater",
         "research-r0-r3-classification",
         "research-tongue-tie-diagnostic"
       ],
-      "count": 11
+      "count": 12
     },
     "constitutional-design": {
       "label": "constitutional-design",
@@ -361,9 +364,10 @@
     "systems-design": {
       "label": "systems-design",
       "contentIds": [
-        "research-aurora"
+        "research-aurora",
+        "research-cmcp"
       ],
-      "count": 1
+      "count": 2
     },
     "failure-analysis": {
       "label": "failure-analysis",
@@ -373,6 +377,13 @@
         "research-governance-theater"
       ],
       "count": 3
+    },
+    "protocol-standards": {
+      "label": "protocol-standards",
+      "contentIds": [
+        "research-cmcp"
+      ],
+      "count": 1
     },
     "ai-alignment": {
       "label": "ai-alignment",
@@ -969,6 +980,42 @@
       ],
       "count": 1
     },
+    "cmcp": {
+      "label": "cmcp",
+      "contentIds": [
+        "research-cmcp",
+        "research-rsps-architecture"
+      ],
+      "count": 2
+    },
+    "a2a-protocol": {
+      "label": "a2a-protocol",
+      "contentIds": [
+        "research-cmcp"
+      ],
+      "count": 1
+    },
+    "intent-provenance": {
+      "label": "intent-provenance",
+      "contentIds": [
+        "research-cmcp"
+      ],
+      "count": 1
+    },
+    "significance-drift": {
+      "label": "significance-drift",
+      "contentIds": [
+        "research-cmcp"
+      ],
+      "count": 1
+    },
+    "multi-agent-systems": {
+      "label": "multi-agent-systems",
+      "contentIds": [
+        "research-cmcp"
+      ],
+      "count": 1
+    },
     "cora": {
       "label": "cora",
       "contentIds": [
@@ -1188,13 +1235,6 @@
       ],
       "count": 1
     },
-    "cmcp": {
-      "label": "cmcp",
-      "contentIds": [
-        "research-rsps-architecture"
-      ],
-      "count": 1
-    },
     "substrate-agnostic-crystallization": {
       "label": "substrate-agnostic-crystallization",
       "contentIds": [
@@ -1340,6 +1380,7 @@
         "research-aurora",
         "research-bainbridge-warning",
         "research-behavioral-layer-exposure",
+        "research-cmcp",
         "research-cora",
         "research-dcfb",
         "research-eigenform-and-rsps",
@@ -1356,7 +1397,7 @@
         "clause-intent-specification",
         "clause-irreversibility-threshold"
       ],
-      "count": 26
+      "count": 27
     },
     "constitutional-ai": {
       "label": "constitutional-ai",
@@ -1396,6 +1437,13 @@
       ],
       "count": 1
     },
+    "rsps-core": {
+      "label": "rsps-core",
+      "contentIds": [
+        "research-cmcp"
+      ],
+      "count": 1
+    },
     "rsps": {
       "label": "rsps",
       "contentIds": [
@@ -1426,5 +1474,5 @@
       "count": 1
     }
   },
-  "generatedAt": "2026-04-26T02:27:47.177Z"
+  "generatedAt": "2026-04-27T19:46:00.878Z"
 }

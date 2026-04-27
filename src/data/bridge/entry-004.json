@@ -1,0 +1,18 @@
+{
+  "id": "field-signal-004",
+  "notionPageId": "34feb86f-d1b0-81c1-b85c-e05caca537d7",
+  "entryNumber": 4,
+  "date": "March 14, 2026",
+  "title": "Entry 004 — March 14, 2026: Two Lexicon Terms Have No Tier 2 Primer: Eigenform and CMCP",
+  "rawMarkdown": "\n## Record Metadata\n\n- Entry Number: `004`\n- Date: `March 14, 2026`\n- Title: `Two Lexicon Terms Have No Tier 2 Primer: Eigenform and CMCP`\n- Provisional Type Tag: `legacy inline insight candidate`\n- Source: `Legacy Inline Archive`\n\n## Preserved Original Text\n\n\n## Entry 004 — March 14, 2026\n\n\n### Two Lexicon Terms Have No Tier 2 Primer: Eigenform and CMCP\n\n\n**How it surfaced:** Mapping the Deposited In / Harvested In fields for all 12 Lexicon entries revealed that Eigenform and CMCP both have weak or missing deposition paths. The current Tier 2 calendar does not adequately prepare a public reader to receive either concept.\n\n\n**Eigenform gap:** BW6 (\"The Ache at 4:44am\") is assigned as the deposition event for Eigenform. But the 4:44am piece is a phenomenological field note, not a conceptual introduction. A reader who encounters eigenform for the first time in that piece will not have the Von Foerster reference frame to make sense of it.\n\n\n**CMCP gap:** BW2 (\"The Attribution Drift Problem\") deposits CMCP — but attribution drift is an _effect_, not the protocol itself. A dedicated piece on _what CMCP is and why you need it_ would make the protocol legible before asking the reader to care about its absence.\n\n\n**Action required:**\n\n- Add a dedicated Eigenform introduction piece: _\"The Stable Shape Your Thinking Makes: An Introduction to Eigenforms\"_ — AcheType/Medium, accessible register, Von Foerster referenced but not required\n- Revise BW2 (Stream B) to carry a clearer CMCP protocol introduction, not just the attribution drift specimen\n\n---\n\n",
+  "lastEditedTime": "2026-04-27T13:46:00.000Z",
+  "howItSurfaced": "Mapping the Deposited In / Harvested In fields for all 12 Lexicon entries revealed that Eigenform and CMCP both have weak or missing deposition paths. The current Tier 2 calendar does not adequately prepare a public reader to receive either concept.",
+  "actionRequired": [
+    "Add a dedicated Eigenform introduction piece: _\"The Stable Shape Your Thinking Makes: An Introduction to Eigenforms\"_ — AcheType/Medium, accessible register, Von Foerster referenced but not required",
+    "Revise BW2 (Stream B) to carry a clearer CMCP protocol introduction, not just the attribution drift specimen"
+  ],
+  "contentAssignments": [],
+  "crossReferences": [],
+  "lexiconCandidates": [],
+  "newTerms": []
+}

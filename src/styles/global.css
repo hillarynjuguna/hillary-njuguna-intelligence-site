@@ -201,6 +201,44 @@ li {
 .container--wide { max-width: var(--container-wide); }
 .container--full { max-width: var(--container-full); }
 
+/* ── Split Container System (Figma Layout Fix) ──────────────────────────────
+   Two zones with distinct purposes:
+   .page-container  → heroes, grids, card sections, cinematic layouts
+   .prose-container → long-form articles, digest entries, governance clauses
+────────────────────────────────────────────────────────────────────────────── */
+.page-container {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+@media (min-width: 1280px) {
+  .page-container {
+    padding-inline: 3rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .page-container {
+    max-width: 1800px;
+    padding-inline: 4rem;
+  }
+}
+
+/* Prose container: strictly for readable text — blog posts, research entries */
+.prose-container {
+  max-width: 65ch;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .prose-container {
+    padding-inline: 0;
+  }
+}
+
 /* Section spacing & alternate backgrounds */
 section {
   padding-block: clamp(4rem, 10vw, 8rem);

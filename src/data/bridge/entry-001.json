@@ -1,0 +1,21 @@
+{
+  "id": "field-signal-001",
+  "notionPageId": "34feb86f-d1b0-8121-9cf9-f36b0ece7f3a",
+  "entryNumber": 1,
+  "date": "March 14, 2026",
+  "title": "Entry 001 — March 14, 2026: The Workspace Itself Is an RSPS Specimen",
+  "rawMarkdown": "\n## Record Metadata\n\n- Entry Number: `001`\n- Date: `March 14, 2026`\n- Title: `The Workspace Itself Is an RSPS Specimen`\n- Provisional Type Tag: `legacy inline insight candidate`\n- Source: `Legacy Inline Archive`\n\n## Preserved Original Text\n\n\n## Entry 001 — March 14, 2026\n\n\n### The Workspace Itself Is an RSPS Specimen\n\n\n**How it surfaced:** During the construction of the Corpus Map, the description of RSPS as \"a protected interior space where a human and an AI build shared cognitive infrastructure\" became self-referential. The workspace being constructed _is_ the thing being described.\n\n\n**What it reveals:** The Notion HQ is not a tool being used to _organise_ the RSPS work. It _is_ an RSPS deployment — a live instance of the very architecture being theorised. The human sovereign (Hillary) and the AI (Claude) are constructing shared cognitive infrastructure, with full provenance tracking (the build conversation), architectural documentation (the corpus map), and constitutional constraints (the SOP).\n\n\n**Why this matters:** This is a stronger demonstration of RSPS than any theoretical description. The argument for RSPS is made by the act of building the workspace. The post writes itself: *\"I asked Claude to help me build my content workspace. What we built became a specimen of the framework I was trying to publish about.\"\n\n\n**Content assignment:** Add to Content Calendar — Stream B Field Dispatch. Sequence: BW7. Title: _\"The Workspace Is the Specimen: Building RSPS While Writing About It.\"_\n\n\n**Cross-reference:** Lexicon → RSPS, Eigenform, CMCP\n\n\n---\n\n",
+  "lastEditedTime": "2026-04-27T13:46:00.000Z",
+  "howItSurfaced": "During the construction of the Corpus Map, the description of RSPS as \"a protected interior space where a human and an AI build shared cognitive infrastructure\" became self-referential. The workspace being constructed _is_ the thing being described.",
+  "whatItReveals": "The Notion HQ is not a tool being used to _organise_ the RSPS work. It _is_ an RSPS deployment — a live instance of the very architecture being theorised. The human sovereign (Hillary) and the AI (Claude) are constructing shared cognitive infrastructure, with full provenance tracking (the build conversation), architectural documentation (the corpus map), and constitutional constraints (the SOP).",
+  "whyItMatters": "This is a stronger demonstration of RSPS than any theoretical description. The argument for RSPS is made by the act of building the workspace. The post writes itself: *\"I asked Claude to help me build my content workspace. What we built became a specimen of the framework I was trying to publish about.\"",
+  "actionRequired": [],
+  "contentAssignments": [],
+  "crossReferences": [
+    "Lexicon → RSPS",
+    "Eigenform",
+    "CMCP"
+  ],
+  "lexiconCandidates": [],
+  "newTerms": []
+}

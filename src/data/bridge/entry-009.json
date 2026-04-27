@@ -1,0 +1,15 @@
+{
+  "id": "field-signal-009",
+  "notionPageId": "34feb86f-d1b0-817e-87cc-d040c66a4960",
+  "entryNumber": 9,
+  "date": "March 14, 2026",
+  "title": "Entry 009 — March 14, 2026: CIR Price Changed: $49 → $50. Cascade Update Required.",
+  "rawMarkdown": "\n## Record Metadata\n\n- Entry Number: `009`\n- Date: `March 14, 2026`\n- Title: `CIR Price Changed: $49 → $50. Cascade Update Required.`\n- Provisional Type Tag: `legacy inline insight candidate`\n- Source: `Legacy Inline Archive`\n\n## Preserved Original Text\n\n\n## Entry 009 — March 14, 2026\n\n\n### CIR Price Changed: $49 → $50. Cascade Update Required.\n\n\n**How it surfaced:** Claude Code updated the CIR price from $49 to $50 in the site. The Notion Content Calendar and Lexicon still reference $49.\n\n\n**Action required:** Update all Notion references from $49 to $50: Content Calendar entry for CIR v2.0 product, Lexicon entry for R0-R3 Reversibility Classification (which references CIR), Publishing SOP (Gumroad conversion section).\n\n\n**Why this matters as a governance note:** This is a small live example of what Bounded Verifiability Latency looks like in a content operation: a change made in one layer (the site) propagating slowly through others (Notion, marketing copy, DM templates). The Launch Command document in Notion also references the CIR price and will need updating before the DM outreach begins.\n\n\n---\n\n",
+  "lastEditedTime": "2026-04-27T13:47:00.000Z",
+  "howItSurfaced": "Claude Code updated the CIR price from $49 to $50 in the site. The Notion Content Calendar and Lexicon still reference $49.",
+  "actionRequired": [],
+  "contentAssignments": [],
+  "crossReferences": [],
+  "lexiconCandidates": [],
+  "newTerms": []
+}

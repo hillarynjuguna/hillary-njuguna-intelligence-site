@@ -23,7 +23,19 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const INSIGHT_LOG_PAGE_ID = '323eb86fd1b08127a7acfa79076bf208';
+/**
+ * Insight Log structure (as of 2026-04-26 restructure):
+ *
+ * Navigation Root (old root):  323eb86fd1b08127a7acfa79076bf208
+ *   └── Master Index:          34eeb86fd1b081748b4de5728250c08b
+ *         └── Canonical Layer: 34eeb86fd1b08141ba0dd58db937cb30  ← actual entry pages live here
+ *
+ * The INSIGHT_LOG_PAGE_ID now points directly to the canonical layer
+ * which contains the child_page blocks for entries 001–098+.
+ */
+const INSIGHT_LOG_ROOT_ID = '323eb86fd1b08127a7acfa79076bf208';
+const INSIGHT_LOG_CANONICAL_LAYER_ID = '34eeb86fd1b08141ba0dd58db937cb30';
+const INSIGHT_LOG_PAGE_ID = INSIGHT_LOG_CANONICAL_LAYER_ID;
 const OUTPUT_DIR = path.resolve(__dirname, '../../src/data/bridge');
 
 interface InsightLogEntry {

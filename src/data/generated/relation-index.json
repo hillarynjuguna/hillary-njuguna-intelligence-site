@@ -68,6 +68,14 @@
         "inferred": true
       },
       {
+        "target": "research-cmcp",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-cora",
         "type": "clarifies",
         "confidence": "low",
@@ -200,6 +208,14 @@
         "inferred": true
       },
       {
+        "target": "research-cmcp",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, ai-systems] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-cora",
         "type": "clarifies",
         "confidence": "low",
@@ -306,6 +322,14 @@
         "inferred": true
       },
       {
+        "target": "research-cmcp",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-cora",
         "type": "clarifies",
         "confidence": "low",
@@ -376,6 +400,14 @@
         "type": "clarifies",
         "confidence": "low",
         "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-cmcp",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
         "manual": false,
         "inferred": true
       },
@@ -490,6 +522,14 @@
         "type": "clarifies",
         "confidence": "low",
         "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems, governance] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-cmcp",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems, governance] with this research entry.",
         "manual": false,
         "inferred": true
       },
@@ -662,6 +702,14 @@
         "inferred": true
       },
       {
+        "target": "research-cmcp",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-cora",
         "type": "clarifies",
         "confidence": "low",
@@ -784,6 +832,14 @@
         "inferred": true
       },
       {
+        "target": "research-cmcp",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-cora",
         "type": "remains_emergent_with",
         "confidence": "low",
@@ -854,6 +910,14 @@
         "type": "clarifies",
         "confidence": "low",
         "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-cmcp",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
         "manual": false,
         "inferred": true
       },
@@ -1046,6 +1110,48 @@
         "type": "extends",
         "confidence": "high",
         "explanation": "BLE is a named Bainbridge zone -- the specific location in the capability-governance gap where specification divergence from behavior makes the gap structurally legible.",
+        "manual": true,
+        "inferred": false
+      },
+      {
+        "target": "clause-coherence-overfitting-guard",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "clause-epistemological-immune-system",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "clause-intent-specification",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "clause-irreversibility-threshold",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      }
+    ],
+    "research-cmcp": [
+      {
+        "target": "research-dcfb",
+        "type": "extends",
+        "confidence": "high",
+        "explanation": "CMCP operationalizes the field effects of distributed cognition into a protocol-level standard.",
         "manual": true,
         "inferred": false
       },
@@ -1604,6 +1710,14 @@
         "inferred": true
       },
       {
+        "target": "research-cmcp",
+        "type": "example_of",
+        "confidence": "low",
+        "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-cora",
         "type": "example_of",
         "confidence": "low",
@@ -1754,6 +1868,14 @@
         "type": "example_of",
         "confidence": "low",
         "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-cmcp",
+        "type": "example_of",
+        "confidence": "low",
+        "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
         "manual": false,
         "inferred": true
       },
@@ -1994,6 +2116,14 @@
         "type": "example_of",
         "confidence": "low",
         "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-cmcp",
+        "type": "example_of",
+        "confidence": "low",
+        "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
         "manual": false,
         "inferred": true
       },
@@ -2450,6 +2580,14 @@
         "type": "extends",
         "confidence": "high",
         "explanation": "The Bainbridge Warning is the applied diagnostic operationalisation of DCFB — translating constitutional principles into an institutional doctrine of operational readiness.",
+        "manual": true,
+        "inferred": false
+      },
+      {
+        "target": "research-cmcp",
+        "type": "extends",
+        "confidence": "high",
+        "explanation": "CMCP operationalizes the field effects of distributed cognition into a protocol-level standard.",
         "manual": true,
         "inferred": false
       },
@@ -3156,6 +3294,14 @@
         "inferred": true
       },
       {
+        "target": "research-cmcp",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-cora",
         "type": "governance_relevant_to",
         "confidence": "low",
@@ -3401,6 +3547,14 @@
       },
       {
         "target": "research-behavioral-layer-exposure",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-cmcp",
         "type": "governance_relevant_to",
         "confidence": "low",
         "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
@@ -3772,6 +3926,14 @@
         "inferred": true
       },
       {
+        "target": "research-cmcp",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-cora",
         "type": "governance_relevant_to",
         "confidence": "low",
@@ -3982,6 +4144,96 @@
         "type": "example_of",
         "confidence": "low",
         "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+        "manual": false,
+        "inferred": true
+      }
+    ],
+    "research-cmcp": [
+      {
+        "target": "digest-cir-v2-core-argument",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "digest-field-note-001-the-beautiful-false-positive",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, ai-systems] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "digest-field-note-002-verbal-diarrhea-methodology",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "digest-field-note-003-the-convergence",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "digest-field-note-004-three-frontier-labs-one-architecture",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems, governance] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "digest-intent-gap-god-mode-biology",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "digest-mcp-consolidation-infrastructure-paradox",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "digest-tool-lineage-constitutional-routing",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "product-bainbridge-warning",
+        "type": "example_of",
+        "confidence": "low",
+        "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "product-cir",
+        "type": "example_of",
+        "confidence": "low",
+        "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "product-martha",
+        "type": "example_of",
+        "confidence": "low",
+        "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
         "manual": false,
         "inferred": true
       }
@@ -4298,6 +4550,14 @@
         "inferred": true
       },
       {
+        "target": "research-cmcp",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-cora",
         "type": "governance_relevant_to",
         "confidence": "low",
@@ -4395,5 +4655,5 @@
       }
     ]
   },
-  "generatedAt": "2026-04-26T02:27:47.176Z"
+  "generatedAt": "2026-04-27T19:46:00.876Z"
 }

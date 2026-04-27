@@ -572,6 +572,48 @@
       ]
     },
     {
+      "id": "research-cmcp",
+      "slug": "cmcp-a2a-extension",
+      "title": "CMCP: Constitutive Meaning-Preservation Extension",
+      "description": "An A2A Protocol v1.0 extension solving significance drift in multi-agent networks through cryptographically verifiable intent audits.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "governance",
+        "ai-systems"
+      ],
+      "themes": [
+        "governance",
+        "systems-design",
+        "protocol-standards"
+      ],
+      "tags": [
+        "cmcp",
+        "a2a-protocol",
+        "intent-provenance",
+        "significance-drift",
+        "multi-agent-systems"
+      ],
+      "lineage": [
+        "dcfb-core",
+        "rsps-core"
+      ],
+      "sourceCollection": "research",
+      "publishedAt": "2026-04-27T00:00:00.000Z",
+      "unresolvedEdges": [
+        "Mapping klDivergence metrics directly to existing Federated Proof Server endpoints.",
+        "Whether LATENT_INTENT should be core v1.0 spec or an optional extension profile."
+      ],
+      "keyClaims": [
+        "Execution provenance verifies what happened, but not why. Intent provenance is required for enterprise accountability.",
+        "Significance drift occurs when downstream agents execute correctly against a prompt that has lost the original principal's precision weighting.",
+        "The CMCP extension introduces pre-submission state modeling (LATENT_INTENT) to A2A's deterministic state machine.",
+        "Intent audits are a structural requirement for highly regulated environments (e.g., EU AI Act compliance) involving multi-agent delegation."
+      ]
+    },
+    {
       "id": "research-cora",
       "slug": "cora",
       "title": "CORA: Counter-Ontological Refusal Architecture",
@@ -1684,6 +1726,16 @@
       "inferred": false
     },
     {
+      "source": "research-cmcp",
+      "target": "research-dcfb",
+      "type": "extends",
+      "confidence": "high",
+      "explanation": "CMCP operationalizes the field effects of distributed cognition into a protocol-level standard.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
       "source": "research-cora",
       "target": "research-bainbridge-warning",
       "type": "responds_to",
@@ -2295,6 +2347,16 @@
     },
     {
       "source": "digest-cir-v2-core-argument",
+      "target": "research-cmcp",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-cir-v2-core-argument",
       "target": "research-cora",
       "type": "clarifies",
       "confidence": "low",
@@ -2415,6 +2477,16 @@
     },
     {
       "source": "digest-field-note-001-the-beautiful-false-positive",
+      "target": "research-cmcp",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance, ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-001-the-beautiful-false-positive",
       "target": "research-cora",
       "type": "clarifies",
       "confidence": "low",
@@ -2525,6 +2597,16 @@
     },
     {
       "source": "digest-field-note-002-verbal-diarrhea-methodology",
+      "target": "research-cmcp",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-002-verbal-diarrhea-methodology",
       "target": "research-cora",
       "type": "clarifies",
       "confidence": "low",
@@ -2589,6 +2671,16 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-003-the-convergence",
+      "target": "research-cmcp",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -2735,6 +2827,16 @@
     },
     {
       "source": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "target": "research-cmcp",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems, governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-field-note-004-three-frontier-labs-one-architecture",
       "target": "research-cora",
       "type": "clarifies",
       "confidence": "low",
@@ -2875,6 +2977,16 @@
     },
     {
       "source": "digest-intent-gap-god-mode-biology",
+      "target": "research-cmcp",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-intent-gap-god-mode-biology",
       "target": "research-cora",
       "type": "clarifies",
       "confidence": "low",
@@ -3005,6 +3117,16 @@
     },
     {
       "source": "digest-mcp-consolidation-infrastructure-paradox",
+      "target": "research-cmcp",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-mcp-consolidation-infrastructure-paradox",
       "target": "research-cora",
       "type": "remains_emergent_with",
       "confidence": "low",
@@ -3079,6 +3201,16 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core, constitutional-ai] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "digest-tool-lineage-constitutional-routing",
+      "target": "research-cmcp",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3325,6 +3457,76 @@
     },
     {
       "source": "research-behavioral-layer-exposure",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-bainbridge-warning",
+      "target": "research-cmcp",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-cir",
+      "target": "research-cmcp",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "product-martha",
+      "target": "research-cmcp",
+      "type": "example_of",
+      "confidence": "low",
+      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-cmcp",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-cmcp",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-cmcp",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "research-cmcp",
       "target": "clause-irreversibility-threshold",
       "type": "governance_relevant_to",
       "confidence": "low",
@@ -4034,15 +4236,15 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-04-26T02:27:47.176Z",
+  "generatedAt": "2026-04-27T19:46:00.876Z",
   "stats": {
-    "totalNodes": 41,
-    "totalEdges": 266,
-    "manualEdges": 89,
-    "inferredEdges": 177,
+    "totalNodes": 42,
+    "totalEdges": 282,
+    "manualEdges": 90,
+    "inferredEdges": 192,
     "byType": {
       "digest": 15,
-      "research": 15,
+      "research": 16,
       "product": 7,
       "clause": 4
     }

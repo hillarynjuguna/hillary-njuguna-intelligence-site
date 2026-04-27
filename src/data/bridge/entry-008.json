@@ -1,0 +1,21 @@
+{
+  "id": "field-signal-008",
+  "notionPageId": "34feb86f-d1b0-819f-9210-f509f6df51d5",
+  "entryNumber": 8,
+  "date": "March 14, 2026",
+  "title": "Entry 008 — March 14, 2026: The OG Image Gap Reveals a Transmission Assumption Failure",
+  "rawMarkdown": "\n## Record Metadata\n\n- Entry Number: `008`\n- Date: `March 14, 2026`\n- Title: `The OG Image Gap Reveals a Transmission Assumption Failure`\n- Provisional Type Tag: `legacy inline insight candidate`\n- Source: `Legacy Inline Archive`\n\n## Preserved Original Text\n\n\n## Entry 008 — March 14, 2026\n\n\n### The OG Image Gap Reveals a Transmission Assumption Failure\n\n\n**How it surfaced:** Claude Code added `og:image` meta tags in Session 1 pointing to `/public/og-image.png`. The file doesn't exist. Session 1's Recursive Alignment Check would have scored this as complete. It isn't.\n\n\n**What it reveals:** The SEO work was done at the code layer without verifying the asset layer. The meta tag is correct HTML. The referenced file is absent. This is a precise instance of Explicit Compositional Contracts failure: the tag carries a specification of what the system should do, but the behavioral envelope (the actual image) was never populated. Session 1 created governance without infrastructure.\n\n\n**Why this matters:** The OG image isn't a minor detail. For a launch where LinkedIn is the primary traffic source, the link preview card is the first impression — before anyone reads the post, before anyone clicks. A text-only preview performs 3-5× worse than an image preview. This is a launch blocker masquerading as a polish item.\n\n\n**New term candidate:** **Asset-Layer Gap** — when the specification layer (HTML, contracts, governance) is complete but the behavioral/asset layer it references doesn't exist. Different from governance theater (which has neither spec nor substance) — this has the spec but not the substance. Add to Lexicon.\n\n\n---\n\n",
+  "lastEditedTime": "2026-04-27T13:47:00.000Z",
+  "howItSurfaced": "Claude Code added `og:image` meta tags in Session 1 pointing to `/public/og-image.png`. The file doesn't exist. Session 1's Recursive Alignment Check would have scored this as complete. It isn't.",
+  "whatItReveals": "The SEO work was done at the code layer without verifying the asset layer. The meta tag is correct HTML. The referenced file is absent. This is a precise instance of Explicit Compositional Contracts failure: the tag carries a specification of what the system should do, but the behavioral envelope (the actual image) was never populated. Session 1 created governance without infrastructure.",
+  "whyItMatters": "The OG image isn't a minor detail. For a launch where LinkedIn is the primary traffic source, the link preview card is the first impression — before anyone reads the post, before anyone clicks. A text-only preview performs 3-5× worse than an image preview. This is a launch blocker masquerading as a polish item.",
+  "actionRequired": [],
+  "contentAssignments": [],
+  "crossReferences": [],
+  "lexiconCandidates": [
+    ""
+  ],
+  "newTerms": [
+    "Asset-Layer Gap"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "field-signal-007",
+  "notionPageId": "34feb86f-d1b0-81ef-af7e-db5f69d5d079",
+  "entryNumber": 7,
+  "date": "March 14, 2026",
+  "title": "Entry 007 — March 14, 2026: Claude Code Revealed What Infrastructure Actually Costs",
+  "rawMarkdown": "\n## Record Metadata\n\n- Entry Number: `007`\n- Date: `March 14, 2026`\n- Title: `Claude Code Revealed What Infrastructure Actually Costs`\n- Provisional Type Tag: `legacy inline insight candidate`\n- Source: `Legacy Inline Archive`\n\n## Preserved Original Text\n\n\n## Entry 007 — March 14, 2026\n\n\n### Claude Code Revealed What Infrastructure Actually Costs\n\n\n**How it surfaced:** Session 1 site report showed Claude Code removed 3 files and 272 lines of dead Netlify configuration, found and fixed a silent synthesize 500 error (wrong model slug), and discovered three conflicting domain references (netlify, netlify alternate, vercel) all pointing to different canonical URLs.\n\n\n**What it reveals:** The site had accumulated technical debt that was invisible from the live URL. The Netlify migration to Vercel was never fully completed — Netlify config was left in place, creating ambiguity in CSP headers, API routing, and canonical URLs. None of this was visible to a human visitor. All of it was silently degrading SEO and occasionally breaking the synthesis function.\n\n\n**Why this matters theoretically:** This is a Bainbridge Warning specimen within the site itself. The deployment had become reliable enough that the infrastructure debt was invisible until Claude Code did a full codebase audit. The metaphor is almost too precise — the site that describes governance theater was running governance theater in its own deployment layer. Everything looked fine. Several things were broken.\n\n\n**Content assignment:** This observation belongs in the Eigenform Substack piece as a closing example — the infrastructure of the site instantiating the same decoupling pattern the book describes. Or as a standalone AcheType field note: _\"The Site That Described Governance Theater Was Running Governance Theater.\"_\n\n\n---\n\n",
+  "lastEditedTime": "2026-04-27T13:47:00.000Z",
+  "howItSurfaced": "Session 1 site report showed Claude Code removed 3 files and 272 lines of dead Netlify configuration, found and fixed a silent synthesize 500 error (wrong model slug), and discovered three conflicting domain references (netlify, netlify alternate, vercel) all pointing to different canonical URLs.",
+  "whatItReveals": "The site had accumulated technical debt that was invisible from the live URL. The Netlify migration to Vercel was never fully completed — Netlify config was left in place, creating ambiguity in CSP headers, API routing, and canonical URLs. None of this was visible to a human visitor. All of it was silently degrading SEO and occasionally breaking the synthesis function.",
+  "actionRequired": [],
+  "contentAssignments": [],
+  "crossReferences": [],
+  "lexiconCandidates": [],
+  "newTerms": []
+}
