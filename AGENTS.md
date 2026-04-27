@@ -187,6 +187,16 @@ Write accordingly.
 
 ---
 
+## SESSION LOG — April 26, 2026 (Claude, clawdbot)
+
+DC MCP became unresponsive for write/process operations mid-session. LogoEmblem.astro was written successfully. index.astro edits required manual Python script execution (see [oscillatory-fields-session-handoff.md](http://oscillatory-fields-session-handoff.md)).
+
+Outstanding:
+
+- data-reveal="type" typewriter wiring: Bounded Verifiability Latency, tau-Lock, Evidence Monoid, Dual Ownership
+- Width compression on product page hero canvases (widescreen visual check)
+- Figma Make src.zip: React components, do NOT merge into Astro directly. LOGO_USAGE.md is reference only. Logo.astro (Astro native) is canonical.
+
 # End of [AGENTS.md](http://AGENTS.md)
 
 # This file is read by all agentic sessions operating in this repo.

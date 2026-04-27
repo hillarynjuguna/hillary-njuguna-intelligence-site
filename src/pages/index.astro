@@ -22,12 +22,16 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
   <section class="hero">
     <div class="container">
       <div class="hero__inner">
-        <h1 class="hero__headline" data-reveal="fade">
-          Durable infrastructure<br />
-          for consequential intelligence.
+        <div class="hero__emblem-wrap" data-reveal="fade">
+          <LogoEmblem size={160} className="hero__emblem" />
+        </div>
+
+        <h1 class="hero__headline" data-reveal="sweep">
+          Fear isn’t a feeling —<br />
+          it’s an architecture.
         </h1>
 
-        <p class="hero__sub" data-reveal data-reveal-delay="1">
+        <p class="hero__sub" data-reveal="fade" data-reveal-delay="1">
           I study what happens when AI systems fail inside institutions that can't afford it.
           Then I build the governance architecture that makes those failures visible before they occur.
         </p>
@@ -196,6 +200,8 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
 </BaseLayout>
 
 <style>
+  .hero__emblem-wrap { margin-bottom: var(--space-8); }
+  .hero__emblem { display: block; }
   .hero__emblem-wrap { margin-bottom: var(--space-8); }
   .hero__emblem { display: block; }
   .hero { min-height:90vh;display:flex;align-items:center;padding:120px 0 var(--space-16) }
