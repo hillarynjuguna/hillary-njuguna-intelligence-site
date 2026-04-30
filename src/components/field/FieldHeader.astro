@@ -1,0 +1,112 @@
+---
+import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
+
+interface MetaItem {
+  label: string;
+  value: string;
+  href?: string;
+}
+
+interface ChipItem {
+  label: string;
+  href?: string;
+  tone?: 'default' | 'accent' | 'muted';
+}
+
+interface ActionItem {
+  label: string;
+  href: string;
+  tone?: 'primary' | 'secondary' | 'ghost';
+  external?: boolean;
+}
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  summary?: string;
+  breadcrumbs?: { name: string; href: string }[];
+  meta?: MetaItem[];
+  chips?: ChipItem[];
+  actions?: ActionItem[];
+  width?: 'narrow' | 'default' | 'wide';
+  border?: boolean;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  summary,
+  breadcrumbs = [],
+  meta = [],
+  chips = [],
+  actions = [],
+  width = 'default',
+  border = true,
+  class: className = '',
+} = Astro.props;
+---
+
+<header class:list={['field-header', border && 'field-header--bordered', className]}>
+  {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
+
+  <div class:list={[
+    'field-header__inner',
+    width === 'narrow' && 'field-header__inner--narrow',
+    width === 'wide' && 'field-header__inner--wide',
+  ]}>
+    {eyebrow && <p class="field-header__eyebrow label">{eyebrow}</p>}
+    <h1 class="field-header__title">{title}</h1>
+    {summary && <p class="field-header__summary">{summary}</p>}
+
+    {meta.length > 0 && (
+      <div class="field-header__meta">
+        {meta.map((item) => (
+          <div class="field-header__meta-item">
+            <span class="field-header__meta-label label">{item.label}</span>
+            {item.href ? (
+              <a href={item.href} class="field-header__meta-value">{item.value}</a>
+            ) : (
+              <span class="field-header__meta-value">{item.value}</span>
+            )}
+          </div>
+        ))}
+      </div>
+    )}
+
+    {(chips.length > 0 || actions.length > 0) && (
+      <div class="field-header__footer">
+        {chips.length > 0 && (
+          <div class="field-header__chips">
+            {chips.map((chip) => (
+              chip.href ? (
+                <a href={chip.href} class:list={['field-chip', `field-chip--${chip.tone ?? 'default'}`]}>
+                  {chip.label}
+                </a>
+              ) : (
+                <span class:list={['field-chip', `field-chip--${chip.tone ?? 'default'}`]}>
+                  {chip.label}
+                </span>
+              )
+            ))}
+          </div>
+        )}
+
+        {actions.length > 0 && (
+          <div class="field-header__actions">
+            {actions.map((action) => (
+              <a
+                href={action.href}
+                class:list={['btn', `btn--${action.tone ?? 'ghost'}`]}
+                target={action.external ? '_blank' : undefined}
+                rel={action.external ? 'noopener noreferrer' : undefined}
+              >
+                {action.label}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+</header>

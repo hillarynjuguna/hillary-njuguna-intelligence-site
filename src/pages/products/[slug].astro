@@ -2,10 +2,10 @@
 export const prerender = true;
 import { getCollection } from 'astro:content';
 import ProductLayout from '@layouts/ProductLayout.astro';
-import RelatedContent from '@components/relations/RelatedContent.astro';
 import { getRelatedContent } from '@lib/related/getRelatedContent';
 import { buildProductSchema } from '@lib/seo';
 import { SITE } from '@data/site';
+import { buildFieldPrompt } from '@lib/field';
 
 export async function getStaticPaths() {
   const entries = await getCollection('products', ({ data }) => !data.draft);
@@ -18,6 +18,10 @@ const { data } = entry;
 
 const contentId = data.id ?? `product-${entry.slug}`;
 const relatedItems = await getRelatedContent(contentId, 4);
+const prompt = buildFieldPrompt('query', {
+  title: data.title,
+  nodeHref: `/products/${entry.slug}`,
+});
 
 const productSchema = buildProductSchema({
   title: data.title,
@@ -37,6 +41,11 @@ const productSchema = buildProductSchema({
   ctaUrl={data.ctaUrl}
   waitlistUrl={data.waitlistUrl}
   faq={data.faq}
+  related={relatedItems}
+  lineage={data.lineage}
+  domains={data.domains}
+  tags={data.tags}
+  prompt={prompt}
   breadcrumbs={[
     { name: 'Products', href: '/products' },
     { name: data.title, href: `/products/${entry.slug}` },
@@ -44,7 +53,4 @@ const productSchema = buildProductSchema({
 >
   <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <Content />
-  {relatedItems.length > 0 && (
-    <RelatedContent items={relatedItems} heading="Research foundation" />
-  )}
 </ProductLayout>

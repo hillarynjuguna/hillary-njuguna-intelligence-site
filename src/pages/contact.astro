@@ -1,18 +1,37 @@
 ---
 export const prerender = true;
-import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldShellLayout from '@layouts/FieldShellLayout.astro';
+import { buildFieldPrompt } from '@lib/field';
+
+const prompt = buildFieldPrompt('query', {
+  title: 'Contact Oscillatory Fields',
+  nodeHref: '/contact',
+  primaryCorpusHref: '/corpus',
+});
 ---
 
-<BaseLayout
+<FieldShellLayout
   title="Contact"
   description="Get in touch with Hillary Njuguna, for intelligence architecture consulting, AI readiness assessments, the Bainbridge Warning, or general inquiries."
+  eyebrow="Query"
+  summary="Use this route when the next move is a live conversation, a governance assessment, or a question that needs direct contact rather than another archive hop."
+  actions={[
+    { label: 'Email directly', href: 'mailto:hillarynjuguna@protonmail.com', tone: 'primary', external: true },
+    { label: 'Open products', href: '/products', tone: 'secondary' },
+    { label: 'Open research', href: '/research', tone: 'ghost' },
+  ]}
+  prompt={prompt}
+  facts={[
+    { label: 'Mode', value: 'Query' },
+    { label: 'Primary channel', value: 'Direct email plus Formspree intake' },
+    { label: 'Typical paths', value: 'Assessment, governance design, research collaboration' },
+  ]}
 >
   <div class="page page-enter">
-    <div class="container">
       <div class="contact-layout">
         <div class="contact-text">
           <p class="label page-label">Contact</p>
-          <h1 class="page-title">Start a conversation</h1>
+          <h2 class="page-title">Start a conversation</h2>
           <p class="page-desc">
             Whether you're navigating an AI deployment, thinking about governance architecture,
             interested in CIR or the Bainbridge Warning, or just want to talk about the work,
@@ -128,9 +147,8 @@ import BaseLayout from '@layouts/BaseLayout.astro';
           </form>
         </div>
       </div>
-    </div>
   </div>
-</BaseLayout>
+</FieldShellLayout>
 
 <style>
   .page {

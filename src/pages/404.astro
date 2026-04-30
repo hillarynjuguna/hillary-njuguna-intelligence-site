@@ -1,36 +1,52 @@
 ---
 export const prerender = true;
-import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldShellLayout from '@layouts/FieldShellLayout.astro';
+import { buildFieldPrompt } from '@lib/field';
+
+const prompt = buildFieldPrompt('orient', {
+  title: 'Page not found',
+  nodeHref: '/404',
+  primaryCorpusHref: '/corpus',
+});
 ---
 
-<BaseLayout
+<FieldShellLayout
   title="Page Not Found"
   description="This page does not exist in the published field. Return to the homepage, research archive, or corpus."
+  eyebrow="404"
+  summary="This route is not part of the currently published field. Recover by returning to a stable archive, the corpus map, or the homepage."
+  actions={[
+    { label: 'Return home', href: '/', tone: 'primary' },
+    { label: 'Open research archive', href: '/research', tone: 'ghost' },
+    { label: 'Enter the corpus', href: '/corpus', tone: 'secondary' },
+  ]}
+  prompt={prompt}
+  facts={[
+    { label: 'State', value: 'Missing route' },
+    { label: 'Recovery', value: 'Use archive, corpus, or homepage' },
+  ]}
 >
   <section class="not-found">
-    <div class="container">
-      <div class="not-found__card">
-        <p class="label not-found__label">404</p>
-        <h1 class="not-found__title">This page is not in the published field.</h1>
-        <p class="not-found__desc">
-          The link may be outdated, the page may have moved, or the public interface may not have published that thread yet.
-        </p>
-        <div class="not-found__actions">
-          <a href="/" class="btn btn--primary">Return home</a>
-          <a href="/research" class="btn btn--ghost">Open research archive</a>
-          <a href="/corpus" class="btn btn--ghost">Enter the corpus</a>
-        </div>
+    <div class="not-found__card">
+      <p class="label not-found__label">404</p>
+      <h2 class="not-found__title">This page is not in the published field.</h2>
+      <p class="not-found__desc">
+        The link may be outdated, the page may have moved, or the public interface may not have published that thread yet.
+      </p>
+      <div class="not-found__actions">
+        <a href="/" class="btn btn--primary">Return home</a>
+        <a href="/research" class="btn btn--ghost">Open research archive</a>
+        <a href="/corpus" class="btn btn--ghost">Enter the corpus</a>
       </div>
     </div>
   </section>
-</BaseLayout>
+</FieldShellLayout>
 
 <style>
   .not-found {
-    min-height: 80vh;
+    min-height: 60vh;
     display: flex;
-    align-items: center;
-    padding: var(--space-24) 0;
+    align-items: flex-start;
   }
 
   .not-found__card {

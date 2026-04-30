@@ -41,6 +41,10 @@ export interface GraphNode {
   relatedResearch?: string[];
   /** Product-specific */
   governanceNotes?: string[];
+  /** Field-signal-specific */
+  lexiconCandidates?: string[];
+  /** Field-signal-specific */
+  crossReferences?: string[];
 }
 
 // ── Typed edge ────────────────────────────────────────────────────────────────

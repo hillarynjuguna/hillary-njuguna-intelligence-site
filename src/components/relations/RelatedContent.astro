@@ -4,6 +4,7 @@
  * Accepts RelatedItem[] from the graph engine.
  */
 import type { RelatedItem } from '@lib/graph/types';
+import { getFieldTypeMeta, getNodeHref, truncateFieldText } from '@lib/field';
 import RelationExplanation from './RelationExplanation.astro';
 
 interface Props {
@@ -13,41 +14,23 @@ interface Props {
 
 const { items, heading = 'Related' } = Astro.props;
 if (!items?.length) return;
-
-function getHref(item: RelatedItem): string {
-  const { contentType, slug } = item.node;
-  if (contentType === 'digest') return `/digest/${slug}`;
-  if (contentType === 'research') return `/research/${slug}`;
-  if (contentType === 'product') return `/products/${slug}`;
-  if (contentType === 'clause') return `/clauses/${slug}`;
-  return `/${slug}`;
-}
-
-const CONTENT_LABELS: Record<string, string> = {
-  research: 'Research',
-  digest: 'Digest',
-  product: 'Product',
-  clause: 'Clause',
-};
 ---
 
 <aside class="related">
   <h2 class="related__heading label">{heading}</h2>
   <div class="related__list">
     {items.map((item) => (
-      <a href={getHref(item)} class="related__item">
+      <a href={getNodeHref(item.node)} class="related__item">
         <div class="related__item-top">
           <span class="label related__type">
-            {CONTENT_LABELS[item.node.contentType] ?? item.node.contentType}
+            {getFieldTypeMeta(item.node.contentType).label}
           </span>
           <RelationExplanation item={item} collapsed />
         </div>
         <span class="related__title">{item.node.title}</span>
         {item.node.description && (
           <span class="related__desc">
-            {item.node.description.length > 110
-              ? item.node.description.slice(0, 110) + '…'
-              : item.node.description}
+            {truncateFieldText(item.node.description, 110)}
           </span>
         )}
       </a>
@@ -57,19 +40,18 @@ const CONTENT_LABELS: Record<string, string> = {
 
 <style>
   .related {
-    margin-top: var(--space-16);
-    padding-top: var(--space-10);
-    border-top: 1px solid var(--border-dim);
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
   }
 
   .related__heading {
     color: var(--ember);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-4);
   }
 
   .related__list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--space-4);
   }
 
@@ -82,12 +64,12 @@ const CONTENT_LABELS: Record<string, string> = {
     border-radius: var(--radius-md);
     text-decoration: none;
     transition: all var(--duration-mid) var(--ease-out);
-    background: var(--surface-2);
+    background: var(--surface-1);
   }
 
   .related__item:hover {
     border-color: var(--border-bright);
-    background: var(--surface-3);
+    background: var(--surface-2);
     transform: translateY(-2px);
   }
 

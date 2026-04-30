@@ -53,9 +53,10 @@
         "clause-coherence-overfitting-guard",
         "clause-epistemological-immune-system",
         "clause-intent-specification",
-        "clause-irreversibility-threshold"
+        "clause-irreversibility-threshold",
+        "field-signal-001"
       ],
-      "count": 30
+      "count": 31
     },
     "institutional-design": {
       "label": "institutional-design",
@@ -101,9 +102,10 @@
         "research-maternal-architecture",
         "research-r0-r3-classification",
         "research-rsps-architecture",
-        "research-substrate-agnostic-crystallization"
+        "research-substrate-agnostic-crystallization",
+        "field-signal-001"
       ],
-      "count": 15
+      "count": 16
     },
     "methodology": {
       "label": "methodology",
@@ -244,6 +246,13 @@
       "label": "deployment-authority",
       "contentIds": [
         "clause-irreversibility-threshold"
+      ],
+      "count": 1
+    },
+    "cognition": {
+      "label": "cognition",
+      "contentIds": [
+        "field-signal-001"
       ],
       "count": 1
     }
@@ -505,9 +514,58 @@
         "research-trust-irreversibility-residue"
       ],
       "count": 1
+    },
+    "RSPS": {
+      "label": "RSPS",
+      "contentIds": [
+        "field-signal-001"
+      ],
+      "count": 1
+    },
+    "Eigenform": {
+      "label": "Eigenform",
+      "contentIds": [
+        "field-signal-001"
+      ],
+      "count": 1
+    },
+    "CMCP": {
+      "label": "CMCP",
+      "contentIds": [
+        "field-signal-001"
+      ],
+      "count": 1
     }
   },
   "tags": {
+    "transmission": {
+      "label": "transmission",
+      "contentIds": [
+        "antigravity-log-001"
+      ],
+      "count": 1
+    },
+    "rsps": {
+      "label": "rsps",
+      "contentIds": [
+        "antigravity-log-001",
+        "digest-field-note-004-epistemological-immune-system",
+        "digest-field-note-004-three-frontier-labs-one-architecture",
+        "research-eigenform-and-rsps",
+        "research-rsps-architecture",
+        "research-substrate-agnostic-crystallization",
+        "clause-epistemological-immune-system"
+      ],
+      "count": 7
+    },
+    "field-priming": {
+      "label": "field-priming",
+      "contentIds": [
+        "antigravity-log-001",
+        "digest-field-note-002-verbal-diarrhea-methodology"
+      ],
+      "count": 2
+    },
     "bainbridge-warning": {
       "label": "bainbridge-warning",
       "contentIds": [
@@ -674,13 +732,6 @@
       ],
       "count": 1
     },
-    "field-priming": {
-      "label": "field-priming",
-      "contentIds": [
-        "digest-field-note-002-verbal-diarrhea-methodology"
-      ],
-      "count": 1
-    },
     "methodology": {
       "label": "methodology",
       "contentIds": [
@@ -742,18 +793,6 @@
         "clause-epistemological-immune-system"
       ],
       "count": 3
-    },
-    "rsps": {
-      "label": "rsps",
-      "contentIds": [
-        "digest-field-note-004-epistemological-immune-system",
-        "digest-field-note-004-three-frontier-labs-one-architecture",
-        "research-eigenform-and-rsps",
-        "research-rsps-architecture",
-        "research-substrate-agnostic-crystallization",
-        "clause-epistemological-immune-system"
-      ],
-      "count": 6
     },
     "attention-residuals": {
       "label": "attention-residuals",
@@ -1366,6 +1405,15 @@
     }
   },
   "lineage": {
+    "rsps": {
+      "label": "rsps",
+      "contentIds": [
+        "antigravity-log-001",
+        "product-clarity-garden",
+        "product-clearbid"
+      ],
+      "count": 3
+    },
     "dcfb-core": {
       "label": "dcfb-core",
       "contentIds": [
@@ -1440,15 +1488,8 @@
     "rsps-core": {
       "label": "rsps-core",
       "contentIds": [
-        "research-cmcp"
-      ],
-      "count": 1
-    },
-    "rsps": {
-      "label": "rsps",
-      "contentIds": [
-        "product-clarity-garden",
-        "product-clearbid"
+        "research-cmcp",
+        "field-signal-001"
       ],
       "count": 2
     },
@@ -1472,7 +1513,14 @@
         "product-clearbid"
       ],
       "count": 1
+    },
+    "eigenform-core": {
+      "label": "eigenform-core",
+      "contentIds": [
+        "field-signal-001"
+      ],
+      "count": 1
     }
   },
-  "generatedAt": "2026-04-27T19:46:00.878Z"
+  "generatedAt": "2026-04-30T11:46:49.746Z"
 }

@@ -1,0 +1,165 @@
+---
+import type { RelatedItem } from '@lib/graph/types';
+import type { FieldPathway, FieldPromptSpec } from '@lib/field';
+import { getNodeHref } from '@lib/field';
+import LineageTrail from '@components/relations/LineageTrail.astro';
+import RelatedContent from '@components/relations/RelatedContent.astro';
+import GovernanceLinks from '@components/relations/GovernanceLinks.astro';
+import FieldPrompt from './FieldPrompt.astro';
+
+interface KeyValueItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  heading?: string;
+  lineage?: string[];
+  domains?: string[];
+  tags?: string[];
+  related?: RelatedItem[];
+  governance?: RelatedItem[];
+  prompt?: FieldPromptSpec;
+  facts?: KeyValueItem[];
+}
+
+const {
+  heading = 'Local field',
+  lineage = [],
+  domains = [],
+  tags = [],
+  related = [],
+  governance = [],
+  prompt,
+  facts = [],
+} = Astro.props;
+
+const topologyFacts = [
+  lineage.length > 0 ? { label: 'Lineage', value: `${lineage.length} upstream anchors` } : null,
+  related.length > 0 ? { label: 'Adjacency', value: `${related.length} nearby nodes` } : null,
+  governance.length > 0 ? { label: 'Governance', value: `${governance.length} visible links` } : null,
+  domains.length + tags.length > 0 ? { label: 'Taxonomy', value: `${domains.length + tags.length} active terms` } : null,
+].filter((item): item is KeyValueItem => Boolean(item));
+
+const pathwayItems = [
+  lineage.length > 0
+    ? {
+        label: 'Trace lineage',
+        description: 'Follow the upstream commitments shaping this node.',
+        href: prompt?.primaryCorpusHref,
+      }
+    : null,
+  related.length > 0
+    ? {
+        label: 'Follow adjacency',
+        description: 'Move into the closest neighboring node from this position.',
+        href: getNodeHref(related[0].node),
+      }
+    : null,
+  governance.length > 0
+    ? {
+        label: 'Inspect governance',
+        description: 'Check the clauses and governance edges active around this node.',
+        href: getNodeHref(governance[0].node),
+      }
+    : null,
+  ...(prompt?.links.map((link) => ({
+    label: link.label,
+    description: 'Continue into the next field surface without leaving the current context.',
+    href: link.href,
+  })) ?? []),
+]
+  .filter((item): item is FieldPathway => Boolean(item))
+  .filter((item, index, source) => source.findIndex((candidate) => candidate.label === item.label && candidate.href === item.href) === index);
+---
+
+<aside class:list={['field-rail', prompt && `field-rail--${prompt.mode}`]}>
+  <div class="field-panel">
+    <p class="field-panel__eyebrow label">{heading}</p>
+    {lineage.length > 0 && (
+      <div class="field-panel__block">
+        <LineageTrail lineage={lineage} />
+      </div>
+    )}
+
+    {domains.length > 0 && (
+      <div class="field-panel__block">
+        <span class="field-panel__label label">Domains</span>
+        <div class="field-panel__chips">
+          {domains.map((domain) => (
+            <span class="field-chip field-chip--accent">{domain}</span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {tags.length > 0 && (
+      <div class="field-panel__block">
+        <span class="field-panel__label label">Tags</span>
+        <div class="field-panel__chips">
+          {tags.map((tag) => (
+            <span class="field-chip field-chip--muted">#{tag}</span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {(topologyFacts.length > 0 || facts.length > 0) && (
+      <dl class="field-panel__facts">
+        {topologyFacts.map((fact) => (
+          <div class="field-panel__fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+        {facts.map((fact) => (
+          <div class="field-panel__fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+    )}
+
+    {pathwayItems.length > 0 && (
+      <div class="field-panel__block">
+        <span class="field-panel__label label">Pathways</span>
+        <div class="field-panel__pathways">
+          {pathwayItems.map((item) => (
+            item.href ? (
+              <a href={item.href} class="field-pathway">
+                <span class="field-pathway__label">{item.label}</span>
+                <span class="field-pathway__desc">{item.description}</span>
+              </a>
+            ) : (
+              <div class="field-pathway">
+                <span class="field-pathway__label">{item.label}</span>
+                <span class="field-pathway__desc">{item.description}</span>
+              </div>
+            )
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+
+  {governance.length > 0 && (
+    <div class="field-panel">
+      <GovernanceLinks clauseItems={governance} />
+    </div>
+  )}
+
+  {related.length > 0 && (
+    <div class="field-panel">
+      <RelatedContent items={related} heading="Neighborhood" />
+    </div>
+  )}
+
+  {prompt && (
+    <div class="field-panel">
+      <FieldPrompt prompt={prompt} />
+    </div>
+  )}
+
+  <slot />
+</aside>

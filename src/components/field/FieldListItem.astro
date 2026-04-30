@@ -1,0 +1,61 @@
+---
+import type { FieldAccent } from '@lib/field';
+
+interface ChipItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  href: string;
+  eyebrow?: string;
+  title: string;
+  summary?: string;
+  accent?: FieldAccent;
+  aside?: string[];
+  badge?: string;
+  chips?: ChipItem[];
+  footer?: string;
+}
+
+const {
+  href,
+  eyebrow,
+  title,
+  summary,
+  accent = 'research',
+  aside = [],
+  badge,
+  chips = [],
+  footer,
+} = Astro.props;
+---
+
+<a href={href} class:list={['field-list-item', 'hover-lift', `field-list-item--${accent}`]} data-reveal>
+  <div class="field-list-item__aside">
+    {aside.map((item) => (
+      <span class="field-list-item__aside-item label">{item}</span>
+    ))}
+    {badge && <span class="badge badge--dev">{badge}</span>}
+  </div>
+
+  <div class="field-list-item__body">
+    {eyebrow && <span class="field-list-item__eyebrow label">{eyebrow}</span>}
+    <h2 class="field-list-item__title">{title}</h2>
+    {summary && <p class="field-list-item__summary">{summary}</p>}
+    {(chips.length > 0 || footer) && (
+      <div class="field-list-item__footer">
+        {chips.length > 0 && (
+          <div class="field-list-item__chips">
+            {chips.map((chip) => (
+              <span class="field-chip field-chip--muted">{chip.label}</span>
+            ))}
+          </div>
+        )}
+        {footer && <span class="field-list-item__trail label">{footer}</span>}
+      </div>
+    )}
+  </div>
+
+  <span class="field-list-item__arrow" aria-hidden="true">+</span>
+</a>

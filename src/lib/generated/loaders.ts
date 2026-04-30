@@ -10,10 +10,22 @@ let _relations: RelationIndex | null = null;
 let _taxonomy: TaxonomyIndex | null = null;
 let _governance: GovernanceIndex | null = null;
 
+function assertGraphLoaded(graph: ContentGraph): ContentGraph {
+  if (!Array.isArray(graph.nodes) || graph.nodes.length === 0) {
+    throw new Error('Generated content graph is empty. Run `npm run build:graph` before rendering field surfaces.');
+  }
+
+  if (!Array.isArray(graph.edges)) {
+    throw new Error('Generated content graph is malformed: missing edges array.');
+  }
+
+  return graph;
+}
+
 export async function loadContentGraph(): Promise<ContentGraph> {
   if (_graph) return _graph;
   const mod = await import('../../data/generated/content-graph.json');
-  _graph = (mod.default ?? mod) as ContentGraph;
+  _graph = assertGraphLoaded((mod.default ?? mod) as ContentGraph);
   return _graph;
 }
 

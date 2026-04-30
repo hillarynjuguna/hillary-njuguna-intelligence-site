@@ -1,17 +1,37 @@
 ---
 export const prerender = true;
-import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldShellLayout from '@layouts/FieldShellLayout.astro';
+import { buildFieldPrompt } from '@lib/field';
+
+const prompt = buildFieldPrompt('query', {
+  title: 'ClearBid demo',
+  nodeHref: '/tools/clearbid-demo',
+  primaryCorpusHref: '/corpus',
+});
 ---
 
-<BaseLayout
+<FieldShellLayout
   title="ClearBid Demo"
   description="Interactive ClearBid specimen: turn one ambiguous listing into an audit-grade Deal Packet."
+  eyebrow="Live specimen"
+  summary="A narrow execution-governance specimen: deterministic gating, landed-cost compression, and one audit-grade packet expressed as a field instrument rather than a separate product shell."
+  actions={[
+    { label: 'Open product node', href: '/products/clearbid', tone: 'secondary' },
+    { label: 'Open doctrine', href: '/research/bainbridge-warning', tone: 'ghost' },
+    { label: 'Open corpus', href: '/corpus', tone: 'primary' },
+  ]}
+  prompt={prompt}
+  facts={[
+    { label: 'Mode', value: 'Query through a live specimen' },
+    { label: 'Output', value: 'Deal Packet with deterministic gates' },
+    { label: 'Role', value: 'Execution-governance demonstration' },
+  ]}
 >
   <div class="clearbid-demo page-enter">
     <div class="container">
       <header class="demo-header">
         <p class="label section-label">Tools / Live Specimen</p>
-        <h1 class="demo-title">ClearBid Demo</h1>
+        <h2 class="demo-title">ClearBid Demo</h2>
         <p class="demo-desc">
           This is the execution-governance specimen of ClearBid v1: one listing in, deterministic gates first,
           landed-cost math second, Deal Packet out. The purpose is not to automate commitment. The purpose
@@ -169,7 +189,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       </div>
     </div>
   </div>
-</BaseLayout>
+</FieldShellLayout>
 
 <style>
   .clearbid-demo {

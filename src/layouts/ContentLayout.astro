@@ -1,10 +1,12 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import Breadcrumbs from '@components/ui/Breadcrumbs.astro';
-import RelatedContent from '@components/relations/RelatedContent.astro';
+import FieldHeader from '@components/field/FieldHeader.astro';
+import FieldRail from '@components/field/FieldRail.astro';
 import type { SEOProps } from '@lib/seo';
 import type { RelatedItem } from '@lib/graph/types';
+import type { FieldPromptSpec } from '@lib/field';
 import { formatDate } from '@lib/content';
+import { getTagHref } from '@lib/field';
 
 interface Props extends SEOProps {
   title: string;
@@ -12,10 +14,14 @@ interface Props extends SEOProps {
   publishedAt?: Date;
   updatedAt?: Date;
   tags?: string[];
+  domains?: string[];
   category?: string;
   author?: string;
   breadcrumbs?: { name: string; href: string }[];
   related?: RelatedItem[];
+  governance?: RelatedItem[];
+  lineage?: string[];
+  prompt?: FieldPromptSpec;
   showByline?: boolean;
 }
 
@@ -25,131 +31,72 @@ const {
   publishedAt,
   updatedAt,
   tags = [],
+  domains = [],
   category,
   author = 'Hillary Njuguna',
   breadcrumbs = [],
   related = [],
+  governance = [],
+  lineage = [],
+  prompt,
   showByline = true,
   ...seoProps
 } = Astro.props;
+
+const meta = [
+  category ? { label: 'Type', value: category } : null,
+  showByline ? { label: 'Author', value: author } : null,
+  publishedAt ? { label: 'Published', value: formatDate(publishedAt) } : null,
+  updatedAt && publishedAt && updatedAt > publishedAt
+    ? { label: 'Updated', value: formatDate(updatedAt) }
+    : null,
+].filter((item): item is { label: string; value: string } => Boolean(item));
+
+const chips = tags.slice(0, 6).map((tag) => ({
+  label: `#${tag}`,
+  href: getTagHref(tag),
+}));
 ---
 
 <BaseLayout {...seoProps} title={title}>
-  <article class="content-article page-enter">
-    <div class="container container--narrow">
-      {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
+  <article class="field-page page-enter">
+    <div class="container container--wide">
+      <FieldHeader
+        title={title}
+        summary={summary}
+        breadcrumbs={breadcrumbs}
+        eyebrow={category}
+        meta={meta}
+        chips={chips}
+        width="narrow"
+        actions={[
+          { label: 'Open corpus', href: '/corpus', tone: 'ghost' },
+          { label: 'Ask the field', href: '/orchestra-operation', tone: 'secondary' },
+        ]}
+      />
 
-      <header class="content-header">
-        {category && (
-          <p class="label content-category">{category}</p>
-        )}
-        <h1 class="content-title">{title}</h1>
-        {summary && (
-          <p class="content-summary">{summary}</p>
-        )}
-        {showByline && publishedAt && (
-          <div class="content-meta">
-            <span class="label">{author}</span>
-            <span class="label content-sep">·</span>
-            <time class="label" datetime={publishedAt.toISOString()}>
-              {formatDate(publishedAt)}
-            </time>
-            {updatedAt && updatedAt > publishedAt && (
-              <>
-                <span class="label content-sep">·</span>
-                <span class="label">
-                  Updated {formatDate(updatedAt)}
-                </span>
-              </>
-            )}
+      <div class="field-layout">
+        <div class="field-main">
+          <div class="prose content-body">
+            <slot />
           </div>
-        )}
-        {tags.length > 0 && (
-          <div class="content-tags">
-            {tags.map((tag) => (
-              <a href={`/tags/${tag}`} class="tag link--hover">#{tag}</a>
-            ))}
-          </div>
-        )}
-      </header>
+        </div>
 
-      <div class="prose content-body">
-        <slot />
+        <FieldRail
+          heading="Local field"
+          lineage={lineage}
+          domains={domains}
+          tags={tags}
+          related={related}
+          governance={governance}
+          prompt={prompt}
+        />
       </div>
-
-      {related.length > 0 && (
-        <RelatedContent items={related} />
-      )}
     </div>
   </article>
 </BaseLayout>
 
 <style>
-  .content-article {
-    padding: var(--space-24) 0 var(--space-32);
-  }
-
-  .content-header {
-    margin-bottom: var(--space-12);
-    padding-bottom: var(--space-8);
-    border-bottom: 1px solid var(--border-dim);
-  }
-
-  .content-category {
-    margin-bottom: var(--space-4);
-    color: var(--ember);
-  }
-
-  .content-title {
-    font-size: var(--text-4xl);
-    line-height: var(--leading-tight);
-    margin-bottom: var(--space-5);
-    color: var(--text-primary);
-  }
-
-  @media (max-width: 768px) {
-    .content-title {
-      font-size: var(--text-3xl);
-    }
-  }
-
-  .content-summary {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
-    color: var(--text-secondary);
-    margin-bottom: var(--space-5);
-    font-family: var(--font-display);
-    font-style: italic;
-  }
-
-  .content-meta {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-bottom: var(--space-4);
-  }
-
-  .content-sep {
-    opacity: 0.4;
-  }
-
-  .content-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-top: var(--space-4);
-  }
-
-  .tag {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--ash-light);
-    padding: 2px 8px;
-    border: 1px solid var(--border-dim);
-    border-radius: 2px;
-    letter-spacing: 0.05em;
-  }
-
   .content-body {
     margin: 0 auto;
   }

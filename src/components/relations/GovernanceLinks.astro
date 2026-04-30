@@ -1,15 +1,14 @@
 ---
 /**
- * Displays governance clause links for content with governanceRelevance: direct or adjacent.
+ * Displays governance clause links for content with governance relevance.
  * Shows which clauses a piece of content supports, or which clauses are relevant to it.
  */
 import type { RelatedItem } from '@lib/graph/types';
+import { getNodeHref } from '@lib/field';
 import RelationBadge from './RelationBadge.astro';
 
 interface Props {
-  /** RelatedItems that are clauses (filtered by caller) */
   clauseItems: RelatedItem[];
-  /** Whether this content is a clause itself (reverse display) */
   isClause?: boolean;
 }
 
@@ -22,20 +21,11 @@ const heading = isClause ? 'Supporting content' : 'Governance relevance';
 <aside class="gov-links">
   <div class="gov-links__header">
     <span class="gov-links__label label">{heading}</span>
-    <span class="gov-links__marker">⚖</span>
+    <span class="gov-links__marker">+</span>
   </div>
   <div class="gov-links__list">
     {clauseItems.map((item) => (
-      <a
-        href={item.node.contentType === 'clause'
-          ? `/clauses/${item.node.slug}`
-          : item.node.contentType === 'research'
-          ? `/research/${item.node.slug}`
-          : item.node.contentType === 'digest'
-          ? `/digest/${item.node.slug}`
-          : `/products/${item.node.slug}`}
-        class="gov-links__item"
-      >
+      <a href={getNodeHref(item.node)} class="gov-links__item">
         <div class="gov-links__item-top">
           <RelationBadge type={item.edge.type} isManual={item.edge.manual} compact />
         </div>
@@ -50,7 +40,7 @@ const heading = isClause ? 'Supporting content' : 'Governance relevance';
 
 <style>
   .gov-links {
-    margin-top: var(--space-10);
+    margin-top: 0;
     padding: var(--space-6) var(--space-7);
     background: color-mix(in srgb, var(--ember) 5%, var(--surface-2));
     border: 1px solid color-mix(in srgb, var(--ember) 25%, var(--border-dim));

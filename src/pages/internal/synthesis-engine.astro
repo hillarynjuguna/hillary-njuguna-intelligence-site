@@ -1,46 +1,62 @@
 ---
 export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldHeader from '@components/field/FieldHeader.astro';
+import FieldRail from '@components/field/FieldRail.astro';
+import { buildFieldPrompt } from '@lib/field';
+
+const prompt = buildFieldPrompt('ops', {
+  title: 'Corpus Synthesis Engine',
+  nodeHref: '/internal/synthesis-engine',
+});
 ---
 
 <BaseLayout
   title="Corpus Synthesis Engine"
-  description="Internal tool for multi-corpus synthesis via the Anthropic API."
+  description="Internal tool for multi-corpus synthesis."
 >
-  <div class="page page-enter">
-    <div class="container">
-      <div class="engine-layout">
-        <div class="engine-header">
-          <p class="label page-label">Internal Tool</p>
-          <h1 class="page-title">Corpus Synthesis Engine</h1>
-          <p class="page-desc">
-            Submit a synthesis brief. As the sovereign τ-node, you provide the context; 
-            the λ-node will generate emergent connections, draft content, and Insight Log candidates.
-          </p>
-        </div>
+  <div class="field-page page-enter">
+    <div class="container container--wide">
+      <FieldHeader
+        eyebrow="Internal tool"
+        title="Corpus Synthesis Engine"
+        summary="This surface is operational rather than public, but it should still stay legible as a support layer around the corpus rather than a detached product."
+        meta={[
+          { label: 'Mode', value: 'Synthesize' },
+          { label: 'Audience', value: 'Internal' },
+        ]}
+        width="wide"
+        actions={[
+          { label: 'Open corpus', href: '/corpus', tone: 'ghost' },
+          { label: 'Research archive', href: '/research', tone: 'secondary' },
+        ]}
+      />
 
-        <div class="engine-body">
-          <form id="synthesis-form" class="synthesis-form">
-            <div class="form-group">
-              <label for="brief" class="label form-label">Synthesis Brief</label>
-              <textarea
-                id="brief"
-                name="brief"
-                class="form-input form-textarea"
-                placeholder="Enter multi-corpus connections or questions here..."
-                required></textarea>
-            </div>
-            
-            <div class="form-footer">
-              <button type="submit" class="btn btn--primary form-submit" id="submit-btn">
-                Synthesize
-              </button>
-            </div>
-          </form>
+      <div class="field-layout field-layout--wide">
+        <div class="field-main">
+          <div class="synthesis-form field-surface">
+            <form id="synthesis-form">
+              <div class="form-group">
+                <label for="brief" class="label form-label">Synthesis brief</label>
+                <textarea
+                  id="brief"
+                  name="brief"
+                  class="form-input form-textarea"
+                  placeholder="Enter multi-corpus connections or questions here..."
+                  required></textarea>
+              </div>
 
-          <div class="output-container" id="output-container" style="display: none;">
+              <div class="form-footer">
+                <button type="submit" class="btn btn--primary form-submit" id="submit-btn">
+                  Synthesize
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="output-container field-surface" id="output-container" style="display: none;">
             <div class="output-header">
-              <h2 class="output-title">Synthesis Result</h2>
+              <h2 class="output-title">Synthesis result</h2>
               <div class="status-indicator"></div>
             </div>
             <div id="loading-indicator" class="loading-indicator" style="display: none;">
@@ -50,53 +66,26 @@ import BaseLayout from '@layouts/BaseLayout.astro';
             <div id="result-content" class="result-content markdown-body"></div>
           </div>
         </div>
+
+        <FieldRail
+          heading="Operational field"
+          facts={[
+            { label: 'Mode', value: 'Synthesize' },
+            { label: 'Audience', value: 'Internal' },
+          ]}
+          prompt={prompt}
+        >
+          <div class="field-panel">
+            <p class="field-panel__eyebrow label">Operational boundary</p>
+            <p class="ops-note">Synthesis can draft and connect, but authored content, public publication, and governance decisions still remain downstream of human review.</p>
+          </div>
+        </FieldRail>
       </div>
     </div>
   </div>
 </BaseLayout>
 
 <style>
-  .page {
-    padding: var(--space-24) 0 var(--space-32);
-  }
-
-  .engine-header {
-    margin-bottom: var(--space-8);
-  }
-
-  .page-label {
-    color: var(--ember);
-    margin-bottom: var(--space-3);
-  }
-
-  .page-title {
-    font-size: var(--text-4xl);
-    margin-bottom: var(--space-5);
-  }
-
-  .page-desc {
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-    max-width: 800px;
-  }
-
-  .engine-body {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-10);
-  }
-
-  .synthesis-form {
-    background: var(--surface-2);
-    border: 1px solid var(--border-mid);
-    border-radius: var(--radius-lg);
-    padding: var(--space-8);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-  }
-
   .form-group {
     display: flex;
     flex-direction: column;
@@ -130,11 +119,10 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     line-height: var(--leading-relaxed);
   }
 
-  .output-container {
-    background: var(--surface-1);
-    border: 1px solid var(--border-mid);
-    border-radius: var(--radius-lg);
-    padding: var(--space-8);
+  .ops-note {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-sm);
   }
 
   .output-header {
@@ -150,7 +138,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     font-size: var(--text-xl);
     color: var(--text-primary);
   }
-  
+
   .loading-indicator {
     color: var(--text-secondary);
     font-family: var(--font-mono);
@@ -182,25 +170,25 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 <script>
   import { marked } from 'marked';
-  
-  const form = document.getElementById('synthesis-form') as HTMLFormElement;
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-  const outputContainer = document.getElementById('output-container') as HTMLDivElement;
-  const loadingIndicator = document.getElementById('loading-indicator') as HTMLDivElement;
-  const errorMessage = document.getElementById('error-message') as HTMLDivElement;
-  const resultContent = document.getElementById('result-content') as HTMLDivElement;
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  const form = document.getElementById('synthesis-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const outputContainer = document.getElementById('output-container');
+  const loadingIndicator = document.getElementById('loading-indicator');
+  const errorMessage = document.getElementById('error-message');
+  const resultContent = document.getElementById('result-content');
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
     const formData = new FormData(form);
-    const brief = formData.get('brief') as string;
-    
+    const brief = formData.get('brief');
+
     if (!brief.trim()) return;
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Synthesizing...';
-    
+
     outputContainer.style.display = 'block';
     loadingIndicator.style.display = 'block';
     errorMessage.style.display = 'none';
@@ -221,17 +209,13 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         throw new Error(data.error || 'Failed to synthesize');
       }
 
-      // We'll use marked if available globally, or just basic text formatting as fallback
-      // Alternatively, we inject it as raw text since it's markdown. We can do simple transformations.
       try {
         resultContent.innerHTML = marked.parse(data.result);
-      } catch (err) {
-         // rough fallback
+      } catch (error) {
         resultContent.textContent = data.result;
       }
-      
-    } catch (err: any) {
-      errorMessage.textContent = err.message || 'An error occurred during synthesis.';
+    } catch (error) {
+      errorMessage.textContent = error.message || 'An error occurred during synthesis.';
       errorMessage.style.display = 'block';
     } finally {
       submitBtn.disabled = false;

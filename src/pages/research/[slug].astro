@@ -2,11 +2,10 @@
 export const prerender = true;
 import { getCollection } from 'astro:content';
 import ContentLayout from '@layouts/ContentLayout.astro';
-import LineageTrail from '@components/relations/LineageTrail.astro';
-import GovernanceLinks from '@components/relations/GovernanceLinks.astro';
 import { getRelatedContent } from '@lib/related/getRelatedContent';
 import { buildArticleSchema } from '@lib/seo';
 import { SITE } from '@data/site';
+import { buildFieldPrompt } from '@lib/field';
 
 export async function getStaticPaths() {
   const entries = await getCollection('research', ({ data }) => !data.draft);
@@ -27,6 +26,10 @@ const govItems = allRelated.filter(
     (r.node.contentType === 'clause' && r.node.governanceRelevance !== 'none')
 );
 const relatedItems = allRelated.filter((r) => !govItems.includes(r)).slice(0, 4);
+const prompt = buildFieldPrompt('read', {
+  title: data.title,
+  nodeHref: `/research/${entry.slug}`,
+});
 
 const articleSchema = buildArticleSchema({
   title: data.seoTitle ?? data.title,
@@ -42,32 +45,22 @@ const articleSchema = buildArticleSchema({
 <ContentLayout
   title={data.seoTitle ?? data.title}
   description={data.seoDescription ?? data.summary}
+  summary={data.summary}
   publishedAt={data.publishedAt}
   updatedAt={data.updatedAt}
   tags={data.tags}
+  domains={data.domains}
   author={data.author}
+  category="Research"
   breadcrumbs={[
     { name: 'Research', href: '/research' },
     { name: data.title, href: `/research/${entry.slug}` },
   ]}
   related={relatedItems}
+  governance={govItems}
+  lineage={data.lineage}
+  prompt={prompt}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-  {data.lineage && data.lineage.length > 0 && (
-    <div class="research-lineage">
-      <LineageTrail lineage={data.lineage} compact />
-    </div>
-  )}
   <Content />
-  {govItems.length > 0 && (
-    <GovernanceLinks clauseItems={govItems} />
-  )}
 </ContentLayout>
-
-<style>
-  .research-lineage {
-    margin-bottom: var(--space-8);
-    padding-bottom: var(--space-6);
-    border-bottom: 1px solid var(--border-dim);
-  }
-</style>

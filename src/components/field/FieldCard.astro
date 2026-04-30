@@ -1,0 +1,79 @@
+---
+import type { FieldAccent } from '@lib/field';
+
+interface ChipItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  href: string;
+  eyebrow?: string;
+  title: string;
+  summary?: string;
+  accent?: FieldAccent;
+  badge?: string;
+  meta?: string[];
+  chips?: ChipItem[];
+  footer?: string;
+  linkLabel?: string;
+  neighborhoodLabel?: string;
+}
+
+const {
+  href,
+  eyebrow,
+  title,
+  summary,
+  accent = 'research',
+  badge,
+  meta = [],
+  chips = [],
+  footer,
+  linkLabel = 'Open node',
+  neighborhoodLabel,
+} = Astro.props;
+---
+
+<a href={href} class:list={['field-card', 'hover-lift', `field-card--${accent}`]}>
+  <div class="field-card__header">
+    {eyebrow && <span class="field-card__eyebrow label">{eyebrow}</span>}
+    {badge && <span class="badge badge--dev field-card__badge">{badge}</span>}
+  </div>
+
+  <h3 class="field-card__title">{title}</h3>
+
+  {summary && <p class="field-card__summary">{summary}</p>}
+
+  {(meta.length > 0 || chips.length > 0) && (
+    <div class="field-card__context">
+      {meta.length > 0 && (
+        <div class="field-card__meta">
+          {meta.map((item) => (
+            <span class="field-card__meta-item">{item}</span>
+          ))}
+        </div>
+      )}
+      {chips.length > 0 && (
+        <div class="field-card__chips">
+          {chips.map((chip) => (
+            chip.href ? (
+              <a href={chip.href} class="field-chip field-chip--muted">
+                {chip.label}
+              </a>
+            ) : (
+              <span class="field-chip field-chip--muted">{chip.label}</span>
+            )
+          ))}
+        </div>
+      )}
+    </div>
+  )}
+
+  <div class="field-card__footer">
+    <span class="field-card__link label">{linkLabel}</span>
+    {(neighborhoodLabel || footer) && (
+      <span class="field-card__footnote">{neighborhoodLabel ?? footer}</span>
+    )}
+  </div>
+</a>

@@ -1,8 +1,10 @@
 ---
 /**
  * Displays the lineage trail for a content node.
- * Shows the intellectual ancestry as a horizontal breadcrumb.
+ * Shows the intellectual ancestry as a compact breadcrumb.
  */
+import { getLineageLabel } from '@lib/field';
+
 interface Props {
   lineage: string[];
   compact?: boolean;
@@ -10,19 +12,6 @@ interface Props {
 
 const { lineage, compact = false } = Astro.props;
 if (!lineage?.length) return;
-
-// Human-readable lineage labels
-const LINEAGE_LABELS: Record<string, string> = {
-  'dcfb-core': 'DCFB Core',
-  'constitutional-ai': 'Constitutional AI',
-  'bainbridge-core': 'Bainbridge',
-  'trust-theory': 'Trust Theory',
-  'cir-framework': 'CIR Framework',
-};
-
-function lineageLabel(key: string): string {
-  return LINEAGE_LABELS[key] ?? key.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-}
 ---
 
 <div class:list={['lineage-trail', compact && 'lineage-trail--compact']}>
@@ -30,9 +19,9 @@ function lineageLabel(key: string): string {
   <div class="lineage-trail__items">
     {lineage.map((item, i) => (
       <>
-        <span class="lineage-trail__item">{lineageLabel(item)}</span>
+        <span class="lineage-trail__item">{getLineageLabel(item)}</span>
         {i < lineage.length - 1 && (
-          <span class="lineage-trail__sep" aria-hidden="true">→</span>
+          <span class="lineage-trail__sep" aria-hidden="true">+</span>
         )}
       </>
     ))}

@@ -1,9 +1,11 @@
 ---
 export const prerender = true;
-import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldShellLayout from '@layouts/FieldShellLayout.astro';
 import { getFeaturedDigestEntries, getFeaturedResearch, getFeaturedProducts, getCurrentSignal, formatDate } from '@lib/content';
 import { TICKER_ITEMS, SERVICES } from '@data/navigation';
 import LogoEmblem from '@components/ui/LogoEmblem.astro';
+import FieldCard from '@components/field/FieldCard.astro';
+import { buildFieldPrompt } from '@lib/field';
 import { SITE } from '@data/site';
 
 const [digestEntries, researchEntries, products, signal] = await Promise.all([
@@ -14,9 +16,31 @@ const [digestEntries, researchEntries, products, signal] = await Promise.all([
 ]);
 
 const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
+const prompt = buildFieldPrompt('orient', {
+  title: 'Oscillatory Fields',
+  nodeHref: '/',
+  primaryCorpusHref: '/corpus',
+});
 ---
 
-<BaseLayout title={undefined} description={SITE.description}>
+<FieldShellLayout
+  title="Oscillatory Fields"
+  description={SITE.description}
+  eyebrow="Public field"
+  summary="The public transmission layer for the corpus: research, digest, products, signals, and AI-assisted field access expressed through one graph-backed environment."
+  actions={[
+    { label: 'Open corpus', href: '/corpus', tone: 'primary' },
+    { label: 'Open research', href: '/research', tone: 'secondary' },
+    { label: 'Ask the field', href: '/orchestra-operation', tone: 'ghost' },
+  ]}
+  prompt={prompt}
+  facts={[
+    { label: 'Mode', value: 'Orient' },
+    { label: 'Corpus claim', value: '560+ sourced documents across 18 months' },
+    { label: 'Surface', value: 'Research, products, field signals, and AI states' },
+  ]}
+  containerClass="container--wide"
+>
 
   <!-- Hero -->
   <section class="hero">
@@ -26,10 +50,10 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
           <LogoEmblem size={160} className="hero__emblem" />
         </div>
 
-        <h1 class="hero__headline" data-reveal="sweep">
+        <h2 class="hero__headline" data-reveal="sweep">
           Fear isn’t a feeling —<br />
           it’s an architecture.
-        </h1>
+        </h2>
 
         <p class="hero__sub" data-reveal="fade" data-reveal-delay="1">
           I study what happens when AI systems fail inside institutions that can't afford it.
@@ -75,6 +99,204 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
     </div>
   </div>
 
+  <!-- Before You Deploy -->
+  <section class="section section--dark">
+    <div class="page-container">
+      <div class="section__header" data-reveal="fade">
+        <p class="label section__label">Diagnostic</p>
+        <div style="flex:1">
+          <h2 class="section__title">Before you deploy another agent…</h2>
+          <p class="section__subtitle" style="color:var(--text-secondary);margin-top:var(--space-2);max-width:60ch;line-height:var(--leading-relaxed);">Answer these honestly. If you can't, the argument below will make more sense than it already should.</p>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="service-card" data-reveal="fade" data-reveal-delay="1">
+          <p class="label" style="color:var(--ember);margin-bottom:var(--space-3)">Question 01</p>
+          <h3 class="service-card__title">What percentage of your system's decisions are interpretable at the moment they matter?</h3>
+          <p class="service-card__desc">Not after. Not in a report. In the moment the operator needs to understand why the system chose what it chose.</p>
+        </div>
+        <div class="service-card" data-reveal="fade" data-reveal-delay="2">
+          <p class="label" style="color:var(--ember);margin-bottom:var(--space-3)">Question 02</p>
+          <h3 class="service-card__title">When did your operators last practice failure recovery without automation?</h3>
+          <p class="service-card__desc">The skills required to save a failing system atrophy in direct proportion to the system's reliability. This is the automation irony in practice.</p>
+        </div>
+        <div class="service-card" data-reveal="fade" data-reveal-delay="3">
+          <p class="label" style="color:var(--ember);margin-bottom:var(--space-3)">Question 03</p>
+          <h3 class="service-card__title">Which actions in your pipeline are irreversible within 60 seconds?</h3>
+          <p class="service-card__desc">Every pipeline has actions that can't be undone. If you can't name them, you haven't mapped the failure surface. And the system has.</p>
+        </div>
+      </div>
+      <div class="deploy-cta" data-reveal="fade" style="margin-top:var(--space-12);padding:var(--space-8);border:1px solid var(--border-dim);border-radius:var(--radius-lg);background:var(--surface-2);text-align:center;">
+        <h4 style="font-size:var(--text-xl);margin-bottom:var(--space-3);">If you couldn't answer those…</h4>
+        <p style="color:var(--text-secondary);max-width:65ch;margin:0 auto;line-height:var(--leading-relaxed);">Your governance infrastructure is <span style="color:var(--ember);">not keeping pace</span> with your capability deployment. This is the structural debt. Here's how to see it clearly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bainbridge Bridge -->
+  <section class="section">
+    <div class="page-container" style="max-width:800px;text-align:center;">
+      <div data-reveal="fade">
+        <blockquote style="font-size:clamp(var(--text-xl), 4vw, var(--text-3xl));font-family:var(--font-display);line-height:var(--leading-snug);color:var(--text-primary);margin-bottom:var(--space-6);">
+          "The more reliable the system becomes, the less capable the human operator becomes when that system fails."
+        </blockquote>
+        <p class="label" style="color:var(--text-tertiary);margin-bottom:var(--space-12);">— Lisanne Bainbridge, "Ironies of Automation" (1983)</p>
+        
+        <div style="width:1px;height:60px;background:var(--border-dim);margin:0 auto var(--space-12);"></div>
+        
+        <h2 style="font-size:clamp(var(--text-2xl), 5vw, var(--text-4xl));font-family:var(--font-display);margin-bottom:var(--space-6);">We didn't solve this.<br />We scaled it.</h2>
+        <p style="font-size:var(--text-lg);color:var(--text-secondary);line-height:var(--leading-relaxed);">
+          Every AI agent pipeline being deployed today inherits this same structural trap. The irony is not approaching. It is <span style="color:var(--ember);">already installed</span>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Argument & Five Failures -->
+  <section class="section section--dark" id="argument">
+    <div class="page-container">
+      <div class="section__header" data-reveal="fade">
+        <p class="label section__label">The Argument</p>
+        <div style="flex:1">
+          <h2 class="section__title">Why AI governance fails<br />before it looks like failure</h2>
+          <p class="section__subtitle" style="color:var(--text-secondary);margin-top:var(--space-2);max-width:65ch;line-height:var(--leading-relaxed);">Most organizations building AI agent systems right now are moving faster on capability than they are on the infrastructure that makes capability safe to depend on. The gap between those two speeds is a <span style="color:var(--ember);">structural debt</span>.</p>
+        </div>
+      </div>
+
+      <div style="margin:var(--space-16) 0;">
+        <p class="label" style="color:var(--text-tertiary);margin-bottom:var(--space-6);" data-reveal="fade">Documented Failures</p>
+        <div class="failures-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:var(--space-4);" data-reveal="sweep-group">
+          {[
+            { icon: "✈️", year: "2009", name: "Air France 447", desc: "Pitot tube icing → autopilot disengagement → crew lost situational awareness" },
+            { icon: "📉", year: "2010", name: "Flash Crash", desc: "Algorithmic feedback loop → $1T evaporated in 36 minutes" },
+            { icon: "⚖️", year: "2023", name: "Mata v. Avianca", desc: "AI-generated legal brief with hallucinated citations submitted to federal court" },
+            { icon: "💻", year: "2025", name: "Replit Incident", desc: "AI coding assistant introduced subtle logic error → production cascade failure" },
+            { icon: "🧠", year: "2026", name: "Anthropic Research", desc: "Interpretability gap — models can't explain their own failure modes" }
+          ].map((failure) => (
+            <div class="service-card hover-lift" style="padding:var(--space-5);">
+              <div style="font-size:24px;margin-bottom:var(--space-3);">{failure.icon}</div>
+              <p class="label" style="color:var(--text-tertiary);margin-bottom:var(--space-1);">{failure.year}</p>
+              <h4 style="font-size:var(--text-base);margin-bottom:var(--space-2);">{failure.name}</h4>
+              <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:var(--leading-relaxed);">{failure.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="pattern-block" data-reveal="fade" style="padding:var(--space-8);border:1px solid rgba(196,112,58,0.2);border-radius:var(--radius-lg);background:rgba(196,112,58,0.03);">
+        <h3 style="font-size:var(--text-xl);margin-bottom:var(--space-6);color:var(--ember);">Same Failure Signature — Across All Five Cases</h3>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:var(--space-5);">
+          {[
+            "Human out of the loop until it matters — The operator is present but passive, monitoring a system that appears to be handling itself.",
+            "System state becomes non-interpretable — When the failure occurs, the information needed to understand it is precisely the information the system has hidden.",
+            "Recovery requires skills no longer practiced — The very reliability that made the system trustworthy eroded the competence needed to save it."
+          ].map((item, i) => (
+            <li style="display:flex;gap:var(--space-4);align-items:flex-start;">
+              <span class="label" style="color:var(--ember);padding-top:2px;">0{i + 1}</span>
+              <p style="color:var(--text-secondary);line-height:var(--leading-relaxed);margin:0;"><strong style="color:var(--text-primary);">{item.split(" — ")[0]}</strong> — {item.split(" — ")[1]}</p>
+            </li>
+          ))}
+        </ul>
+        <p class="label" style="margin-top:var(--space-6);color:var(--text-tertiary);text-align:center;">Different systems. Same architecture of failure. The technology just makes it <span style="color:var(--ember);">faster</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Four Capabilities -->
+  <section class="section">
+    <div class="page-container">
+      <div class="section__header" data-reveal="fade">
+        <p class="label section__label">What You Must Build</p>
+        <div style="flex:1">
+          <h2 class="section__title">Four capabilities.<br />Not frameworks.</h2>
+          <p class="section__subtitle" style="color:var(--text-secondary);margin-top:var(--space-2);max-width:65ch;line-height:var(--leading-relaxed);">These are the infrastructure requirements your AI agent systems need. Build them before the debt is called in.</p>
+        </div>
+      </div>
+      
+      <div class="card-grid" data-reveal="sweep-group">
+        {[
+          { title: "Bounded Verifiability Latency", desc: "Classifying every action by how reversible it is, and using that classification to determine where validation is placed and what form it takes.", trans: "Know how long you can afford to be wrong before it matters." },
+          { title: "Explicit Compositional Contracts", desc: "Specifying what each agent in a pipeline actually does in production, so you can test the combination before deploying it and halt cascades before they complete.", trans: "If you can't name what each agent does, you can't predict what happens when they interact." },
+          { title: "Continuous Deterministic Layer Regression", desc: "Treating the instructions governing agent behavior as code: version-controlled, reviewed before change, and tested at four levels including production.", trans: "Your prompts are code. Treat them like it." },
+          { title: "Dual Ownership", desc: "Naming the two kinds of authority that AI agent governance requires, defining the boundary between them explicitly, and building a resolution path for when they disagree.", trans: "Someone owns the outcome. Someone owns the process. They must be different people." }
+        ].map((cap, i) => (
+          <div class="service-card hover-lift" style="display:flex;flex-direction:column;gap:var(--space-3);">
+            <span class="label" style="color:var(--ember);">0{i + 1}</span>
+            <h3 class="service-card__title" style="margin:0;">{cap.title}</h3>
+            <p class="service-card__desc" style="margin:0;flex:1;">{cap.desc}</p>
+            <div style="padding:var(--space-3);background:var(--surface-1);border-radius:var(--radius-sm);border:1px solid var(--border-dim);margin-top:var(--space-2);">
+              <p style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-tertiary);line-height:var(--leading-relaxed);margin:0;">"{cap.trans}"</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance Theater -->
+  <section class="section section--dark">
+    <div class="page-container">
+      <div class="section__header" data-reveal="fade">
+        <p class="label section__label">Diagnostic</p>
+        <div style="flex:1">
+          <h2 class="section__title">Governance Theater</h2>
+          <p class="section__subtitle" style="color:var(--text-secondary);margin-top:var(--space-2);max-width:65ch;line-height:var(--leading-relaxed);">Eight signals that your governance framework has become performance rather than infrastructure. If three of these are true, your governance layer is performative.</p>
+        </div>
+      </div>
+      
+      <div class="card-grid" style="grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));" data-reveal="sweep-group">
+        {[
+          { name: "Monitoring without measurement", desc: "You track metrics but haven't defined what 'correct' looks like at the decision layer. Dashboards are full. Understanding is empty." },
+          { name: "Compliance as coverage", desc: "Passing regulatory checklists is treated as evidence of governance adequacy. Compliance is necessary. It is not sufficient." },
+          { name: "Post-mortems without pre-mortems", desc: "Investigation energy is concentrated after failure. The structural conditions that make failure likely are never examined in advance." },
+          { name: "Human-in-the-loop as decoration", desc: "Humans are present in the approval chain but lack the information, training, or authority to meaningfully intervene. The loop is a formality." },
+          { name: "Documentation as absolution", desc: "Writing governance policies is treated as the governance act itself. The document exists. The capability does not." },
+          { name: "Escalation without authority", desc: "There is a path to escalate concerns but no one along that path has the authority to halt deployment. Escalation becomes theater." },
+          { name: "Testing in conditions that never fail", desc: "Validation is performed under normal operating conditions. Edge cases, adversarial inputs, and compound failures are excluded from the test regime." },
+          { name: "Speed as the only metric", desc: "Deployment velocity is measured and optimized. The inverse — time-to-detection of failure, time-to-recovery — is either unmeasured or secondary." }
+        ].map((signal, i) => (
+          <div class="service-card hover-lift" style="padding:var(--space-5);">
+            <p class="label" style="color:var(--text-tertiary);margin-bottom:var(--space-2);">Signal 0{i + 1}</p>
+            <h4 style="font-size:var(--text-base);margin-bottom:var(--space-2);">{signal.name}</h4>
+            <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:var(--leading-relaxed);">{signal.desc}</p>
+          </div>
+        ))}
+      </div>
+      
+      <div class="deploy-cta" data-reveal="fade" style="margin-top:var(--space-10);padding:var(--space-6);border:1px solid rgba(220,53,69,0.2);border-radius:var(--radius-md);background:rgba(220,53,69,0.05);text-align:center;">
+        <h4 style="font-size:var(--text-lg);margin-bottom:var(--space-2);">If 3 or more of these describe your organization…</h4>
+        <p style="color:var(--text-secondary);max-width:65ch;margin:0 auto;line-height:var(--leading-relaxed);">Your governance infrastructure is performative. The capability you believe you have is an illusion maintained by documentation, not structure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Critical Zones -->
+  <section class="section">
+    <div class="page-container">
+      <div class="section__header" data-reveal="fade">
+        <p class="label section__label">Critical Zones</p>
+        <div style="flex:1">
+          <h2 class="section__title">Where this breaks first</h2>
+          <p class="section__subtitle" style="color:var(--text-secondary);margin-top:var(--space-2);max-width:65ch;line-height:var(--leading-relaxed);">If your system operates in any of these environments, governance is not optional. It is the difference between delay and collapse.</p>
+        </div>
+      </div>
+      
+      <div class="card-grid" data-reveal="sweep-group">
+        {[
+          { title: "High-Frequency Trading", desc: "Sub-millisecond decision loops where human oversight is structurally impossible. The feedback latency between action and consequence approaches zero." },
+          { title: "Aviation & Air Traffic", desc: "The original domain of Bainbridge's research. When automation handles 99.7% of flight, the crew's ability to handle the 0.3% deteriorates proportionally." },
+          { title: "Autonomous Enterprise Workflows", desc: "AI agent pipelines making procurement, compliance, and operational decisions without human-in-the-loop. Reliable enough to trust. Opaque enough to fail." }
+        ].map((zone, i) => (
+          <div class="service-card hover-lift" style="display:flex;flex-direction:column;gap:var(--space-3);">
+            <span class="label" style="color:var(--ember);">Zone 0{i + 1}</span>
+            <h3 class="service-card__title" style="margin:0;">{zone.title}</h3>
+            <p class="service-card__desc" style="margin:0;">{zone.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Research -->
   {researchEntries.length > 0 && (
     <section class="section">
@@ -86,16 +308,15 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
         </div>
         <div class="research-grid card-grid">
           {researchEntries.slice(0, 3).map((entry) => (
-            <a href={`/research/${entry.slug}`} class="research-card hover-lift">
-              <div class="research-card__meta">
-                {entry.data.themes.slice(0, 2).map((t) => (
-                  <span class="label research-card__theme">{t}</span>
-                ))}
-              </div>
-              <h3 class="research-card__title">{entry.data.title}</h3>
-              <p class="research-card__summary">{entry.data.summary}</p>
-              <span class="research-card__cta label">Read →</span>
-            </a>
+            <FieldCard
+              href={`/research/${entry.slug}`}
+              accent="research"
+              eyebrow="Research"
+              title={entry.data.title}
+              summary={entry.data.summary}
+              chips={entry.data.themes.slice(0, 2).map((theme) => ({ label: theme }))}
+              linkLabel="Read node"
+            />
           ))}
         </div>
       </div>
@@ -113,16 +334,18 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
         </div>
         <div class="products-grid card-grid">
           {products.map((product) => (
-            <a href={`/products/${product.slug}`} class="product-card hover-lift">
-              <div class="product-card__header">
-                <span class={`badge ${product.data.status === 'live' ? 'badge--live' : product.data.status === 'development' ? 'badge--dev' : 'badge--soon'}`}>
-                  {product.data.status === 'live' ? 'Live' : product.data.status === 'development' ? 'In Development' : 'Coming Soon'}
-                </span>
-                {product.data.price && <span class="product-card__price label">{product.data.price}</span>}
-              </div>
-              <h3 class="product-card__title">{product.data.title}</h3>
-              <p class="product-card__summary">{product.data.summary}</p>
-            </a>
+            <FieldCard
+              href={`/products/${product.slug}`}
+              accent="products"
+              eyebrow="Applied node"
+              title={product.data.title}
+              summary={product.data.summary}
+              meta={[
+                product.data.status === 'live' ? 'Live' : product.data.status === 'development' ? 'In development' : 'Coming soon',
+                ...(product.data.price ? [product.data.price] : []),
+              ]}
+              linkLabel="Open node"
+            />
           ))}
         </div>
       </div>
@@ -140,16 +363,16 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
         </div>
         <div class="digest-grid card-grid">
           {digestEntries.map((entry) => (
-            <a href={`/digest/${entry.slug}`} class="digest-card hover-lift">
-              <div class="digest-card__meta">
-                <span class="label digest-card__category">{entry.data.category}</span>
-                <time class="label digest-card__date" datetime={entry.data.publishedAt.toISOString()}>
-                  {formatDate(entry.data.publishedAt)}
-                </time>
-              </div>
-              <h3 class="digest-card__title">{entry.data.title}</h3>
-              <p class="digest-card__excerpt">{entry.data.excerpt ?? entry.data.summary.slice(0, 120)}…</p>
-            </a>
+            <FieldCard
+              href={`/digest/${entry.slug}`}
+              accent="digest"
+              eyebrow={entry.data.category}
+              title={entry.data.title}
+              summary={entry.data.excerpt ?? entry.data.summary.slice(0, 120)}
+              meta={[formatDate(entry.data.publishedAt)]}
+              chips={entry.data.tags.slice(0, 2).map((tag) => ({ label: `#${tag}` }))}
+              linkLabel="Open note"
+            />
           ))}
         </div>
       </div>
@@ -195,9 +418,8 @@ const tickerItems = [...TICKER_ITEMS, ...TICKER_ITEMS];
           </div>
         ))}
       </div>
-    </div>
   </section>
-</BaseLayout>
+</FieldShellLayout>
 
 <style>
   .hero__emblem-wrap { margin-bottom: var(--space-8); }

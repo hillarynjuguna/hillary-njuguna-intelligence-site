@@ -1,12 +1,31 @@
 ---
 export const prerender = true;
-import BaseLayout from '@layouts/BaseLayout.astro';
-import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
+import FieldShellLayout from '@layouts/FieldShellLayout.astro';
+import { buildFieldPrompt } from '@lib/field';
+
+const prompt = buildFieldPrompt('query', {
+  title: 'Governed Intelligence Specification',
+  nodeHref: '/governed-intelligence',
+  primaryCorpusHref: '/corpus',
+});
 ---
 
-<BaseLayout
+<FieldShellLayout
   title="Governed Intelligence Specification v1.1 — Oscillatory Fields"
   description="The formal architecture specification for sovereign multi-agent systems. 50+ pages, 12 modules, mathematical integrity statement. Individual $249. Enterprise $3,995/year."
+  eyebrow="Applied specification"
+  summary="A formal specification surface inside the same field: sovereign multi-agent architecture, module structure, epistemic grading, and licensing paths expressed as one graph-adjacent node."
+  actions={[
+    { label: 'Open products', href: '/products', tone: 'secondary' },
+    { label: 'Open research', href: '/research', tone: 'ghost' },
+    { label: 'Contact directly', href: 'mailto:hillarynjuguna@protonmail.com?subject=GIS v1.1', tone: 'primary', external: true },
+  ]}
+  prompt={prompt}
+  facts={[
+    { label: 'Mode', value: 'Query into formal specification' },
+    { label: 'Status', value: 'Applied node with explicit licensing paths' },
+    { label: 'Scope', value: '12 modules plus mathematical integrity layer' },
+  ]}
 >
   <div class="grain-overlay" aria-hidden="true"></div>
 
@@ -19,7 +38,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
 
       <div class="gi-hero__title-block" data-reveal="sweep">
         <div class="gi-hero__version">GIS v1.1</div>
-        <h1 class="gi-hero__title">Governed Intelligence<br />Specification</h1>
+        <h2 class="gi-hero__title">Governed Intelligence<br />Specification</h2>
       </div>
 
       <p class="gi-hero__sub" data-reveal="fade">
@@ -319,11 +338,7 @@ import ProductFunnelBanner from '@components/ui/ProductFunnelBanner.astro';
     </div>
   </section>
 
-  <!-- Funnel Banner -->
-  <div class="container">
-    <ProductFunnelBanner activeTier={3} />
-  </div>
-</BaseLayout>
+</FieldShellLayout>
 
 <style>
   .grain-overlay {

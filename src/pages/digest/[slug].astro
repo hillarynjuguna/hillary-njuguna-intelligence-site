@@ -2,10 +2,10 @@
 export const prerender = true;
 import { getCollection } from 'astro:content';
 import ContentLayout from '@layouts/ContentLayout.astro';
-import GovernanceLinks from '@components/relations/GovernanceLinks.astro';
 import { getRelatedContent } from '@lib/related/getRelatedContent';
 import { buildArticleSchema } from '@lib/seo';
 import { SITE } from '@data/site';
+import { buildFieldPrompt } from '@lib/field';
 
 export async function getStaticPaths() {
   const entries = await getCollection('digest', ({ data }) => !data.draft);
@@ -25,6 +25,10 @@ const govItems = allRelated.filter(
     r.node.contentType === 'clause'
 );
 const relatedItems = allRelated.filter((r) => !govItems.includes(r)).slice(0, 3);
+const prompt = buildFieldPrompt('trace', {
+  title: data.title,
+  nodeHref: `/digest/${entry.slug}`,
+});
 
 const articleSchema = buildArticleSchema({
   title: data.seoTitle ?? data.title,
@@ -40,20 +44,22 @@ const articleSchema = buildArticleSchema({
 <ContentLayout
   title={data.seoTitle ?? data.title}
   description={data.seoDescription ?? data.summary}
+  summary={data.summary}
   category={data.category}
   publishedAt={data.publishedAt}
   updatedAt={data.updatedAt}
   tags={data.tags}
+  domains={data.domains}
   author={data.author}
   breadcrumbs={[
     { name: 'Digest', href: '/digest' },
     { name: data.title, href: `/digest/${entry.slug}` },
   ]}
   related={relatedItems}
+  governance={govItems}
+  lineage={data.lineage}
+  prompt={prompt}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <Content />
-  {govItems.length > 0 && (
-    <GovernanceLinks clauseItems={govItems} />
-  )}
 </ContentLayout>

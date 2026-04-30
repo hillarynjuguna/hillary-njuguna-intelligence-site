@@ -1,306 +1,83 @@
 ---
 export const prerender = true;
-import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldShellLayout from '@layouts/FieldShellLayout.astro';
+import FieldCard from '@components/field/FieldCard.astro';
 import { getAllClauses, formatDate } from '@lib/content';
+import { loadContentGraph } from '@lib/generated/loaders';
+import { buildFieldPrompt, countNodeNeighbors, findGraphNode, getNeighborLabel } from '@lib/field';
 
 const clauses = await getAllClauses();
-
-const coreClauses = [
-  { id: '001', title: 'τ Sovereignty', desc: 'Direct authority is explicit, session-scoped, and revocable by the τ-node.' },
-  { id: '002', title: 'Node Autonomy', desc: 'Nodes maintain functional independence within defined operational boundaries.' },
-  { id: '003', title: 'Consequence Transparency', desc: 'System actions must surface potential consequences at the decision layer.' },
-  { id: '004', title: 'Attribution Persistence', desc: 'Every synthesis and action must maintain a persistent audit trail to its source.' },
-  { id: '005', title: 'Verification Before Rejection', desc: 'No input or node behavior shall be rejected without an explicit verification cycle.' }
-];
+const graph = await loadContentGraph();
+const prompt = buildFieldPrompt('trace', {
+  title: 'Constitutional clauses',
+  nodeHref: '/clauses',
+  primaryCorpusHref: '/corpus',
+});
 ---
 
-<BaseLayout
+<FieldShellLayout
   title="Governance Clauses"
-  description="The living constitutional governance layer of the Oscillatory Fields research corpus. Clause candidates generated through active synthesis, accumulating, public, traceable."
+  description="The living constitutional governance layer of the Oscillatory Fields research corpus."
+  eyebrow="Governance"
+  summary="Clauses are the governance layer that crystallizes from the research corpus. They should behave like field nodes with provenance and support, not detached policy copy."
+  actions={[
+    { label: 'Open corpus', href: '/corpus', tone: 'secondary' },
+    { label: 'Research archive', href: '/research', tone: 'ghost' },
+  ]}
+  prompt={prompt}
+  facts={[
+    { label: 'Clauses', value: String(clauses.length) },
+    { label: 'Mode', value: 'Trace governance crystallization' },
+    { label: 'Identity', value: 'Governance layer derived from research' },
+  ]}
+  containerClass="container--wide"
 >
-  <div class="page page-enter">
-    <div class="container">
-      <header class="page-header">
-        <p class="label page-label" style="color: var(--accent-clauses)">Governance</p>
-        <h1 class="page-title">Constitutional Clauses</h1>
-        <p class="page-desc">
-          These clauses define the structural invariants of the Oscillatory Fields intelligence architecture. 
-          They are the governance constraints under which The Field operates.
-        </p>
-        <div class="clause-note" style="border-left-color: var(--accent-clauses)">
-          <p class="label clause-note__text">
-            This is not a legal document. It is a living governance architecture,
-            explicit where most AI systems are implicit.
-          </p>
-        </div>
-      </header>
-
-      <section class="core-clauses">
-        <h2 class="section-title label">Core Invariants (Codex 5.4)</h2>
-        <div class="clauses-grid">
-          {coreClauses.map((clause) => (
-            <div class="clause-card-static accent-border-clauses">
-              <span class="clause-id label" style="color: var(--accent-clauses)">Clause {clause.id}</span>
-              <h3 class="clause-title-static">{clause.title}</h3>
-              <p class="clause-desc-static">{clause.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <h2 class="section-title label">Derived Clause Candidates</h2>
-
-      {clauses.length === 0 ? (
-        <div class="clauses-empty">
-          <p class="label" style="color: var(--accent-clauses)">Clause archive is being populated through active synthesis.</p>
-          <p>
-            As the research corpus grows and synthesis sessions generate governance-relevant
-            insights, they will appear here. <a href="/corpus" style="color: var(--accent-clauses)">Query the corpus</a> to
-            generate new synthesis, and new candidates.
-          </p>
-        </div>
-      ) : (
-        <div class="clauses-list">
-          {clauses.map((clause) => (
-            <article class="clause-card accent-border-clauses" data-reveal>
-              <div class="clause-card__header">
-                <div class="clause-card__meta">
-                  <span class={`badge ${clause.data.status === 'adopted' ? 'badge--live' : clause.data.status === 'candidate' ? 'badge--dev' : 'badge--soon'}`}>
-                    {clause.data.status}
-                  </span>
-                  <time class="label" datetime={clause.data.generatedAt.toISOString()}>
-                    Generated {formatDate(clause.data.generatedAt)}
-                  </time>
-                </div>
-                <h2 class="clause-card__title">{clause.data.title}</h2>
-              </div>
-
-              <blockquote class="clause-card__text" style="border-left-color: var(--accent-clauses)">
-                {clause.data.clauseText}
-              </blockquote>
-
-              {clause.data.sourceContext && (
-                <div class="clause-card__source">
-                  <span class="label" style="color: var(--accent-clauses)">Source context:</span>
-                  <p>{clause.data.sourceContext}</p>
-                </div>
-              )}
-
-              {clause.data.tags.length > 0 && (
-                <div class="clause-card__tags">
-                  {clause.data.tags.map((tag) => (
-                    <span class="tag">#{tag}</span>
-                  ))}
-                </div>
-              )}
-            </article>
-          ))}
-        </div>
-      )}
-
-      <section class="clauses-cta" data-reveal>
-        <div class="clauses-cta__inner">
-          <h2 class="clauses-cta__title">Generate new synthesis</h2>
-          <p class="clauses-cta__desc">
-            Every query to the corpus is a potential synthesis event.
-            Some produce clause candidates. All deepen the research field.
-          </p>
-          <a href="/corpus" class="btn btn--primary">Open the corpus →</a>
-        </div>
-      </section>
+  {clauses.length === 0 ? (
+    <div class="clauses-empty">
+      <p class="label" style="color: var(--accent-clauses)">Clause archive is being populated through active synthesis.</p>
+      <p>
+        As the research corpus grows and synthesis sessions generate governance-relevant insight, they will appear here.
+      </p>
     </div>
-  </div>
-</BaseLayout>
+  ) : (
+    <div class="card-grid">
+      {clauses.map((clause) => {
+        const node = findGraphNode(graph, {
+          id: clause.data.id,
+          slug: clause.slug,
+          sourceCollection: 'clauses',
+        });
+        const neighborCount = countNodeNeighbors(graph, node?.id);
+
+        return (
+          <FieldCard
+            href={`/clauses/${clause.slug}`}
+            accent="clauses"
+            eyebrow={clause.data.governanceDomain ?? 'Clause'}
+            title={clause.data.title}
+            summary={clause.data.sourceContext ?? clause.data.clauseText ?? ''}
+            meta={[
+              clause.data.clauseStatus,
+              formatDate(clause.data.generatedAt),
+            ]}
+            chips={clause.data.tags.slice(0, 3).map((tag) => ({ label: `#${tag}` }))}
+            neighborhoodLabel={getNeighborLabel(neighborCount, 'Emergent clause')}
+            linkLabel="Open clause"
+          />
+        );
+      })}
+    </div>
+  )}
+</FieldShellLayout>
 
 <style>
-  .page {
-    padding: var(--space-24) 0 var(--space-32);
-  }
-
-  .page-header {
-    max-width: 64ch;
-    margin-bottom: var(--space-16);
-    padding-bottom: var(--space-10);
-    border-bottom: 1px solid var(--border-dim);
-  }
-
-  .page-label {
-    margin-bottom: var(--space-3);
-  }
-
-  .page-title {
-    font-size: var(--text-5xl);
-    margin-bottom: var(--space-5);
-  }
-
-  @media (max-width: 768px) {
-    .page-title { font-size: var(--text-4xl); }
-  }
-
-  .page-desc {
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-    margin-bottom: var(--space-8);
-  }
-
-  .section-title {
-    display: block;
-    margin-bottom: var(--space-8);
-    padding-bottom: var(--space-4);
-    border-bottom: 1px solid var(--border-dim);
-    color: var(--text-tertiary);
-  }
-
-  .clauses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--space-6);
-    margin-bottom: var(--space-24);
-  }
-
-  .clause-card-static {
-    background: var(--surface-1);
-    border: 1px solid var(--border-dim);
-    padding: var(--space-10) var(--space-8);
-    border-left: 1px solid var(--border-dim);
-    transition: all var(--duration-mid) var(--ease-out);
-  }
-
-  .clause-card-static:hover {
-    background: var(--surface-2);
-    border-color: var(--border-mid);
-  }
-
-  .clause-id { margin-bottom: var(--space-4); display: block; }
-  .clause-title-static { font-size: var(--text-xl); margin-bottom: var(--space-4); color: var(--text-primary); }
-  .clause-desc-static { color: var(--text-secondary); line-height: var(--leading-relaxed); font-size: var(--text-base); }
-
-  .clause-note {
-    padding: var(--space-6) var(--space-8);
-    background: var(--surface-2);
-    border: 1px solid var(--border-dim);
-    border-left: 2px solid var(--ember);
-    border-radius: 0;
-  }
-
-  .clause-note__text {
-    color: var(--text-secondary);
-    font-size: var(--text-base);
-    line-height: var(--leading-relaxed);
-  }
-
   .clauses-empty {
     padding: var(--space-16) 0;
     max-width: 56ch;
   }
 
-  .clauses-empty .label {
-    margin-bottom: var(--space-5);
-  }
-
   .clauses-empty p {
     color: var(--text-secondary);
     line-height: var(--leading-relaxed);
-  }
-
-  .clauses-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    margin-bottom: var(--space-24);
-  }
-
-  .clause-card {
-    background: var(--surface-1);
-    border: 1px solid var(--border-dim);
-    border-left: 1px solid var(--border-dim);
-    padding: var(--space-10) var(--space-8);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-    transition: all var(--duration-mid) var(--ease-out);
-  }
-
-  .clause-card:hover {
-    background: var(--surface-2);
-    border-color: var(--border-mid);
-  }
-
-  .clause-card__header {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .clause-card__meta {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-  }
-
-  .clause-card__meta .label {
-    color: var(--text-tertiary);
-  }
-
-  .clause-card__title {
-    font-size: var(--text-2xl);
-    color: var(--text-primary);
-    line-height: var(--leading-snug);
-  }
-
-  .clause-card__text {
-    font-family: var(--font-display);
-    font-size: var(--text-xl);
-    line-height: var(--leading-relaxed);
-    color: var(--text-primary);
-    border-left: 2px solid var(--ember);
-    padding: var(--space-6) var(--space-8);
-    background: var(--surface-2);
-    font-style: italic;
-    margin: 0;
-  }
-
-  .clause-card__source {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .clause-card__source p {
-    color: var(--text-tertiary);
-    font-size: var(--text-sm);
-    line-height: var(--leading-relaxed);
-  }
-
-  .clause-card__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
-  .clauses-cta {
-    background: var(--surface-2);
-    border: 1px solid var(--border-mid);
-    padding: var(--space-16);
-    text-align: center;
-    border-radius: var(--radius-lg);
-  }
-
-  .clauses-cta__inner {
-    max-width: 60ch;
-    margin: 0 auto;
-  }
-
-  .clauses-cta__title {
-    font-size: var(--text-3xl);
-    margin-bottom: var(--space-6);
-  }
-
-  .clauses-cta__desc {
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-    margin-bottom: var(--space-10);
-    font-size: var(--text-lg);
   }
 </style>

@@ -15,8 +15,14 @@
         "UI"
       ],
       "themes": [],
-      "tags": [],
-      "lineage": [],
+      "tags": [
+        "transmission",
+        "rsps",
+        "field-priming"
+      ],
+      "lineage": [
+        "rsps"
+      ],
       "sourceCollection": "digest",
       "publishedAt": "2026-03-31T00:00:00.000Z"
     },
@@ -1338,9 +1344,54 @@
         "Irreversibility thresholds are context-dependent and difficult to pre-specify universally.",
         "Named accountable authority may be unclear in distributed or federated deployment architectures."
       ]
+    },
+    {
+      "id": "field-signal-001",
+      "slug": "signal-001",
+      "title": "The Workspace Is the Specimen",
+      "description": "During the construction of the Corpus Map, the description of RSPS as a protected interior space where a human and an AI build shared cognitive infrastructure became self-referential. The workspace being constructed is the thing being described.",
+      "contentType": "field",
+      "status": "published",
+      "crystallization": "crystallized",
+      "governanceRelevance": "direct",
+      "domains": [
+        "cognition",
+        "ai-systems",
+        "governance"
+      ],
+      "themes": [
+        "RSPS",
+        "Eigenform",
+        "CMCP"
+      ],
+      "tags": [],
+      "lineage": [
+        "rsps-core",
+        "eigenform-core"
+      ],
+      "sourceCollection": "field-signals",
+      "publishedAt": "2026-03-14T00:00:00.000Z",
+      "lexiconCandidates": [],
+      "crossReferences": [
+        "RSPS",
+        "Eigenform",
+        "CMCP"
+      ]
     }
   ],
   "edges": [
+    {
+      "source": "antigravity-log-001",
+      "target": "research-rsps-architecture",
+      "type": "clarifies",
+      "confidence": "medium",
+      "explanation": "This transmission-layer specimen clarifies how RSPS moves from deep field construction into public execution mechanics.",
+      "provenance": [
+        "section: Application to Oscillatory Fields"
+      ],
+      "manual": true,
+      "inferred": false
+    },
     {
       "source": "digest-bainbridge-warning-read",
       "target": "product-bainbridge-warning-book",
@@ -2316,6 +2367,16 @@
       "inferred": false
     },
     {
+      "source": "field-signal-001",
+      "target": "digest-bainbridge-warning-read",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "digest-cir-v2-core-argument",
       "target": "research-aurora",
       "type": "clarifies",
@@ -2456,6 +2517,26 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "digest-cir-v2-core-argument",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "digest-field-dispatch-01",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "digest-field-note-001-the-beautiful-false-positive",
       "target": "research-aurora",
       "type": "clarifies",
@@ -2576,6 +2657,16 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "digest-field-note-001-the-beautiful-false-positive",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance, ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "digest-field-note-002-verbal-diarrhea-methodology",
       "target": "research-aurora",
       "type": "clarifies",
@@ -2651,6 +2742,16 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [ai-systems] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "digest-field-note-002-verbal-diarrhea-methodology",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -2756,6 +2857,16 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "digest-field-note-003-the-convergence",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "digest-field-note-004-epistemological-immune-system",
       "target": "clause-coherence-overfitting-guard",
       "type": "governance_relevant_to",
@@ -2791,6 +2902,16 @@
       "type": "governance_relevant_to",
       "confidence": "low",
       "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "digest-field-note-004-epistemological-immune-system",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -2946,6 +3067,36 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [ai-systems, governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "digest-field-note-005-memory-merchants",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "digest-field-note-007-aurora-convergence",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "digest-intent-gap-god-mode-biology",
       "target": "research-aurora",
       "type": "clarifies",
@@ -3096,6 +3247,16 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "digest-intent-gap-god-mode-biology",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "digest-mcp-consolidation-infrastructure-paradox",
       "target": "research-aurora",
       "type": "clarifies",
@@ -3130,7 +3291,7 @@
       "target": "research-cora",
       "type": "remains_emergent_with",
       "confidence": "low",
-      "explanation": "Both are emergent and share [dcfb-core, governance] — open edges may be related.",
+      "explanation": "Both are emergent and share [dcfb-core, governance]. Open edges may be related.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3181,6 +3342,16 @@
       "type": "clarifies",
       "confidence": "low",
       "explanation": "Digest entry shares lineage [dcfb-core] and domain [governance] with this research entry.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "digest-mcp-consolidation-infrastructure-paradox",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3276,11 +3447,21 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "digest-tool-lineage-constitutional-routing",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-bainbridge-warning",
       "target": "research-aurora",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3290,7 +3471,7 @@
       "target": "research-aurora",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3300,7 +3481,7 @@
       "target": "research-aurora",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3341,6 +3522,16 @@
       "type": "governance_relevant_to",
       "confidence": "low",
       "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "research-aurora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance, ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3350,7 +3541,7 @@
       "target": "research-bainbridge-warning",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3360,7 +3551,7 @@
       "target": "research-bainbridge-warning",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3396,11 +3587,21 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "research-bainbridge-warning",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-bainbridge-warning",
       "target": "research-behavioral-layer-exposure",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3410,7 +3611,7 @@
       "target": "research-behavioral-layer-exposure",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3420,7 +3621,7 @@
       "target": "research-behavioral-layer-exposure",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3466,11 +3667,21 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "research-behavioral-layer-exposure",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance, ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-bainbridge-warning",
       "target": "research-cmcp",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3480,7 +3691,7 @@
       "target": "research-cmcp",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3490,7 +3701,7 @@
       "target": "research-cmcp",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3536,11 +3747,21 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "research-cmcp",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance, ai-systems, rsps-core] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-bainbridge-warning",
       "target": "research-cora",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3550,7 +3771,7 @@
       "target": "research-cora",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3560,7 +3781,7 @@
       "target": "research-cora",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3601,6 +3822,16 @@
       "type": "governance_relevant_to",
       "confidence": "low",
       "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "research-cora",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance, ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3610,7 +3841,7 @@
       "target": "research-dcfb",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3636,11 +3867,21 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "research-dcfb",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance, ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-bainbridge-warning",
       "target": "research-eigenform-and-rsps",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3650,7 +3891,7 @@
       "target": "research-eigenform-and-rsps",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3660,7 +3901,17 @@
       "target": "research-eigenform-and-rsps",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "research-eigenform-and-rsps",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3670,7 +3921,7 @@
       "target": "research-governance-theater",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3680,7 +3931,7 @@
       "target": "research-governance-theater",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3690,7 +3941,7 @@
       "target": "research-governance-theater",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3736,11 +3987,21 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "research-governance-theater",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-bainbridge-warning",
       "target": "research-maternal-architecture",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3750,7 +4011,7 @@
       "target": "research-maternal-architecture",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3760,7 +4021,17 @@
       "target": "research-maternal-architecture",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "research-maternal-architecture",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3770,7 +4041,7 @@
       "target": "research-r0-r3-classification",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3780,7 +4051,7 @@
       "target": "research-r0-r3-classification",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3790,7 +4061,7 @@
       "target": "research-r0-r3-classification",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3836,11 +4107,21 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "research-r0-r3-classification",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance, ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-bainbridge-warning",
       "target": "research-rsps-architecture",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3850,7 +4131,7 @@
       "target": "research-rsps-architecture",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3860,7 +4141,17 @@
       "target": "research-rsps-architecture",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "research-rsps-architecture",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [ai-systems] with this node and acts as a nearby specimen or synthesis trace.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3870,7 +4161,7 @@
       "target": "research-substrate-agnostic-crystallization",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3880,7 +4171,7 @@
       "target": "research-substrate-agnostic-crystallization",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3890,7 +4181,17 @@
       "target": "research-substrate-agnostic-crystallization",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "research-substrate-agnostic-crystallization",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [ai-systems, governance] with this node and acts as a nearby specimen or synthesis trace.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3900,7 +4201,7 @@
       "target": "research-tongue-tie-diagnostic",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3910,7 +4211,7 @@
       "target": "research-tongue-tie-diagnostic",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3920,7 +4221,7 @@
       "target": "research-tongue-tie-diagnostic",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3966,11 +4267,21 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "research-tongue-tie-diagnostic",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-bainbridge-warning",
       "target": "research-trust-irreversibility-residue",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3980,7 +4291,7 @@
       "target": "research-trust-irreversibility-residue",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -3990,7 +4301,7 @@
       "target": "research-trust-irreversibility-residue",
       "type": "example_of",
       "confidence": "low",
-      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research — likely an applied instantiation.",
+      "explanation": "Product shares lineage [dcfb-core, constitutional-ai] with this research and likely acts as an applied instantiation.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -4026,6 +4337,16 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "research-trust-irreversibility-residue",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-bainbridge-warning-book",
       "target": "clause-coherence-overfitting-guard",
       "type": "governance_relevant_to",
@@ -4066,6 +4387,16 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "product-bainbridge-warning-book",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-bainbridge-warning",
       "target": "clause-coherence-overfitting-guard",
       "type": "governance_relevant_to",
@@ -4106,6 +4437,16 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "product-bainbridge-warning",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "product-cir",
       "target": "clause-coherence-overfitting-guard",
       "type": "governance_relevant_to",
@@ -4131,6 +4472,16 @@
       "type": "governance_relevant_to",
       "confidence": "low",
       "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "product-cir",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -4171,6 +4522,26 @@
       "type": "governance_relevant_to",
       "confidence": "low",
       "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "product-clearbid",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "product-martha",
+      "type": "clarifies",
+      "confidence": "low",
+      "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
       "provenance": [],
       "manual": false,
       "inferred": true
@@ -4206,6 +4577,16 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "clause-coherence-overfitting-guard",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "clause-intent-specification",
       "target": "clause-epistemological-immune-system",
       "type": "governance_relevant_to",
@@ -4226,6 +4607,16 @@
       "inferred": true
     },
     {
+      "source": "field-signal-001",
+      "target": "clause-epistemological-immune-system",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
       "source": "clause-irreversibility-threshold",
       "target": "clause-intent-specification",
       "type": "governance_relevant_to",
@@ -4234,19 +4625,40 @@
       "provenance": [],
       "manual": false,
       "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "clause-intent-specification",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
+    },
+    {
+      "source": "field-signal-001",
+      "target": "clause-irreversibility-threshold",
+      "type": "governance_relevant_to",
+      "confidence": "low",
+      "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+      "provenance": [],
+      "manual": false,
+      "inferred": true
     }
   ],
-  "generatedAt": "2026-04-27T19:46:00.876Z",
+  "generatedAt": "2026-04-30T11:46:49.744Z",
   "stats": {
-    "totalNodes": 42,
-    "totalEdges": 282,
-    "manualEdges": 90,
-    "inferredEdges": 192,
+    "totalNodes": 43,
+    "totalEdges": 319,
+    "manualEdges": 91,
+    "inferredEdges": 228,
     "byType": {
       "digest": 15,
       "research": 16,
       "product": 7,
-      "clause": 4
+      "clause": 4,
+      "field": 1
     }
   }
 }

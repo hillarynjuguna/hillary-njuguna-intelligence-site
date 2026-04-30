@@ -391,6 +391,18 @@
       "contentType": "product",
       "clauseIds": [],
       "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "field-signal-001",
+      "contentTitle": "The Workspace Is the Specimen",
+      "contentType": "field",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
     }
   ],
   "byDomain": {
@@ -407,5 +419,5 @@
       "clause-irreversibility-threshold"
     ]
   },
-  "generatedAt": "2026-04-27T19:46:00.880Z"
+  "generatedAt": "2026-04-30T11:46:49.750Z"
 }

@@ -8,7 +8,7 @@ import fg from 'fast-glob';
 import { readFileSync } from 'fs';
 import { join, basename, extname } from 'path';
 
-export type CollectionName = 'digest' | 'research' | 'products' | 'clauses';
+export type CollectionName = 'digest' | 'research' | 'products' | 'clauses' | 'field-signals';
 
 export interface RawEntry {
   collection: CollectionName;
@@ -40,6 +40,6 @@ export function loadCollection(collection: CollectionName): RawEntry[] {
 }
 
 export function loadAllCollections(): RawEntry[] {
-  const collections: CollectionName[] = ['digest', 'research', 'products', 'clauses'];
+  const collections: CollectionName[] = ['digest', 'research', 'products', 'clauses', 'field-signals'];
   return collections.flatMap((c) => loadCollection(c));
 }

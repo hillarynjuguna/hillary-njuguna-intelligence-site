@@ -1,6 +1,9 @@
 ---
 export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldHeader from '@components/field/FieldHeader.astro';
+import FieldRail from '@components/field/FieldRail.astro';
+import { buildFieldPrompt } from '@lib/field';
 
 const instruments = [
   {
@@ -97,28 +100,30 @@ const orchestraComparison = {
   conductorNote:
     'The Orchestra routes the question through differentiated cognitive roles before synthesis. That is what exposes the governance instrument, the temporal stability problem, and the verification architecture as separate layers rather than collapsing them into one generic recommendation.',
 };
+
+const prompt = buildFieldPrompt('synthesize', {
+  title: 'The Orchestra in Operation',
+  nodeHref: '/orchestra-operation',
+});
 ---
 
 <BaseLayout
   title="The Orchestra in Operation"
   description="Watch seven cognitive instruments orchestrate governance synthesis in real time."
 >
-  <div class="orchestra-page page-enter">
-    <div class="container">
-      <header class="page-header">
-        <p class="label page-label">Tools / Systems</p>
-        <h1 class="page-title">The Orchestra in Operation</h1>
-        <p class="page-desc">
-          The Orchestra is seven AI models, each playing a specific cognitive role, with the human as conductor.
-          This page makes the routing logic visible before the live interface asks for trust.
-        </p>
-        <div class="page-links">
-          <a href="/corpus" class="label">Corpus</a>
-          <a href="/bainbridge-diagnostic" class="label">Diagnostic</a>
-          <a href="/cir-assessment" class="label">Assessment</a>
-          <a href="/tools/dual-invariant-demo" class="label">Dual-Invariant Demo</a>
-        </div>
-      </header>
+  <div class="field-page orchestra-page page-enter">
+    <div class="container container--wide">
+      <FieldHeader
+        eyebrow="Tool / synthesis"
+        title="The Orchestra in Operation"
+        summary="The Orchestra is seven AI instruments, each playing a specific cognitive role, with the human as conductor. This page makes the routing logic visible before the live interface asks for trust."
+        width="wide"
+        actions={[
+          { label: 'Open corpus', href: '/corpus', tone: 'ghost' },
+          { label: 'Bainbridge diagnostic', href: '/bainbridge-diagnostic', tone: 'secondary' },
+          { label: 'CIR assessment', href: '/cir-assessment', tone: 'secondary' },
+        ]}
+      />
 
       <section class="comparison-section">
         <div class="section-head">
@@ -233,7 +238,9 @@ const orchestraComparison = {
         </div>
       </section>
 
-      <div class="orchestra-interface" id="orchestra-app">
+      <div class="field-layout field-layout--wide">
+        <div class="field-main">
+          <div class="orchestra-interface field-surface" id="orchestra-app">
         <div id="orchestra-input" class="input-section">
           <div class="input-wrapper">
             <label for="orchestra-question" class="label">Your Governance Question</label>
@@ -286,30 +293,33 @@ const orchestraComparison = {
           <button id="new-question-btn" class="btn">Ask Another Question</button>
         </div>
       </div>
+        </div>
+
+        <FieldRail
+          heading="Synthesis field"
+          facts={[
+            { label: 'Mode', value: 'Synthesize' },
+            { label: 'Instruments', value: String(instruments.length) },
+            { label: 'Output', value: 'Governed source set' },
+          ]}
+          prompt={prompt}
+        >
+          <div class="field-panel">
+            <p class="field-panel__eyebrow label">Interface state</p>
+            <p class="routing-copy">This surface is explicit AI. It should still stay grounded in corpus logic, visible routing, and differentiated roles rather than acting like a generic chat box.</p>
+          </div>
+        </FieldRail>
+      </div>
     </div>
   </div>
 </BaseLayout>
 
 <style>
-  .orchestra-page {
-    padding: var(--space-24) 0;
-  }
-
-  .page-header {
-    margin-bottom: var(--space-16);
-    max-width: 72ch;
-  }
-
   .page-label,
   .section-label,
   .routing-heading {
     color: var(--ember);
     margin-bottom: var(--space-4);
-  }
-
-  .page-title {
-    font-size: var(--text-5xl);
-    margin-bottom: var(--space-6);
   }
 
   .page-desc,
@@ -318,22 +328,6 @@ const orchestraComparison = {
     font-size: var(--text-lg);
     color: var(--text-secondary);
     line-height: 1.6;
-  }
-
-  .page-links {
-    display: flex;
-    gap: var(--space-5);
-    flex-wrap: wrap;
-    margin-top: var(--space-5);
-  }
-
-  .page-links a {
-    color: var(--text-tertiary);
-    text-decoration: none;
-  }
-
-  .page-links a:hover {
-    color: var(--ember);
   }
 
   .comparison-section,
@@ -504,11 +498,7 @@ const orchestraComparison = {
   }
 
   .orchestra-interface {
-    background: var(--surface-2);
-    border: 1px solid var(--border-mid);
-    border-radius: var(--radius-lg);
-    padding: var(--space-12);
-    max-width: 960px;
+    max-width: none;
   }
 
   .input-section {
@@ -630,10 +620,6 @@ const orchestraComparison = {
   }
 
   @media (max-width: 768px) {
-    .page-title {
-      font-size: var(--text-4xl);
-    }
-
     .orchestra-interface {
       padding: var(--space-8);
     }

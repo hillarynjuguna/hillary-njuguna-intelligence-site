@@ -1,0 +1,116 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import FieldHeader from '@components/field/FieldHeader.astro';
+import FieldRail from '@components/field/FieldRail.astro';
+import type { SEOProps } from '@lib/seo';
+import type { RelatedItem } from '@lib/graph/types';
+import type { FieldPromptSpec } from '@lib/field';
+
+interface MetaItem {
+  label: string;
+  value: string;
+  href?: string;
+}
+
+interface ChipItem {
+  label: string;
+  href?: string;
+  tone?: 'default' | 'accent' | 'muted';
+}
+
+interface ActionItem {
+  label: string;
+  href: string;
+  tone?: 'primary' | 'secondary' | 'ghost';
+  external?: boolean;
+}
+
+interface FactItem {
+  label: string;
+  value: string;
+}
+
+interface Props extends SEOProps {
+  title: string;
+  description?: string;
+  eyebrow?: string;
+  summary?: string;
+  breadcrumbs?: { name: string; href: string }[];
+  meta?: MetaItem[];
+  chips?: ChipItem[];
+  actions?: ActionItem[];
+  width?: 'narrow' | 'default' | 'wide';
+  border?: boolean;
+  prompt?: FieldPromptSpec;
+  railHeading?: string;
+  lineage?: string[];
+  domains?: string[];
+  tags?: string[];
+  related?: RelatedItem[];
+  governance?: RelatedItem[];
+  facts?: FactItem[];
+  containerClass?: string;
+  layoutClass?: string;
+}
+
+const {
+  title,
+  description,
+  eyebrow,
+  summary,
+  breadcrumbs = [],
+  meta = [],
+  chips = [],
+  actions = [],
+  width = 'wide',
+  border = true,
+  prompt,
+  railHeading = 'Local field',
+  lineage = [],
+  domains = [],
+  tags = [],
+  related = [],
+  governance = [],
+  facts = [],
+  containerClass = '',
+  layoutClass = '',
+  ...seoProps
+} = Astro.props;
+---
+
+<BaseLayout {...seoProps} title={title} description={description}>
+  <div class="field-page page-enter">
+    <div class:list={['container', containerClass]}>
+      <FieldHeader
+        eyebrow={eyebrow}
+        title={title}
+        summary={summary}
+        breadcrumbs={breadcrumbs}
+        meta={meta}
+        chips={chips}
+        actions={actions}
+        width={width}
+        border={border}
+      />
+
+      <div class:list={['field-layout', layoutClass]}>
+        <div class="field-main">
+          <slot />
+        </div>
+
+        <FieldRail
+          heading={railHeading}
+          lineage={lineage}
+          domains={domains}
+          tags={tags}
+          related={related}
+          governance={governance}
+          facts={facts}
+          prompt={prompt}
+        >
+          <slot name="rail" />
+        </FieldRail>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

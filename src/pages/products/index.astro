@@ -1,158 +1,58 @@
 ---
 export const prerender = true;
-import BaseLayout from '@layouts/BaseLayout.astro';
-import { getAllProducts, getStatusLabel, getStatusBadgeClass } from '@lib/content';
+import FieldShellLayout from '@layouts/FieldShellLayout.astro';
+import FieldCard from '@components/field/FieldCard.astro';
+import { getAllProducts, getStatusLabel } from '@lib/content';
+import { loadContentGraph } from '@lib/generated/loaders';
+import { buildFieldPrompt, countNodeNeighbors, findGraphNode, getNeighborLabel } from '@lib/field';
 
 const products = await getAllProducts();
+const graph = await loadContentGraph();
+const prompt = buildFieldPrompt('query', {
+  title: 'Products and specimens',
+  nodeHref: '/products',
+  primaryCorpusHref: '/corpus',
+});
 ---
 
-<BaseLayout
+<FieldShellLayout
   title="Products & Specimens"
   description="Products, specimens, and assessment surfaces built from the Oscillatory Fields corpus. Governance doctrine becomes live instruments here."
+  eyebrow="Applied work"
+  summary="These are public operating surfaces built from the corpus. Some are assessments, some are specimens, and some are emerging tools. Each should still read like a node in the same field."
+  actions={[
+    { label: 'Open corpus', href: '/corpus', tone: 'ghost' },
+    { label: 'Ask the Orchestra', href: '/orchestra-operation', tone: 'secondary' },
+  ]}
+  prompt={prompt}
+  facts={[
+    { label: 'Products', value: String(products.length) },
+    { label: 'Mode', value: 'Query into applied nodes' },
+    { label: 'Identity', value: 'Products are field states, not separate products' },
+  ]}
 >
-  <div class="page page-enter">
-    <div class="container">
-      <header class="page-header">
-        <p class="label page-label" style="color: var(--accent-products)">Applied Work</p>
-        <h1 class="page-title">Products & Specimens</h1>
-        <p class="page-desc">
-          Not every public surface here is the same kind of thing.
-          Some pages are assessments, some are live specimens, and some are emerging tools.
-          What unifies them is that each one operationalises a layer of the larger research architecture.
-        </p>
-      </header>
+  <div class="card-grid">
+    {products.map((product) => {
+      const node = findGraphNode(graph, {
+        id: product.data.id,
+        slug: product.slug,
+        sourceCollection: 'products',
+      });
+      const neighborCount = countNodeNeighbors(graph, node?.id);
 
-      <div class="products-grid">
-        {products.map((product) => {
-          const badgeClass = getStatusBadgeClass(product.data.status);
-          const statusLabel = getStatusLabel(product.data.status);
-          return (
-            <a href={`/products/${product.slug}`} class="product-card hover-lift accent-border-products" data-reveal>
-              <div class="product-card__header">
-                <span class={`badge ${badgeClass}`}>{statusLabel}</span>
-                {product.data.price && (
-                  <span class="label product-card__price">{product.data.price}</span>
-                )}
-              </div>
-              <h2 class="product-card__title">{product.data.title}</h2>
-              <p class="product-card__summary">{product.data.summary}</p>
-              <div class="product-card__footer">
-                <span class="label product-card__type">{product.data.productType}</span>
-                <span class="label product-card__cta" style="color: var(--accent-products)">View details →</span>
-              </div>
-            </a>
-          );
-        })}
-      </div>
-    </div>
+      return (
+        <FieldCard
+          href={`/products/${product.slug}`}
+          accent="products"
+          eyebrow={product.data.productType}
+          title={product.data.title}
+          summary={product.data.summary}
+          meta={[getStatusLabel(product.data.status), ...(product.data.price ? [product.data.price] : [])]}
+          chips={product.data.relatedResearch.slice(0, 3).map((item) => ({ label: item }))}
+          neighborhoodLabel={getNeighborLabel(neighborCount, 'Applied node')}
+          linkLabel="View details"
+        />
+      );
+    })}
   </div>
-</BaseLayout>
-
-<style>
-  .page {
-    padding: var(--space-24) 0 var(--space-32);
-  }
-
-  .page-header {
-    max-width: 64ch;
-    margin-bottom: var(--space-16);
-    padding-bottom: var(--space-10);
-    border-bottom: 1px solid var(--border-dim);
-  }
-
-  .page-label {
-    margin-bottom: var(--space-3);
-  }
-
-  .page-title {
-    font-size: var(--text-5xl);
-    margin-bottom: var(--space-5);
-  }
-
-  @media (max-width: 768px) {
-    .page-title { font-size: var(--text-4xl); }
-  }
-
-  .page-desc {
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-  }
-
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-    max-width: 1000px;
-  }
-
-  @media (max-width: 768px) {
-    .products-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .product-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    padding: var(--space-10) var(--space-8);
-    border: 1px solid var(--border-dim);
-    border-left: 1px solid var(--border-dim);
-    text-decoration: none;
-    background: var(--surface-1);
-    transition: all var(--duration-mid) var(--ease-out);
-    height: 100%;
-  }
-
-  .product-card:hover {
-    border-color: var(--border-mid);
-    background: var(--surface-2);
-  }
-
-  .product-card__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: var(--space-2);
-  }
-
-  .product-card__price {
-    color: var(--text-tertiary);
-  }
-
-  .product-card__title {
-    font-size: var(--text-2xl);
-    color: var(--text-primary);
-    line-height: var(--leading-snug);
-  }
-
-  .product-card__summary {
-    font-size: var(--text-base);
-    color: var(--text-tertiary);
-    line-height: var(--leading-relaxed);
-    flex: 1;
-    margin-bottom: var(--space-4);
-  }
-
-  .product-card__footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--border-dim);
-  }
-
-  .product-card__type {
-    color: var(--text-tertiary);
-    text-transform: capitalize;
-  }
-
-  .product-card__cta {
-    font-weight: 500;
-  }
-  
-  .product-card:hover .product-card__cta {
-    color: var(--text-primary) !important;
-  }
-</style>
+</FieldShellLayout>

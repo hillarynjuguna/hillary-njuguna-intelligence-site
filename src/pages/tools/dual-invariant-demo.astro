@@ -1,17 +1,37 @@
 ---
 export const prerender = true;
-import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldShellLayout from '@layouts/FieldShellLayout.astro';
+import { buildFieldPrompt } from '@lib/field';
+
+const prompt = buildFieldPrompt('trace', {
+  title: 'Dual-Invariant demo',
+  nodeHref: '/tools/dual-invariant-demo',
+  primaryCorpusHref: '/corpus',
+});
 ---
 
-<BaseLayout
+<FieldShellLayout
   title="Dual-Invariant Demo"
   description="Interactive AURORA dual-invariant state machine demo for Temporal Sovereignty and Relational Integrity."
+  eyebrow="Verification specimen"
+  summary="A bounded verification surface for AURORA: one explicit state machine, two invariants, and a visible traversal path inside the same field language."
+  actions={[
+    { label: 'Read AURORA', href: '/research/aurora-consciousness-architecture', tone: 'secondary' },
+    { label: 'Return to Orchestra', href: '/orchestra-operation', tone: 'ghost' },
+    { label: 'Open corpus', href: '/corpus', tone: 'primary' },
+  ]}
+  prompt={prompt}
+  facts={[
+    { label: 'Mode', value: 'Trace formal verification logic' },
+    { label: 'Core rule', value: 'Both invariants must hold' },
+    { label: 'Surface', value: 'Interactive state machine specimen' },
+  ]}
 >
   <div class="dual-demo page-enter">
     <div class="container">
       <header class="demo-header">
         <p class="label demo-label">Tools / Verification</p>
-        <h1 class="demo-title">AURORA Dual-Invariant Demo</h1>
+        <h2 class="demo-title">AURORA Dual-Invariant Demo</h2>
         <p class="demo-desc">
           This interactive model implements the core AURORA ethical guarantee: an action is allowed if and only if
           both Temporal Sovereignty and Relational Integrity are satisfied. The logic follows the current FSA + RPA
@@ -174,7 +194,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       </section>
     </div>
   </div>
-</BaseLayout>
+</FieldShellLayout>
 
 <style>
   .dual-demo {

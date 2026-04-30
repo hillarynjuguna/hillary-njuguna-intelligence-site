@@ -3,6 +3,9 @@
   "type": "module",
   "version": "0.1.0",
   "scripts": {
+    "predev": "npm run build:graph",
+    "prestart": "npm run build:graph",
+    "prepreview": "npm run build",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "npm run validate:content && npm run build:graph && astro build",

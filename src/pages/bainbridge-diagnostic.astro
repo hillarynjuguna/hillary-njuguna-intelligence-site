@@ -1,120 +1,154 @@
 ---
 export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldHeader from '@components/field/FieldHeader.astro';
+import FieldRail from '@components/field/FieldRail.astro';
+import { buildFieldPrompt } from '@lib/field';
 
+const prompt = buildFieldPrompt('query', {
+  title: 'Bainbridge Diagnostic',
+  nodeHref: '/bainbridge-diagnostic',
+});
 ---
 
-<BaseLayout 
+<BaseLayout
   title="Bainbridge Diagnostic Tool"
   description="Run a live structural diagnostic of your organization's AI capability-governance gap."
 >
-  <div class="diagnostic-page page-enter">
-    <div class="container">
-      <header class="page-header">
-        <p class="label page-label">Instrument Node: B1</p>
-        <h1 class="page-title">Bainbridge Diagnostic</h1>
-        <p class="page-desc">
-          This is a live intake-to-output system. Input your organisation's AI deployment state to run the 
-          four-stage diagnostic and identify structural failure modes before they occur.
-        </p>
-      </header>
+  <div class="field-page page-enter">
+    <div class="container container--wide">
+      <FieldHeader
+        eyebrow="Instrument node"
+        title="Bainbridge Diagnostic"
+        summary="This is a live intake-to-output diagnostic surface. The point is not just to produce a score, but to expose the structure of the capability-governance gap while keeping the corpus behind it visible."
+        meta={[
+          { label: 'Mode', value: 'Query' },
+          { label: 'Frames', value: '4-stage diagnostic' },
+          { label: 'Output', value: 'Risk gap report' },
+        ]}
+        width="wide"
+        actions={[
+          { label: 'Open corpus', href: '/corpus', tone: 'ghost' },
+          { label: 'Read Bainbridge', href: '/research/bainbridge-warning', tone: 'secondary' },
+        ]}
+      />
 
-      <div class="diagnostic-interface" id="diagnostic-app">
-        <!-- Form Section -->
-        <div class="diagnostic-form" id="diagnostic-form">
-          <div class="form-group">
-            <label for="systems" class="label">AI Systems Deployed</label>
-            <textarea id="systems" placeholder="e.g., GPT-4o for customer support, custom RAG for legal, automated code review..."></textarea>
-          </div>
-          
-          <div class="form-group">
-            <label for="permissions" class="label">Permissions & Autonomy</label>
-            <textarea id="permissions" placeholder="What can these systems do autonomously? Do they have write access to databases? Can they trigger emails?"></textarea>
-          </div>
+      <div class="field-layout field-layout--wide">
+        <div class="field-main">
+          <div class="diagnostic-interface field-surface" id="diagnostic-app">
+            <div class="diagnostic-form" id="diagnostic-form">
+              <div class="form-group">
+                <label for="systems" class="label">AI systems deployed</label>
+                <textarea id="systems" placeholder="Describe the systems currently in play..."></textarea>
+              </div>
 
-          <div class="form-group">
-            <label for="governance" class="label">Governance Infrastructure</label>
-            <textarea id="governance" placeholder="What oversight exists? Who is accountable for failures? Is there live monitoring? (Be specific)"></textarea>
-          </div>
+              <div class="form-group">
+                <label for="permissions" class="label">Permissions & autonomy</label>
+                <textarea id="permissions" placeholder="What can these systems do autonomously?"></textarea>
+              </div>
 
-          <div class="form-group">
-            <label for="history" class="label">Incident History</label>
-            <textarea id="history" placeholder="Any past near-misses, hallucinations, or unexpected behaviors?"></textarea>
-          </div>
+              <div class="form-group">
+                <label for="governance" class="label">Governance infrastructure</label>
+                <textarea id="governance" placeholder="What oversight exists, and who is accountable for failures?"></textarea>
+              </div>
 
-          <button id="run-diagnostic" class="btn btn--primary">Run Diagnostic →</button>
+              <div class="form-group">
+                <label for="history" class="label">Incident history</label>
+                <textarea id="history" placeholder="Past near-misses, hallucinations, or unexpected behaviors..."></textarea>
+              </div>
+
+              <button id="run-diagnostic" class="btn btn--primary">Run diagnostic</button>
+            </div>
+
+            <div id="diagnostic-loading" class="hidden">
+              <div class="spinner"></div>
+              <p class="label">Synthesizing diagnostic...</p>
+            </div>
+
+            <div id="diagnostic-results" class="hidden">
+              <div class="results-header">
+                <h2 class="results-title">Diagnostic report</h2>
+                <div id="risk-badge" class="badge"></div>
+              </div>
+
+              <div class="score-grid">
+                <div class="score-card">
+                  <span class="label">Capability score</span>
+                  <div id="cap-score" class="score-val">0/10</div>
+                </div>
+                <div class="score-card">
+                  <span class="label">Governance score</span>
+                  <div id="gov-score" class="score-val">0/10</div>
+                </div>
+              </div>
+
+              <div class="results-content">
+                <div class="results-section">
+                  <h3 class="label">Executive summary</h3>
+                  <p id="results-summary"></p>
+                </div>
+
+                <div class="results-section">
+                  <h3 class="label">Bainbridge zones</h3>
+                  <ul id="results-zones" class="results-list"></ul>
+                </div>
+
+                <div class="results-section">
+                  <h3 class="label">Predictable failure modes</h3>
+                  <ul id="results-failures" class="results-list"></ul>
+                </div>
+
+                <div class="results-section">
+                  <h3 class="label">Closing the gap</h3>
+                  <ul id="results-recommendations" class="results-list"></ul>
+                </div>
+              </div>
+
+              <button id="reset-diagnostic" class="btn">New diagnostic</button>
+            </div>
+          </div>
         </div>
 
-        <!-- Loading State -->
-        <div id="diagnostic-loading" class="hidden">
-          <div class="spinner"></div>
-          <p class="label">Synthesizing Diagnostic...</p>
-        </div>
-
-        <!-- Results Section -->
-        <div id="diagnostic-results" class="hidden">
-          <div class="results-header">
-            <h2 class="results-title">Diagnostic Report</h2>
-            <div id="risk-badge" class="badge"></div>
+        <FieldRail
+          heading="Diagnostic field"
+          facts={[
+            { label: 'Mode', value: 'Query' },
+            { label: 'Frames', value: '4-stage diagnostic' },
+            { label: 'Output', value: 'Risk gap report' },
+          ]}
+          prompt={prompt}
+        >
+          <div class="field-panel">
+            <p class="field-panel__eyebrow label">Diagnostic logic</p>
+            <p class="diagnostic-note">Bainbridge surfaces the gap between deployed capability and real governance infrastructure. The useful output is not only the score. It is the shape of the mismatch.</p>
           </div>
-          
-          <div class="score-grid">
-            <div class="score-card">
-              <span class="label">Capability Score</span>
-              <div id="cap-score" class="score-val">0/10</div>
-            </div>
-            <div class="score-card">
-              <span class="label">Governance Score</span>
-              <div id="gov-score" class="score-val">0/10</div>
-            </div>
-          </div>
-
-          <div class="results-content">
-            <div class="results-section">
-              <h3 class="label">Executive Summary</h3>
-              <p id="results-summary"></p>
-            </div>
-
-            <div class="results-section">
-              <h3 class="label">Bainbridge Zones (Gaps)</h3>
-              <ul id="results-zones" class="results-list"></ul>
-            </div>
-
-            <div class="results-section">
-              <h3 class="label">Predictable Failure Modes</h3>
-              <ul id="results-failures" class="results-list"></ul>
-            </div>
-
-            <div class="results-section">
-              <h3 class="label">Closing the Gap</h3>
-              <ul id="results-recommendations" class="results-list"></ul>
-            </div>
-          </div>
-
-          <button id="reset-diagnostic" class="btn">New Diagnostic</button>
-        </div>
+        </FieldRail>
       </div>
     </div>
   </div>
 </BaseLayout>
 
 <style>
-  .diagnostic-page { padding: var(--space-24) 0; }
-  .page-header { margin-bottom: var(--space-16); max-width: 64ch; }
-  .page-label { color: var(--ember); margin-bottom: var(--space-4); }
-  .page-title { font-size: var(--text-5xl); margin-bottom: var(--space-6); }
-  .page-desc { font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.6; }
-
-  .diagnostic-interface {
-    background: var(--surface-2);
-    border: 1px solid var(--border-mid);
-    border-radius: var(--radius-lg);
-    padding: var(--space-10);
-    max-width: 800px;
+  .diagnostic-note {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-sm);
   }
 
-  .form-group { margin-bottom: var(--space-8); }
-  .form-group label { display: block; margin-bottom: var(--space-3); color: var(--text-tertiary); }
+  .diagnostic-interface {
+    max-width: none;
+  }
+
+  .form-group {
+    margin-bottom: var(--space-8);
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: var(--space-3);
+    color: var(--text-tertiary);
+  }
+
   .form-group textarea {
     width: 100%;
     background: var(--surface-3);
@@ -126,7 +160,9 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     font-family: var(--font-body);
   }
 
-  .hidden { display: none !important; }
+  .hidden {
+    display: none !important;
+  }
 
   #diagnostic-loading {
     text-align: center;
@@ -143,23 +179,81 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     margin: 0 auto var(--space-4);
   }
 
-  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
 
-  .results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-8); }
-  .results-title { font-size: var(--text-2xl); color: var(--pale-gold); }
-  
-  .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); margin-bottom: var(--space-10); }
-  .score-card { background: var(--surface-3); padding: var(--space-6); border-radius: var(--radius-md); text-align: center; }
-  .score-val { font-size: var(--text-3xl); font-family: var(--font-display); color: var(--ember); margin-top: var(--space-2); }
+  .results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-8);
+  }
 
-  .results-section { margin-bottom: var(--space-8); padding-bottom: var(--space-6); border-bottom: 1px solid var(--border-dim); }
-  .results-section:last-child { border-bottom: none; }
-  .results-section h3 { color: var(--ember); margin-bottom: var(--space-4); }
-  .results-list { list-style: none; padding: 0; }
-  .results-list li { margin-bottom: var(--space-3); color: var(--text-secondary); padding-left: var(--space-4); border-left: 2px solid var(--border-mid); }
+  .results-title {
+    font-size: var(--text-2xl);
+    color: var(--pale-gold);
+  }
 
-  .badge--critical { background: rgba(220, 38, 38, 0.2); color: #ef4444; border: 1px solid #ef4444; }
-  .badge--high { background: rgba(196, 112, 58, 0.2); color: var(--ember); border: 1px solid var(--ember); }
+  .score-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+  }
+
+  .score-card {
+    background: var(--surface-3);
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    text-align: center;
+  }
+
+  .score-val {
+    font-size: var(--text-3xl);
+    font-family: var(--font-display);
+    color: var(--ember);
+    margin-top: var(--space-2);
+  }
+
+  .results-section {
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .results-section:last-child {
+    border-bottom: none;
+  }
+
+  .results-section h3 {
+    color: var(--ember);
+    margin-bottom: var(--space-4);
+  }
+
+  .results-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .results-list li {
+    margin-bottom: var(--space-3);
+    color: var(--text-secondary);
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--border-mid);
+  }
+
+  .badge--critical {
+    background: rgba(220, 38, 38, 0.2);
+    color: #ef4444;
+    border: 1px solid #ef4444;
+  }
+
+  .badge--high {
+    background: rgba(196, 112, 58, 0.2);
+    color: var(--ember);
+    border: 1px solid var(--ember);
+  }
 </style>
 
 <script>
@@ -171,14 +265,14 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
   async function runDiagnostic() {
     const data = {
-      systems: (document.getElementById('systems') as HTMLTextAreaElement).value,
-      permissions: (document.getElementById('permissions') as HTMLTextAreaElement).value,
-      governance: (document.getElementById('governance') as HTMLTextAreaElement).value,
-      history: (document.getElementById('history') as HTMLTextAreaElement).value,
+      systems: document.getElementById('systems').value,
+      permissions: document.getElementById('permissions').value,
+      governance: document.getElementById('governance').value,
+      history: document.getElementById('history').value,
     };
 
     if (!data.systems || !data.governance) {
-      alert('Please fill in at least the Systems and Governance fields.');
+      alert('Please fill in at least the systems and governance fields.');
       return;
     }
 
@@ -193,24 +287,18 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       });
 
       const report = await res.json();
-      
-      // Populate results
-      (document.getElementById('cap-score') as HTMLElement).innerText = `${report.capabilityScore}/10`;
-      (document.getElementById('gov-score') as HTMLElement).innerText = `${report.governanceScore}/10`;
-      (document.getElementById('results-summary') as HTMLElement).innerText = report.summary;
-      
-      const riskBadge = document.getElementById('risk-badge') as HTMLElement;
+
+      document.getElementById('cap-score').innerText = `${report.capabilityScore}/10`;
+      document.getElementById('gov-score').innerText = `${report.governanceScore}/10`;
+      document.getElementById('results-summary').innerText = report.summary;
+
+      const riskBadge = document.getElementById('risk-badge');
       riskBadge.innerText = `${report.gapMagnitude} RISK GAP`;
       riskBadge.className = `badge badge--${report.gapMagnitude.toLowerCase()}`;
 
-      const zonesList = document.getElementById('results-zones') as HTMLElement;
-      zonesList.innerHTML = report.zones.map((z: any) => `<li><strong>${z.area}:</strong> ${z.risk}</li>`).join('');
-
-      const failuresList = document.getElementById('results-failures') as HTMLElement;
-      failuresList.innerHTML = report.failureModes.map((f: any) => `<li><strong>${f.mode}:</strong> ${f.predictability}</li>`).join('');
-
-      const recsList = document.getElementById('results-recommendations') as HTMLElement;
-      recsList.innerHTML = report.recommendations.map((r: any) => `<li>${r}</li>`).join('');
+      document.getElementById('results-zones').innerHTML = report.zones.map((zone) => `<li><strong>${zone.area}:</strong> ${zone.risk}</li>`).join('');
+      document.getElementById('results-failures').innerHTML = report.failureModes.map((failure) => `<li><strong>${failure.mode}:</strong> ${failure.predictability}</li>`).join('');
+      document.getElementById('results-recommendations').innerHTML = report.recommendations.map((recommendation) => `<li>${recommendation}</li>`).join('');
 
       loading?.classList.add('hidden');
       results?.classList.remove('hidden');

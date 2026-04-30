@@ -1,25 +1,24 @@
 ---
 export const prerender = true;
-import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldShellLayout from '@layouts/FieldShellLayout.astro';
+import FieldCard from '@components/field/FieldCard.astro';
 import { loadTaxonomyIndex, loadContentGraph } from '@lib/generated/loaders';
+import { buildFieldPrompt, countNodeNeighbors, getNeighborLabel, getNodeHref, getTagHref } from '@lib/field';
+import { formatDateShort } from '@lib/content';
 
 export async function getStaticPaths() {
   const taxonomy = await loadTaxonomyIndex();
-  
-  // Combine all keys from domains, themes, and tags
+
   const allTags = new Set([
     ...Object.keys(taxonomy.domains),
     ...Object.keys(taxonomy.themes),
-    ...Object.keys(taxonomy.tags)
+    ...Object.keys(taxonomy.tags),
   ]);
 
-  return Array.from(allTags).map(tag => {
-    const slug = tag.toLowerCase().replace(/\s+/g, '-');
-    return {
-      params: { tag: slug },
-      props: { originalTag: tag }
-    };
-  });
+  return Array.from(allTags).map((tag) => ({
+    params: { tag: tag.toLowerCase().replace(/\s+/g, '-') },
+    props: { originalTag: tag },
+  }));
 }
 
 const { tag } = Astro.params;
@@ -27,196 +26,64 @@ const { originalTag } = Astro.props;
 const taxonomy = await loadTaxonomyIndex();
 const graph = await loadContentGraph();
 
-// Find the group in any category using the original tag label
 const group = taxonomy.domains[originalTag] || taxonomy.themes[originalTag] || taxonomy.tags[originalTag];
 
 if (!group) {
   return Astro.redirect('/404');
 }
 
-// Get nodes from the graph
-const relatedNodes = graph.nodes.filter(node => 
-  group.contentIds.includes(node.id)
-).sort((a,b) => {
-  const dateA = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
-  const dateB = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
-  return dateB - dateA;
+const relatedNodes = graph.nodes
+  .filter((node) => group.contentIds.includes(node.id))
+  .sort((left, right) => {
+    const leftDate = left.publishedAt ? new Date(left.publishedAt).getTime() : 0;
+    const rightDate = right.publishedAt ? new Date(right.publishedAt).getTime() : 0;
+    return rightDate - leftDate;
+  });
+const prompt = buildFieldPrompt('trace', {
+  title: group.label,
+  nodeHref: `/tags/${tag}`,
+  primaryCorpusHref: '/corpus',
 });
-
-const title = `${group.label} | Oscillatory Fields`;
-const description = `All content related to ${group.label} in the Oscillatory Fields research corpus.`;
 ---
 
-<BaseLayout title={title} description={description} breadcrumbs={[{ name: 'Taxonomy', href: '/tags' }, { name: group.label, href: `/tags/${tag}` }]}>
-  <div class="tag-page">
-    <header class="tag-header" data-reveal>
-      <p class="label">Filtered Corpus</p>
-      <h1 class="tag-title">{group.label}</h1>
-      <p class="tag-count">{group.count} {group.count === 1 ? 'item' : 'items'} found.</p>
-    </header>
-
-    <div class="content-feed">
-      {relatedNodes.map((node) => (
-        <article class="feed-item" data-reveal>
-          <div class="feed-item__meta">
-            <span class="label feed-item__type">{node.contentType}</span>
-            {node.publishedAt && (
-               <time class="label feed-item__date">
-                 {new Date(node.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-               </time>
-            )}
-          </div>
-          
-          <div class="feed-item__content">
-            <h2 class="feed-item__title">
-              <a href={`/${node.sourceCollection}/${node.slug}`}>{node.title}</a>
-            </h2>
-            <p class="feed-item__description">{node.description}</p>
-            
-            <div class="feed-item__footer">
-              <div class="feed-item__tags">
-                {[...new Set([...node.domains, ...node.themes, ...node.tags])].slice(0, 4).map(t => (
-                  <span class="tag-label">#{t}</span>
-                ))}
-              </div>
-              <a href={`/${node.sourceCollection}/${node.slug}`} class="feed-item__link">Read</a>
-            </div>
-          </div>
-        </article>
-      ))}
-    </div>
+<FieldShellLayout
+  title={`${group.label} | Oscillatory Fields`}
+  description={`All content related to ${group.label} in the Oscillatory Fields research corpus.`}
+  eyebrow="Filtered corpus"
+  summary={`${group.count} ${group.count === 1 ? 'node' : 'nodes'} share this term across the corpus. Use this view to widen from one label into the local network around it.`}
+  breadcrumbs={[
+    { name: 'Taxonomy', href: '/tags' },
+    { name: group.label, href: `/tags/${tag}` },
+  ]}
+  meta={[{ label: 'Nodes', value: String(group.count) }]}
+  actions={[
+    { label: 'Open taxonomy', href: '/tags', tone: 'ghost' },
+    { label: 'Open corpus', href: '/corpus', tone: 'secondary' },
+  ]}
+  prompt={prompt}
+  facts={[
+    { label: 'Mode', value: 'Trace from one term into nearby nodes' },
+    { label: 'Category', value: taxonomy.domains[originalTag] ? 'Domain' : taxonomy.themes[originalTag] ? 'Theme' : 'Topic' },
+    { label: 'Node count', value: String(group.count) },
+  ]}
+  containerClass="container--wide"
+>
+  <div class="card-grid">
+    {relatedNodes.map((node) => (
+      <FieldCard
+        href={getNodeHref(node)}
+        accent={node.contentType === 'product' ? 'products' : node.contentType === 'clause' ? 'clauses' : node.contentType === 'digest' ? 'digest' : 'research'}
+        eyebrow={node.contentType}
+        title={node.title}
+        summary={node.description}
+        meta={[
+          ...(node.publishedAt ? [formatDateShort(new Date(node.publishedAt))] : []),
+          node.crystallization,
+        ]}
+        chips={[...new Set([...node.domains, ...node.tags])].slice(0, 4).map((term) => ({ label: term, href: getTagHref(term) }))}
+        neighborhoodLabel={getNeighborLabel(countNodeNeighbors(graph, node.id))}
+        linkLabel="Open node"
+      />
+    ))}
   </div>
-</BaseLayout>
-
-<style>
-  .tag-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: var(--space-12) var(--space-6);
-  }
-
-  .tag-header {
-    margin-bottom: var(--space-16);
-    border-bottom: 1px solid var(--border-dim);
-    padding-bottom: var(--space-8);
-  }
-
-  .tag-title {
-    font-family: var(--font-display);
-    font-size: var(--text-4xl);
-    font-weight: 700;
-    margin: var(--space-2) 0;
-    color: var(--text-bright);
-  }
-
-  .tag-count {
-    color: var(--accent-main);
-    font-weight: 600;
-    font-size: var(--text-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .content-feed {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-12);
-  }
-
-  .feed-item {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: var(--space-8);
-    position: relative;
-    padding-bottom: var(--space-12);
-    border-bottom: 1px solid var(--border-dim);
-  }
-
-  .feed-item:last-child {
-    border-bottom: none;
-  }
-
-  .feed-item__meta {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    align-items: flex-start;
-  }
-
-  .feed-item__type {
-    background: var(--bg-hover);
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
-    color: var(--text-bright);
-    white-space: nowrap;
-    text-transform: capitalize;
-  }
-
-  .feed-item__date {
-    color: var(--text-dim);
-    font-size: var(--text-xs);
-  }
-
-  .feed-item__title {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    font-weight: 600;
-    margin-bottom: var(--space-3);
-    line-height: 1.2;
-  }
-
-  .feed-item__title a {
-    color: var(--text-bright);
-    text-decoration: none;
-    transition: color 0.3s var(--ease-out);
-  }
-
-  .feed-item__title a:hover {
-    color: var(--accent-main);
-  }
-
-  .feed-item__description {
-    color: var(--text-main);
-    font-size: var(--text-base);
-    line-height: 1.6;
-    margin-bottom: var(--space-6);
-  }
-
-  .feed-item__footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .feed-item__tags {
-    display: flex;
-    gap: var(--space-3);
-  }
-
-  .tag-label {
-    font-size: var(--text-xs);
-    color: var(--accent-main);
-    opacity: 0.7;
-  }
-
-  .feed-item__link {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--text-bright);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  @media (max-width: 768px) {
-    .feed-item {
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
-    }
-
-    .feed-item__meta {
-      flex-direction: row;
-      justify-content: space-between;
-      width: 100%;
-    }
-  }
-</style>
+</FieldShellLayout>

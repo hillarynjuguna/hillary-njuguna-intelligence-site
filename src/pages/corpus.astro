@@ -1,165 +1,89 @@
 ---
 export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldHeader from '@components/field/FieldHeader.astro';
+import FieldRail from '@components/field/FieldRail.astro';
 import CorpusGraph from '@components/ui/CorpusGraph.astro';
 import { loadContentGraph } from '@lib/generated/loaders';
+import { buildFieldPrompt } from '@lib/field';
 
 const graph = await loadContentGraph();
-
-const title = "Research Corpus | Oscillatory Fields";
-const description = "An interactive visualization of the Oscillatory Fields intelligence architecture. Explore the nodes and edges of our research, products, and legal infrastructure.";
+const prompt = buildFieldPrompt('orient', {
+  title: 'Research Corpus',
+  nodeHref: '/corpus',
+  primaryCorpusHref: '/corpus',
+});
 ---
 
-<BaseLayout title={title} description={description} breadcrumbs={[{ name: 'Corpus', href: '/corpus' }]}>
-  <div class="corpus-page">
-    <header class="page-header" data-reveal>
-      <div class="header-main">
-        <p class="label accent">Interactive Map</p>
-        <h1 class="page-title h1">Research Corpus</h1>
-        <p class="page-subtitle">A semantic layer for AI systems. Drag to explore, scroll to zoom, click to dive into specific research streams.</p>
-      </div>
+<BaseLayout
+  title="Research Corpus | Oscillatory Fields"
+  description="An interactive visualization of the Oscillatory Fields intelligence architecture. Explore the nodes and edges of our research, products, and legal infrastructure."
+>
+  <div class="field-page page-enter">
+    <div class="container container--wide">
+      <FieldHeader
+        eyebrow="Interactive map"
+        title="Research Corpus"
+        summary="The corpus is not only an archive of pages. It is a semantic field of authored nodes, typed relations, and governance-relevant adjacencies."
+        meta={[
+          { label: 'Nodes', value: String(graph.nodes.length) },
+          { label: 'Relations', value: String(graph.edges.length) },
+          { label: 'Vectors', value: String(new Set(graph.nodes.flatMap((node) => node.tags)).size) },
+        ]}
+        width="wide"
+        actions={[
+          { label: 'Browse taxonomy', href: '/tags', tone: 'ghost' },
+          { label: 'Ask the field', href: '/orchestra-operation', tone: 'secondary' },
+        ]}
+      />
 
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span class="stat-value">{graph.nodes.length}</span>
-          <span class="stat-label">Intelligence Nodes</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">{graph.edges.length}</span>
-          <span class="stat-label">Semantic Relations</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">{new Set(graph.nodes.flatMap(n => n.tags)).size}</span>
-          <span class="stat-label">Taxonomy Vectors</span>
-        </div>
-      </div>
-    </header>
+      <div class="field-layout field-layout--wide">
+        <div class="field-main field-stack">
+          <div class="field-surface">
+            <CorpusGraph data={graph} />
+          </div>
 
-    <div class="graph-wrapper" data-reveal>
-      <CorpusGraph data={graph} />
+          <div class="card-grid corpus-panels">
+            <div class="field-panel">
+              <h2>Semantic layer</h2>
+              <p>
+                Every research entry, digest note, product surface, and governance clause is a node.
+                Relations are derived from authored metadata, not bolted on after the fact.
+              </p>
+            </div>
+            <div class="field-panel">
+              <h2>Neighborhood behavior</h2>
+              <p>
+                Use the graph to widen from one node into nearby structures. The goal is not map-first spectacle. It is a readable local field around authored documents.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <FieldRail
+          heading="Corpus orientation"
+          facts={[
+            { label: 'Nodes', value: String(graph.nodes.length) },
+            { label: 'Relations', value: String(graph.edges.length) },
+            { label: 'Vectors', value: String(new Set(graph.nodes.flatMap((node) => node.tags)).size) },
+          ]}
+          prompt={prompt}
+        >
+          <div class="field-panel">
+            <p class="field-panel__eyebrow label">Graph visibility</p>
+            <p>
+              The graph stays present as low-level orientation first. Widen only when you need a broader neighborhood or a cross-cutting route.
+            </p>
+          </div>
+        </FieldRail>
+      </div>
     </div>
-
-    <section class="corpus-info" data-reveal>
-      <div class="info-grid">
-        <div class="info-cell">
-          <h3>The Semantic Layer</h3>
-          <p>Our corpus isn't just a collection of Markdown files; it's a directed graph of intelligence. Every research paper, digest entry, and product is a node connected by themes, domains, and explicit references.</p>
-        </div>
-        <div class="info-cell">
-          <h3>Physics-Driven Discovery</h3>
-          <p>The visualization uses a force-directed simulation where related content pulls together. This reveals hidden clusters in our thinking—where technical research overlaps with institutional governance.</p>
-        </div>
-      </div>
-    </section>
   </div>
 </BaseLayout>
 
 <style>
-  .corpus-page {
-    max-width: var(--container-xl);
-    margin: 0 auto;
-    padding: var(--space-12) var(--space-6);
-  }
-
-  .page-header {
-    margin-bottom: var(--space-16);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-12);
-  }
-
-  .header-main {
-    max-width: 600px;
-  }
-
-  .page-title {
-    margin: var(--space-3) 0 var(--space-4);
-  }
-
-  .page-subtitle {
-    font-size: var(--text-lg);
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: var(--space-6);
-  }
-
-  .stat-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-dim);
-    padding: var(--space-6);
-    border-radius: var(--radius-lg);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    transition: border-color 0.3s ease;
-  }
-
-  .stat-card:hover {
-    border-color: var(--accent-main);
-  }
-
-  .stat-value {
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
-    font-weight: 700;
-    color: var(--text-bright);
-  }
-
-  .stat-label {
-    font-size: var(--text-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-dim);
-    font-weight: 600;
-  }
-
-  .graph-wrapper {
-    margin-bottom: var(--space-16);
-    box-shadow: 0 40px 100px -20px rgba(0,0,0,0.5);
-  }
-
-  .corpus-info {
-    border-top: 1px solid var(--border-dim);
-    padding-top: var(--space-16);
-  }
-
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-12);
-  }
-
-  .info-cell h3 {
-    font-family: var(--font-display);
-    font-size: var(--text-xl);
-    font-weight: 600;
-    margin-bottom: var(--space-4);
-    color: var(--text-bright);
-  }
-
-  .info-cell p {
-    color: var(--text-dim);
-    line-height: 1.7;
-  }
-
-  .accent {
-    color: var(--accent-main);
-    font-weight: 600;
-    letter-spacing: 0.05em;
-  }
-
-  @media (max-width: 768px) {
-    .corpus-page {
-      padding: var(--space-8) var(--space-4);
-    }
-    
-    .stats-grid {
-      grid-template-columns: 1fr;
-    }
+  .corpus-panels p {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
   }
 </style>

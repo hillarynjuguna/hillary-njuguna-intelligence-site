@@ -6,7 +6,7 @@ import type { RelationInput } from './relations';
 
 export type CrystallizationState = 'emergent' | 'developing' | 'crystallized';
 export type GovernanceRelevance = 'none' | 'adjacent' | 'direct';
-export type ContentType = 'research' | 'digest' | 'product' | 'clause' | 'signal';
+export type ContentType = 'research' | 'digest' | 'product' | 'clause' | 'field' | 'signal';
 export type PublishStatus = 'draft' | 'published' | 'archived';
 
 export interface BaseContentFrontmatter {

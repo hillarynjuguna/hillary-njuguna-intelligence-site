@@ -15,6 +15,7 @@ const COLLECTION_PREFIX: Record<CollectionName, string> = {
   digest: 'digest',
   products: 'product',
   clauses: 'clause',
+  'field-signals': 'field-signal',
 };
 
 export function deriveId(collection: CollectionName, slug: string): string {
@@ -28,6 +29,7 @@ const COLLECTION_TYPE: Record<CollectionName, ContentType> = {
   digest: 'digest',
   products: 'product',
   clauses: 'clause',
+  'field-signals': 'field',
 };
 
 // ── Publish status derivation ─────────────────────────────────────────────────
@@ -134,6 +136,21 @@ export function normalizeEntry(entry: RawEntry): GraphNode {
   if (collection === 'products') {
     node.relatedResearch = toStringArray(data.relatedResearch);
     node.governanceNotes = toStringArray(data.governanceNotes);
+  }
+
+  if (collection === 'field-signals') {
+    node.lexiconCandidates = toStringArray(data.lexiconCandidates);
+    node.crossReferences = toStringArray(data.crossReferences);
+    node.themes = Array.from(new Set([
+      ...node.themes,
+      ...toStringArray(data.lexiconCandidates),
+      ...toStringArray(data.crossReferences),
+    ]));
+    node.tags = Array.from(new Set([
+      ...node.tags,
+      ...toStringArray(data.newTerms),
+      ...toStringArray(data.lexiconCandidates),
+    ]));
   }
 
   return node;

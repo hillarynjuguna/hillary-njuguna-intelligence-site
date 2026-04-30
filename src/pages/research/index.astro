@@ -1,198 +1,70 @@
 ---
 export const prerender = true;
-import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldShellLayout from '@layouts/FieldShellLayout.astro';
+import FieldListItem from '@components/field/FieldListItem.astro';
 import { getAllResearchEntries, formatDate } from '@lib/content';
-import StatusIndicator from '@components/ui/StatusIndicator.astro';
+import { loadContentGraph } from '@lib/generated/loaders';
+import { buildFieldPrompt, countNodeNeighbors, findGraphNode, getNeighborLabel } from '@lib/field';
 
 const entries = await getAllResearchEntries();
+const graph = await loadContentGraph();
+const prompt = buildFieldPrompt('orient', {
+  title: 'Research archive',
+  nodeHref: '/research',
+  primaryCorpusHref: '/corpus',
+});
 ---
 
-<BaseLayout
+<FieldShellLayout
   title="Research"
   description="The Oscillatory Fields research corpus, DCFB theory, constitutional AI governance, cognitive infrastructure readiness, and the architecture of distributed intelligence."
+  eyebrow="Archive"
+  summary="Frameworks, essays, and theoretical architecture from active work across distributed cognition, constitutional AI governance, and institutional intelligence."
+  actions={[
+    { label: 'Intelligence digest', href: '/digest', tone: 'ghost' },
+    { label: 'Open corpus', href: '/corpus', tone: 'secondary' },
+  ]}
+  prompt={prompt}
+  facts={[
+    { label: 'Entries', value: String(entries.length) },
+    { label: 'Mode', value: 'Orient into doctrine' },
+    { label: 'Surface', value: 'Archive plus graph-backed neighborhood counts' },
+  ]}
 >
-  <div class="page page-enter">
-    <div class="container">
-      <header class="page-header">
-        <p class="label page-label" style="color: var(--accent-research)">Archive</p>
-        <h1 class="page-title">Research</h1>
-        <p class="page-desc">
-          Frameworks, essays, and theoretical architecture from 18 months of active research
-          across distributed cognition, constitutional AI governance, and the design of
-          intelligent institutional systems.
-        </p>
-        <div class="page-links">
-          <a href="/digest" class="label page-link">Intelligence Digest</a>
-          <a href="/clauses" class="label page-link">Clauses</a>
-        </div>
-      </header>
+  {entries.length === 0 ? (
+    <p class="empty label">Research entries loading...</p>
+  ) : (
+    <div class="field-stack">
+      {entries.map((entry) => {
+        const node = findGraphNode(graph, {
+          id: entry.data.id,
+          slug: entry.slug,
+          sourceCollection: 'research',
+        });
+        const neighborCount = countNodeNeighbors(graph, node?.id);
 
-      {entries.length === 0 ? (
-        <p class="empty label">Research entries loading…</p>
-      ) : (
-        <div class="research-list">
-          {entries.map((entry) => (
-            <a href={`/research/${entry.slug}`} class="research-entry hover-lift accent-border-research" data-reveal>
-              <div class="research-entry__meta">
-                <time class="label" datetime={entry.data.publishedAt.toISOString()}>
-                  {formatDate(entry.data.publishedAt)}
-                </time>
-                <StatusIndicator status={entry.data.crystallization} class="entry-status" />
-                {entry.data.featured && (
-                  <span class="badge badge--live">Featured</span>
-                )}
-              </div>
-              <div class="research-entry__body">
-                <h2 class="research-entry__title">{entry.data.title}</h2>
-                <p class="research-entry__summary">{entry.data.summary}</p>
-                <div class="research-entry__tags">
-                  {entry.data.themes.slice(0, 3).map((t) => (
-                    <span class="tag">{t}</span>
-                  ))}
-                </div>
-              </div>
-              <span class="research-entry__arrow">→</span>
-            </a>
-          ))}
-        </div>
-      )}
+        return (
+          <FieldListItem
+            href={`/research/${entry.slug}`}
+            accent="research"
+            eyebrow={entry.data.researchType ?? 'Research node'}
+            title={entry.data.title}
+            summary={entry.data.summary}
+            aside={[
+              formatDate(entry.data.publishedAt),
+              entry.data.crystallization,
+            ]}
+            chips={entry.data.themes.slice(0, 3).map((theme) => ({ label: theme }))}
+            footer={getNeighborLabel(neighborCount, 'Standalone node')}
+            badge={entry.data.featured ? 'Featured' : undefined}
+          />
+        );
+      })}
     </div>
-  </div>
-</BaseLayout>
+  )}
+</FieldShellLayout>
 
 <style>
-  .page {
-    padding: var(--space-24) 0 var(--space-32);
-  }
-
-  .page-header {
-    max-width: 64ch;
-    margin-bottom: var(--space-16);
-    padding-bottom: var(--space-10);
-    border-bottom: 1px solid var(--border-dim);
-  }
-
-  .page-label {
-    margin-bottom: var(--space-3);
-  }
-
-  .page-title {
-    font-size: var(--text-5xl);
-    margin-bottom: var(--space-5);
-  }
-
-  @media (max-width: 768px) {
-    .page-title { font-size: var(--text-4xl); }
-  }
-
-  .page-desc {
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-  }
-
-  .page-links {
-    display: flex;
-    gap: var(--space-5);
-    flex-wrap: wrap;
-    margin-top: var(--space-5);
-  }
-
-  .page-link {
-    color: var(--text-tertiary);
-    text-decoration: none;
-  }
-
-  .page-link:hover {
-    color: var(--ember);
-  }
-
-  .research-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .research-entry {
-    display: grid;
-    grid-template-columns: 180px 1fr auto;
-    gap: var(--space-8);
-    align-items: start;
-    padding: var(--space-10) var(--space-8);
-    border-bottom: 1px solid var(--border-dim);
-    border-left: 1px solid var(--border-dim);
-    text-decoration: none;
-    transition: all var(--duration-mid) var(--ease-out);
-    background: var(--surface-1);
-  }
-
-  @media (max-width: 768px) {
-    .research-entry {
-      grid-template-columns: 1fr;
-      gap: var(--space-3);
-      padding: var(--space-6) var(--space-4);
-    }
-
-    .research-entry__arrow {
-      display: none;
-    }
-  }
-
-  .research-entry:hover {
-    background: var(--surface-2);
-    border-color: var(--border-mid);
-  }
-
-  .research-entry__meta {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    padding-top: 3px;
-  }
-
-  .research-entry__meta .label {
-    color: var(--text-tertiary);
-  }
-
-  .entry-status {
-    margin-top: 2px;
-  }
-
-  .research-entry__title {
-    font-size: var(--text-2xl);
-    color: var(--text-primary);
-    margin-bottom: var(--space-3);
-    line-height: var(--leading-snug);
-  }
-
-  .research-entry:hover .research-entry__title {
-    color: var(--text-primary);
-  }
-
-  .research-entry__summary {
-    font-size: var(--text-base);
-    color: var(--text-tertiary);
-    line-height: var(--leading-relaxed);
-    margin-bottom: var(--space-4);
-  }
-
-  .research-entry__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
-  .research-entry__arrow {
-    color: var(--text-tertiary);
-    font-size: var(--text-lg);
-    padding-top: 3px;
-    transition: color var(--duration-fast) var(--ease-out);
-  }
-
-  .research-entry:hover .research-entry__arrow {
-    color: var(--ember);
-  }
-
   .empty {
     color: var(--text-tertiary);
     padding: var(--space-12) 0;

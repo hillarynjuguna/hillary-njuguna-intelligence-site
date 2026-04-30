@@ -1,0 +1,22 @@
+---
+import type { FieldPromptSpec } from '@lib/field';
+
+interface Props {
+  prompt: FieldPromptSpec;
+}
+
+const { prompt } = Astro.props;
+---
+
+<div class:list={['field-prompt', `field-prompt--${prompt.posture}`, `field-prompt--${prompt.mode}`]}>
+  <p class="field-prompt__eyebrow label">{prompt.eyebrow}</p>
+  <h3 class="field-prompt__title">{prompt.title}</h3>
+  <p class="field-prompt__description">{prompt.description}</p>
+  <div class="field-prompt__actions">
+    {prompt.links.map((link) => (
+      <a href={link.href} class:list={['btn', `btn--${link.tone ?? 'ghost'}`]}>
+        {link.label}
+      </a>
+    ))}
+  </div>
+</div>
