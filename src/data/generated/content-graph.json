@@ -501,7 +501,7 @@
       "description": "A practitioner doctrine for why AI governance fails before it looks like failure, and what durable infrastructure actually requires.",
       "contentType": "research",
       "status": "published",
-      "crystallization": "developing",
+      "crystallization": "crystallized",
       "governanceRelevance": "direct",
       "domains": [
         "governance",
@@ -526,15 +526,16 @@
         "bainbridge-core"
       ],
       "sourceCollection": "research",
-      "publishedAt": "2026-03-01T00:00:00.000Z",
+      "publishedAt": "2026-04-30T00:00:00.000Z",
       "unresolvedEdges": [
-        "What is the minimum viable governance profile for a given capability level?",
-        "How do Bainbridge zones interact when multiple gap areas co-exist?"
+        "The mathematical limit of Bounded Verifiability Latency (BVL) in high-frequency trading specimens.",
+        "The cross-jurisdictional portability of Evidence Monoids under the EU AI Act's technical standards."
       ],
       "keyClaims": [
         "Capability is moving faster than the infrastructure that makes capability safe to depend on.",
         "Governance failure is usually visible before the incident, but only if an institution is measuring the right things.",
-        "Action classification, behavioral contracts, instruction-layer governance, and accountable ownership keep the problem of AI governance solvable."
+        "Durable governance requires structural impossibility (SAI) rather than textual discouragement.",
+        "Reasoning and execution must be segregated (CES) to prevent intent-action fusion."
       ]
     },
     {
@@ -1748,54 +1749,6 @@
       "confidence": "high",
       "explanation": "The Bainbridge Warning is the institutional diagnostic. AURORA is the architectural answer.",
       "provenance": [],
-      "manual": true,
-      "inferred": false
-    },
-    {
-      "source": "research-bainbridge-warning",
-      "target": "research-dcfb",
-      "type": "extends",
-      "confidence": "high",
-      "explanation": "The Bainbridge Warning is the applied diagnostic operationalisation of DCFB — translating constitutional principles into an institutional doctrine of operational readiness.",
-      "provenance": [
-        "section: What Institutions Must Build"
-      ],
-      "manual": true,
-      "inferred": false
-    },
-    {
-      "source": "research-bainbridge-warning",
-      "target": "product-bainbridge-warning",
-      "type": "prototype_for",
-      "confidence": "high",
-      "explanation": "This doctrine is the foundation for the Bainbridge assessment engagement.",
-      "provenance": [
-        "section: A Bridge to Practice"
-      ],
-      "manual": true,
-      "inferred": false
-    },
-    {
-      "source": "research-bainbridge-warning",
-      "target": "product-clearbid",
-      "type": "example_of",
-      "confidence": "high",
-      "explanation": "ClearBid is a narrow execution-governance specimen of the Bainbridge Warning logic in a transactional domain where consequence, gating, and auditability can be made visible.",
-      "provenance": [
-        "section: Related Specimens"
-      ],
-      "manual": true,
-      "inferred": false
-    },
-    {
-      "source": "research-bainbridge-warning",
-      "target": "research-trust-irreversibility-residue",
-      "type": "depends_on",
-      "confidence": "high",
-      "explanation": "The Bainbridge Warning depends on the irreversibility account of trust — where consequence accumulates faster than governance, failure becomes structurally legible.",
-      "provenance": [
-        "section: Why Governance Fails Before It Looks Like Failure"
-      ],
       "manual": true,
       "inferred": false
     },
@@ -4740,11 +4693,11 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-05-01T05:39:49.711Z",
+  "generatedAt": "2026-05-01T07:02:45.642Z",
   "stats": {
     "totalNodes": 44,
-    "totalEdges": 324,
-    "manualEdges": 91,
+    "totalEdges": 320,
+    "manualEdges": 87,
     "inferredEdges": 233,
     "byType": {
       "digest": 15,
