@@ -1,0 +1,617 @@
+---
+// CDLRLedger.astro — Cognitive Distributed Ledger Record
+// Module 04: The Assurance Ledger — hash-chained, append-only audit spine
+// Evidence Monoid (E, ⊕, ε): every governance action produces exactly one element.
+// SSE-fed from FastAPI /api/governance-stream; static demo mode when offline.
+---
+
+<div class="cdlr-shell" id="cdlr-ledger">
+  <div class="cdlr-header">
+    <div class="cdlr-header__left">
+      <span class="cdlr-eyebrow">Assurance Ledger — Module 04</span>
+      <p class="cdlr-caption">
+        Hash-chained Evidence Monoid. Every governance action produces exactly one entry.
+        Tamper-evident by construction.
+      </p>
+    </div>
+    <div class="cdlr-header__right">
+      <div class="cdlr-stream-status" id="cdlr-status">
+        <span class="cdlr-status-dot" id="cdlr-dot"></span>
+        <span class="cdlr-status-text" id="cdlr-status-text">Connecting...</span>
+      </div>
+      <div class="cdlr-counter">
+        <span class="cdlr-counter__num" id="cdlr-count">0</span>
+        <span class="cdlr-counter__label">entries</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cdlr-chain" id="cdlr-chain" aria-live="polite" aria-label="Assurance ledger entries">
+    <!-- Entries injected by JS -->
+    <div class="cdlr-empty" id="cdlr-empty">
+      <span class="cdlr-empty__symbol">ε</span>
+      <span class="cdlr-empty__label">Identity element — ledger awaiting first entry</span>
+    </div>
+  </div>
+
+  <div class="cdlr-footer">
+    <div class="cdlr-monoid">
+      <span class="cdlr-monoid__label">Evidence Monoid</span>
+      <span class="cdlr-monoid__expr">(E, ⊕, ε)</span>
+      <span class="cdlr-monoid__axiom">Associativity · Identity · Append-only</span>
+    </div>
+    <button class="cdlr-clear-btn" id="cdlr-clear" type="button">Clear display</button>
+  </div>
+</div>
+
+<script>
+  const BACKEND = 'http://localhost:8000';
+  const MAX_ENTRIES = 40;
+
+  // ── Demo entries for static/offline mode ─────────────────────
+  const DEMO_ENTRIES = [
+    { id: 'e001', type: 'PERMIT_GRANTED', node: 'τ→φ', class: 0, hash: 'a3f7b2c1', prev: 'ε', ts: -4200, msg: 'φ-node validated read query permit. Consequence class 0.' },
+    { id: 'e002', type: 'PROPOSAL_SUBMITTED', node: 'λ₁→φ', class: 0, hash: 'd9e4a812', prev: 'a3f7b2c1', ts: -3800, msg: 'λ₁ (Witness) submitted analysis proposal. Awaiting φ validation.' },
+    { id: 'e003', type: 'PERMIT_GRANTED', node: 'φ→λ₁', class: 1, hash: 'c2b5f091', prev: 'd9e4a812', ts: -3100, msg: 'Class 1 permit issued. File write authorized after φ coherence check.' },
+    { id: 'e004', type: 'EVIDENCE_LOGGED', node: 'μ→ledger', class: 1, hash: '87a3d62e', prev: 'c2b5f091', ts: -2400, msg: 'μ-node appended Evidence Monoid element. Chain integrity verified.' },
+    { id: 'e005', type: 'TAU_NOTIFIED', node: 'φ→τ', class: 2, hash: 'f1c90b44', prev: '87a3d62e', ts: -1700, msg: 'Class 2 action proposed. τ-node notified per mandatory protocol.' },
+    { id: 'e006', type: 'PERMIT_GRANTED', node: 'τ→φ→λ₂', class: 2, hash: '3e7d2a59', prev: 'f1c90b44', ts: -900, msg: 'τ explicitly approved Class 2 action. φ forwarded permit to λ₂.' },
+    { id: 'e007', type: 'EVIDENCE_LOGGED', node: 'μ→ledger', class: 2, hash: '6b4c1f82', prev: '3e7d2a59', ts: -200, msg: 'DB write executed. Evidence element appended. Hash chain intact.' },
+  ];
+
+  type LedgerEntry = {
+    id: string;
+    type: string;
+    node: string;
+    class: number;
+    hash: string;
+    prev: string;
+    ts: number;
+    msg: string;
+  };
+
+  const CLASS_COLORS: Record<number, string> = {
+    0: '#4db87a',
+    1: '#a3d977',
+    2: '#facc15',
+    3: '#f97316',
+    4: '#f87171',
+  };
+
+  const TYPE_LABELS: Record<string, string> = {
+    PERMIT_GRANTED: 'Permit granted',
+    PROPOSAL_SUBMITTED: 'Proposal submitted',
+    EVIDENCE_LOGGED: 'Evidence logged',
+    TAU_NOTIFIED: 'τ notified',
+    TAU_LOCK_TRIGGERED: 'τ-Lock triggered',
+    PERMIT_DENIED: 'Permit denied',
+    STATE_UPDATE: 'State update',
+  };
+
+  function initCDLR() {
+    const chain = document.getElementById('cdlr-chain');
+    const empty = document.getElementById('cdlr-empty');
+    const dot = document.getElementById('cdlr-dot');
+    const statusText = document.getElementById('cdlr-status-text');
+    const countEl = document.getElementById('cdlr-count');
+    const clearBtn = document.getElementById('cdlr-clear');
+    if (!chain) return;
+
+    let entryCount = 0;
+    const now = Date.now();
+
+    function setStatus(online: boolean) {
+      if (!dot || !statusText) return;
+      dot.className = `cdlr-status-dot${online ? ' cdlr-status-dot--on' : ''}`;
+      statusText.textContent = online ? 'Live stream' : 'Demo mode';
+    }
+
+    function formatRelative(ts: number): string {
+      const delta = Date.now() - (ts < 0 ? now + ts * 1000 : ts);
+      const s = Math.round(delta / 1000);
+      if (s < 5) return 'just now';
+      if (s < 60) return `${s}s ago`;
+      return `${Math.round(s / 60)}m ago`;
+    }
+
+    function appendEntry(entry: LedgerEntry) {
+      if (!chain) return;
+      if (empty) empty.style.display = 'none';
+
+      const el = document.createElement('div');
+      el.className = 'cdlr-entry cdlr-entry--enter';
+      el.dataset.id = entry.id;
+
+      const color = CLASS_COLORS[entry.class] ?? '#9ca3af';
+      const typeLabel = TYPE_LABELS[entry.type] ?? entry.type;
+      const ts = entry.ts < 0 ? now + entry.ts * 1000 : entry.ts;
+
+      el.innerHTML = `
+        <div class="cdlr-entry__chain-line" aria-hidden="true"></div>
+        <div class="cdlr-entry__node" style="--entry-color: ${color}" title="Consequence class ${entry.class}">
+          <div class="cdlr-entry__dot"></div>
+        </div>
+        <div class="cdlr-entry__body">
+          <div class="cdlr-entry__top">
+            <span class="cdlr-entry__type" style="color: ${color}">${typeLabel}</span>
+            <span class="cdlr-entry__edge">${entry.node}</span>
+            <time class="cdlr-entry__ts" datetime="${new Date(ts).toISOString()}">${formatRelative(ts)}</time>
+          </div>
+          <p class="cdlr-entry__msg">${entry.msg}</p>
+          <div class="cdlr-entry__hashes">
+            <span class="cdlr-hash" title="Entry hash">
+              <span class="cdlr-hash__label">hash</span>
+              <code>${entry.hash}</code>
+            </span>
+            <span class="cdlr-hash" title="Previous hash">
+              <span class="cdlr-hash__label">prev</span>
+              <code>${entry.prev}</code>
+            </span>
+            <span class="cdlr-class-badge" style="--entry-color: ${color}">
+              C${entry.class}
+            </span>
+          </div>
+        </div>
+      `;
+
+      // Prepend newest on top, enforce max
+      chain.insertBefore(el, chain.firstChild);
+      requestAnimationFrame(() => el.classList.remove('cdlr-entry--enter'));
+
+      entryCount++;
+      if (countEl) countEl.textContent = String(entryCount);
+
+      // Trim old entries
+      const all = chain.querySelectorAll('.cdlr-entry');
+      if (all.length > MAX_ENTRIES) {
+        all[all.length - 1].remove();
+      }
+    }
+
+    // ── Load demo entries ──────────────────────────────────────
+    function loadDemoEntries() {
+      // Load in chronological order (oldest first) so newest ends at top
+      [...DEMO_ENTRIES].reverse().forEach(e => appendEntry(e));
+    }
+
+    // ── SSE connection ─────────────────────────────────────────
+    let es: EventSource | null = null;
+    let demoLoaded = false;
+    let connectTimer: ReturnType<typeof setTimeout> | null = null;
+
+    function connect() {
+      try {
+        es = new EventSource(`${BACKEND}/api/governance-stream`);
+
+        const openHandler = () => {
+          setStatus(true);
+          // Clear demo entries on live connection
+          if (demoLoaded) {
+            chain.querySelectorAll('.cdlr-entry').forEach(e => e.remove());
+            entryCount = 0;
+            if (countEl) countEl.textContent = '0';
+            if (empty) empty.style.display = '';
+            demoLoaded = false;
+          }
+        };
+
+        const stateHandler = (ev: Event) => {
+          try {
+            const data = JSON.parse((ev as MessageEvent).data);
+            appendEntry({
+              id: data.entry_id ?? `live-${Date.now()}`,
+              type: data.event_type ?? 'STATE_UPDATE',
+              node: data.edge ?? data.node ?? 'system',
+              class: data.consequence_class ?? data.active_class ?? 0,
+              hash: data.hash ?? data.entry_hash ?? '????????',
+              prev: data.prev_hash ?? '????????',
+              ts: data.timestamp ? new Date(data.timestamp).getTime() : Date.now(),
+              msg: data.message ?? data.msg ?? JSON.stringify(data),
+            });
+          } catch {}
+        };
+
+        const errHandler = () => {
+          setStatus(false);
+          es?.close();
+          es = null;
+          if (!demoLoaded) {
+            loadDemoEntries();
+            demoLoaded = true;
+          }
+          connectTimer = setTimeout(connect, 10000);
+        };
+
+        es.addEventListener('open', openHandler);
+        es.addEventListener('state_update', stateHandler);
+        es.addEventListener('cdlr_entry', stateHandler);
+        es.addEventListener('error', errHandler);
+      } catch {
+        setStatus(false);
+        if (!demoLoaded) {
+          loadDemoEntries();
+          demoLoaded = true;
+        }
+      }
+    }
+
+    // Start with demo entries visible immediately, then upgrade to live
+    loadDemoEntries();
+    demoLoaded = true;
+    connect();
+
+    // Clear button
+    clearBtn?.addEventListener('click', () => {
+      chain.querySelectorAll('.cdlr-entry').forEach(e => e.remove());
+      entryCount = 0;
+      if (countEl) countEl.textContent = '0';
+      if (empty) empty.style.display = '';
+      demoLoaded = false;
+    });
+
+    // Cleanup
+    document.addEventListener('astro:before-preparation', () => {
+      es?.close();
+      if (connectTimer) clearTimeout(connectTimer);
+    }, { once: true });
+  }
+
+  initCDLR();
+  document.addEventListener('astro:page-load', initCDLR);
+</script>
+
+<style>
+  .cdlr-shell {
+    width: 100%;
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    background: var(--surface-1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Header ──────────────────────────────────────────────────── */
+  .cdlr-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--border-dim);
+    background: rgba(255,255,255,0.015);
+  }
+
+  .cdlr-header__left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .cdlr-header__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-2);
+    flex-shrink: 0;
+  }
+
+  .cdlr-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+
+  .cdlr-caption {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 50ch;
+    margin: 0;
+  }
+
+  .cdlr-stream-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .cdlr-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
+    flex-shrink: 0;
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+
+  .cdlr-status-dot--on {
+    background: #4db87a;
+    box-shadow: 0 0 6px rgba(77,184,122,0.7);
+    animation: cdlr-pulse 2s ease infinite;
+  }
+
+  @keyframes cdlr-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .cdlr-status-text {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+  }
+
+  .cdlr-counter {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-1);
+  }
+
+  .cdlr-counter__num {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    color: var(--ember);
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .cdlr-counter__label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  /* ── Chain ───────────────────────────────────────────────────── */
+  .cdlr-chain {
+    padding: var(--space-4) var(--space-6);
+    max-height: 480px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-mid) transparent;
+  }
+
+  .cdlr-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-16) 0;
+    color: var(--text-tertiary);
+    text-align: center;
+  }
+
+  .cdlr-empty__symbol {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    line-height: 1;
+    opacity: 0.3;
+  }
+
+  .cdlr-empty__label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+  }
+
+  /* ── Entry ───────────────────────────────────────────────────── */
+  .cdlr-entry {
+    display: grid;
+    grid-template-columns: 2px 18px 1fr;
+    gap: 0 var(--space-3);
+    padding: var(--space-3) 0;
+    position: relative;
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .cdlr-entry--enter {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+
+  .cdlr-entry:first-child .cdlr-entry__chain-line {
+    top: 50%;
+  }
+
+  .cdlr-entry:last-child .cdlr-entry__chain-line {
+    bottom: 50%;
+  }
+
+  .cdlr-entry__chain-line {
+    grid-column: 1;
+    grid-row: 1;
+    background: var(--border-dim);
+    width: 2px;
+    justify-self: center;
+    position: relative;
+  }
+
+  .cdlr-entry__node {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: start;
+    padding-top: 2px;
+  }
+
+  .cdlr-entry__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--entry-color, var(--ember));
+    box-shadow: 0 0 6px color-mix(in srgb, var(--entry-color, var(--ember)) 60%, transparent);
+    flex-shrink: 0;
+  }
+
+  .cdlr-entry__body {
+    grid-column: 3;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .cdlr-entry__top {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .cdlr-entry__type {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .cdlr-entry__edge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-tertiary);
+    background: rgba(255,255,255,0.04);
+    padding: 1px 6px;
+    border-radius: 3px;
+    border: 1px solid var(--border-dim);
+  }
+
+  .cdlr-entry__ts {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-tertiary);
+    margin-left: auto;
+  }
+
+  .cdlr-entry__msg {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .cdlr-entry__hashes {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-top: var(--space-1);
+  }
+
+  .cdlr-hash {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .cdlr-hash__label {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .cdlr-hash code {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-tertiary);
+    background: rgba(255,255,255,0.04);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  .cdlr-class-badge {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--entry-color, var(--ember)) 15%, transparent);
+    color: var(--entry-color, var(--ember));
+    border: 1px solid color-mix(in srgb, var(--entry-color, var(--ember)) 30%, transparent);
+  }
+
+  /* ── Footer ──────────────────────────────────────────────────── */
+  .cdlr-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) var(--space-6);
+    border-top: 1px solid var(--border-dim);
+    background: rgba(255,255,255,0.01);
+  }
+
+  .cdlr-monoid {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .cdlr-monoid__label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+
+  .cdlr-monoid__expr {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+  }
+
+  .cdlr-monoid__axiom {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-tertiary);
+  }
+
+  .cdlr-clear-btn {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    background: none;
+    border: 1px solid var(--border-dim);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: border-color var(--duration-fast), color var(--duration-fast);
+  }
+
+  .cdlr-clear-btn:hover {
+    border-color: var(--border-bright);
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 640px) {
+    .cdlr-header {
+      flex-direction: column;
+    }
+
+    .cdlr-header__right {
+      align-items: flex-start;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .cdlr-monoid__axiom,
+    .cdlr-monoid__expr {
+      display: none;
+    }
+  }
+</style>

@@ -119,6 +119,7 @@ The full assessment product turns that diagnosis into an engagement surface with
 The Bainbridge Warning is the doctrine layer of a wider system.
 
 - [ClearBid](/products/clearbid) is a narrow execution-governance specimen: one ambiguous listing in, one constrained decision artifact out.
+- [The PocketOS Incident](/research/pocketos-incident) is the canonical diagnostic for instruction-layer failure and the catalyst for GIS v1.1.
 - [RSPS: The Recursive Sovereign Project Space](/research/rsps-architecture) is the deeper architecture beneath the public doctrine and product surfaces.
 - [/products/bainbridge-warning](/products/bainbridge-warning) is the applied assessment for institutions that need the doctrine translated into operational readiness work.
 

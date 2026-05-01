@@ -269,6 +269,18 @@
       "governanceRelevance": "adjacent"
     },
     {
+      "contentId": "research-pocketos-incident",
+      "contentTitle": "Specimen: The PocketOS Incident",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
       "contentId": "research-r0-r3-classification",
       "contentTitle": "The R0–R3 Reversibility Classification",
       "contentType": "research",
@@ -419,5 +431,5 @@
       "clause-irreversibility-threshold"
     ]
   },
-  "generatedAt": "2026-04-30T11:46:49.750Z"
+  "generatedAt": "2026-05-01T05:39:49.716Z"
 }

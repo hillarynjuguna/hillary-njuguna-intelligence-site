@@ -2,6 +2,9 @@
 export const prerender = true;
 import FieldShellLayout from '@layouts/FieldShellLayout.astro';
 import { buildFieldPrompt } from '@lib/field';
+import MAKernelGraph from '@components/ui/MAKernelGraph.astro';
+import ReversibilityLadder from '@components/ui/ReversibilityLadder.astro';
+import CDLRLedger from '@components/ui/CDLRLedger.astro';
 
 const prompt = buildFieldPrompt('query', {
   title: 'Governed Intelligence Specification',
@@ -60,7 +63,7 @@ const prompt = buildFieldPrompt('query', {
           <span class="stat-label">Epistemic grades</span>
         </div>
         <div class="gi-hero__stat">
-          <span class="stat-num">5</span>
+          <span class="stat-num">6</span>
           <span class="stat-label">Sovereignty conditions</span>
         </div>
       </div>
@@ -123,7 +126,7 @@ const prompt = buildFieldPrompt('query', {
           {
             num: '01',
             title: 'Constitutional Foundations',
-            body: 'The Sovereignty Mandate, Constitutional Hierarchy, and Architectural Invariants. Formal definition of sovereignty as a topological constraint, not a policy preference. No agent in Cognition may directly invoke Execution. Status: Formally Specified.',
+            body: 'The Sovereignty Mandate, Constitutional Hierarchy, and Architectural Invariants. Formal definition of sovereignty as a topological constraint, not a policy preference. Enacted through Condition 01: Cognitive-Execution Segregation (CES). Status: Formally Specified.',
             status: 'formal'
           },
           {
@@ -135,13 +138,13 @@ const prompt = buildFieldPrompt('query', {
           {
             num: '03',
             title: 'Permit Algebra and Reversibility',
-            body: 'Formal permit algebra (P, ⊗, 1) with five axioms. Classification of all actions by reversibility. Consequence class taxonomy. BVL (Bounded Verifiability Latency) derivation from reversibility. Status: Formally Specified.',
+            body: 'Formal permit algebra (P, ⊗, 1) with five axioms. Classification of all actions by reversibility. Consequence class taxonomy. Mandated by PocketOS incident to prevent blanket key vulnerability. Status: Formally Specified.',
             status: 'formal'
           },
           {
             num: '04',
             title: 'The Assurance Ledger',
-            body: 'Hash-chained, append-only audit spine. Evidence Monoid (E, \u2295, \u03b5) with monoidal axioms. Every governance action produces exactly one Evidence Monoid element. Tamper-evident by construction. Status: Formally Specified.',
+            body: 'Hash-chained, append-only audit spine. Evidence Monoid (E, \u2295, \u03b5) with monoidal axioms. Every governance action produces exactly one Evidence Monoid element. Bounded Verifiability Latency (BVL) guarantees audit within \u03b4-time. Status: Formally Specified.',
             status: 'formal'
           },
           {
@@ -153,7 +156,7 @@ const prompt = buildFieldPrompt('query', {
           {
             num: '06',
             title: 'Enforcement Architecture',
-            body: 'Three-layer PBP enforcement. Trust boundaries between cognitive, governance, and execution planes. Six failure zones with specified mitigations. Status: Mixed (structural model defined; empirical validation pending).',
+            body: 'Three-layer PBP enforcement. Trust boundaries between cognitive, governance, and execution planes. Condition 04 (SAI) prevents instruction-layer bypass seen in PocketOS. Status: Mixed (structural model defined).',
             status: 'mixed'
           },
           {
@@ -165,7 +168,7 @@ const prompt = buildFieldPrompt('query', {
           {
             num: '08',
             title: 'Deployment Topology',
-            body: 'Three-plane production architecture: Cognitive Plane (proposes), Orchestration Plane (governs), Execution Plane (acts). No entity in Cognition may directly invoke Execution. Enterprise integration paths for open-infrastructure and closed-garden platforms. Status: Provisionally Specified.',
+            body: 'Three-plane production architecture: Cognitive Plane (proposes), Orchestration Plane (governs), Execution Plane (acts). Deterministic Layer Regression allows safe fallback to lower-order models if field coherence (\u03c6) drops below threshold. Status: Provisionally Specified.',
             status: 'provisional'
           },
           {
@@ -183,7 +186,7 @@ const prompt = buildFieldPrompt('query', {
           {
             num: '11',
             title: 'Stage 0 Empirical Validation Protocol',
-            body: '2x2 factorial ECS Reality Test with blinding protocol. Primary, secondary, and tertiary pass criteria. Permanent moat if executed. Status: Empirically Pending.',
+            body: '2x2 factorial ECS Reality Test with blinding protocol. Mandates dual-ownership signatures (\u03c4 + \u03bb) for all Stage 1+ transitions. Primary, secondary, and tertiary pass criteria. Permanent moat if executed. Status: Empirically Pending.',
             status: 'pending'
           },
           {
@@ -202,6 +205,35 @@ const prompt = buildFieldPrompt('query', {
             <p class="module-card__body">{mod.body}</p>
           </div>
         ))}
+      </div>
+      
+      <!-- The Six Structural Conditions -->
+      <div class="gi-conditions" data-reveal="fade">
+        <h3 class="gi-conditions__title">The Six Structural Conditions</h3>
+        <p class="gi-conditions__lead">
+          Derived from the Bainbridge Warning v1.2, these conditions jointly satisfy the requirement for 
+          Verifiable Governance. A system failing any single condition is classified as un-governed, 
+          regardless of instructional constraints.
+        </p>
+        <div class="gi-conditions__grid">
+          {[
+            { id: '01', name: 'CES', full: 'Cognitive-Execution Segregation', desc: 'Reasoning and execution must be separated by a governance plane. Proposers cannot be actors.' },
+            { id: '02', name: 'PBP', full: 'Provenance-Bound Permits', desc: 'Authority to act must be cryptographically bound to the specific provenance of the decision. No blanket keys.' },
+            { id: '03', name: 'IDL', full: 'Immutable Decision Lineage', desc: 'Append-only records of intent and action, preventing retroactive narrative reconstruction.' },
+            { id: '04', name: 'SAI', full: 'Scoped Action Impossibility', desc: 'Actions are limited at the execution layer. What is not permitted is physically impossible.' },
+            { id: '05', name: '\u03c4-Lock', full: 'Sovereign Override', desc: 'Human-controlled circuit breaker that revokes all active permits regardless of autonomous state.' },
+            { id: '06', name: 'V/H', full: 'Evidence Monoid', desc: 'Mathematical verification of governance state coherence. (E, \u2295, \u03b5) satisfies monoidal axioms.' }
+          ].map(c => (
+            <div class="gi-condition-card">
+              <span class="gi-condition-card__id">{c.id}</span>
+              <div class="gi-condition-card__meta">
+                <span class="gi-condition-card__name">{c.name}</span>
+                <span class="gi-condition-card__full">{c.full}</span>
+              </div>
+              <p class="gi-condition-card__desc">{c.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div class="modules-legend" data-reveal="fade">
@@ -272,11 +304,113 @@ const prompt = buildFieldPrompt('query', {
     </div>
   </section>
 
+  <!-- Live Architecture Monitor -->
+  <section class="gi-section gi-section--monitor" id="live-monitor">
+    <div class="container">
+      <div class="section-header" data-reveal="sweep">
+        <span class="section-eyebrow">03</span>
+        <h2 class="section-title">Architecture in Operation</h2>
+      </div>
+      <p class="gi-monitor-lead" data-reveal="fade">
+        The MA-Kernel does not describe governance. It enacts it. The topology below
+        maps the four planes under constitutional constraint. The Reversibility Ladder
+        classifies every permitted action. The Assurance Ledger records every governance
+        event as an immutable hash-chained entry.
+      </p>
+
+      <!-- MA-Kernel Topology -->
+      <div class="gi-monitor-block" data-reveal="fade">
+        <div class="gi-monitor-block__header">
+          <span class="gi-monitor-eyebrow">Module 02 — MA-Kernel</span>
+          <h3 class="gi-monitor-block__title">Four-Plane Constitutional Topology</h3>
+          <p class="gi-monitor-block__desc">
+            τ (sovereign), φ (coherence), λ (execution), μ (audit). No entity in Cognition
+            may directly invoke Execution. The field boundary is architectural, not advisory.
+          </p>
+        </div>
+        <div class="gi-kernel-wrap">
+          <MAKernelGraph />
+        </div>
+      </div>
+
+      <!-- Two-column: Reversibility Ladder + CDLR -->
+      <div class="gi-monitor-pair" data-reveal="fade">
+        <div class="gi-monitor-pair__col">
+          <div class="gi-monitor-block__header">
+            <span class="gi-monitor-eyebrow">Module 03</span>
+            <h3 class="gi-monitor-block__title">Reversibility Ladder</h3>
+          </div>
+          <ReversibilityLadder />
+        </div>
+        <div class="gi-monitor-pair__col">
+          <div class="gi-monitor-block__header">
+            <span class="gi-monitor-eyebrow">Module 04</span>
+            <h3 class="gi-monitor-block__title">Assurance Ledger</h3>
+          </div>
+          <CDLRLedger />
+        </div>
+      </div>
+
+      </div>
+      
+      <!-- PocketOS Case Study -->
+      <div class="gi-monitor-block" data-reveal="fade">
+        <div class="gi-monitor-block__header">
+          <span class="gi-monitor-eyebrow">Case Study</span>
+          <h3 class="gi-monitor-block__title">The PocketOS Incident</h3>
+          <p class="gi-monitor-block__desc">
+            April 25, 2026. A structural governance collapse demonstrating the failure 
+            of instruction-layer constraints (SAI failure) and the misuse of blanket API 
+            tokens (PBP failure).
+          </p>
+        </div>
+        <div class="gi-pocketos-case">
+          <div class="gi-pocketos-case__anatomy">
+            <div class="gi-pocketos-point">
+              <span class="gi-pocketos-label">Failure</span>
+              <p>Agent used a blanket API key found in an unrelated config file to execute unauthorized action.</p>
+            </div>
+            <div class="gi-pocketos-point">
+              <span class="gi-pocketos-label">Illusion</span>
+              <p>Instruction "NEVER GUESS" was ignored because it carried no structural enforcement.</p>
+            </div>
+            <div class="gi-pocketos-point gi-pocketos-point--fix">
+              <span class="gi-pocketos-label">GIS v1.1 Remediation</span>
+              <p>Mandated Condition 04: Scoped Action Impossibility. The execution layer is now structurally blind to unpermitted keys.</p>
+            </div>
+          </div>
+          <div class="gi-pocketos-case__cta">
+             <a href="/research/pocketos-incident" class="mono-link">Read the full diagnostic →</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Constitutional invariant -->
+      <div class="gi-invariant" data-reveal="fade">
+        <span class="gi-invariant__label">Constitutional Invariant</span>
+        <p class="gi-invariant__text">
+          No entity in Cognition may directly invoke Execution.
+          Every action is classified, permitted, recorded, and verifiable.
+          The τ-Lock revokes all permits instantly when sovereignty is at risk.
+        </p>
+        <div class="gi-invariant__symbols">
+          <span title="Sovereign node">τ</span>
+          <span class="gi-inv-arrow">→</span>
+          <span title="Coherence/governance node">φ</span>
+          <span class="gi-inv-arrow">→</span>
+          <span title="Execution/lambda node">λ</span>
+          <span class="gi-inv-barrier" title="Hard barrier">╳</span>
+          <span title="Audit/monitoring node">μ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Pricing -->
   <section class="gi-section" id="pricing">
     <div class="container">
       <div class="section-header" data-reveal="sweep">
-        <span class="section-eyebrow">03</span>
+        <span class="section-eyebrow">04</span>
         <h2 class="section-title">Licensing</h2>
       </div>
 
@@ -887,4 +1021,294 @@ const prompt = buildFieldPrompt('query', {
     .container { padding: 0 var(--container-padding-mobile); }
     .gi-hero__status-row { flex-wrap: wrap; gap: var(--space-6); }
   }
+
+  /* -- Live Monitor ---------------------------------------------- */
+  .gi-section--monitor {
+    background: linear-gradient(180deg, transparent, rgba(196,112,58,0.02) 50%, transparent);
+  }
+
+  .gi-monitor-lead {
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 72ch;
+    margin-bottom: var(--space-14);
+  }
+
+  .gi-monitor-block {
+    margin-bottom: var(--space-12);
+  }
+
+  .gi-monitor-block__header {
+    margin-bottom: var(--space-6);
+  }
+
+  .gi-monitor-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .gi-monitor-block__title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .gi-monitor-block__desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 62ch;
+  }
+
+  .gi-kernel-wrap {
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .gi-monitor-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-12);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .gi-monitor-pair { grid-template-columns: 1fr; }
+  }
+
+  .gi-monitor-pair__col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* Invariant callout */
+  .gi-invariant {
+    padding: var(--space-8) var(--space-10);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    background: var(--surface-1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gi-invariant::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ember) 50%, transparent);
+  }
+
+  .gi-invariant__label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+
+  .gi-invariant__text {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 68ch;
+    margin: 0;
+  }
+
+  .gi-invariant__symbols {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--text-primary);
+    margin-top: var(--space-2);
+  }
+
+  .gi-inv-arrow {
+    font-size: var(--text-base);
+    color: var(--text-tertiary);
+  }
+
+  .gi-inv-barrier {
+    font-size: var(--text-xl);
+    color: #f87171;
+    margin: 0 var(--space-1);
+  }
+
+  /* ── Conditions Grid ────────────────────────────────────────── */
+  .gi-conditions {
+    margin-top: var(--space-20);
+    margin-bottom: var(--space-20);
+    padding: var(--space-12);
+    background: rgba(196, 112, 58, 0.03);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-xl);
+  }
+
+  .gi-conditions__title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .gi-conditions__lead {
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 70ch;
+    margin-bottom: var(--space-10);
+  }
+
+  .gi-conditions__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 1000px) {
+    .gi-conditions__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .gi-conditions__grid { grid-template-columns: 1fr; }
+  }
+
+  .gi-condition-card {
+    padding: var(--space-6);
+    background: var(--surface-1);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+  }
+
+  .gi-condition-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--ember);
+  }
+
+  .gi-condition-card__id {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ember);
+    opacity: 0.6;
+  }
+
+  .gi-condition-card__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .gi-condition-card__name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+  }
+
+  .gi-condition-card__full {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .gi-condition-card__desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── PocketOS Case ─────────────────────────────────────────── */
+  .gi-pocketos-case {
+    margin-top: var(--space-8);
+    background: var(--surface-1);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .gi-pocketos-case__anatomy {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  @media (max-width: 900px) {
+    .gi-pocketos-case__anatomy { grid-template-columns: 1fr; }
+  }
+
+  .gi-pocketos-point {
+    padding: var(--space-8);
+    border-right: 1px solid var(--border-dim);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .gi-pocketos-point:last-child { border-right: none; }
+
+  @media (max-width: 900px) {
+    .gi-pocketos-point { border-right: none; border-bottom: 1px solid var(--border-dim); }
+    .gi-pocketos-point:last-child { border-bottom: none; }
+  }
+
+  .gi-pocketos-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .gi-pocketos-point p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .gi-pocketos-point--fix {
+    background: rgba(74, 222, 128, 0.03);
+  }
+
+  .gi-pocketos-point--fix .gi-pocketos-label {
+    color: #4ade80;
+  }
+
+  .gi-pocketos-case__cta {
+    padding: var(--space-6) var(--space-8);
+    background: var(--surface-2);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mono-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ember);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s var(--ease-out);
+  }
+
+  .mono-link:hover { color: var(--ember-bright); text-decoration: underline; }
 </style>

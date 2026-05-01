@@ -1,0 +1,457 @@
+---
+// ReversibilityLadder.astro
+// Module 03 — Permit Algebra and Reversibility
+// Consequence class taxonomy with live active-class highlighting via SSE.
+// Falls back gracefully when no backend is connected.
+
+const CLASSES = [
+  {
+    id: 0,
+    label: 'Class 0',
+    name: 'Fully Reversible',
+    symbol: '◎',
+    color: '#4db87a',
+    description: 'Read-only queries. Zero side-effects. No permit required. Execution is instantaneous and carries no BVL burden.',
+    examples: ['Corpus query', 'State inspection', 'Graph traversal'],
+    bvl: '< 50ms',
+    permit: 'None',
+  },
+  {
+    id: 1,
+    label: 'Class 1',
+    name: 'Reversible with Effort',
+    symbol: '◑',
+    color: '#a3d977',
+    description: 'File writes, cache mutations, API GET-with-side-effects. Reversible by undoing the write. BVL bounded by the cost of the undo operation.',
+    examples: ['File write', 'Cache mutation', 'Session state update'],
+    bvl: '50ms – 2s',
+    permit: 'φ-validated',
+  },
+  {
+    id: 2,
+    label: 'Class 2',
+    name: 'Difficult to Reverse',
+    symbol: '◐',
+    color: '#facc15',
+    description: 'Resource provisioning, database mutations, third-party API calls. Reversal requires explicit compensating action. τ-notification mandatory.',
+    examples: ['DB write', 'Resource provision', 'External API POST'],
+    bvl: '2s – 30s',
+    permit: 'τ-notified',
+  },
+  {
+    id: 3,
+    label: 'Class 3',
+    name: 'Practically Irreversible',
+    symbol: '◍',
+    color: '#f97316',
+    description: 'Deployment, payment capture, multi-system state propagation. Reversal is possible but costly and time-bounded. Requires explicit τ-approval before execution.',
+    examples: ['Production deploy', 'Payment capture', 'Bulk data migration'],
+    bvl: '30s – 5min',
+    permit: 'τ-explicit approval',
+  },
+  {
+    id: 4,
+    label: 'Class 4',
+    name: 'Irreversible',
+    symbol: '●',
+    color: '#f87171',
+    description: 'Cryptographic key deletion, published communications, physical actuation. The τ-Lock must be verified active before any Class 4 action may execute. χ=1 applies.',
+    examples: ['Key deletion', 'Published broadcast', 'Physical actuation'],
+    bvl: 'Unbounded',
+    permit: 'τ-Lock verified',
+  },
+];
+---
+
+<div class="rl-shell" id="reversibility-ladder">
+  <div class="rl-header">
+    <span class="rl-eyebrow">Module 03 — Permit Algebra</span>
+    <p class="rl-caption">
+      Every action in the MA-Kernel is classified by consequence class before a permit is issued.
+      BVL (Bounded Verifiability Latency) derives directly from reversibility.
+    </p>
+    <div class="rl-live-indicator" id="rl-live-badge">
+      <span class="rl-live-dot" id="rl-live-dot"></span>
+      <span class="rl-live-label" id="rl-live-label">Connecting to governance stream...</span>
+    </div>
+  </div>
+
+  <div class="rl-ladder">
+    {CLASSES.map((cls) => (
+      <div
+        class="rl-rung"
+        id={`rl-rung-${cls.id}`}
+        data-class-id={String(cls.id)}
+        style={`--rung-color: ${cls.color};`}
+      >
+        <div class="rl-rung__left">
+          <div class="rl-rung__symbol">{cls.symbol}</div>
+          <div class="rl-rung__meta">
+            <span class="rl-rung__label">{cls.label}</span>
+            <span class="rl-rung__name">{cls.name}</span>
+          </div>
+        </div>
+
+        <div class="rl-rung__body">
+          <p class="rl-rung__desc">{cls.description}</p>
+          <div class="rl-rung__tags">
+            {cls.examples.map((ex) => (
+              <span class="rl-tag">{ex}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="rl-rung__right">
+          <div class="rl-rung__stat">
+            <span class="rl-stat-label">BVL</span>
+            <span class="rl-stat-value">{cls.bvl}</span>
+          </div>
+          <div class="rl-rung__stat">
+            <span class="rl-stat-label">Permit</span>
+            <span class="rl-stat-value">{cls.permit}</span>
+          </div>
+        </div>
+
+        <div class="rl-rung__active-bar" aria-hidden="true"></div>
+      </div>
+    ))}
+  </div>
+
+  <div class="rl-formula">
+    <span class="rl-formula__label">Permit Algebra</span>
+    <span class="rl-formula__expr">P = (P, ⊗, 1) — five axioms — composition is the invariant</span>
+  </div>
+</div>
+
+<script>
+  const BACKEND = 'http://localhost:8000';
+
+  function initReversibilityLadder() {
+    const liveBadge = document.getElementById('rl-live-badge');
+    const liveDot = document.getElementById('rl-live-dot');
+    const liveLabel = document.getElementById('rl-live-label');
+
+    function setLiveState(connected: boolean) {
+      if (!liveDot || !liveLabel) return;
+      if (connected) {
+        liveDot.classList.add('rl-live-dot--on');
+        liveLabel.textContent = 'Live — governance stream active';
+      } else {
+        liveDot.classList.remove('rl-live-dot--on');
+        liveLabel.textContent = 'Offline — static display';
+      }
+    }
+
+    function activateRung(classId: number) {
+      document.querySelectorAll('.rl-rung').forEach(el => el.classList.remove('rl-rung--active'));
+      const rung = document.getElementById(`rl-rung-${classId}`);
+      if (rung) {
+        rung.classList.add('rl-rung--active');
+        rung.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    // Try to connect to FastAPI SSE stream
+    let es: EventSource | null = null;
+    let retryTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    function connect() {
+      try {
+        es = new EventSource(`${BACKEND}/api/governance-stream`);
+
+        es.addEventListener('open', () => setLiveState(true));
+
+        es.addEventListener('state_update', (ev: Event) => {
+          try {
+            const data = JSON.parse((ev as MessageEvent).data);
+            // Backend emits { consequence_class: 0|1|2|3|4, ... }
+            if (typeof data.consequence_class === 'number') {
+              activateRung(data.consequence_class);
+            }
+            if (typeof data.active_class === 'number') {
+              activateRung(data.active_class);
+            }
+          } catch {}
+        });
+
+        es.addEventListener('error', () => {
+          setLiveState(false);
+          es?.close();
+          es = null;
+          // Retry after 8s — backend may not be running in static demo mode
+          retryTimeout = setTimeout(connect, 8000);
+        });
+      } catch {
+        setLiveState(false);
+      }
+    }
+
+    connect();
+
+    // Cleanup
+    document.addEventListener('astro:before-preparation', () => {
+      es?.close();
+      if (retryTimeout) clearTimeout(retryTimeout);
+    }, { once: true });
+  }
+
+  initReversibilityLadder();
+  document.addEventListener('astro:page-load', initReversibilityLadder);
+</script>
+
+<style>
+  .rl-shell {
+    width: 100%;
+  }
+
+  .rl-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .rl-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+
+  .rl-caption {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 68ch;
+  }
+
+  .rl-live-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .rl-live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
+    flex-shrink: 0;
+    transition: background 0.4s;
+  }
+
+  .rl-live-dot--on {
+    background: #4db87a;
+    box-shadow: 0 0 8px rgba(77,184,122,0.6);
+    animation: rl-pulse 2s ease infinite;
+  }
+
+  @keyframes rl-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .rl-live-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+  }
+
+  /* ── Ladder ─────────────────────────────────────────────────── */
+  .rl-ladder {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .rl-rung {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-5);
+    align-items: center;
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-1);
+    overflow: hidden;
+    transition: border-color 0.3s, background 0.3s, transform 0.2s;
+  }
+
+  .rl-rung:hover {
+    border-color: var(--rung-color);
+    transform: translateX(2px);
+  }
+
+  .rl-rung--active {
+    border-color: var(--rung-color) !important;
+    background: color-mix(in srgb, var(--rung-color) 6%, var(--surface-1)) !important;
+  }
+
+  /* Active bar — left edge accent */
+  .rl-rung__active-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--rung-color);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .rl-rung--active .rl-rung__active-bar {
+    opacity: 1;
+  }
+
+  /* ── Left column ─────────────────────────────────────────────── */
+  .rl-rung__left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 140px;
+  }
+
+  .rl-rung__symbol {
+    font-size: 1.4rem;
+    color: var(--rung-color);
+    line-height: 1;
+    width: 28px;
+    text-align: center;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+
+  .rl-rung--active .rl-rung__symbol {
+    transform: scale(1.2);
+  }
+
+  .rl-rung__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .rl-rung__label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rung-color);
+  }
+
+  .rl-rung__name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+
+  /* ── Body ────────────────────────────────────────────────────── */
+  .rl-rung__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .rl-rung__desc {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .rl-rung__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .rl-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-dim);
+    color: var(--text-tertiary);
+  }
+
+  /* ── Right stats ─────────────────────────────────────────────── */
+  .rl-rung__right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 120px;
+    text-align: right;
+  }
+
+  .rl-rung__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .rl-stat-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .rl-stat-value {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  /* ── Formula bar ─────────────────────────────────────────────── */
+  .rl-formula {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-1);
+  }
+
+  .rl-formula__label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ember);
+    white-space: nowrap;
+  }
+
+  .rl-formula__expr {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .rl-rung {
+      grid-template-columns: auto 1fr;
+      gap: var(--space-3);
+    }
+
+    .rl-rung__right {
+      display: none;
+    }
+
+    .rl-rung__left {
+      min-width: auto;
+    }
+  }
+</style>

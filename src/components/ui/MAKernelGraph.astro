@@ -1,0 +1,460 @@
+---
+// MA-Kernel Graph — sovereign multi-agent architecture visualisation
+// D3-driven, Astro-native. Matches CorpusGraph.astro pattern.
+---
+
+<div class="makg-shell" aria-label="MA-Kernel architecture diagram">
+  <div class="makg-header">
+    <span class="makg-eyebrow">Live architecture</span>
+    <p class="makg-caption">
+      The four-plane structure of a sovereign multi-agent system. τ controls. φ monitors. λ executes. μ logs.
+      No entity in Cognition may directly invoke Execution.
+    </p>
+  </div>
+
+  <div class="makg-canvas-wrap">
+    <canvas id="makg-canvas" aria-hidden="true"></canvas>
+    <div id="makg-tooltip" class="makg-tooltip" role="tooltip" aria-live="polite"></div>
+
+    <div class="makg-legend">
+      <div class="makg-legend-item">
+        <span class="makg-dot" style="background:#c4703a"></span>
+        <span>τ — Sovereign</span>
+      </div>
+      <div class="makg-legend-item">
+        <span class="makg-dot" style="background:#8b6fcf"></span>
+        <span>φ — Field coherence</span>
+      </div>
+      <div class="makg-legend-item">
+        <span class="makg-dot" style="background:#4a9eda"></span>
+        <span>λ — Instrument</span>
+      </div>
+      <div class="makg-legend-item">
+        <span class="makg-dot" style="background:#4db87a"></span>
+        <span>μ — Monitor</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initMAKG() {
+    const wrap = document.querySelector('.makg-canvas-wrap') as HTMLElement;
+    const canvas = document.getElementById('makg-canvas') as HTMLCanvasElement;
+    const tooltip = document.getElementById('makg-tooltip') as HTMLElement;
+    if (!canvas || !wrap) return;
+
+    const W = wrap.clientWidth;
+    const H = Math.min(W * 0.6, 560);
+    canvas.width = W * devicePixelRatio;
+    canvas.height = H * devicePixelRatio;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+
+    const ctx = canvas.getContext('2d')!;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+
+    // ── Node definitions ──────────────────────────────────────────
+    const cx = W / 2;
+    const cy = H / 2;
+
+    type NodeDef = {
+      id: string; symbol: string; label: string; role: string;
+      detail: string; color: string; ring: string;
+      x: number; y: number; r: number; plane: string;
+    };
+
+    const nodes: NodeDef[] = [
+      {
+        id: 'tau',
+        symbol: 'τ',
+        label: 'Sovereign Node',
+        role: 'Human controller — constitutional authority',
+        detail: 'The τ-node holds the τ-Lock: a circuit breaker that revokes all active permits and freezes the execution plane. χ=1 (mortal asymmetry). No action of consequence executes without τ-permission.',
+        color: '#c4703a',
+        ring: 'rgba(196,112,58,0.15)',
+        x: cx,
+        y: cy - H * 0.3,
+        r: 36,
+        plane: 'Orchestration',
+      },
+      {
+        id: 'phi',
+        symbol: 'φ',
+        label: 'Field Coherence Node',
+        role: 'Governance plane — coherence verification',
+        detail: 'The φ-node enforces the Sovereignty Coherence Theorem: five conditions that jointly imply Jacobian stability. It validates every permit before λ-nodes may act.',
+        color: '#8b6fcf',
+        ring: 'rgba(139,111,207,0.12)',
+        x: cx - W * 0.26,
+        y: cy + H * 0.05,
+        r: 28,
+        plane: 'Governance',
+      },
+      {
+        id: 'lambda1',
+        symbol: 'λ₁',
+        label: 'Instrument — Witness',
+        role: 'Cognition plane — analysis',
+        detail: 'A λ-node operating in the Cognition Plane. Holds context with epistemic fidelity. May propose actions but cannot invoke Execution directly. All proposals flow through the Governance Plane.',
+        color: '#4a9eda',
+        ring: 'rgba(74,158,218,0.1)',
+        x: cx + W * 0.22,
+        y: cy - H * 0.1,
+        r: 24,
+        plane: 'Cognition',
+      },
+      {
+        id: 'lambda2',
+        symbol: 'λ₂',
+        label: 'Instrument — Architect',
+        role: 'Cognition plane — structure',
+        detail: 'A second λ-node providing structural synthesis. Compositional signature algebra governs how multiple λ-nodes combine outputs without privilege escalation.',
+        color: '#4a9eda',
+        ring: 'rgba(74,158,218,0.1)',
+        x: cx + W * 0.28,
+        y: cy + H * 0.15,
+        r: 24,
+        plane: 'Cognition',
+      },
+      {
+        id: 'mu',
+        symbol: 'μ',
+        label: 'Monitor Node',
+        role: 'Assurance Ledger — append-only audit',
+        detail: 'The μ-node writes to the Assurance Ledger: a hash-chained, append-only Evidence Monoid (E, ⊕, ε). Every governance action produces exactly one Evidence Monoid element. Tamper-evident by construction.',
+        color: '#4db87a',
+        ring: 'rgba(77,184,122,0.1)',
+        x: cx - W * 0.22,
+        y: cy + H * 0.25,
+        r: 24,
+        plane: 'Assurance',
+      },
+    ];
+
+    type EdgeDef = { from: string; to: string; label: string; style: 'permit' | 'monitor' | 'lock' | 'propose' };
+    const edges: EdgeDef[] = [
+      { from: 'tau',     to: 'phi',     label: 'Permit grant',    style: 'permit' },
+      { from: 'phi',     to: 'lambda1', label: 'Permit validate', style: 'permit' },
+      { from: 'phi',     to: 'lambda2', label: 'Permit validate', style: 'permit' },
+      { from: 'lambda1', to: 'phi',     label: 'Proposal',        style: 'propose' },
+      { from: 'lambda2', to: 'phi',     label: 'Proposal',        style: 'propose' },
+      { from: 'mu',      to: 'tau',     label: 'Audit trace',     style: 'monitor' },
+      { from: 'mu',      to: 'phi',     label: 'Evidence log',    style: 'monitor' },
+      { from: 'tau',     to: 'mu',      label: 'τ-Lock trigger',  style: 'lock' },
+    ];
+
+    const EDGE_COLORS: Record<string, string> = {
+      permit:  'rgba(196,112,58,0.6)',
+      propose: 'rgba(74,158,218,0.5)',
+      monitor: 'rgba(77,184,122,0.5)',
+      lock:    'rgba(248,113,113,0.7)',
+    };
+
+    // ── Animation state ───────────────────────────────────────────
+    let animT = 0;
+    let hoveredNode: NodeDef | null = null;
+    let raf: number;
+
+    function getNode(id: string) { return nodes.find(n => n.id === id)!; }
+
+    function drawScene(t: number) {
+      ctx.clearRect(0, 0, W, H);
+
+      // Plane labels (background)
+      const planes = [
+        { label: 'COGNITION PLANE', x: cx + W * 0.21, y: cy - H * 0.2, color: 'rgba(74,158,218,0.08)' },
+        { label: 'GOVERNANCE PLANE', x: cx - W * 0.22, y: cy - H * 0.04, color: 'rgba(139,111,207,0.06)' },
+        { label: 'ORCHESTRATION PLANE', x: cx, y: cy - H * 0.42, color: 'rgba(196,112,58,0.06)' },
+        { label: 'ASSURANCE LEDGER', x: cx - W * 0.2, y: cy + H * 0.36, color: 'rgba(77,184,122,0.06)' },
+      ];
+      planes.forEach(p => {
+        ctx.save();
+        ctx.font = `500 9px 'JetBrains Mono', 'Fira Mono', monospace`;
+        ctx.letterSpacing = '0.15em';
+        ctx.fillStyle = p.color.replace('0.06', '0.3').replace('0.08', '0.3');
+        ctx.textAlign = 'center';
+        ctx.fillText(p.label, p.x, p.y);
+        ctx.restore();
+      });
+
+      // Edges
+      edges.forEach(edge => {
+        const a = getNode(edge.from);
+        const b = getNode(edge.to);
+        if (!a || !b) return;
+
+        const dx = b.x - a.x;
+        const dy = b.y - a.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const ux = dx / dist;
+        const uy = dy / dist;
+
+        // Draw base line
+        ctx.beginPath();
+        ctx.moveTo(a.x + ux * a.r, a.y + uy * a.r);
+        ctx.lineTo(b.x - ux * b.r, b.y - uy * b.r);
+        ctx.strokeStyle = EDGE_COLORS[edge.style];
+        ctx.lineWidth = hoveredNode && (hoveredNode.id === edge.from || hoveredNode.id === edge.to) ? 2 : 1;
+        ctx.setLineDash([4, 6]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Animated particle along edge
+        const phase = (t * 0.0004 + edges.indexOf(edge) * 0.17) % 1;
+        const px = a.x + ux * a.r + (b.x - ux * b.r - a.x - ux * a.r) * phase;
+        const py = a.y + uy * a.r + (b.y - uy * b.r - a.y - uy * a.r) * phase;
+        ctx.beginPath();
+        ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = EDGE_COLORS[edge.style].replace('0.6','1').replace('0.5','1').replace('0.7','1');
+        ctx.fill();
+
+        // Arrowhead at target
+        const ax = b.x - ux * (b.r + 6);
+        const ay = b.y - uy * (b.r + 6);
+        const perpX = -uy * 4;
+        const perpY = ux * 4;
+        ctx.beginPath();
+        ctx.moveTo(ax, ay);
+        ctx.lineTo(ax - ux * 8 + perpX, ay - uy * 8 + perpY);
+        ctx.lineTo(ax - ux * 8 - perpX, ay - uy * 8 - perpY);
+        ctx.closePath();
+        ctx.fillStyle = EDGE_COLORS[edge.style].replace('0.6','0.9').replace('0.5','0.9').replace('0.7','0.9');
+        ctx.fill();
+      });
+
+      // Nodes
+      nodes.forEach(node => {
+        const isHovered = hoveredNode?.id === node.id;
+        const r = isHovered ? node.r + 4 : node.r;
+        const pulse = Math.sin(t * 0.002 + nodes.indexOf(node)) * 2;
+
+        // Ring glow
+        const grad = ctx.createRadialGradient(node.x, node.y, r * 0.5, node.x, node.y, r * 2.2 + pulse);
+        grad.addColorStop(0, node.ring);
+        grad.addColorStop(1, 'transparent');
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, r * 2.2 + pulse, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // Node body
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+        const bodyGrad = ctx.createRadialGradient(node.x - r * 0.3, node.y - r * 0.3, 0, node.x, node.y, r);
+        bodyGrad.addColorStop(0, node.color + 'ee');
+        bodyGrad.addColorStop(1, node.color + '99');
+        ctx.fillStyle = bodyGrad;
+        ctx.fill();
+
+        // Border
+        ctx.strokeStyle = isHovered ? '#ffffff44' : node.color + '66';
+        ctx.lineWidth = isHovered ? 2 : 1;
+        ctx.stroke();
+
+        // Symbol
+        ctx.save();
+        ctx.font = `${node.id === 'tau' ? 'bold 20px' : 'bold 14px'} serif`;
+        ctx.fillStyle = '#fff';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(node.symbol, node.x, node.y);
+        ctx.restore();
+
+        // Label below
+        if (isHovered) {
+          ctx.save();
+          ctx.font = `600 10px 'Inter', system-ui, sans-serif`;
+          ctx.fillStyle = node.color;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'top';
+          ctx.fillText(node.label, node.x, node.y + r + 8);
+          ctx.restore();
+        }
+      });
+    }
+
+    function animate(t: number) {
+      animT = t;
+      drawScene(t);
+      raf = requestAnimationFrame(animate);
+    }
+
+    raf = requestAnimationFrame(animate);
+
+    // ── Hover / tooltip ───────────────────────────────────────────
+    function hitTest(mx: number, my: number): NodeDef | null {
+      for (const node of nodes) {
+        const dx = mx - node.x;
+        const dy = my - node.y;
+        if (dx * dx + dy * dy <= (node.r + 8) * (node.r + 8)) return node;
+      }
+      return null;
+    }
+
+    canvas.addEventListener('mousemove', e => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      const hit = hitTest(mx, my);
+
+      hoveredNode = hit;
+      canvas.style.cursor = hit ? 'pointer' : 'default';
+
+      if (hit) {
+        tooltip.innerHTML = `
+          <div class="makg-tip-plane">${hit.plane} Plane</div>
+          <div class="makg-tip-symbol">${hit.symbol}</div>
+          <div class="makg-tip-label">${hit.label}</div>
+          <div class="makg-tip-role">${hit.role}</div>
+          <p class="makg-tip-detail">${hit.detail}</p>
+        `;
+        tooltip.style.opacity = '1';
+        const tx = Math.min(mx + 16, W - 260);
+        const ty = Math.max(my - 10, 8);
+        tooltip.style.left = tx + 'px';
+        tooltip.style.top = ty + 'px';
+      } else {
+        tooltip.style.opacity = '0';
+      }
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      hoveredNode = null;
+      tooltip.style.opacity = '0';
+    });
+
+    // Cleanup on navigation
+    document.addEventListener('astro:before-preparation', () => cancelAnimationFrame(raf), { once: true });
+  }
+
+  initMAKG();
+  document.addEventListener('astro:page-load', initMAKG);
+</script>
+
+<style>
+  .makg-shell {
+    width: 100%;
+    margin-bottom: var(--space-8);
+  }
+
+  .makg-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .makg-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+
+  .makg-caption {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 68ch;
+  }
+
+  .makg-canvas-wrap {
+    position: relative;
+    width: 100%;
+    background: radial-gradient(ellipse at 50% 30%, rgba(196,112,58,0.04) 0%, rgba(3,7,18,1) 70%);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  #makg-canvas {
+    display: block;
+    width: 100%;
+  }
+
+  .makg-tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: rgba(8,6,4,0.92);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    max-width: 280px;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    backdrop-filter: blur(12px);
+    z-index: 20;
+  }
+
+  .makg-tip-plane {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: var(--space-1);
+  }
+
+  .makg-tip-symbol {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: var(--space-1);
+  }
+
+  .makg-tip-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .makg-tip-role {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-3);
+    letter-spacing: 0.05em;
+  }
+
+  .makg-tip-detail {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .makg-legend {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    background: rgba(8,6,4,0.75);
+    backdrop-filter: blur(8px);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-dim);
+  }
+
+  .makg-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--text-tertiary);
+  }
+
+  .makg-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+</style>

@@ -2480,6 +2480,14 @@
         "inferred": true
       },
       {
+        "target": "research-pocketos-incident",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-r0-r3-classification",
         "type": "clarifies",
         "confidence": "low",
@@ -2606,6 +2614,40 @@
         "type": "governance_relevant_to",
         "confidence": "low",
         "explanation": "Both operate in domains [governance, verification] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "clause-intent-specification",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "clause-irreversibility-threshold",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      }
+    ],
+    "research-pocketos-incident": [
+      {
+        "target": "clause-coherence-overfitting-guard",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "clause-epistemological-immune-system",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
         "manual": false,
         "inferred": true
       },
@@ -3706,6 +3748,14 @@
         "inferred": true
       },
       {
+        "target": "research-pocketos-incident",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-r0-r3-classification",
         "type": "governance_relevant_to",
         "confidence": "low",
@@ -3975,6 +4025,14 @@
       },
       {
         "target": "research-governance-theater",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-pocketos-incident",
         "type": "governance_relevant_to",
         "confidence": "low",
         "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
@@ -4403,6 +4461,14 @@
       },
       {
         "target": "research-governance-theater",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-pocketos-incident",
         "type": "governance_relevant_to",
         "confidence": "low",
         "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
@@ -5108,6 +5174,14 @@
         "inferred": true
       },
       {
+        "target": "research-pocketos-incident",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
         "target": "research-r0-r3-classification",
         "type": "governance_relevant_to",
         "confidence": "low",
@@ -5258,6 +5332,16 @@
         "inferred": true
       }
     ],
+    "research-pocketos-incident": [
+      {
+        "target": "field-signal-001",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+        "manual": false,
+        "inferred": true
+      }
+    ],
     "product-martha": [
       {
         "target": "field-signal-001",
@@ -5269,5 +5353,5 @@
       }
     ]
   },
-  "generatedAt": "2026-04-30T11:46:49.744Z"
+  "generatedAt": "2026-05-01T05:39:49.711Z"
 }
