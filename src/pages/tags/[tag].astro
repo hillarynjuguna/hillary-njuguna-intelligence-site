@@ -8,32 +8,54 @@ import { formatDateShort } from '@lib/content';
 
 export async function getStaticPaths() {
   const taxonomy = await loadTaxonomyIndex();
+  const allGroups = [
+    ...Object.values(taxonomy.domains),
+    ...Object.values(taxonomy.themes),
+    ...Object.values(taxonomy.tags),
+  ];
+  const mergedBySlug = new Map<string, { labels: string[]; contentIds: Set<string> }>();
 
-  const allTags = new Set([
-    ...Object.keys(taxonomy.domains),
-    ...Object.keys(taxonomy.themes),
-    ...Object.keys(taxonomy.tags),
-  ]);
+  for (const group of allGroups) {
+    const slug = group.label.toLowerCase().replace(/\s+/g, '-');
+    const existing = mergedBySlug.get(slug);
 
-  return Array.from(allTags).map((tag) => ({
-    params: { tag: tag.toLowerCase().replace(/\s+/g, '-') },
-    props: { originalTag: tag },
+    if (existing) {
+      existing.labels.push(group.label);
+      for (const contentId of group.contentIds) existing.contentIds.add(contentId);
+      continue;
+    }
+
+    mergedBySlug.set(slug, {
+      labels: [group.label],
+      contentIds: new Set(group.contentIds),
+    });
+  }
+
+  return Array.from(mergedBySlug.entries()).map(([slug, merged]) => ({
+    params: { tag: slug },
+    props: {
+      slug,
+      labels: merged.labels,
+      contentIds: Array.from(merged.contentIds),
+    },
   }));
 }
 
 const { tag } = Astro.params;
-const { originalTag } = Astro.props;
+const { labels, contentIds } = Astro.props;
 const taxonomy = await loadTaxonomyIndex();
 const graph = await loadContentGraph();
 
-const group = taxonomy.domains[originalTag] || taxonomy.themes[originalTag] || taxonomy.tags[originalTag];
+const group = labels
+  .map((label: string) => taxonomy.domains[label] || taxonomy.themes[label] || taxonomy.tags[label])
+  .find(Boolean);
 
 if (!group) {
   return Astro.redirect('/404');
 }
 
 const relatedNodes = graph.nodes
-  .filter((node) => group.contentIds.includes(node.id))
+  .filter((node) => contentIds.includes(node.id))
   .sort((left, right) => {
     const leftDate = left.publishedAt ? new Date(left.publishedAt).getTime() : 0;
     const rightDate = right.publishedAt ? new Date(right.publishedAt).getTime() : 0;
@@ -63,7 +85,14 @@ const prompt = buildFieldPrompt('trace', {
   prompt={prompt}
   facts={[
     { label: 'Mode', value: 'Trace from one term into nearby nodes' },
-    { label: 'Category', value: taxonomy.domains[originalTag] ? 'Domain' : taxonomy.themes[originalTag] ? 'Theme' : 'Topic' },
+    {
+      label: 'Category',
+      value: labels.some((label: string) => taxonomy.domains[label])
+        ? 'Domain'
+        : labels.some((label: string) => taxonomy.themes[label])
+          ? 'Theme'
+          : 'Topic',
+    },
     { label: 'Node count', value: String(group.count) },
   ]}
   containerClass="container--wide"
