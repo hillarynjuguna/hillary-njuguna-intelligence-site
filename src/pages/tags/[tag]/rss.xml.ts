@@ -14,25 +14,46 @@ function slugify(text: string) {
 
 export async function getStaticPaths() {
   const taxonomy = await loadTaxonomyIndex();
-  const allTags = new Set([
-    ...Object.keys(taxonomy.domains),
-    ...Object.keys(taxonomy.themes),
-    ...Object.keys(taxonomy.tags)
-  ]);
+  const allGroups = [
+    ...Object.values(taxonomy.domains),
+    ...Object.values(taxonomy.themes),
+    ...Object.values(taxonomy.tags),
+  ];
+  const mergedBySlug = new Map<string, { labels: string[]; contentIds: Set<string> }>();
 
-  return Array.from(allTags).map(tag => ({
-    params: { tag: slugify(tag) },
-    props: { originalTag: tag }
+  for (const group of allGroups) {
+    const slug = slugify(group.label);
+    const existing = mergedBySlug.get(slug);
+
+    if (existing) {
+      existing.labels.push(group.label);
+      for (const contentId of group.contentIds) existing.contentIds.add(contentId);
+      continue;
+    }
+
+    mergedBySlug.set(slug, {
+      labels: [group.label],
+      contentIds: new Set(group.contentIds),
+    });
+  }
+
+  return Array.from(mergedBySlug.entries()).map(([tag, merged]) => ({
+    params: { tag },
+    props: {
+      labels: merged.labels,
+      contentIds: Array.from(merged.contentIds),
+    },
   }));
 }
 
 export const GET: APIRoute = async (context) => {
-  const { originalTag } = context.props;
+  const { labels, contentIds } = context.props;
   const taxonomy = await loadTaxonomyIndex();
   const graph = await loadContentGraph();
 
-  // Find the group in taxonomy
-  const group = taxonomy.domains[originalTag] || taxonomy.themes[originalTag] || taxonomy.tags[originalTag];
+  const group = labels
+    .map((label: string) => taxonomy.domains[label] || taxonomy.themes[label] || taxonomy.tags[label])
+    .find(Boolean);
 
   if (!group) {
     return new Response('Tag not found', { status: 404 });
@@ -40,7 +61,7 @@ export const GET: APIRoute = async (context) => {
 
   // Filter nodes by their IDs being in the group
   const relatedNodes = graph.nodes.filter(node => 
-    group.contentIds.includes(node.id) && node.status === 'published'
+    contentIds.includes(node.id) && node.status === 'published'
   );
 
   // Deterministic sort: newest first
