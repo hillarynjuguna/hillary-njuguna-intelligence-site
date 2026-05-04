@@ -18,7 +18,7 @@ export const SITE = {
     },
   },
   publication: {
-    name: 'Oscillatory Fields',
+    name: 'Hillary Njuguna',
     issue: 'Issue 01',
     date: 'February 2026',
     substack: 'https://substack.com/@achetype1',
