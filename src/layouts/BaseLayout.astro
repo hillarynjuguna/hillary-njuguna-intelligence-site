@@ -13,7 +13,14 @@ interface Props extends SEOProps {
 }
 
 const { class: className, ...seoProps } = Astro.props;
-const seo = buildSEO(seoProps);
+// Construct per-page canonical from Astro.site + current pathname.
+// Astro.site reads from astro.config.mjs → 'https://hillary-site.vercel.app'.
+// This ensures every page declares its own URL as canonical, not the homepage.
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const seo = buildSEO({
+  ...seoProps,
+  canonical: seoProps.canonical ?? canonicalURL.href,
+});
 ---
 
 <!doctype html>
