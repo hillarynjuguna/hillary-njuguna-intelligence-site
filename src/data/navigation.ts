@@ -58,6 +58,7 @@ export const NAV_ENTRIES: NavEntry[] = [
     children: [
       { label: 'The Bainbridge Warning', href: '/products/bainbridge-warning', description: 'The governance doctrine (book)' },
       { label: 'CIR v2.0', href: '/products/cir', description: 'Readiness assessment framework — $50' },
+      { label: 'Governed Intelligence Spec', href: '/governed-intelligence', description: 'Formal multi-agent architecture — from $249' },
       { label: 'Martha Cohorts', href: '/products/martha', description: 'Team training program' },
       { label: 'All Products', href: '/products', description: 'Full product catalog' },
     ],
@@ -85,6 +86,7 @@ export const FOOTER_LINKS = {
   products: [
     { label: 'The Bainbridge Warning', href: '/products/bainbridge-warning' },
     { label: 'CIR v2.0', href: '/products/cir' },
+    { label: 'Governed Intelligence Spec', href: '/governed-intelligence' },
     { label: 'Martha Cohorts', href: '/products/martha' },
   ],
   connect: [
