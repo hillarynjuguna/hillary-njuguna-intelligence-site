@@ -52,7 +52,7 @@ export const GET: APIRoute = async (context) => {
 
   return rss({
     title: `${SITE.name} — ${group.label}`,
-    description: `Research feed for ${group.label} from the Oscillatory Fields corpus.`,
+    description: `Research feed for ${group.label} from the Hillary Njuguna research corpus.`,
     site: context.site?.toString() ?? SITE.url,
     items: sorted.map((node) => ({
       title: node.title,
