@@ -128,21 +128,33 @@ const prompt = buildFieldPrompt('trace', {
           <div class="status-badge status-badge--blocked" id="status-badge">BLOCKED</div>
           <p class="status-reason" id="status-reason">Temporal sovereignty not yet satisfied.</p>
 
-          <div class="invariant-grid">
-            <article class="invariant-card" id="temporal-card">
-              <p class="label">Temporal Sovereignty</p>
+          <div class="invariant-tabs">
+            <div class="invariant-tab-nav" role="tablist" aria-label="Invariant details">
+              <button class="invariant-tab-btn is-active" role="tab" aria-selected="true" aria-controls="temporal-panel" data-tab="temporal">
+                <span class="invariant-tab-dot" id="temporal-dot"></span>
+                Temporal Sovereignty
+              </button>
+              <button class="invariant-tab-btn" role="tab" aria-selected="false" aria-controls="relational-panel" data-tab="relational">
+                <span class="invariant-tab-dot" id="relational-dot"></span>
+                Relational Integrity
+              </button>
+              <button class="invariant-tab-btn" role="tab" aria-selected="false" aria-controls="fusion-panel" data-tab="fusion">
+                <span class="invariant-tab-dot" id="fusion-dot"></span>
+                Fusion Matrix
+              </button>
+            </div>
+
+            <article class="invariant-card" id="temporal-card" role="tabpanel" aria-labelledby="temporal-panel">
               <h3 id="temporal-state">Not satisfied</h3>
               <p id="temporal-copy">t_mcep is still below T_BUFFER, so the system remains inside the protective buffer.</p>
             </article>
 
-            <article class="invariant-card" id="relational-card">
-              <p class="label">Relational Integrity</p>
+            <article class="invariant-card is-hidden" id="relational-card" role="tabpanel" aria-labelledby="relational-panel">
               <h3 id="relational-state">Satisfied</h3>
               <p id="relational-copy">R_score is non-negative, so the relational check does not currently detect performative compliance.</p>
             </article>
 
-            <article class="invariant-card" id="fusion-card">
-              <p class="label">Fusion Matrix</p>
+            <article class="invariant-card is-hidden" id="fusion-card" role="tabpanel" aria-labelledby="fusion-panel">
               <h3 id="fusion-state">Level 1 intervention</h3>
               <p id="fusion-copy">ΔC × M = +1. Intervention supports sovereign struggle rather than blocking action for coercive motive.</p>
             </article>
@@ -372,9 +384,57 @@ const prompt = buildFieldPrompt('trace', {
     margin-bottom: var(--space-6);
   }
 
-  .invariant-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .invariant-tabs {
+    margin-top: var(--space-4);
   }
+
+  .invariant-tab-nav {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .invariant-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+
+  .invariant-tab-btn:hover {
+    border-color: var(--border-mid);
+    color: var(--text-primary);
+  }
+
+  .invariant-tab-btn.is-active {
+    border-color: var(--ember);
+    color: var(--ember);
+    background: rgba(196, 112, 58, 0.08);
+  }
+
+  .invariant-tab-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .invariant-tab-btn.is-good .invariant-tab-dot { background: rgba(62, 175, 98, 1); opacity: 1; }
+  .invariant-tab-btn.is-bad  .invariant-tab-dot { background: rgba(210, 84, 84, 1); opacity: 1; }
 
   .invariant-card {
     padding: var(--space-5);
@@ -383,14 +443,19 @@ const prompt = buildFieldPrompt('trace', {
     background: rgba(255, 255, 255, 0.02);
   }
 
-  .invariant-card h3 {
-    font-size: var(--text-xl);
-    margin: var(--space-2) 0 var(--space-3);
+  .invariant-card.is-hidden {
+    display: none;
   }
 
-  .invariant-card p:last-child {
+  .invariant-card h3 {
+    font-size: var(--text-xl);
+    margin: 0 0 var(--space-3);
+  }
+
+  .invariant-card p {
     color: var(--text-secondary);
     line-height: var(--leading-relaxed);
+    margin: 0;
   }
 
   .invariant-card.is-good {
@@ -471,7 +536,6 @@ const prompt = buildFieldPrompt('trace', {
 
   @media (max-width: 1100px) {
     .demo-grid,
-    .invariant-grid,
     .intro-grid {
       grid-template-columns: 1fr;
     }
@@ -586,9 +650,42 @@ const prompt = buildFieldPrompt('trace', {
     };
   }
 
-  function setInvariantCard(card, good) {
+  const tabs = {
+    temporal: {
+      btn: document.querySelector('[data-tab="temporal"]'),
+      card: document.getElementById('temporal-card'),
+    },
+    relational: {
+      btn: document.querySelector('[data-tab="relational"]'),
+      card: document.getElementById('relational-card'),
+    },
+    fusion: {
+      btn: document.querySelector('[data-tab="fusion"]'),
+      card: document.getElementById('fusion-card'),
+    },
+  };
+
+  let activeTab = 'temporal';
+
+  function activateTab(name) {
+    activeTab = name;
+    Object.entries(tabs).forEach(([key, { btn, card }]) => {
+      const isActive = key === name;
+      btn?.classList.toggle('is-active', isActive);
+      btn?.setAttribute('aria-selected', String(isActive));
+      card?.classList.toggle('is-hidden', !isActive);
+    });
+  }
+
+  Object.entries(tabs).forEach(([name, { btn }]) => {
+    btn?.addEventListener('click', () => activateTab(name));
+  });
+
+  function setInvariantCard(card, tabBtn, good) {
     card?.classList.toggle('is-good', good);
     card?.classList.toggle('is-bad', !good);
+    tabBtn?.classList.toggle('is-good', good);
+    tabBtn?.classList.toggle('is-bad', !good);
   }
 
   function render() {
@@ -607,9 +704,9 @@ const prompt = buildFieldPrompt('trace', {
 
     if (els.statusReason) els.statusReason.textContent = state.reason;
 
-    setInvariantCard(els.temporalCard, state.temporalSatisfied);
-    setInvariantCard(els.relationalCard, state.relationalSatisfied);
-    setInvariantCard(els.fusionCard, !state.level2);
+    setInvariantCard(els.temporalCard, tabs.temporal.btn, state.temporalSatisfied);
+    setInvariantCard(els.relationalCard, tabs.relational.btn, state.relationalSatisfied);
+    setInvariantCard(els.fusionCard, tabs.fusion.btn, !state.level2);
 
     if (els.temporalState) els.temporalState.textContent = state.temporalSatisfied ? 'Satisfied' : 'Not satisfied';
     if (els.temporalCopy) {
