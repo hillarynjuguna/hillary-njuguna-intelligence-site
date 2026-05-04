@@ -1,14 +1,14 @@
 export const SITE = {
-  name: 'Oscillatory Fields',
-  tagline: 'Intelligence architecture for institutions that can\'t afford to get it wrong.',
+  name: 'Hillary Njuguna',
+  tagline: 'AI governance architecture for institutions that can\'t afford to get it wrong.',
   description:
-    'Research and applied intelligence architecture by Hillary Njuguna. We build the governance layers—from distributed cognition theory (DCFB) to institutional readiness (CIR)—that make AI failures visible before they occur.',
+    'Hillary Njuguna diagnoses the structural conditions that make AI governance fail before it looks like failure, then builds the architecture that makes those failures visible. Research-backed frameworks, readiness assessments, and applied governance design.',
   url: 'https://hillarynjuguna.vercel.app',
   author: {
     name: 'Hillary Njuguna',
     handle: '@quasiconscious',
     email: 'hillarynjuguna@protonmail.com',
-    bio: 'Intelligence architect. Constitutional AI governance researcher. Builder of cognitive infrastructure frameworks.',
+    bio: 'AI governance architect. Researcher and practitioner building the structural diagnostics and readiness frameworks that make AI deployment failures visible before they become catastrophic.',
     origin: 'Nairobi → Kuala Lumpur → everywhere',
     social: {
       x: 'https://x.com/quasiconscious',

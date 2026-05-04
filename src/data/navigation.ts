@@ -1,5 +1,5 @@
 /**
- * Oscillatory Fields — Navigation Architecture v2.0
+ * Hillary Njuguna — Navigation Architecture v2.1
  * 
  * Single canonical navigation structure used by ALL pages.
  * Dropdowns for clustered content. Flat links for singular destinations.
@@ -35,11 +35,9 @@ export const NAV_ENTRIES: NavEntry[] = [
     label: 'Research',
     href: '/research',
     children: [
-      { label: 'Dispatches', href: '/research', description: 'Theoretical frameworks and deep analysis' },
-      { label: 'Field Notes', href: '/digest', description: 'Observations from active synthesis' },
-      { label: 'Field Signals', href: '/field', description: 'Emergent discoveries from the Insight Log' },
-      { label: 'Clauses', href: '/clauses', description: 'Governance primitives and constitutional fragments' },
-      { label: 'Corpus', href: '/corpus', description: 'Query the entire research body directly' },
+      { label: 'Research', href: '/research', description: 'Governance frameworks and structural analysis' },
+      { label: 'Field Notes', href: '/digest', description: 'Observations from active research' },
+      { label: 'Clauses', href: '/clauses', description: 'Governance principles and constitutional fragments' },
     ],
   },
   {
@@ -47,9 +45,9 @@ export const NAV_ENTRIES: NavEntry[] = [
     href: '/orchestra-operation',
     children: [
       { label: 'The Orchestra', href: '/orchestra-operation', description: 'Multi-model governance query engine' },
-      { label: 'CIR Assessment', href: '/cir-assessment', description: 'Five-question readiness diagnostic' },
-      { label: 'Bainbridge Diagnostic', href: '/bainbridge-diagnostic', description: 'Identify failure mode exposure' },
-      { label: 'Dual-Invariant Demo', href: '/tools/dual-invariant-demo', description: 'AURORA principle in action' },
+      { label: 'CIR Assessment', href: '/cir-assessment', description: 'Five-dimension readiness diagnostic' },
+      { label: 'Bainbridge Diagnostic', href: '/bainbridge-diagnostic', description: 'Identify governance failure exposure' },
+      { label: 'Governance Gate Demo', href: '/tools/dual-invariant-demo', description: 'Interactive governance gate in action' },
     ],
   },
   {
@@ -71,17 +69,15 @@ export const NAV_ENTRIES: NavEntry[] = [
 
 export const FOOTER_LINKS = {
   research: [
-    { label: 'Dispatches', href: '/research' },
+    { label: 'Research', href: '/research' },
     { label: 'Field Notes', href: '/digest' },
-    { label: 'Field Signals', href: '/field' },
     { label: 'Clauses', href: '/clauses' },
-    { label: 'Corpus', href: '/corpus' },
   ],
   tools: [
     { label: 'The Orchestra', href: '/orchestra-operation' },
     { label: 'CIR Assessment', href: '/cir-assessment' },
     { label: 'Bainbridge Diagnostic', href: '/bainbridge-diagnostic' },
-    { label: 'Dual-Invariant Demo', href: '/tools/dual-invariant-demo' },
+    { label: 'Governance Gate Demo', href: '/tools/dual-invariant-demo' },
   ],
   products: [
     { label: 'The Bainbridge Warning', href: '/products/bainbridge-warning' },
@@ -123,9 +119,8 @@ export const SERVICES = [
 export const TICKER_ITEMS = [
   'CIR V2.0 LIVE ON GUMROAD',
   'THE BAINBRIDGE WARNING — NOW AVAILABLE',
-  'AURORA IN THE RESEARCH ARCHIVE',
+  'GOVERNED INTELLIGENCE SPECIFICATION — FROM $249',
   '560+ SOURCED DOCUMENTS',
-  '18 MONTHS OF ACTIVE SYNTHESIS',
-  'THE ORCHESTRA: SEVEN MODELS, ONE CONDUCTOR',
-  'CONSTITUTIONAL GOVERNANCE IS STRUCTURE, NOT POLICY',
+  '18 MONTHS OF ACTIVE RESEARCH',
+  'GOVERNANCE IS STRUCTURE, NOT POLICY',
 ] as const;

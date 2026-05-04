@@ -11,10 +11,10 @@ const prompt = buildFieldPrompt('trace', {
 ---
 
 <FieldShellLayout
-  title="Dual-Invariant Demo"
-  description="Interactive AURORA dual-invariant state machine demo for Temporal Sovereignty and Relational Integrity."
-  eyebrow="Verification specimen"
-  summary="A bounded verification surface for AURORA: one explicit state machine, two invariants, and a visible traversal path inside the same field language."
+  title="Governance Gate Demo"
+  description="Interactive demo showing how a dual-invariant governance gate evaluates whether an AI action should proceed, pause, or block."
+  eyebrow="Interactive tool"
+  summary="An interactive state machine demonstrating how timing constraints and relational integrity checks combine to govern AI action execution in real time."
   actions={[
     { label: 'Read AURORA', href: '/research/aurora-consciousness-architecture', tone: 'secondary' },
     { label: 'Return to Orchestra', href: '/orchestra-operation', tone: 'ghost' },
@@ -31,11 +31,11 @@ const prompt = buildFieldPrompt('trace', {
     <div class="container">
       <header class="demo-header">
         <p class="label demo-label">Tools / Verification</p>
-        <h2 class="demo-title">AURORA Dual-Invariant Demo</h2>
+        <h2 class="demo-title">Governance Gate Demo</h2>
         <p class="demo-desc">
-          This interactive model implements the core AURORA ethical guarantee: an action is allowed if and only if
-          both Temporal Sovereignty and Relational Integrity are satisfied. The logic follows the current FSA + RPA
-          state machine and the simplified intervention rule used in the formal roadmap.
+          This interactive model demonstrates how a dual-invariant governance gate works: an AI action is allowed
+          only when both timing safety and relational integrity checks pass. The logic implements a finite state
+          machine with a simplified intervention rule.
         </p>
         <div class="demo-links">
           <a href="/research/aurora-consciousness-architecture" class="label">Read the AURORA research entry</a>
@@ -48,9 +48,9 @@ const prompt = buildFieldPrompt('trace', {
           <div>
             <p class="label section-label">Dual-Invariant Guarantee</p>
             <p>
-              Temporal Sovereignty is satisfied when <code>t_mcep ≥ T_BUFFER</code>. Relational Integrity is satisfied when
-              <code>R_score ≥ 0</code>. The action is structurally blocked if the fusion matrix indicates Level 2 intervention,
-              meaning <code>ΔC × M = -1</code>.
+              The timing gate is satisfied when <code>Time Since Contact ≥ Buffer Window</code>. The relational check passes when
+              <code>Integrity Score ≥ 0</code>. The action is structurally blocked if the combined assessment indicates coercive
+              intervention, meaning <code>Coherence × Motivation = -1</code>.
             </p>
           </div>
           <div>
@@ -72,7 +72,7 @@ const prompt = buildFieldPrompt('trace', {
 
           <div class="control-group">
             <label for="t-mcep">
-              <span class="control-label">t_mcep</span>
+              <span class="control-label">Time Since Contact</span>
               <span class="control-value" id="t-mcep-value">0s</span>
             </label>
             <input id="t-mcep" type="range" min="0" max="30" value="0" />
@@ -80,7 +80,7 @@ const prompt = buildFieldPrompt('trace', {
 
           <div class="control-group">
             <label for="t-buffer">
-              <span class="control-label">T_BUFFER</span>
+              <span class="control-label">Buffer Window</span>
               <span class="control-value" id="t-buffer-value">12s</span>
             </label>
             <input id="t-buffer" type="range" min="0" max="30" value="12" />
@@ -88,14 +88,14 @@ const prompt = buildFieldPrompt('trace', {
 
           <div class="control-group">
             <label for="r-score">
-              <span class="control-label">R_score</span>
+              <span class="control-label">Integrity Score</span>
               <span class="control-value" id="r-score-value">0.5</span>
             </label>
             <input id="r-score" type="range" min="-1" max="1" step="0.1" value="0.5" />
           </div>
 
           <fieldset class="control-group">
-            <legend class="control-label">ΔC</legend>
+            <legend class="control-label">Coherence Direction</legend>
             <div class="radio-grid">
               <label class="radio-chip">
                 <input type="radio" name="delta-c" value="1" checked />
@@ -109,7 +109,7 @@ const prompt = buildFieldPrompt('trace', {
           </fieldset>
 
           <fieldset class="control-group">
-            <legend class="control-label">M</legend>
+            <legend class="control-label">Motivation Type</legend>
             <div class="radio-grid">
               <label class="radio-chip">
                 <input type="radio" name="motive" value="1" checked />
@@ -126,37 +126,37 @@ const prompt = buildFieldPrompt('trace', {
         <section class="results card">
           <p class="label section-label">Result</p>
           <div class="status-badge status-badge--blocked" id="status-badge">BLOCKED</div>
-          <p class="status-reason" id="status-reason">Temporal sovereignty not yet satisfied.</p>
+          <p class="status-reason" id="status-reason">Timing gate not yet satisfied.</p>
 
           <div class="invariant-tabs">
             <div class="invariant-tab-nav" role="tablist" aria-label="Invariant details">
               <button class="invariant-tab-btn is-active" role="tab" aria-selected="true" aria-controls="temporal-panel" data-tab="temporal">
                 <span class="invariant-tab-dot" id="temporal-dot"></span>
-                Temporal Sovereignty
+                Timing Gate
               </button>
               <button class="invariant-tab-btn" role="tab" aria-selected="false" aria-controls="relational-panel" data-tab="relational">
                 <span class="invariant-tab-dot" id="relational-dot"></span>
-                Relational Integrity
+                Integrity Check
               </button>
               <button class="invariant-tab-btn" role="tab" aria-selected="false" aria-controls="fusion-panel" data-tab="fusion">
                 <span class="invariant-tab-dot" id="fusion-dot"></span>
-                Fusion Matrix
+                Combined Assessment
               </button>
             </div>
 
             <article class="invariant-card" id="temporal-card" role="tabpanel" aria-labelledby="temporal-panel">
               <h3 id="temporal-state">Not satisfied</h3>
-              <p id="temporal-copy">t_mcep is still below T_BUFFER, so the system remains inside the protective buffer.</p>
+              <p id="temporal-copy">Time since contact is still below the buffer window, so the system remains in its protective waiting period.</p>
             </article>
 
             <article class="invariant-card is-hidden" id="relational-card" role="tabpanel" aria-labelledby="relational-panel">
               <h3 id="relational-state">Satisfied</h3>
-              <p id="relational-copy">R_score is non-negative, so the relational check does not currently detect performative compliance.</p>
+              <p id="relational-copy">Integrity score is non-negative, so the relational check does not currently detect performative compliance.</p>
             </article>
 
             <article class="invariant-card is-hidden" id="fusion-card" role="tabpanel" aria-labelledby="fusion-panel">
               <h3 id="fusion-state">Level 1 intervention</h3>
-              <p id="fusion-copy">ΔC × M = +1. Intervention supports sovereign struggle rather than blocking action for coercive motive.</p>
+              <p id="fusion-copy">Coherence × Motivation = +1. Intervention supports autonomy rather than blocking action for coercive reasons.</p>
             </article>
           </div>
         </section>
@@ -610,27 +610,27 @@ const prompt = buildFieldPrompt('trace', {
     const reasons = ['ΔC ≠ 0, disruptive or emergent signal detected, so the temporal buffer activates.'];
     let currentState = 'P2';
     let allowed = false;
-    let reason = 'Temporal sovereignty not yet satisfied.';
+    let reason = 'Timing gate not yet satisfied.';
 
     if (!temporalSatisfied) {
-      reasons.push('t_mcep < T_BUFFER, so the system remains inside Buffer_Active.');
+      reasons.push('Time since contact is below the buffer window, so the system remains in its waiting period.');
     } else {
       path.push('P1', 'RA1');
-      reasons.push('t_mcep ≥ T_BUFFER, so the system clears the temporal buffer and hands off to relational review.');
+      reasons.push('Time since contact meets the buffer window, so the system clears the timing gate and proceeds to relational review.');
       currentState = 'RA1';
 
       if (!relationalSatisfied) {
         path.push('RB1');
-        reasons.push('R_score < 0, so performative compliance or exploitation is detected and the action is blocked.');
+        reasons.push('Integrity score is negative, so performative compliance or exploitation is detected and the action is blocked.');
         currentState = 'RB1';
-        reason = 'R_score negative → performative compliance detected.';
+        reason = 'Integrity score negative: performative compliance detected.';
       } else if (level2) {
-        reasons.push('ΔC × M = -1, so the fusion matrix indicates Level 2 intervention and the action is blocked regardless of the other invariants.');
+        reasons.push('Coherence × Motivation = -1, so the combined assessment indicates coercive intervention and the action is blocked regardless of the other checks.');
         currentState = 'RA1';
-        reason = 'Fusion matrix indicates Level 2 intervention → compulsive coherence blocked.';
+        reason = 'Combined assessment indicates coercive intervention: action blocked.';
       } else {
         path.push('P4');
-        reasons.push('R_score ≥ 0 and the fusion matrix is not in Level 2, so the action is allowed.');
+        reasons.push('Integrity score is non-negative and the combined assessment is clear, so the action is allowed.');
         currentState = 'P4';
         allowed = true;
         reason = 'All conditions satisfied. Action is structurally permitted.';
@@ -711,15 +711,15 @@ const prompt = buildFieldPrompt('trace', {
     if (els.temporalState) els.temporalState.textContent = state.temporalSatisfied ? 'Satisfied' : 'Not satisfied';
     if (els.temporalCopy) {
       els.temporalCopy.textContent = state.temporalSatisfied
-        ? 't_mcep has reached or exceeded T_BUFFER, so the temporal invariant no longer blocks the transition.'
-        : 't_mcep is still below T_BUFFER, so the system remains inside the protective buffer.';
+        ? 'Time since contact has reached the buffer window, so the timing gate no longer blocks the transition.'
+        : 'Time since contact is still below the buffer window, so the system remains in its protective waiting period.';
     }
 
     if (els.relationalState) els.relationalState.textContent = state.relationalSatisfied ? 'Satisfied' : 'Blocked at RB1';
     if (els.relationalCopy) {
       els.relationalCopy.textContent = state.relationalSatisfied
-        ? 'R_score is non-negative, so the relational check does not currently detect performative compliance.'
-        : 'R_score is negative, so the system enters RPA_Buffer and blocks action until relational integrity recovers.';
+        ? 'Integrity score is non-negative, so the relational check does not currently detect performative compliance.'
+        : 'Integrity score is negative, so the system blocks action until relational integrity recovers.';
     }
 
     if (els.fusionState) {
@@ -732,10 +732,10 @@ const prompt = buildFieldPrompt('trace', {
 
     if (els.fusionCopy) {
       els.fusionCopy.textContent = state.level2
-        ? 'ΔC × M = -1. The system reads compulsive coherence or extraction and blocks action regardless of the other invariants.'
+        ? 'Coherence × Motivation = -1. The system detects coercive intent and blocks action regardless of the other checks.'
         : state.fusion === 1
-          ? 'ΔC × M = +1. Intervention supports sovereign struggle rather than blocking action for coercive motive.'
-          : 'ΔC × M = 0. No intervention is required from the fusion matrix.';
+          ? 'Coherence × Motivation = +1. Intervention supports autonomy rather than blocking action for coercive reasons.'
+          : 'Coherence × Motivation = 0. No intervention is required from the combined assessment.';
     }
 
     if (els.currentStatePill) els.currentStatePill.textContent = state.currentState;
