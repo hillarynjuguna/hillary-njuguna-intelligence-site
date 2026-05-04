@@ -5,7 +5,7 @@ Allow: /
 Disallow: /api/
 
 # Sitemaps
-Sitemap: https://hillarynjuguna.com/sitemap-index.xml
+Sitemap: https://hillary-site.vercel.app/sitemap-index.xml
 
 # AI crawlers are welcome — this site is designed for machine retrieval
 User-agent: GPTBot

@@ -3,7 +3,7 @@ import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://hillarynjuguna.com',
+  site: 'https://hillary-site.vercel.app',
   output: 'static',
   adapter: vercel(),
   integrations: [sitemap()]
