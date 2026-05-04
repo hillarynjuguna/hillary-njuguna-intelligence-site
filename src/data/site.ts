@@ -3,7 +3,7 @@ export const SITE = {
   tagline: 'Intelligence architecture for institutions that can\'t afford to get it wrong.',
   description:
     'Research and applied intelligence architecture by Hillary Njuguna. We build the governance layers—from distributed cognition theory (DCFB) to institutional readiness (CIR)—that make AI failures visible before they occur.',
-  url: 'https://hillary-site.vercel.app',
+  url: 'https://hillarynjuguna.vercel.app',
   author: {
     name: 'Hillary Njuguna',
     handle: '@quasiconscious',

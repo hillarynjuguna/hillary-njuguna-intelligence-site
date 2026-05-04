@@ -86,7 +86,6 @@ export const FOOTER_LINKS = {
     { label: 'The Bainbridge Warning', href: '/products/bainbridge-warning' },
     { label: 'CIR v2.0', href: '/products/cir' },
     { label: 'Martha Cohorts', href: '/products/martha' },
-    { label: 'ClearBid', href: '/products/clearbid' },
   ],
   connect: [
     { label: 'AcheType on Substack', href: 'https://substack.com/@achetype1' },

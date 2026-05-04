@@ -19,7 +19,7 @@ const PROVIDERS = [
     headers: (key: string) => ({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${key}`,
-      'HTTP-Referer': 'https://hillary-site.vercel.app',
+      'HTTP-Referer': 'https://hillarynjuguna.vercel.app',
       'X-Title': 'Oscillatory Fields Orchestra Conductor',
     }),
   },
