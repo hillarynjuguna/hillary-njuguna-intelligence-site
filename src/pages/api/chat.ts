@@ -16,7 +16,7 @@ const PROVIDERS = [
       'Content-Type': 'application/json',
       Authorization: `Bearer ${key}`,
       'HTTP-Referer': 'https://hillarynjuguna.vercel.app',
-      'X-Title': 'Oscillatory Fields The Field',
+      'X-Title': 'Oscillatory Fields',
     })
   },
   {

@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FieldHeader from '@components/field/FieldHeader.astro';
-import FieldRail from '@components/field/FieldRail.astro';
 import { buildFieldPrompt } from '@lib/field';
 import { getCollection } from 'astro:content';
 import { formatDate } from '../../lib/content';
@@ -61,26 +60,7 @@ const provenanceFacts = [
           <Content />
         </article>
 
-        <FieldRail
-          heading="Bridge context"
-          lineage={signal.data.lineage}
-          domains={signal.data.domains}
-          tags={signal.data.lexiconCandidates}
-          facts={provenanceFacts}
-          prompt={prompt}
-        >
-          {signal.data.crossReferences.length > 0 && (
-            <div class="field-panel">
-              <p class="field-panel__label label">Cross-references</p>
-              <ul class="signal-refs">
-                {signal.data.crossReferences.slice(0, 10).map((reference: string) => (
-                  <li>{reference}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </FieldRail>
-      </div>
+              </div>
     </div>
   </main>
 </BaseLayout>

@@ -2,7 +2,6 @@
 export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
 import FieldHeader from '@components/field/FieldHeader.astro';
-import FieldRail from '@components/field/FieldRail.astro';
 import CorpusGraph from '@components/ui/CorpusGraph.astro';
 import { loadContentGraph } from '@lib/generated/loaders';
 import { buildFieldPrompt } from '@lib/field';
@@ -33,7 +32,7 @@ const prompt = buildFieldPrompt('orient', {
         width="wide"
         actions={[
           { label: 'Browse taxonomy', href: '/tags', tone: 'ghost' },
-          { label: 'Ask the field', href: '/orchestra-operation', tone: 'secondary' },
+          { label: 'Query Intelligence', href: '/orchestra-operation', tone: 'secondary' },
         ]}
       />
 
@@ -60,23 +59,7 @@ const prompt = buildFieldPrompt('orient', {
           </div>
         </div>
 
-        <FieldRail
-          heading="Corpus orientation"
-          facts={[
-            { label: 'Nodes', value: String(graph.nodes.length) },
-            { label: 'Relations', value: String(graph.edges.length) },
-            { label: 'Vectors', value: String(new Set(graph.nodes.flatMap((node) => node.tags)).size) },
-          ]}
-          prompt={prompt}
-        >
-          <div class="field-panel">
-            <p class="field-panel__eyebrow label">Graph visibility</p>
-            <p>
-              The graph stays present as low-level orientation first. Widen only when you need a broader neighborhood or a cross-cutting route.
-            </p>
-          </div>
-        </FieldRail>
-      </div>
+              </div>
     </div>
   </div>
 </BaseLayout>

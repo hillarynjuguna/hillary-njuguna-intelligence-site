@@ -562,14 +562,14 @@ section {
 }
 
 .field-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  gap: var(--space-12);
-  align-items: start;
+  display: flex;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .field-layout--wide {
-  grid-template-columns: minmax(0, 1fr) 360px;
+  max-width: 1200px;
 }
 
 .field-main {
@@ -833,11 +833,15 @@ section {
   padding-top: 2px;
 }
 
+.field-rail-wrapper {
+  position: sticky;
+  top: calc(var(--space-16) + 60px);
+  z-index: 10;
+}
+
 .field-rail {
   display: grid;
   gap: var(--space-4);
-  position: sticky;
-  top: calc(var(--space-16) + 60px);
 }
 
 .field-panel {

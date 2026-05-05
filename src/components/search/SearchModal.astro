@@ -13,7 +13,7 @@
         <input
           type="search"
           id="search-input"
-          placeholder="Search the field by node, term, or problem..."
+          placeholder="Search the corpus by node, term, or problem..."
           autocomplete="off"
           spellcheck="false"
           aria-label="Search the corpus"
@@ -33,7 +33,7 @@
 
     <div id="search-results" class="search-results" aria-live="polite">
       <div class="search-empty">
-        <p>Type to search the field and surface nearby nodes.</p>
+        <p>Type to search the corpus and surface nearby nodes.</p>
       </div>
     </div>
 
@@ -376,7 +376,7 @@
       this.isOpen = false;
       this.modal.setAttribute('aria-hidden', 'true');
       this.input.value = '';
-      this.resultsContainer.innerHTML = '<div class="search-empty"><p>Type to search the field and surface nearby nodes.</p></div>';
+      this.resultsContainer.innerHTML = '<div class="search-empty"><p>Type to search the corpus and surface nearby nodes.</p></div>';
       this.selectedIndex = -1;
       document.body.style.overflow = '';
     }
@@ -384,7 +384,7 @@
     performSearch() {
       const query = this.input.value.trim();
       if (!query || !this.fuse) {
-        this.resultsContainer.innerHTML = '<div class="search-empty"><p>Type to search the field and surface nearby nodes.</p></div>';
+        this.resultsContainer.innerHTML = '<div class="search-empty"><p>Type to search the corpus and surface nearby nodes.</p></div>';
         return;
       }
 

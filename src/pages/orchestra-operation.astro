@@ -2,7 +2,6 @@
 export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
 import FieldHeader from '@components/field/FieldHeader.astro';
-import FieldRail from '@components/field/FieldRail.astro';
 import { buildFieldPrompt } from '@lib/field';
 
 const instruments = [
@@ -295,21 +294,7 @@ const prompt = buildFieldPrompt('synthesize', {
       </div>
         </div>
 
-        <FieldRail
-          heading="Synthesis field"
-          facts={[
-            { label: 'Mode', value: 'Synthesize' },
-            { label: 'Instruments', value: String(instruments.length) },
-            { label: 'Output', value: 'Governed source set' },
-          ]}
-          prompt={prompt}
-        >
-          <div class="field-panel">
-            <p class="field-panel__eyebrow label">Interface state</p>
-            <p class="routing-copy">This surface is explicit AI. It should still stay grounded in corpus logic, visible routing, and differentiated roles rather than acting like a generic chat box.</p>
-          </div>
-        </FieldRail>
-      </div>
+              </div>
     </div>
   </div>
 </BaseLayout>

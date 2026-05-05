@@ -213,7 +213,7 @@ export function buildFieldPrompt(
       links: filterCurrentNode([
         { label: 'Open corpus', href: primaryCorpusHref, tone: 'primary' },
         { label: 'Browse taxonomy', href: '/tags', tone: 'secondary' },
-        { label: 'Ask the field', href: '/orchestra-operation', tone: 'ghost' },
+        { label: 'Query Intelligence', href: '/orchestra-operation', tone: 'ghost' },
       ]),
       nodeHref,
       primaryCorpusHref,
@@ -227,7 +227,7 @@ export function buildFieldPrompt(
         'Stay with the authored argument here. When you need expansion, move into the local neighborhood or ask the corpus to trace the surrounding structure.',
       links: filterCurrentNode([
         { label: 'Trace in corpus', href: primaryCorpusHref, tone: 'primary' },
-        { label: 'Ask the field', href: '/orchestra-operation', tone: 'secondary' },
+        { label: 'Query Intelligence', href: '/orchestra-operation', tone: 'secondary' },
         { label: 'Browse taxonomy', href: '/tags', tone: 'ghost' },
       ]),
       nodeHref,
@@ -243,7 +243,7 @@ export function buildFieldPrompt(
       links: filterCurrentNode([
         { label: 'Open corpus graph', href: primaryCorpusHref, tone: 'primary' },
         { label: 'Browse taxonomy', href: '/tags', tone: 'secondary' },
-        { label: 'Ask the field', href: '/orchestra-operation', tone: 'ghost' },
+        { label: 'Query Intelligence', href: '/orchestra-operation', tone: 'ghost' },
       ]),
       nodeHref,
       primaryCorpusHref,

@@ -2,7 +2,6 @@
 export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
 import FieldHeader from '@components/field/FieldHeader.astro';
-import FieldRail from '@components/field/FieldRail.astro';
 import { buildFieldPrompt } from '@lib/field';
 
 const prompt = buildFieldPrompt('ops', {
@@ -68,20 +67,7 @@ const prompt = buildFieldPrompt('ops', {
           </div>
         </div>
 
-        <FieldRail
-          heading="Operational field"
-          facts={[
-            { label: 'Mode', value: 'Synthesize' },
-            { label: 'Audience', value: 'Internal' },
-          ]}
-          prompt={prompt}
-        >
-          <div class="field-panel">
-            <p class="field-panel__eyebrow label">Operational boundary</p>
-            <p class="ops-note">Synthesis can draft and connect, but authored content, public publication, and governance decisions still remain downstream of human review.</p>
-          </div>
-        </FieldRail>
-      </div>
+              </div>
     </div>
   </div>
 </BaseLayout>

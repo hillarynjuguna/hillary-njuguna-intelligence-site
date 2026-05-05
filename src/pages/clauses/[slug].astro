@@ -3,7 +3,6 @@ export const prerender = true;
 import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import FieldHeader from '@components/field/FieldHeader.astro';
-import FieldRail from '@components/field/FieldRail.astro';
 import { getRelatedContent } from '@lib/related/getRelatedContent';
 import { formatDate } from '@lib/content';
 import { buildFieldPrompt } from '@lib/field';
@@ -66,7 +65,7 @@ const prompt = buildFieldPrompt('trace', {
         chips={data.tags.map((tag) => ({ label: `#${tag}` }))}
         actions={[
           { label: 'Open corpus', href: '/corpus', tone: 'ghost' },
-          { label: 'Ask the field', href: '/orchestra-operation', tone: 'secondary' },
+          { label: 'Query Intelligence', href: '/orchestra-operation', tone: 'secondary' },
         ]}
       />
 
@@ -117,17 +116,7 @@ const prompt = buildFieldPrompt('trace', {
           </div>
         </div>
 
-        <FieldRail
-          heading="Clause field"
-          lineage={data.lineage}
-          domains={data.governanceDomain ? [data.governanceDomain] : []}
-          tags={data.tags}
-          related={otherRelated}
-          governance={governanceItems}
-          prompt={prompt}
-          facts={data.reviewCadence ? [{ label: 'Review cadence', value: data.reviewCadence }] : []}
-        />
-      </div>
+              </div>
     </div>
   </article>
 </BaseLayout>

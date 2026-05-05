@@ -1,7 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import FieldHeader from '@components/field/FieldHeader.astro';
-import FieldRail from '@components/field/FieldRail.astro';
 import type { SEOProps } from '@lib/seo';
 import type { RelatedItem } from '@lib/graph/types';
 import type { FieldPromptSpec } from '@lib/field';
@@ -71,7 +70,7 @@ const chips = tags.slice(0, 6).map((tag) => ({
         width="narrow"
         actions={[
           { label: 'Open corpus', href: '/corpus', tone: 'ghost' },
-          { label: 'Ask the field', href: '/orchestra-operation', tone: 'secondary' },
+          { label: 'Query Intelligence', href: '/orchestra-operation', tone: 'secondary' },
         ]}
       />
 
@@ -82,16 +81,7 @@ const chips = tags.slice(0, 6).map((tag) => ({
           </div>
         </div>
 
-        <FieldRail
-          heading="Local field"
-          lineage={lineage}
-          domains={domains}
-          tags={tags}
-          related={related}
-          governance={governance}
-          prompt={prompt}
-        />
-      </div>
+              </div>
     </div>
   </article>
 </BaseLayout>

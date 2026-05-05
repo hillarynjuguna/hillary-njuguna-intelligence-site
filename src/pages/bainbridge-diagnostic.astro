@@ -2,7 +2,6 @@
 export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
 import FieldHeader from '@components/field/FieldHeader.astro';
-import FieldRail from '@components/field/FieldRail.astro';
 import { buildFieldPrompt } from '@lib/field';
 
 const prompt = buildFieldPrompt('query', {
@@ -109,21 +108,7 @@ const prompt = buildFieldPrompt('query', {
           </div>
         </div>
 
-        <FieldRail
-          heading="Diagnostic field"
-          facts={[
-            { label: 'Mode', value: 'Query' },
-            { label: 'Frames', value: '4-stage diagnostic' },
-            { label: 'Output', value: 'Risk gap report' },
-          ]}
-          prompt={prompt}
-        >
-          <div class="field-panel">
-            <p class="field-panel__eyebrow label">Diagnostic logic</p>
-            <p class="diagnostic-note">Bainbridge surfaces the gap between deployed capability and real governance infrastructure. The useful output is not only the score. It is the shape of the mismatch.</p>
-          </div>
-        </FieldRail>
-      </div>
+              </div>
     </div>
   </div>
 </BaseLayout>

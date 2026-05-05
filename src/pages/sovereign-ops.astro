@@ -2,7 +2,6 @@
 export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
 import FieldHeader from '@components/field/FieldHeader.astro';
-import FieldRail from '@components/field/FieldRail.astro';
 import { buildFieldPrompt } from '@lib/field';
 
 const veins = [
@@ -252,21 +251,7 @@ const prompt = buildFieldPrompt('ops', {
           </section>
         </div>
 
-        <FieldRail
-          heading="Operational field"
-          facts={[
-            { label: 'Knowledge spine', value: 'G:\\My Drive\\RSPS Knowledge Spine' },
-            { label: 'Boundary', value: 'Outbound sync only' },
-            { label: 'Deployment rule', value: 'Local actions fail closed' },
-          ]}
-          prompt={prompt}
-        >
-          <div class="field-panel">
-            <p class="field-panel__eyebrow label">Ops note</p>
-            <p class="ops-rail-copy">Public pages can describe the local system, but local launch and folder controls remain subordinate to the corpus and should never impersonate portable web behavior.</p>
-          </div>
-        </FieldRail>
-      </div>
+              </div>
     </div>
   </main>
 </BaseLayout>

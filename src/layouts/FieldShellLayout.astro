@@ -1,7 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import FieldHeader from '@components/field/FieldHeader.astro';
-import FieldRail from '@components/field/FieldRail.astro';
 import type { SEOProps } from '@lib/seo';
 import type { RelatedItem } from '@lib/graph/types';
 import type { FieldPromptSpec } from '@lib/field';
@@ -98,19 +97,7 @@ const {
           <slot />
         </div>
 
-        <FieldRail
-          heading={railHeading}
-          lineage={lineage}
-          domains={domains}
-          tags={tags}
-          related={related}
-          governance={governance}
-          facts={facts}
-          prompt={prompt}
-        >
-          <slot name="rail" />
-        </FieldRail>
-      </div>
+              </div>
     </div>
   </div>
 </BaseLayout>
