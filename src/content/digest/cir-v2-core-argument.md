@@ -31,12 +31,6 @@ explicitRelations:
     explanation: "This digest entry is the public-facing theoretical brief for the CIR v2.0 product — the argument that motivates the purchase and use of the full assessment instrument."
     provenance: ["section: The Core Argument"]
     manual: true
-  - targetId: digest-intent-gap-god-mode-biology
-    type: extends
-    confidence: medium
-    explanation: "CIR v2.0 extends the intent gap analysis into a full constitutional framework — the intent gap is one of five constitutional dimensions in CIR."
-    provenance: ["section: Intent Specification"]
-    manual: true
 ---
 
 ## The Core Argument

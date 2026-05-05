@@ -57,8 +57,8 @@ body {
 
 /* Selection */
 ::selection {
-  background: rgba(196, 112, 58, 0.3);
-  color: var(--warm-white);
+  background: rgba(184, 92, 56, 0.2);
+  color: var(--text-primary);
 }
 
 /* Scrollbar */
@@ -69,7 +69,7 @@ body {
   background: var(--void);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--ash-dim);
+  background: var(--ash-light);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -115,7 +115,7 @@ a:hover {
 
 strong, b {
   font-weight: 600;
-  color: var(--pale-gold);
+  color: var(--text-primary);
 }
 
 em {
@@ -145,7 +145,7 @@ pre code {
   border: none;
   padding: 0;
   font-size: var(--text-sm);
-  color: var(--pale-gold);
+  color: var(--text-primary);
 }
 
 blockquote {
@@ -253,7 +253,7 @@ section:nth-of-type(even) {
 .section-heading {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 400;
-  color: var(--warm-white);
+  color: var(--text-primary);
   line-height: 1.1;
   margin-bottom: var(--space-4);
   text-align: center;
@@ -302,7 +302,7 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: var(--z-overlay);
-  opacity: 1;
+  opacity: 0.6;
 }
 
 /* Status badges */
@@ -458,8 +458,8 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse at var(--amb-a1x, 13%) var(--amb-a1y, 18%), rgba(196, 112, 58, 0.038) 0%, transparent 56%),
-    radial-gradient(ellipse at var(--amb-a2x, 87%) var(--amb-a2y, 82%), rgba(201, 149, 90, 0.024) 0%, transparent 52%);
+    radial-gradient(ellipse at var(--amb-a1x, 13%) var(--amb-a1y, 18%), rgba(184, 92, 56, 0.04) 0%, transparent 56%),
+    radial-gradient(ellipse at var(--amb-a2x, 87%) var(--amb-a2y, 82%), rgba(158, 123, 79, 0.03) 0%, transparent 52%);
   pointer-events: none;
   z-index: 0;
 }
@@ -475,10 +475,10 @@ body::after {
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
   background-size: 256px 256px;
-  opacity: 0.038;
+  opacity: 0.025;
   pointer-events: none;
   z-index: 1;
-  mix-blend-mode: overlay;
+  mix-blend-mode: multiply;
 }
 
 /* ── Full-Bleed Section Fix ─────────────────────────────────────────────────

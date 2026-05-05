@@ -10,7 +10,6 @@ clauseStatus: candidate
 governanceDomain: epistemic-safety
 crystallizationThreshold: 0.6
 supportingContentIds:
-  - digest-intent-gap-god-mode-biology
   - research-dcfb
 tags: ["intent", "alignment", "monitoring", "deployment", "governance"]
 domains: ["governance", "epistemics"]
@@ -31,18 +30,6 @@ explicitRelations:
     confidence: high
     explanation: "DCFB Principle 1 (field-level capability assessment) directly motivates this clause — you cannot specify intent at the node level in a distributed cognitive field."
     provenance: ["section: What Changes When You Treat Cognition as Distributed"]
-    manual: true
-  - targetId: digest-intent-gap-god-mode-biology
-    type: derives_from
-    confidence: high
-    explanation: "This clause was synthesised directly from the intent gap field notes — the clause text appears as the 'clause candidate from this synthesis' in that entry."
-    provenance: ["section: The Intent Gap"]
-    manual: true
-  - targetId: product-cir
-    type: governance_relevant_to
-    confidence: high
-    explanation: "This clause corresponds to CIR Dimension 1: Intent Specification — organisations that complete CIR are implicitly engaging with this clause requirement."
-    provenance: ["section: Intent Specification"]
     manual: true
 ---
 

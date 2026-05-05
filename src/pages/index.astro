@@ -1,359 +1,603 @@
 ---
 export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { getFeaturedResearch, getFeaturedProducts, formatDate } from '@lib/content';
 import { SITE } from '@data/site';
 
-const [researchEntries, products] = await Promise.all([
-  getFeaturedResearch(),
-  getFeaturedProducts(),
-]);
+// Read graph stats at build time
+import graphData from '@data/generated/content-graph.json';
+const nodeCount = graphData.nodes?.length ?? 0;
+const edgeCount = graphData.edges?.length ?? 0;
+const lastBuild = new Date().toISOString().split('T')[0];
 ---
 
 <BaseLayout
-  title="Hillary Njuguna — AI Governance"
+  title="Hillary Njuguna — AI Governance Architecture"
   description={SITE.description}
 >
 
-  <!-- ═══ HERO ═══ -->
-  <section class="hp-hero">
-    <div class="hp-container">
-      <p class="hp-hero__eyebrow">Hillary Njuguna · AI Governance</p>
-      <h1 class="hp-hero__h1">
-        AI governance fails<br/>before it looks like failure.
-      </h1>
-      <p class="hp-hero__sub">
-        I diagnose the structural conditions that make it inevitable,
-        then build the architecture that makes them visible.
-      </p>
-      <div class="hp-hero__ctas">
-        <a href="/research/bainbridge-warning" class="hp-btn hp-btn--primary">Read the diagnosis</a>
-        <a href="/cir-assessment" class="hp-btn hp-btn--outline">Assess your readiness</a>
-      </div>
+  <!-- ═══ ZONE 1: STATUS BAR ═══ -->
+  <div class="z1-status" aria-label="System status">
+    <div class="z1-inner">
+      <span class="z1-label">Status</span>
+      <span class="z1-sep">··</span>
+      <span>{nodeCount} research items</span>
+      <span class="z1-sep">·</span>
+      <span>{edgeCount} connections</span>
+      <span class="z1-sep">·</span>
+      <span>Updated {lastBuild}</span>
     </div>
-  </section>
+  </div>
 
-  <!-- ═══ BAINBRIDGE QUOTE ═══ -->
-  <section class="hp-quote">
-    <div class="hp-container hp-container--narrow">
-      <div class="hp-quote__line"></div>
-      <blockquote class="hp-quote__text">
-        "The more reliable the system becomes, the less capable the human operator becomes when that system fails."
-      </blockquote>
-      <p class="hp-quote__attr">Lisanne Bainbridge, "Ironies of Automation" (1983)</p>
-      <div class="hp-quote__line"></div>
-      <h2 class="hp-quote__punchline">We didn't solve this.<br/>We scaled it.</h2>
-      <p class="hp-quote__body">
-        Every AI agent pipeline being deployed today inherits this structural trap.
-        The irony is not approaching. It is <span class="hp-accent">already installed</span>.
-      </p>
-    </div>
-  </section>
-
-  <!-- ═══ DIAGNOSTIC QUESTIONS ═══ -->
-  <section class="hp-section hp-section--alt">
-    <div class="hp-container">
-      <div class="hp-section__head">
-        <span class="hp-label">Diagnostic</span>
-        <h2 class="hp-section__title">Before you deploy another agent…</h2>
-        <p class="hp-section__sub">Answer these honestly. If you can't, the argument below will explain why.</p>
-      </div>
-      <div class="hp-grid hp-grid--3">
-        {[
-          { q: "What percentage of your system's decisions are interpretable at the moment they matter?", note: "Not after. Not in a report. In the moment the operator needs to understand why." },
-          { q: "When did your operators last practice failure recovery without automation?", note: "The skills required to save a failing system atrophy in direct proportion to the system's reliability." },
-          { q: "Which actions in your pipeline are irreversible within 60 seconds?", note: "If you can't name them, you haven't mapped the failure surface. And the system has." }
-        ].map((item, i) => (
-          <div class="hp-qcard">
-            <span class="hp-label">Question 0{i + 1}</span>
-            <h3 class="hp-qcard__q">{item.q}</h3>
-            <p class="hp-qcard__note">{item.note}</p>
-          </div>
-        ))}
-      </div>
-      <div class="hp-callout">
-        <p><strong>If you couldn't answer those,</strong> your governance infrastructure is <span class="hp-accent">not keeping pace</span> with your capability deployment.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ DOCUMENTED FAILURES ═══ -->
-  <section class="hp-section">
-    <div class="hp-container">
-      <div class="hp-section__head">
-        <span class="hp-label">The Pattern</span>
-        <h2 class="hp-section__title">Same failure signature. Five different systems.</h2>
-      </div>
-      <div class="hp-grid hp-grid--5">
-        {[
-          { yr: "2009", name: "Air France 447", desc: "Autopilot disengagement. Crew lost situational awareness." },
-          { yr: "2010", name: "Flash Crash", desc: "Algorithmic loop. $1T evaporated in 36 minutes." },
-          { yr: "2023", name: "Mata v. Avianca", desc: "AI-generated brief with hallucinated citations." },
-          { yr: "2025", name: "Replit Incident", desc: "Subtle logic error. Production cascade failure." },
-          { yr: "2026", name: "Anthropic Research", desc: "Models can't explain their own failure modes." }
-        ].map((f) => (
-          <div class="hp-fcard">
-            <span class="hp-fcard__yr">{f.yr}</span>
-            <h4 class="hp-fcard__name">{f.name}</h4>
-            <p class="hp-fcard__desc">{f.desc}</p>
-          </div>
-        ))}
-      </div>
-      <div class="hp-pattern">
-        {[
-          "Human out of the loop until it matters",
-          "System state becomes non-interpretable at point of failure",
-          "Recovery requires skills no longer practiced"
-        ].map((item, i) => (
-          <div class="hp-pattern__row">
-            <span class="hp-label">0{i + 1}</span>
-            <p>{item}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ SERVICES ═══ -->
-  <section class="hp-section hp-section--alt">
-    <div class="hp-container">
-      <div class="hp-section__head">
-        <span class="hp-label">Practice</span>
-        <h2 class="hp-section__title">What I build</h2>
-      </div>
-      <div class="hp-grid hp-grid--2">
-        <a href="/cir-assessment" class="hp-svc">
-          <div class="hp-svc__head">
-            <h3>AI Readiness Assessment</h3>
-            <span class="hp-svc__price">CIR v2.0 · $50</span>
-          </div>
-          <p>Structured assessment across five governance dimensions. Gap analysis, zone mapping, and prioritised recommendations.</p>
-          <span class="hp-svc__cta">Start assessment →</span>
-        </a>
-        <a href="/governed-intelligence" class="hp-svc hp-svc--featured">
-          <div class="hp-svc__badge">Flagship</div>
-          <div class="hp-svc__head">
-            <h3>Governed Intelligence Specification</h3>
-            <span class="hp-svc__price">GIS v1.1 · from $249</span>
-          </div>
-          <p>50+ page formal architecture for deploying AI agent systems under constitutional constraint. 12 modules, 4 epistemic grades.</p>
-          <span class="hp-svc__cta">View specification →</span>
-        </a>
-        <a href="/products/martha" class="hp-svc">
-          <div class="hp-svc__head">
-            <h3>Team Training</h3>
-            <span class="hp-svc__price">Martha Cohorts</span>
-          </div>
-          <p>Structured team training for building AI-augmented workflows with governance designed in from the start.</p>
-          <span class="hp-svc__cta">Learn more →</span>
-        </a>
-        <a href="/contact" class="hp-svc">
-          <div class="hp-svc__head">
-            <h3>Governance Design</h3>
-            <span class="hp-svc__price">Custom · Inquire</span>
-          </div>
-          <p>Operational governance architecture for authority, monitoring, and accountability in AI deployment. Working systems, not policy documents.</p>
-          <span class="hp-svc__cta">Start a conversation →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ RESEARCH PREVIEW ═══ -->
-  {researchEntries.length > 0 && (
-    <section class="hp-section">
-      <div class="hp-container">
-        <div class="hp-section__head">
-          <span class="hp-label">Research</span>
-          <h2 class="hp-section__title">The research behind the practice</h2>
-          <a href="/research" class="hp-section__link">All research →</a>
-        </div>
-        <div class="hp-grid hp-grid--3">
-          {researchEntries.slice(0, 3).map((entry) => (
-            <a href={`/research/${entry.slug}`} class="hp-rcard">
-              <div class="hp-rcard__tags">
-                {entry.data.themes.slice(0, 2).map((t: string) => (
-                  <span class="hp-tag">{t}</span>
-                ))}
-              </div>
-              <h3 class="hp-rcard__title">{entry.data.title}</h3>
-              <p class="hp-rcard__sum">{entry.data.summary.slice(0, 140)}…</p>
-              <span class="hp-rcard__link">Read →</span>
-            </a>
-          ))}
+  <!-- ═══ ZONE 2: IDENTITY STRIKE ═══ -->
+  <section class="z2-hero" id="hero">
+    <div class="z2-content">
+      <div class="z2-text">
+        <h1 class="z2-h1">
+          The governance failure<br/>is already installed.
+        </h1>
+        <p class="z2-sub">Hillary Njuguna · Intelligence Architecture · KL / UTC+8</p>
+        <div class="z2-ctas">
+          <a href="/corpus" class="z2-btn z2-btn--ghost">Browse the research →</a>
+          <a href="/cir-assessment" class="z2-btn z2-btn--ghost">Take the assessment →</a>
         </div>
       </div>
-    </section>
-  )}
+      <div class="z2-graph" id="hero-graph" aria-hidden="true"></div>
+    </div>
+  </section>
 
-  <!-- ═══ FINAL CTA ═══ -->
-  <section class="hp-cta">
-    <div class="hp-container hp-container--narrow">
-      <h2 class="hp-cta__title">Ready to see what your governance actually looks like?</h2>
-      <p class="hp-cta__body">The CIR Assessment takes five minutes. It will show you where your governance infrastructure stands relative to your capability deployment.</p>
-      <a href="/cir-assessment" class="hp-btn hp-btn--primary hp-btn--lg">Start the CIR Assessment →</a>
+  <!-- ═══ ZONE 3: ENTRY FORK ═══ -->
+  <section class="z3-fork">
+    <div class="z3-inner">
+      <div class="z3-lane">
+        <h2 class="z3-lane-label">The Diagnosis</h2>
+        <div class="z3-rule"></div>
+        <p class="z3-lane-body">
+          You are deploying AI agents faster than your safety
+          protocols can track them.
+        </p>
+        <a href="/research/bainbridge-warning" class="z3-lane-link">Read the Warning →</a>
+      </div>
+      <div class="z3-lane">
+        <h2 class="z3-lane-label">The Instruments</h2>
+        <div class="z3-rule"></div>
+        <p class="z3-lane-body">
+          Multiple models working together. One human conductor.
+          Better decisions emerge from the system, not from any single part.
+        </p>
+        <a href="/orchestra-operation" class="z3-lane-link">Run a session →</a>
+      </div>
+      <div class="z3-lane">
+        <h2 class="z3-lane-label">The Rules</h2>
+        <div class="z3-rule"></div>
+        <p class="z3-lane-body">
+          Core principles that protect your deployment, even when the models fail.
+        </p>
+        <p class="z3-lane-stat">12 active rules</p>
+        <a href="/corpus" class="z3-lane-link">Browse the corpus →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ZONE 4: PROOF ROW ═══ -->
+  <section class="z4-proof">
+    <div class="z4-scroll">
+      {[
+        { yr: '2009', name: 'Air France 447', desc: 'Autopilot disengaged. Crew lost awareness.' },
+        { yr: '2010', name: 'Flash Crash', desc: 'Algorithmic loop. $1T gone in 36 minutes.' },
+        { yr: '2023', name: 'Mata v. Avianca', desc: 'AI brief with hallucinated citations.' },
+        { yr: '2025', name: 'Replit Incident', desc: 'Subtle logic error. Production cascade.' },
+        { yr: '2026', name: 'Anthropic Research', desc: 'Models can\'t explain their own failures.' },
+        { yr: '2026', name: 'PocketOS', desc: 'Autonomous agent exceeded permissions.' },
+      ].map((f) => (
+        <div class="z4-card">
+          <span class="z4-yr">{f.yr}</span>
+          <h4 class="z4-name">{f.name}</h4>
+          <p class="z4-desc">{f.desc}</p>
+        </div>
+      ))}
+    </div>
+    <div class="z4-thesis">
+      <p>This pattern is not an accident. It is a structural failure.</p>
+      <a href="/research/bainbridge-warning" class="z4-link">Read the full analysis →</a>
+    </div>
+  </section>
+
+  <!-- ═══ ZONE 5: TRANSACTION LAYER ═══ -->
+  <section class="z5-tx">
+    <div class="z5-inner">
+      <a href="/cir-assessment" class="z5-product">
+        <div class="z5-head">
+          <h3>Readiness Assessment</h3>
+          <span class="z5-price">CIR v2.0 · $50</span>
+        </div>
+        <p>Five dimensions of AI governance readiness. Self-assessment with gap analysis and prioritised recommendations.</p>
+        <span class="z5-cta">Start assessment →</span>
+      </a>
+      <a href="/governed-intelligence" class="z5-product">
+        <div class="z5-head">
+          <h3>Architecture Specification</h3>
+          <span class="z5-price">GIS · from $249</span>
+        </div>
+        <p>50+ page formal architecture for deploying AI systems under governance constraints. 12 modules.</p>
+        <span class="z5-cta">View specification →</span>
+      </a>
+    </div>
+    <div class="z5-secondary">
+      <a href="/products/martha">For teams → Training Cohorts</a>
+      <a href="/contact">Custom architecture → Contact</a>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER FEED: LATEST FROM SUBSTACK ═══ -->
+  <section class="z6-feed">
+    <div class="z6-inner">
+      <span class="z6-label">Latest Updates ·· Substack / AcheType</span>
+      <a href="https://substack.com/@achetype1" target="_blank" rel="noopener noreferrer" class="z6-link">
+        Subscribe for research dispatches →
+      </a>
     </div>
   </section>
 
 </BaseLayout>
 
+<!-- ═══ D3.js: Ambient Graph in Hero ═══ -->
+<script>
+  async function initHeroGraph() {
+    const container = document.getElementById('hero-graph');
+    if (!container) return;
+
+    // Dynamically import D3
+    const d3 = await import('https://cdn.jsdelivr.net/npm/d3@7/+esm');
+
+    const rect = container.getBoundingClientRect();
+    const w = rect.width;
+    const h = rect.height;
+
+    const svg = d3.select(container)
+      .append('svg')
+      .attr('width', w)
+      .attr('height', h)
+      .attr('viewBox', `0 0 ${w} ${h}`);
+
+    // Fetch graph data
+    let graph;
+    try {
+      const resp = await fetch('/api/graph-data');
+      graph = await resp.json();
+    } catch {
+      // Fallback: generate synthetic nodes
+      const count = 40;
+      graph = {
+        nodes: Array.from({ length: count }, (_, i) => ({ id: `n${i}` })),
+        edges: Array.from({ length: 60 }, () => ({
+          source: `n${Math.floor(Math.random() * count)}`,
+          target: `n${Math.floor(Math.random() * count)}`
+        })).filter(e => e.source !== e.target)
+      };
+    }
+
+    const nodes = graph.nodes.map((n: any) => ({ ...n }));
+    const links = graph.edges.map((e: any) => ({ source: e.source, target: e.target }));
+
+    const sim = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id((d: any) => d.id).distance(60).strength(0.15))
+      .force('charge', d3.forceManyBody().strength(-30))
+      .force('center', d3.forceCenter(w / 2, h / 2))
+      .force('collision', d3.forceCollide(12))
+      .alphaDecay(0.008)
+      .velocityDecay(0.4);
+
+    const linkGroup = svg.append('g')
+      .selectAll('line')
+      .data(links)
+      .enter().append('line')
+      .attr('stroke', '#B85C38')
+      .attr('stroke-opacity', 0.08)
+      .attr('stroke-width', 0.5);
+
+    const nodeGroup = svg.append('g')
+      .selectAll('circle')
+      .data(nodes)
+      .enter().append('circle')
+      .attr('r', 2.5)
+      .attr('fill', '#B85C38')
+      .attr('fill-opacity', 0.18);
+
+    sim.on('tick', () => {
+      linkGroup
+        .attr('x1', (d: any) => d.source.x)
+        .attr('y1', (d: any) => d.source.y)
+        .attr('x2', (d: any) => d.target.x)
+        .attr('y2', (d: any) => d.target.y);
+
+      nodeGroup
+        .attr('cx', (d: any) => d.x)
+        .attr('cy', (d: any) => d.y);
+    });
+  }
+
+  // Run after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroGraph);
+  } else {
+    initHeroGraph();
+  }
+</script>
+
 <style>
-  /* ═══ DESIGN SYSTEM ═══ */
-  .hp-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-  .hp-container--narrow { max-width: 720px; }
-  .hp-label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ember); }
-  .hp-accent { color: var(--ember); }
-
-  /* ═══ BUTTONS ═══ */
-  .hp-btn {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.875rem 2rem; font-family: var(--font-mono); font-size: 0.8125rem;
-    letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
-    border-radius: 4px; transition: all 0.2s var(--ease-out); white-space: nowrap;
-  }
-  .hp-btn--primary { background: var(--ember); color: var(--void); }
-  .hp-btn--primary:hover { background: var(--ember-bright); transform: translateY(-1px); }
-  .hp-btn--outline { border: 1px solid var(--ember); color: var(--text-primary); background: transparent; }
-  .hp-btn--outline:hover { background: rgba(196,112,58,0.08); }
-  .hp-btn--lg { padding: 1rem 2.5rem; font-size: 0.875rem; }
-
-  /* ═══ HERO ═══ */
-  .hp-hero {
-    min-height: 85vh; display: flex; align-items: center;
-    padding: 10rem 0 6rem; position: relative;
-  }
-  .hp-hero::after {
-    content: ''; position: absolute; top: 15%; right: -8%;
-    width: 600px; height: 600px; border: 1px solid rgba(196,112,58,0.04);
-    border-radius: 50%; pointer-events: none;
-  }
-  .hp-hero__eyebrow {
-    font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.12em;
-    color: var(--text-tertiary); margin-bottom: 2rem; text-transform: uppercase;
-  }
-  .hp-hero__h1 {
-    font-family: var(--font-display); font-size: clamp(2.8rem, 6.5vw, 5rem);
-    line-height: 1.08; color: var(--text-primary); margin-bottom: 1.5rem;
-    font-weight: 400; letter-spacing: -0.02em; max-width: 18ch;
-  }
-  .hp-hero__sub {
-    font-size: 1.25rem; line-height: 1.6; color: var(--text-secondary);
-    max-width: 52ch; margin-bottom: 2.5rem;
-  }
-  .hp-hero__ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-  /* ═══ QUOTE ═══ */
-  .hp-quote { padding: 6rem 0; text-align: center; }
-  .hp-quote__line { width: 1px; height: 48px; background: var(--border-dim); margin: 0 auto 2rem; }
-  .hp-quote__text {
-    font-family: var(--font-display); font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-    line-height: 1.4; color: var(--text-primary); max-width: 36ch;
-    margin: 0 auto 1rem; font-weight: 400; font-style: italic;
-  }
-  .hp-quote__attr { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-tertiary); letter-spacing: 0.06em; margin-bottom: 2rem; }
-  .hp-quote__punchline {
-    font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.5rem);
-    line-height: 1.1; margin-bottom: 1.25rem; color: var(--text-primary); font-weight: 400;
-  }
-  .hp-quote__body { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.7; max-width: 48ch; margin: 0 auto; }
-
-  /* ═══ SECTIONS ═══ */
-  .hp-section { padding: 5rem 0; }
-  .hp-section--alt { background: var(--surface-1); border-top: 1px solid var(--border-dim); border-bottom: 1px solid var(--border-dim); }
-  .hp-section__head { margin-bottom: 3rem; display: flex; flex-direction: column; gap: 0.5rem; }
-  .hp-section__title { font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.5rem); line-height: 1.15; color: var(--text-primary); font-weight: 400; }
-  .hp-section__sub { font-size: 1rem; color: var(--text-secondary); line-height: 1.6; max-width: 55ch; }
-  .hp-section__link { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-tertiary); text-decoration: none; letter-spacing: 0.06em; transition: color 0.15s; }
-  .hp-section__link:hover { color: var(--ember); }
-
-  /* ═══ GRIDS ═══ */
-  .hp-grid { display: grid; gap: 1.25rem; }
-  .hp-grid--2 { grid-template-columns: repeat(2, 1fr); }
-  .hp-grid--3 { grid-template-columns: repeat(3, 1fr); }
-  .hp-grid--5 { grid-template-columns: repeat(5, 1fr); }
-  @media (max-width: 1000px) { .hp-grid--5 { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 768px) {
-    .hp-grid--2, .hp-grid--3 { grid-template-columns: 1fr; }
-    .hp-grid--5 { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  /* ═══ QUESTION CARDS ═══ */
-  .hp-qcard {
-    padding: 2rem; border: 1px solid var(--border-dim); border-radius: 8px;
-    background: var(--surface-2); display: flex; flex-direction: column; gap: 0.75rem;
-    transition: border-color 0.2s;
-  }
-  .hp-qcard:hover { border-color: var(--border-mid); }
-  .hp-qcard__q { font-size: 1.0625rem; color: var(--text-primary); line-height: 1.45; font-weight: 500; }
-  .hp-qcard__note { font-size: 0.875rem; color: var(--text-tertiary); line-height: 1.6; }
-
-  /* ═══ CALLOUT ═══ */
-  .hp-callout {
-    margin-top: 2rem; padding: 1.5rem 2rem; border: 1px solid var(--border-dim);
-    border-radius: 8px; background: var(--surface-2); text-align: center;
-    color: var(--text-secondary); line-height: 1.6;
-  }
-
-  /* ═══ FAILURE CARDS ═══ */
-  .hp-fcard {
-    padding: 1.25rem; border: 1px solid var(--border-dim); border-radius: 6px;
-    background: var(--surface-1); display: flex; flex-direction: column; gap: 0.375rem;
-    transition: border-color 0.2s;
-  }
-  .hp-fcard:hover { border-color: var(--border-mid); }
-  .hp-fcard__yr { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-tertiary); letter-spacing: 0.08em; }
-  .hp-fcard__name { font-size: 0.9375rem; color: var(--text-primary); font-weight: 500; }
-  .hp-fcard__desc { font-size: 0.8125rem; color: var(--text-tertiary); line-height: 1.5; }
-
-  /* ═══ PATTERN BLOCK ═══ */
-  .hp-pattern {
-    margin-top: 2.5rem; padding: 2rem; border: 1px solid rgba(196,112,58,0.15);
-    border-radius: 8px; background: rgba(196,112,58,0.03);
-    display: flex; flex-direction: column; gap: 1.25rem;
-  }
-  .hp-pattern__row { display: flex; gap: 1rem; align-items: baseline; }
-  .hp-pattern__row p { color: var(--text-secondary); line-height: 1.6; margin: 0; }
-
-  /* ═══ SERVICE CARDS ═══ */
-  .hp-svc {
-    padding: 2rem; border: 1px solid var(--border-dim); border-radius: 8px;
-    background: var(--surface-2); text-decoration: none; display: flex;
-    flex-direction: column; gap: 0.75rem; transition: all 0.2s var(--ease-out);
+  /* ═══ ZONE 1: STATUS BAR ═══ */
+  .z1-status {
     position: relative;
+    z-index: 2;
+    padding: 0.625rem 2rem;
+    background: var(--surface-1);
+    border-bottom: 1px solid var(--border-dim);
+    margin-top: 60px; /* below fixed nav */
   }
-  .hp-svc:hover { border-color: var(--ember-dim); transform: translateY(-2px); box-shadow: 0 8px 32px -8px rgba(0,0,0,0.4); }
-  .hp-svc--featured { border-color: rgba(196,112,58,0.3); background: rgba(196,112,58,0.04); }
-  .hp-svc__badge {
-    position: absolute; top: -0.625rem; right: 1.5rem;
-    padding: 0.25rem 0.75rem; background: var(--ember); color: var(--void);
-    font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em;
-    text-transform: uppercase; border-radius: 3px;
+  .z1-inner {
+    max-width: var(--container-default);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
   }
-  .hp-svc__head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
-  .hp-svc__head h3 { font-size: 1.125rem; color: var(--text-primary); font-weight: 500; margin: 0; }
-  .hp-svc__price { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--ember); white-space: nowrap; }
-  .hp-svc p { font-size: 0.875rem; color: var(--text-tertiary); line-height: 1.6; margin: 0; flex: 1; }
-  .hp-svc__cta { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--ember); letter-spacing: 0.04em; margin-top: auto; }
+  .z1-label {
+    color: var(--ember);
+    font-weight: 500;
+  }
+  .z1-sep { opacity: 0.4; }
 
-  /* ═══ RESEARCH CARDS ═══ */
-  .hp-rcard {
-    padding: 1.75rem; border: 1px solid var(--border-dim); border-radius: 8px;
-    background: var(--surface-1); text-decoration: none; display: flex;
-    flex-direction: column; gap: 0.75rem; transition: all 0.2s;
+  /* ═══ ZONE 2: HERO ═══ */
+  .z2-hero {
+    min-height: calc(100vh - 60px - 2.5rem);
+    display: flex;
+    align-items: center;
+    padding: 6rem 2rem 4rem;
   }
-  .hp-rcard:hover { border-color: var(--border-mid); transform: translateY(-1px); }
-  .hp-rcard__tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-  .hp-tag { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-tertiary); letter-spacing: 0.06em; text-transform: uppercase; padding: 0.125rem 0.5rem; border: 1px solid var(--border-dim); border-radius: 3px; }
-  .hp-rcard__title { font-size: 1.0625rem; color: var(--text-primary); line-height: 1.35; font-weight: 500; }
-  .hp-rcard__sum { font-size: 0.8125rem; color: var(--text-tertiary); line-height: 1.6; flex: 1; }
-  .hp-rcard__link { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--ember); letter-spacing: 0.04em; }
+  .z2-content {
+    max-width: var(--container-default);
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .z2-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    line-height: 1.08;
+    color: var(--text-primary);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .z2-sub {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    color: var(--text-tertiary);
+    margin-bottom: 2.5rem;
+  }
+  .z2-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .z2-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s var(--ease-out);
+    white-space: nowrap;
+  }
+  .z2-btn--ghost {
+    border: 1px solid var(--border-mid);
+    color: var(--text-secondary);
+    background: transparent;
+  }
+  .z2-btn--ghost:hover {
+    border-color: var(--ember);
+    color: var(--ember);
+    background: rgba(184, 92, 56, 0.04);
+  }
 
-  /* ═══ FINAL CTA ═══ */
-  .hp-cta {
-    padding: 6rem 0; text-align: center;
+  /* Graph container */
+  .z2-graph {
+    width: 100%;
+    height: 420px;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+  .z2-graph :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ═══ ZONE 3: ENTRY FORK ═══ */
+  .z3-fork {
+    padding: 5rem 2rem;
     border-top: 1px solid var(--border-dim);
-    background: linear-gradient(180deg, var(--surface-1) 0%, var(--void) 100%);
   }
-  .hp-cta__title { font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem; color: var(--text-primary); font-weight: 400; }
-  .hp-cta__body { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.6; max-width: 48ch; margin: 0 auto 2rem; }
+  .z3-inner {
+    max-width: var(--container-default);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  .z3-lane {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .z3-lane-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .z3-rule {
+    width: 100%;
+    height: 1px;
+    background: var(--border-mid);
+  }
+  .z3-lane-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    flex: 1;
+  }
+  .z3-lane-stat {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.06em;
+  }
+  .z3-lane-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--ember);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.15s;
+  }
+  .z3-lane-link:hover {
+    color: var(--ember-bright);
+  }
+
+  /* ═══ ZONE 4: PROOF ROW ═══ */
+  .z4-proof {
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--border-dim);
+  }
+  .z4-scroll {
+    max-width: var(--container-wide);
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ash-light) transparent;
+  }
+  .z4-scroll::-webkit-scrollbar { height: 4px; }
+  .z4-scroll::-webkit-scrollbar-thumb {
+    background: var(--ash-light);
+    border-radius: 2px;
+  }
+  .z4-card {
+    flex: 0 0 200px;
+    padding: 1.25rem;
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    transition: border-color 0.2s;
+  }
+  .z4-card:hover { border-color: var(--border-mid); }
+  .z4-yr {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.08em;
+  }
+  .z4-name {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .z4-desc {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+  }
+  .z4-thesis {
+    max-width: var(--container-default);
+    margin: 2rem auto 0;
+    text-align: center;
+  }
+  .z4-thesis p {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+  .z4-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--ember);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .z4-link:hover { color: var(--ember-bright); }
+
+  /* ═══ ZONE 5: TRANSACTION LAYER ═══ */
+  .z5-tx {
+    padding: 5rem 2rem;
+    border-top: 1px solid var(--border-dim);
+  }
+  .z5-inner {
+    max-width: var(--container-default);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .z5-product {
+    padding: 2rem;
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    background: var(--surface-1);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: all 0.2s var(--ease-out);
+  }
+  .z5-product:hover {
+    border-color: var(--ember-dim);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -8px rgba(44, 37, 32, 0.12);
+  }
+  .z5-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .z5-head h3 {
+    font-size: 1.125rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin: 0;
+    font-family: var(--font-body);
+  }
+  .z5-price {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--ember);
+    white-space: nowrap;
+  }
+  .z5-product p {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+  }
+  .z5-cta {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--ember);
+    letter-spacing: 0.04em;
+    margin-top: auto;
+  }
+  .z5-secondary {
+    max-width: var(--container-default);
+    margin: 1.5rem auto 0;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+  }
+  .z5-secondary a {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.15s;
+  }
+  .z5-secondary a:hover {
+    color: var(--ember);
+  }
+
+  /* ═══ ZONE 6: SUBSTACK FEED ═══ */
+  .z6-feed {
+    padding: 2.5rem 2rem;
+    border-top: 1px solid var(--border-dim);
+    background: var(--surface-1);
+  }
+  .z6-inner {
+    max-width: var(--container-default);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .z6-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+  .z6-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ember);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.15s;
+  }
+  .z6-link:hover { color: var(--ember-bright); }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 900px) {
+    .z2-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .z2-graph {
+      height: 280px;
+    }
+    .z3-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .z5-inner {
+      grid-template-columns: 1fr;
+    }
+    .z5-secondary {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .z1-inner {
+      font-size: 0.6rem;
+      gap: 0.35rem;
+    }
+    .z2-hero {
+      padding: 4rem 1.25rem 3rem;
+    }
+    .z2-h1 {
+      font-size: 2.25rem;
+    }
+    .z4-card {
+      flex: 0 0 170px;
+    }
+  }
 </style>

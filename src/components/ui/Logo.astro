@@ -100,5 +100,15 @@ const height = size * 0.5;
   .logo__wave-1 {
     stroke-dasharray: 200;
     stroke-dashoffset: 0;
+    animation: wave-oscillate 4s ease-in-out infinite;
+  }
+
+  .logo__wave-2 {
+    animation: wave-oscillate 4s ease-in-out infinite reverse;
+  }
+
+  @keyframes wave-oscillate {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(2px); }
   }
 </style>

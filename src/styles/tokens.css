@@ -1,27 +1,32 @@
 /* ── Design Tokens ─────────────────────────────────────────────────────────── */
 :root {
-  /* Color palette */
-  --void: #050403;
-  --void-1: #0c0a08;
-  --void-2: #161210;
-  --void-3: #1e1a16;
-  --void-4: #28221d;
+  /* ── Eggshell Light Palette ──────────────────────────────────────────────── */
+  /* Background tiers: warm off-whites */
+  --void: #F8F6F1;
+  --void-1: #F2EFE8;
+  --void-2: #EBE7DE;
+  --void-3: #E3DED4;
+  --void-4: #DAD5CA;
 
-  --ember: #c4703a;
-  --ember-dim: #8a4e29;
-  --ember-bright: #d4834f;
+  /* Accent: warm terracotta, carried over but recalibrated for light */
+  --ember: #B85C38;
+  --ember-dim: #9A4D30;
+  --ember-bright: #C96B45;
 
-  --gold: #c9955a;
-  --pale-gold: #e8d4b0;
-  --warm-white: #f5ede0;
+  /* Warm neutrals */
+  --gold: #9E7B4F;
+  --pale-gold: #C4A76C;
+  --warm-white: #FDFCF9;
 
-  --sage: #5a7a62;
-  --sage-dim: #3d5442;
-  --sage-bright: #6e9477;
+  /* Sage greens */
+  --sage: #5A7A62;
+  --sage-dim: #3D5442;
+  --sage-bright: #6E9477;
 
-  --ash: #6e6459;
-  --ash-light: #9e9088;
-  --ash-dim: #3e3832;
+  /* Stone/ash tones */
+  --ash: #8A837A;
+  --ash-light: #A9A29A;
+  --ash-dim: #6E6860;
 
   /* Collection Accents */
   --accent-research: #3b82f6;        /* Blue */
@@ -37,36 +42,40 @@
   --accent-clauses-dim: #b45309;
   --accent-clauses-alpha: rgba(245, 158, 11, 0.12);
 
-  --text-primary: #e8d4b0;
-  --text-secondary: #9e9088;
-  --text-tertiary: #6e6459;
-  --text-accent: #c4703a;
+  /* ── Text Hierarchy ──────────────────────────────────────────────────────── */
+  /* Primary: deep umber, not black, not grey */
+  --text-primary: #2C2520;
+  --text-secondary: #5C554D;
+  --text-tertiary: #8A837A;
+  --text-accent: #B85C38;
 
-  --surface-1: #0c0a08;
-  --surface-2: #161210;
-  --surface-3: #1e1a16;
-  --surface-4: #28221d;
+  /* ── Surfaces ────────────────────────────────────────────────────────────── */
+  --surface-1: #F2EFE8;
+  --surface-2: #EBE7DE;
+  --surface-3: #E3DED4;
+  --surface-4: #DAD5CA;
 
-  --border-dim: rgba(196, 112, 58, 0.12);
-  --border-mid: rgba(196, 112, 58, 0.22);
-  --border-bright: rgba(196, 112, 58, 0.4);
+  /* ── Borders ─────────────────────────────────────────────────────────────── */
+  --border-dim: rgba(44, 37, 32, 0.08);
+  --border-mid: rgba(44, 37, 32, 0.15);
+  --border-bright: rgba(44, 37, 32, 0.25);
 
   /* Typography */
   --font-display: 'Playfair Display', Georgia, serif;
   --font-mono: 'DM Mono', 'Fira Code', monospace;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  --text-xs: 0.75rem;    /* 12px (was 11px) */
-  --text-sm: 0.875rem;   /* 14px (was 13px) */
-  --text-base: 1rem;     /* 16px (was 15px) */
-  --text-md: 1.125rem;   /* 18px (was 17px) */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-md: 1.125rem;   /* 18px */
   --text-lg: 1.25rem;     /* 20px */
   --text-xl: 1.5rem;      /* 24px */
-  --text-2xl: 2rem;       /* 32px (was 30px) */
-  --text-3xl: 2.5rem;     /* 40px (was 36px) */
-  --text-4xl: 3.5rem;     /* 56px (was 48px) */
-  --text-5xl: 4.5rem;     /* 72px (was 60px) */
-  --text-6xl: 5.5rem;     /* 88px (was 72px) */
+  --text-2xl: 2rem;       /* 32px */
+  --text-3xl: 2.5rem;     /* 40px */
+  --text-4xl: 3.5rem;     /* 56px */
+  --text-5xl: 4.5rem;     /* 72px */
+  --text-6xl: 5.5rem;     /* 88px */
 
   --leading-tight: 1.2;
   --leading-snug: 1.4;
@@ -95,7 +104,7 @@
   --max-w-site: 1200px;
   --max-w-narrow: 52ch;
 
-  /* Container System (New) */
+  /* Container System */
   --container-narrow: 768px;
   --container-default: 1200px;
   --container-wide: 1400px;
