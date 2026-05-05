@@ -11,10 +11,6 @@ domains: ["governance", "retail-operations"]
 themes: ["field-calibration", "e-invoicing"]
 featured: true
 explicitRelations:
-  - targetId: "product-gtm-engine"
-    type: "example_of"
-    confidence: "high"
-    explanation: "Field Dispatch #01 is the firsthand sitrep of the GTM Engine's initial deployment."
   - targetId: "research-activation-intelligence"
     type: "clarifies"
     confidence: "high"
