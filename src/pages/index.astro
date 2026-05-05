@@ -1,40 +1,18 @@
 ---
 export const prerender = true;
-import FieldShellLayout from '@layouts/FieldShellLayout.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
 import { getFeaturedResearch, getFeaturedProducts, formatDate } from '@lib/content';
-import { SERVICES } from '@data/navigation';
-import { buildFieldPrompt } from '@lib/field';
 import { SITE } from '@data/site';
 
 const [researchEntries, products] = await Promise.all([
   getFeaturedResearch(),
   getFeaturedProducts(),
 ]);
-
-const prompt = buildFieldPrompt('orient', {
-  title: 'Hillary Njuguna',
-  nodeHref: '/',
-  primaryCorpusHref: '/research',
-});
 ---
 
-<FieldShellLayout
-  title="Hillary Njuguna"
+<BaseLayout
+  title="Hillary Njuguna — AI Governance"
   description={SITE.description}
-  eyebrow="AI governance practice"
-  summary="Research-backed diagnostics, readiness assessments, and architectural specifications for institutions deploying AI systems under governance constraints."
-  actions={[
-    { label: 'See the diagnosis', href: '/research/bainbridge-warning', tone: 'primary' },
-    { label: 'Assess your readiness', href: '/cir-assessment', tone: 'secondary' },
-    { label: 'View research', href: '/research', tone: 'ghost' },
-  ]}
-  prompt={prompt}
-  facts={[
-    { label: 'Focus', value: 'AI governance architecture' },
-    { label: 'Research base', value: '560+ sourced documents across 18 months' },
-    { label: 'Offerings', value: 'Diagnostics, assessments, specifications, training' },
-  ]}
-  containerClass="container--wide"
 >
 
   <!-- ═══ HERO ═══ -->
@@ -217,7 +195,7 @@ const prompt = buildFieldPrompt('orient', {
     </div>
   </section>
 
-</FieldShellLayout>
+</BaseLayout>
 
 <style>
   /* ═══ DESIGN SYSTEM ═══ */
