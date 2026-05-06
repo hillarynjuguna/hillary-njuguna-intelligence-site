@@ -1,0 +1,267 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const seo = {
+  title: 'Apply for Professional Review | Oscillatory Fields',
+  description: 'High-fidelity governance audits for enterprise AI deployments. Validate your remediation roadmap and secure your cognitive infrastructure.',
+};
+---
+
+<BaseLayout {...seo}>
+  <div class="apply-container">
+    <header class="apply-header" data-reveal>
+      <div class="kicker">GOVERNANCE FIDELITY</div>
+      <h1>Apply for Professional Review</h1>
+      <p class="subtitle">
+        Secure your enterprise AI deployment with an independent audit from the Oscillatory Fields team.
+      </p>
+    </header>
+
+    <section class="apply-form-section" data-reveal>
+      <div class="form-wrapper">
+        <form action="https://formspree.io/f/maqdrora" method="POST" class="apply-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required placeholder="John Doe" />
+            </div>
+            <div class="form-group">
+              <label for="email">Work Email</label>
+              <input type="email" id="email" name="email" required placeholder="john@company.com" />
+            </div>
+            <div class="form-group">
+              <label for="company">Organization</label>
+              <input type="text" id="company" name="company" required placeholder="Enterprise AI Corp" />
+            </div>
+            <div class="form-group">
+              <label for="industry">Industry</label>
+              <select id="industry" name="industry" required>
+                <option value="" disabled selected>Select your industry</option>
+                <option value="fintech">Fintech</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="ecommerce">E-commerce</option>
+                <option value="logistics">Logistics</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="system">What AI system are you auditing?</label>
+            <textarea id="system" name="system" rows="3" required placeholder="e.g., Autonomous customer support agents, automated risk assessment pipeline..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="concern">What is your biggest governance concern?</label>
+            <textarea id="concern" name="concern" rows="3" required placeholder="e.g., Irreversible financial actions, model drift, lack of human-in-the-loop oversight..."></textarea>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="consent" name="consent" required />
+            <label for="consent">I consent to being contacted for a professional review consultation.</label>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span>Submit Application</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <aside class="apply-sidebar" data-reveal>
+      <div class="info-card">
+        <h3>Why Professional Review?</h3>
+        <ul>
+          <li><strong>Board Confidence:</strong> Provide independent validation of your AI safety measures.</li>
+          <li><strong>Regulatory Readiness:</strong> Align with emerging global AI governance standards.</li>
+          <li><strong>Risk Mitigation:</strong> Identify hidden cascade failure modes before they trigger.</li>
+        </ul>
+      </div>
+      <div class="info-card scarcity">
+        <p><strong>Availability Note:</strong> We only accept 2 enterprise reviews per month to maintain audit fidelity. Current wait time: ~3 weeks.</p>
+      </div>
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .apply-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 4rem;
+  }
+
+  @media (max-width: 968px) {
+    .apply-container {
+      grid-template-columns: 1fr;
+      padding: 6rem 1.5rem;
+    }
+  }
+
+  .apply-header {
+    grid-column: 1 / -1;
+    margin-bottom: 2rem;
+  }
+
+  .kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+  }
+
+  .form-wrapper {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3rem;
+    border-radius: 0.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .form-wrapper {
+      padding: 1.5rem;
+    }
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  input, select, textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1rem;
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .checkbox-group input {
+    width: auto;
+  }
+
+  .checkbox-group label {
+    text-transform: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 2rem;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-card li {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .info-card li strong {
+    color: var(--color-text);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .scarcity {
+    border-left: 3px solid var(--color-accent);
+  }
+
+  .scarcity p {
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>
