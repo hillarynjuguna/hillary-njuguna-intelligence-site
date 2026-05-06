@@ -1,44 +1,42 @@
 # Oscillatory Fields
 
-> Intelligence architecture for institutions that can't afford to get it wrong.
+**Intelligence architecture for institutions that can't afford to get it wrong.**
 
-**Hillary Njuguna · hillary-site.vercel.app**
+I help technical leaders deploy AI systems that won't fail catastrophically. Using proprietary governance architecture, I identify structural risks before they cascade—so you ship with confidence, not cleanup.
 
----
+## What You'll Find Here
 
-## Stack
+This is the public research portal for the Oscillatory Fields corpus—a suite of frameworks, tools, and training for AI governance and constitutional design.
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | Astro 5 (server output, Vercel adapter) |
-| Content | Markdown + MDX via Astro Content Collections |
-| AI Layer | OpenRouter API (Mistral), provider-agnostic abstraction |
-| Forms | Formspree (`maqdrora` endpoint) |
-| Hosting | Vercel (auto-deploy on git push) |
-| Sitemap | @astrojs/sitemap (auto-generated) |
-| RSS | @astrojs/rss (Digest feed) |
+### For Enterprise Leaders
+- **[Bainbridge Warning](https://github.com/hillarynjuguna/bainbridge-warning)** — Governance failure diagnostics for AI deployments
+- **[Audit Template](https://github.com/hillarynjuguna/bainbridge-warning/blob/main/AUDIT_TEMPLATE.md)** — Downloadable governance assessment tool
+- **[CIR Assessment](https://github.com/hillarynjuguna/ai-governance-coherence-architecture)** — Readiness evaluation for production AI
 
----
+### For Researchers
+- **[DCFB](https://github.com/hillarynjuguna/dcfb)** — Distributed Cognition Fear Bypass theoretical framework
+- **[RSPS Architecture](https://github.com/hillarynjuguna/rsps-architecture)** — Multi-model cognitive orchestration
 
-## Running locally
+### For Practitioners
+- **[Martha Cohorts](https://github.com/hillarynjuguna/martha-course)** — 12-module training program
+- **[Live Site](https://hillary-site.vercel.app)** — Interactive research portal
 
-```bash
-# 1. Install dependencies
-npm install
+## Quick Start
 
-# 2. Set environment variable
-cp .env.example .env
-# Edit .env and add your OPENROUTER_API_KEY
-
-# 3. Start dev server
-npm run dev
-# → http://localhost:4321
-
-# 4. Build for production
-npm run build
-```
+1. **New here?** Start with the [Bainbridge Warning](https://github.com/hillarynjuguna/bainbridge-warning)
+2. **Want to assess your system?** Download the [Audit Template](https://github.com/hillarynjuguna/bainbridge-warning/blob/main/AUDIT_TEMPLATE.md)
+3. **Ready to deploy?** Explore [RSPS](https://github.com/hillarynjuguna/rsps-architecture) for implementation
 
 ---
+
+## Technical Stack
+
+- **Site Generator:** Astro 5
+- **Deployment:** Vercel (Edge + Serverless)
+- **AI Integration:** OpenRouter API (multi-provider fallback)
+- **Content:** Markdown + Content Collections
+
+[View full technical documentation](./docs/TECHNICAL.md)
 ## Everything that matters lives in `src/content/`. 
 
 No HTML editing required. The site is a **Sovereign Cognitive Node** powered by a multi-model reasoning substrate.
