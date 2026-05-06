@@ -23,3 +23,5 @@ dist/
 *.swp
 .vercel
 src/data/bridge/
+build-*.txt
+*.log
