@@ -22,4 +22,10 @@ dist/
 .idea/
 *.swp
 .vercel
+
+# Data bridge
 src/data/bridge/
+
+# Build logs and general logs
+build-*.txt
+*.log/

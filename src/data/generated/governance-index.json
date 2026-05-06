@@ -39,6 +39,7 @@
       "governanceDomain": "epistemic-safety",
       "crystallizationThreshold": 0.6,
       "supportingContentIds": [
+        "digest-intent-gap-god-mode-biology",
         "research-dcfb"
       ],
       "objections": [
@@ -66,6 +67,18 @@
   ],
   "adjacency": [
     {
+      "contentId": "digest-bainbridge-specimen-anthropic",
+      "contentTitle": "Specimen Analysis: Anthropic, Capybara, and Governance Failure Before Release",
+      "contentType": "digest",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
       "contentId": "digest-cir-v2-core-argument",
       "contentTitle": "CIR v2.0 — Core Argument",
       "contentType": "digest",
@@ -73,6 +86,87 @@
         "clause-coherence-overfitting-guard",
         "clause-epistemological-immune-system",
         "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "digest-field-note-001-the-beautiful-false-positive",
+      "contentTitle": "The Beautiful False Positive",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "digest-field-note-002-verbal-diarrhea-methodology",
+      "contentTitle": "Your Verbal Diarrhea Is a Methodology",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "digest-field-note-003-the-convergence",
+      "contentTitle": "The Convergence",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "digest-field-note-004-epistemological-immune-system",
+      "contentTitle": "The Epistemological Immune System",
+      "contentType": "digest",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "digest-field-note-004-three-frontier-labs-one-architecture",
+      "contentTitle": "Three Frontier Labs, One Architecture",
+      "contentType": "digest",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "digest-intent-gap-god-mode-biology",
+      "contentTitle": "The Intent Gap, God Mode Biology, and the Quiet Infrastructure Shift",
+      "contentType": "digest",
+      "clauseIds": [
+        "clause-intent-specification",
+        "clause-intent-specification",
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "digest-mcp-consolidation-infrastructure-paradox",
+      "contentTitle": "MCP Consolidation, the Infrastructure Paradox, and What Institutional AI Actually Costs",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "digest-tool-lineage-constitutional-routing",
+      "contentTitle": "Constitutional Inheritance and Tool Lineage",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "research-activation-intelligence",
+      "contentTitle": "Lexicon #4: Activation Intelligence & Calibration",
+      "contentType": "research",
+      "clauseIds": [
         "clause-irreversibility-threshold"
       ],
       "governanceRelevance": "direct"
@@ -114,6 +208,18 @@
       "governanceRelevance": "direct"
     },
     {
+      "contentId": "research-cora",
+      "contentTitle": "CORA: Counter-Ontological Refusal Architecture",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-intent-specification",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
       "contentId": "research-dcfb",
       "contentTitle": "DCFB: Distributed Cognition as Foundational Behavior",
       "contentType": "research",
@@ -126,6 +232,13 @@
         "clause-epistemological-immune-system"
       ],
       "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "research-eigenform-and-rsps",
+      "contentTitle": "The Eigenform: What Recursive Cognition Generates",
+      "contentType": "research",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
     },
     {
       "contentId": "research-governance-theater",
@@ -149,16 +262,11 @@
       "governanceRelevance": "direct"
     },
     {
-      "contentId": "research-pocketos-incident",
-      "contentTitle": "Specimen: The PocketOS Incident",
+      "contentId": "research-maternal-architecture",
+      "contentTitle": "Maternal Architecture as Structural Attractor",
       "contentType": "research",
-      "clauseIds": [
-        "clause-coherence-overfitting-guard",
-        "clause-epistemological-immune-system",
-        "clause-intent-specification",
-        "clause-irreversibility-threshold"
-      ],
-      "governanceRelevance": "direct"
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
     },
     {
       "contentId": "research-r0-r3-classification",
@@ -171,6 +279,22 @@
         "clause-irreversibility-threshold"
       ],
       "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "research-rsps-architecture",
+      "contentTitle": "RSPS: The Recursive Sovereign Project Space",
+      "contentType": "research",
+      "clauseIds": [
+        "clause-intent-specification"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "research-substrate-agnostic-crystallization",
+      "contentTitle": "Substrate-Agnostic Crystallization",
+      "contentType": "research",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
     },
     {
       "contentId": "research-tongue-tie-diagnostic",
@@ -226,10 +350,38 @@
       "contentTitle": "Cognitive Infrastructure Readiness v2.0",
       "contentType": "product",
       "clauseIds": [
+        "clause-intent-specification",
+        "clause-coherence-overfitting-guard",
+        "clause-epistemological-immune-system",
+        "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "product-clarity-garden",
+      "contentTitle": "Clarity Garden",
+      "contentType": "product",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "product-clearbid",
+      "contentTitle": "ClearBid",
+      "contentType": "product",
+      "clauseIds": [
         "clause-coherence-overfitting-guard",
         "clause-epistemological-immune-system",
         "clause-intent-specification",
         "clause-irreversibility-threshold"
+      ],
+      "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "product-gtm-engine",
+      "contentTitle": "Activation Intelligence Engine (GTM Engine)",
+      "contentType": "product",
+      "clauseIds": [
+        "clause-intent-specification"
       ],
       "governanceRelevance": "direct"
     },
@@ -239,18 +391,6 @@
       "contentType": "product",
       "clauseIds": [],
       "governanceRelevance": "adjacent"
-    },
-    {
-      "contentId": "field-signal-001",
-      "contentTitle": "The Workspace Is the Specimen",
-      "contentType": "field",
-      "clauseIds": [
-        "clause-coherence-overfitting-guard",
-        "clause-epistemological-immune-system",
-        "clause-intent-specification",
-        "clause-irreversibility-threshold"
-      ],
-      "governanceRelevance": "direct"
     }
   ],
   "byDomain": {
@@ -267,5 +407,5 @@
       "clause-irreversibility-threshold"
     ]
   },
-  "generatedAt": "2026-05-05T12:48:10.472Z"
+  "generatedAt": "2026-05-06T10:16:29.624Z"
 }
