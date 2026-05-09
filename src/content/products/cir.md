@@ -6,7 +6,7 @@ summary: "A self-assessment framework for organisations evaluating their AI read
 productType: "guide"
 productKind: guide
 status: "live"
-price: "$50"
+price: "$149"
 ctaLabel: "Get CIR v2.0"
 ctaUrl: "https://hillarynjuguna.gumroad.com/l/xlwin"
 platform: "Gumroad"
@@ -18,7 +18,7 @@ crystallization: crystallized
 governanceRelevance: direct
 relatedResearch: ["research-dcfb", "research-bainbridge-warning"]
 seoTitle: "CIR v2.0 — Cognitive Infrastructure Readiness Framework"
-seoDescription: "The self-assessment framework for institutional AI readiness. Five constitutional dimensions. Available now at $50."
+seoDescription: "The self-assessment framework for institutional AI readiness. Five constitutional dimensions. Available now at $149."
 excerpt: "AI readiness is not a technical question. It is a constitutional one."
 explicitRelations:
   - targetId: research-dcfb

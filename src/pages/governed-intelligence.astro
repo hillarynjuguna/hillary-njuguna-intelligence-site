@@ -144,13 +144,13 @@ const prompt = buildFieldPrompt('query', {
           {
             num: '04',
             title: 'The Assurance Ledger',
-            body: 'Hash-chained, append-only audit spine. Evidence Monoid (E, \u2295, \u03b5) with monoidal axioms. Every governance action produces exactly one Evidence Monoid element. Bounded Verifiability Latency (BVL) guarantees audit within \u03b4-time. Status: Formally Specified.',
+            bodyHtml: 'Hash-chained, append-only audit spine. <mark class="tw-term" data-reveal="type">Evidence Monoid</mark> (E, ⊕, ε) with monoidal axioms. Every governance action produces exactly one Evidence Monoid element. <mark class="tw-term" data-reveal="type">Bounded Verifiability Latency</mark> (BVL) guarantees audit within δ-time. Status: Formally Specified.',
             status: 'formal'
           },
           {
             num: '05',
-            title: 'The \u03c4-Lock: Sovereign Override',
-            body: 'Human-controlled circuit breaker that revokes all active permits, freezes the execution plane, and transfers full authority to a designated sovereign entity. Euler characteristic implementation (\u03c7=-1). Modal logic upgrade: \u25a1(Action \u2192 \u25c7Recall). Status: Provisionally Specified.',
+            titleHtml: 'The <mark class="tw-term" data-reveal="type">τ-Lock</mark>: Sovereign Override',
+            body: 'Human-controlled circuit breaker that revokes all active permits, freezes the execution plane, and transfers full authority to a designated sovereign entity. Euler characteristic implementation (χ=-1). Modal logic upgrade: □(Action → ◇Recall). Status: Provisionally Specified.',
             status: 'provisional'
           },
           {
@@ -162,13 +162,13 @@ const prompt = buildFieldPrompt('query', {
           {
             num: '07',
             title: 'Verification Methods',
-            body: 'UPPAAL model-checking of finite state machines. The Sovereignty Coherence Theorem (five conditions jointly imply Jacobian stability). The Four Views Theorem (individual necessity via multiplicative \u03a9-logic). Status: Mixed (model-checking verified; core theorems provisionally specified).',
+            body: 'UPPAAL model-checking of finite state machines. The Sovereignty Coherence Theorem (five conditions jointly imply Jacobian stability). The Four Views Theorem (individual necessity via multiplicative Ω-logic). Status: Mixed (model-checking verified; core theorems provisionally specified).',
             status: 'mixed'
           },
           {
             num: '08',
             title: 'Deployment Topology',
-            body: 'Three-plane production architecture: Cognitive Plane (proposes), Orchestration Plane (governs), Execution Plane (acts). Deterministic Layer Regression allows safe fallback to lower-order models if field coherence (\u03c6) drops below threshold. Status: Provisionally Specified.',
+            body: 'Three-plane production architecture: Cognitive Plane (proposes), Orchestration Plane (governs), Execution Plane (acts). Deterministic Layer Regression allows safe fallback to lower-order models if field coherence (φ) drops below threshold. Status: Provisionally Specified.',
             status: 'provisional'
           },
           {
@@ -186,13 +186,13 @@ const prompt = buildFieldPrompt('query', {
           {
             num: '11',
             title: 'Stage 0 Empirical Validation Protocol',
-            body: '2x2 factorial ECS Reality Test with blinding protocol. Mandates dual-ownership signatures (\u03c4 + \u03bb) for all Stage 1+ transitions. Primary, secondary, and tertiary pass criteria. Permanent moat if executed. Status: Empirically Pending.',
+            bodyHtml: '2x2 factorial ECS Reality Test with blinding protocol. Mandates <mark class="tw-term" data-reveal="type">Dual Ownership</mark> signatures (τ + λ) for all Stage 1+ transitions. Primary, secondary, and tertiary pass criteria. Permanent moat if executed. Status: Empirically Pending.',
             status: 'pending'
           },
           {
             num: '12',
             title: 'Glossary',
-            body: 'Complete definitions of all governed intelligence terms: \u03c4-node, \u03c6-node, Evidence Monoid, Birkhoff-admissibility, Consequence Class, Field Constitution, Annihilation Commands. Status: Complete.',
+            body: 'Complete definitions of all governed intelligence terms: τ-node, φ-node, Evidence Monoid, Birkhoff-admissibility, Consequence Class, Field Constitution, Annihilation Commands. Status: Complete.',
             status: 'complete'
           }
         ].map((mod) => (
@@ -201,8 +201,14 @@ const prompt = buildFieldPrompt('query', {
               <span class="module-card__num">{mod.num}</span>
               <div class="module-card__status-dot" title={mod.status}></div>
             </div>
-            <h3 class="module-card__title">{mod.title}</h3>
-            <p class="module-card__body">{mod.body}</p>
+            {mod.titleHtml
+              ? <h3 class="module-card__title" set:html={mod.titleHtml} />
+              : <h3 class="module-card__title">{mod.title}</h3>
+            }
+            {mod.bodyHtml
+              ? <p class="module-card__body" set:html={mod.bodyHtml} />
+              : <p class="module-card__body">{mod.body}</p>
+            }
           </div>
         ))}
       </div>
@@ -1311,4 +1317,84 @@ const prompt = buildFieldPrompt('query', {
   }
 
   .mono-link:hover { color: var(--ember-bright); text-decoration: underline; }
+
+  /* -- Typewriter terms ----------------------------------------- */
+  .tw-term {
+    background: none;
+    color: inherit;
+    font-style: inherit;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border-bottom: 1px solid var(--ember-dim);
+    padding-bottom: 1px;
+    white-space: nowrap;
+  }
+
+  /* pre-animation: hide text, keep element in flow */
+  [data-reveal="type"].tw-term:not(.tw-done):not(.tw-active) {
+    color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  /* blinking cursor during animation */
+  [data-reveal="type"].tw-active::after {
+    content: '|';
+    color: var(--ember);
+    animation: tw-blink 0.7s step-end infinite;
+  }
+
+  @keyframes tw-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
 </style>
+
+<script>
+  // Typewriter reveal for [data-reveal="type"].tw-term elements
+  function initTypewriter() {
+    const terms = Array.from(
+      document.querySelectorAll('[data-reveal="type"].tw-term')
+    ) as HTMLElement[];
+    if (!terms.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          if (el.classList.contains('tw-done') || el.classList.contains('tw-active')) return;
+
+          observer.unobserve(el);
+          const fullText = el.textContent || '';
+          el.textContent = '';
+          el.classList.add('tw-active');
+
+          let i = 0;
+          const speed = 38; // ms per character
+          function type() {
+            if (i < fullText.length) {
+              el.textContent = fullText.slice(0, i + 1);
+              i++;
+              setTimeout(type, speed);
+            } else {
+              el.classList.remove('tw-active');
+              el.classList.add('tw-done');
+            }
+          }
+          // Wait for card fade-in (0.6s) before typing
+          setTimeout(type, 320);
+        });
+      },
+      { threshold: 0.4, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    terms.forEach((el) => observer.observe(el));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTypewriter);
+  } else {
+    initTypewriter();
+  }
+</script>

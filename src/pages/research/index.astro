@@ -1,13 +1,45 @@
 ---
 export const prerender = true;
-import FieldShellLayout from '@layouts/FieldShellLayout.astro';
-import FieldListItem from '@components/field/FieldListItem.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldHeader from '@components/field/FieldHeader.astro';
 import { getAllResearchEntries, formatDate } from '@lib/content';
 import { loadContentGraph } from '@lib/generated/loaders';
-import { buildFieldPrompt, countNodeNeighbors, findGraphNode, getNeighborLabel } from '@lib/field';
+import { buildFieldPrompt, countNodeNeighbors, findGraphNode } from '@lib/field';
 
 const entries = await getAllResearchEntries();
 const graph = await loadContentGraph();
+
+// Instruments for the featured tools section
+const featuredInstruments = [
+  {
+    slug: 'bainbridge-diagnostic',
+    href: '/bainbridge-diagnostic',
+    eyebrow: 'Instrument node',
+    title: 'Bainbridge Diagnostic',
+    description: 'A live 4-stage intake diagnostic that maps your organisation\'s capability-governance gap and returns a structured risk report.',
+    tags: ['4-stage intake', 'Gap analysis', 'Risk report'],
+    symbol: 'BW',
+  },
+  {
+    slug: 'dual-invariant-demo',
+    href: '/tools/dual-invariant-demo',
+    eyebrow: 'Interactive tool',
+    title: 'Governance Gate Demo',
+    description: 'An interactive state machine demonstrating how timing constraints and relational integrity checks combine to govern AI action execution in real time.',
+    tags: ['State machine', 'AURORA', 'Formal verification'],
+    symbol: 'AI',
+  },
+  {
+    slug: 'orchestra-operation',
+    href: '/orchestra-operation',
+    eyebrow: 'Tool / synthesis',
+    title: 'Orchestra in Operation',
+    description: 'Route a governance question through seven cognitive instruments. Watch differentiated epistemic roles expose what single-model synthesis leaves in shadow.',
+    tags: ['Multi-model', 'RSPS', 'Synthesis'],
+    symbol: 'Σ',
+  },
+];
+
 const prompt = buildFieldPrompt('orient', {
   title: 'Research archive',
   nodeHref: '/research',
@@ -15,58 +47,570 @@ const prompt = buildFieldPrompt('orient', {
 });
 ---
 
-<FieldShellLayout
+<BaseLayout
   title="Research"
   description="AI governance research: the Bainbridge Warning, readiness frameworks, and the structural architecture of institutional AI deployment."
-  eyebrow="Archive"
-  summary="Frameworks, essays, and theoretical architecture from active work across distributed cognition, constitutional AI governance, and institutional intelligence."
-  actions={[
-    { label: 'Intelligence digest', href: '/digest', tone: 'ghost' },
-    { label: 'Open corpus', href: '/corpus', tone: 'secondary' },
-  ]}
-  prompt={prompt}
-  facts={[
-    { label: 'Entries', value: String(entries.length) },
-    { label: 'Mode', value: 'Orient into doctrine' },
-    { label: 'Surface', value: 'Archive plus graph-backed neighborhood counts' },
-  ]}
 >
-  {entries.length === 0 ? (
-    <p class="empty label">Research entries loading...</p>
-  ) : (
-    <div class="field-stack">
-      {entries.map((entry) => {
-        const node = findGraphNode(graph, {
-          id: entry.data.id,
-          slug: entry.slug,
-          sourceCollection: 'research',
-        });
-        const neighborCount = countNodeNeighbors(graph, node?.id);
+  <div class="research-page page-enter">
+    <div class="container container--wide">
 
-        return (
-          <FieldListItem
-            href={`/research/${entry.slug}`}
-            accent="research"
-            eyebrow={entry.data.researchType ?? 'Research node'}
-            title={entry.data.title}
-            summary={entry.data.summary}
-            aside={[
-              formatDate(entry.data.publishedAt),
-              entry.data.crystallization,
-            ]}
-            chips={entry.data.themes.slice(0, 3).map((theme) => ({ label: theme }))}
-            footer={getNeighborLabel(neighborCount, 'Standalone node')}
-            badge={entry.data.featured ? 'Featured' : undefined}
-          />
-        );
-      })}
+      {/* ── Page header ──────────────────────────────────────────────── */}
+      <FieldHeader
+        eyebrow="Archive"
+        title="Research"
+        summary="Frameworks, essays, and theoretical architecture from active work across distributed cognition, constitutional AI governance, and institutional intelligence."
+        meta={[
+          { label: 'Entries', value: String(entries.length) },
+          { label: 'Mode', value: 'Orient into doctrine' },
+          { label: 'Depth', value: 'Crystallised frameworks' },
+        ]}
+        width="wide"
+        actions={[
+          { label: 'Intelligence digest', href: '/digest', tone: 'ghost' },
+          { label: 'Open corpus', href: '/corpus', tone: 'secondary' },
+        ]}
+      />
+
+      {/* ── Anchor nav ───────────────────────────────────────────────── */}
+      <nav class="research-toc" aria-label="Research sections">
+        <p class="research-toc__label">In this archive</p>
+        <div class="research-toc__links">
+          {entries.map((entry) => (
+            <a
+              href={`#${entry.slug}`}
+              class="research-toc__link"
+              data-crystallization={entry.data.crystallization}
+            >
+              {entry.data.title}
+            </a>
+          ))}
+          <span class="research-toc__divider" aria-hidden />
+          <a href="#featured-instruments" class="research-toc__link research-toc__link--instruments">
+            Featured Instruments →
+          </a>
+        </div>
+      </nav>
+
+      {/* ── Document sections ─────────────────────────────────────────── */}
+      <div class="research-sections">
+        {entries.map((entry) => {
+          const node = findGraphNode(graph, {
+            id: entry.data.id,
+            slug: entry.slug,
+            sourceCollection: 'research',
+          });
+          const neighborCount = countNodeNeighbors(graph, node?.id);
+
+          return (
+            <section id={entry.slug} class="research-section">
+              <div class="research-section__anchor-rail">
+                <a href={`#${entry.slug}`} class="research-section__anchor-link" aria-label={`Link to ${entry.data.title}`}>
+                  #
+                </a>
+              </div>
+
+              <div class="research-section__content">
+                <div class="research-section__meta">
+                  <span class="research-section__type label">{entry.data.researchType ?? 'Research node'}</span>
+                  <span class="research-section__date label">{formatDate(entry.data.publishedAt)}</span>
+                  <span class={`research-section__crystal label crystal--${entry.data.crystallization}`}>
+                    {entry.data.crystallization}
+                  </span>
+                </div>
+
+                <h2 class="research-section__title">
+                  <a href={`/research/${entry.slug}`}>{entry.data.title}</a>
+                </h2>
+
+                {entry.data.description && (
+                  <p class="research-section__description">{entry.data.description}</p>
+                )}
+
+                {entry.data.keyClaims && entry.data.keyClaims.length > 0 && (
+                  <div class="research-section__claims">
+                    <p class="research-section__claims-label label">Key claims</p>
+                    <ul class="research-section__claims-list">
+                      {entry.data.keyClaims.slice(0, 3).map((claim: string) => (
+                        <li>{claim}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                <div class="research-section__footer">
+                  {entry.data.tags && entry.data.tags.slice(0, 4).map((tag: string) => (
+                    <a href={`/tags/${tag}`} class="research-section__tag">
+                      {tag}
+                    </a>
+                  ))}
+                  <a href={`/research/${entry.slug}`} class="research-section__read-link">
+                    Read full entry
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+                      <path d="M3 7h8M7.5 4L11 7l-3.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      {/* ── Featured Instruments ──────────────────────────────────────── */}
+      <section id="featured-instruments" class="instruments-section">
+        <div class="instruments-section__header">
+          <p class="label instruments-section__eyebrow">Featured instruments</p>
+          <h2 class="instruments-section__title">The corpus has a live demonstration layer</h2>
+          <p class="instruments-section__desc">
+            These three instruments make the theoretical frameworks interactive. Each one runs live in the browser against the same corpus that generated the research above.
+          </p>
+        </div>
+
+        <div class="instruments-grid">
+          {featuredInstruments.map((inst) => (
+            <a href={inst.href} class="instrument-card" id={`instrument-${inst.slug}`}>
+              <div class="instrument-card__header">
+                <span class="instrument-card__symbol" aria-hidden>{inst.symbol}</span>
+                <span class="instrument-card__eyebrow label">{inst.eyebrow}</span>
+              </div>
+              <h3 class="instrument-card__title">{inst.title}</h3>
+              <p class="instrument-card__desc">{inst.description}</p>
+              <div class="instrument-card__tags">
+                {inst.tags.map((tag) => (
+                  <span class="instrument-card__tag">{tag}</span>
+                ))}
+              </div>
+              <span class="instrument-card__cta label">
+                Open instrument
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+                  <path d="M2.5 6h7M6.5 3.5L9 6l-2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
     </div>
-  )}
-</FieldShellLayout>
+  </div>
+</BaseLayout>
 
 <style>
-  .empty {
+  /* ── Page shell ──────────────────────────────────────────────────── */
+  .research-page {
+    padding: var(--space-24) 0 var(--space-32);
+  }
+
+  /* ── Anchor nav ──────────────────────────────────────────────────── */
+  .research-toc {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-raised);
+    background: rgba(248, 246, 241, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-dim);
+    margin-bottom: var(--space-16);
+    padding: var(--space-3) 0;
+  }
+
+  .research-toc__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--text-tertiary);
-    padding: var(--space-12) 0;
+    margin-bottom: var(--space-2);
+    padding: 0 var(--space-2);
+  }
+
+  .research-toc__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    align-items: center;
+  }
+
+  .research-toc__link {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-decoration: none;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    transition: all var(--duration-fast);
+    white-space: nowrap;
+  }
+
+  .research-toc__link:hover {
+    color: var(--ember);
+    background: rgba(184, 92, 56, 0.06);
+  }
+
+  .research-toc__link--instruments {
+    color: var(--ember);
+    font-weight: 600;
+    margin-left: var(--space-2);
+  }
+
+  .research-toc__divider {
+    width: 1px;
+    height: 16px;
+    background: var(--border-mid);
+    margin: 0 var(--space-2);
+  }
+
+  /* ── Research sections ───────────────────────────────────────────── */
+  .research-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: var(--space-24);
+  }
+
+  .research-section {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: var(--space-5);
+    padding: var(--space-10) 0;
+    border-bottom: 1px solid var(--border-dim);
+    scroll-margin-top: 80px;
+  }
+
+  .research-section:first-child {
+    padding-top: 0;
+  }
+
+  .research-section:last-child {
+    border-bottom: none;
+  }
+
+  .research-section__anchor-rail {
+    display: flex;
+    padding-top: 0.2em;
+  }
+
+  .research-section__anchor-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--border-mid);
+    text-decoration: none;
+    transition: color var(--duration-fast);
+    line-height: 1.8;
+  }
+
+  .research-section:hover .research-section__anchor-link {
+    color: var(--ember);
+  }
+
+  .research-section__content {
+    min-width: 0;
+  }
+
+  .research-section__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .research-section__type {
+    color: var(--ember);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .research-section__date {
+    color: var(--text-tertiary);
+  }
+
+  .crystal--crystallized { color: var(--sage); }
+  .crystal--developing   { color: var(--gold); }
+  .crystal--emerging     { color: var(--ash); }
+
+  .research-section__title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    margin-bottom: var(--space-4);
+    font-weight: 700;
+  }
+
+  .research-section__title a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--duration-fast);
+  }
+
+  .research-section__title a:hover {
+    color: var(--ember);
+  }
+
+  .research-section__description {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 72ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .research-section__claims {
+    margin-bottom: var(--space-6);
+    padding: var(--space-5) var(--space-6);
+    background: rgba(248, 246, 241, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(44, 37, 32, 0.08);
+    border-radius: var(--radius-md);
+  }
+
+  .research-section__claims-label {
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .research-section__claims-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .research-section__claims-list li {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--border-mid);
+  }
+
+  .research-section__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .research-section__tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    background: var(--surface-2);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-sm);
+    padding: 2px var(--space-3);
+    text-decoration: none;
+    transition: all var(--duration-fast);
+    letter-spacing: 0.04em;
+  }
+
+  .research-section__tag:hover {
+    border-color: var(--ember);
+    color: var(--ember);
+    background: rgba(184, 92, 56, 0.04);
+  }
+
+  .research-section__read-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ember);
+    text-decoration: none;
+    margin-left: auto;
+    padding: var(--space-2) 0;
+    transition: gap var(--duration-fast);
+  }
+
+  .research-section__read-link:hover {
+    gap: var(--space-2);
+  }
+
+  /* ── Featured instruments ────────────────────────────────────────── */
+  .instruments-section {
+    scroll-margin-top: 80px;
+    padding-top: var(--space-16);
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .instruments-section__header {
+    max-width: 64ch;
+    margin-bottom: var(--space-10);
+  }
+
+  .instruments-section__eyebrow {
+    color: var(--ember);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-3);
+  }
+
+  .instruments-section__title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+    line-height: var(--leading-snug);
+  }
+
+  .instruments-section__desc {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .instruments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .instrument-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-7);
+    background: rgba(248, 246, 241, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(44, 37, 32, 0.10);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: all var(--duration-mid) var(--ease-out);
+    box-shadow: 0 2px 12px rgba(44, 37, 32, 0.04);
+  }
+
+  .instrument-card:hover {
+    border-color: var(--ember);
+    box-shadow: 0 4px 24px rgba(184, 92, 56, 0.10);
+    transform: translateY(-2px);
+  }
+
+  .instrument-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .instrument-card__symbol {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--ember);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .instrument-card__eyebrow {
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--text-xs);
+  }
+
+  .instrument-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: var(--leading-snug);
+  }
+
+  .instrument-card__desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    flex: 1;
+  }
+
+  .instrument-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .instrument-card__tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    background: var(--surface-2);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-sm);
+    padding: 2px var(--space-2);
+  }
+
+  .instrument-card__cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--ember);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--text-xs);
+    transition: gap var(--duration-fast);
+    margin-top: var(--space-1);
+  }
+
+  .instrument-card:hover .instrument-card__cta {
+    gap: var(--space-2);
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .instruments-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .research-section {
+      grid-template-columns: 1fr;
+    }
+
+    .research-section__anchor-rail {
+      display: none;
+    }
+
+    .instruments-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .research-toc {
+      display: none;
+    }
   }
 </style>
+
+<script>
+  // ── Sticky TOC active state ──────────────────────────────────────────
+  // Highlights the current section in the TOC as user scrolls
+  const sections = document.querySelectorAll<HTMLElement>('.research-section, #featured-instruments');
+  const tocLinks = document.querySelectorAll<HTMLElement>('.research-toc__link');
+
+  if (sections.length && tocLinks.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach((link) => link.removeAttribute('aria-current'));
+            const active = document.querySelector(`.research-toc__link[href="#${entry.target.id}"]`);
+            active?.setAttribute('aria-current', 'true');
+          }
+        });
+      },
+      { rootMargin: '-10% 0px -80% 0px' }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+</script>
