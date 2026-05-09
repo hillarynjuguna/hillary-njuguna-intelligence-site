@@ -25,3 +25,4 @@ dist/
 src/data/bridge/
 build-*.txt
 *.log
+.env*.local

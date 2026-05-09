@@ -1028,6 +1028,26 @@ const prompt = buildFieldPrompt('query', {
     .gi-hero__status-row { flex-wrap: wrap; gap: var(--space-6); }
   }
 
+  /* -- Widescreen breathing room: 1440px+ -------------------------- */
+  @media (min-width: 1440px) {
+    .gi-hero .container {
+      padding-inline: 4rem;
+    }
+    .gi-hero__sub {
+      max-width: 720px;
+    }
+  }
+
+  /* -- Ultrawide: 1920px+ ----------------------------------------- */
+  @media (min-width: 1920px) {
+    .gi-hero .container {
+      padding-inline: 6rem;
+    }
+    .gi-hero__sub {
+      max-width: 860px;
+    }
+  }
+
   /* -- Live Monitor ---------------------------------------------- */
   .gi-section--monitor {
     background: linear-gradient(180deg, transparent, rgba(196,112,58,0.02) 50%, transparent);
