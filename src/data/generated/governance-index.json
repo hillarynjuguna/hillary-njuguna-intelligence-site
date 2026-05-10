@@ -149,6 +149,13 @@
       "governanceRelevance": "direct"
     },
     {
+      "contentId": "phase-3-constitutional-runtime",
+      "contentTitle": "Phase 3: The Constitutional Runtime",
+      "contentType": "research",
+      "clauseIds": [],
+      "governanceRelevance": "direct"
+    },
+    {
       "contentId": "research-pocketos-incident",
       "contentTitle": "Specimen: The PocketOS Incident",
       "contentType": "research",
@@ -267,5 +274,5 @@
       "clause-irreversibility-threshold"
     ]
   },
-  "generatedAt": "2026-05-09T05:02:06.371Z"
+  "generatedAt": "2026-05-10T11:21:08.800Z"
 }

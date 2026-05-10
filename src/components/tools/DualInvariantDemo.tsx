@@ -1,4 +1,6 @@
 import { useState, useCallback } from 'react';
+import { useProofState } from '../../hooks/useProofState';
+import ProofStateBadge from '../ui/ProofStateBadge';
 
 /* ── Types ─────────────────────────────────────────────────────────────────── */
 type CoherenceDir = 1 | -1;
@@ -193,6 +195,7 @@ const DEFAULT_STATE: GateState = {
 export default function DualInvariantDemo() {
   const [gate, setGate] = useState<GateState>(DEFAULT_STATE);
   const [activeTab, setActiveTab] = useState<ActiveTab>('temporal');
+  const proof = useProofState();
 
   const result = computeGate(gate);
 
@@ -579,10 +582,21 @@ export default function DualInvariantDemo() {
         /* ── Responsive ─── */
         @media (max-width: 680px) {
           .did-grid { grid-template-columns: 1fr; }
+          .did-controls { padding: var(--space-4); }
+          .did-result { padding: var(--space-4); }
+          .did-track { gap: 0; padding-bottom: var(--space-3); }
+          .did-node { min-width: 52px; }
+          .did-node__circle { width: 28px; height: 28px; font-size: 8px; }
+          .did-node__label { font-size: 7px; }
+        }
+        @media (max-width: 400px) {
+          .did-chips { flex-direction: column; }
+          .did-chip { width: 100%; justify-content: center; }
         }
       `}</style>
 
-      <div className="did-root">
+      <div className="did-root" style={{ position: 'relative' }}>
+        <ProofStateBadge proof={proof} />
         {/* Controls + Result */}
         <div className="did-grid">
           {/* Controls */}

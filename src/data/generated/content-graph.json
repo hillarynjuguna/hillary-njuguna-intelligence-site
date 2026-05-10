@@ -453,6 +453,43 @@
       "keyClaims": []
     },
     {
+      "id": "phase-3-constitutional-runtime",
+      "slug": "phase-3-constitutional-runtime",
+      "title": "Phase 3: The Constitutional Runtime",
+      "description": "Formal specification for the Minimal Canonical Runtime Contract, standardizing falsifiability, handoff state machines, and commercial sequencing.",
+      "contentType": "research",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "direct",
+      "domains": [
+        "Constitutional Architecture",
+        "Agentic Deployment"
+      ],
+      "themes": [],
+      "tags": [
+        "Constitutional Runtime",
+        "State Machine",
+        "Falsifiability",
+        "Telemetry",
+        "MCRC"
+      ],
+      "lineage": [
+        "DCFB",
+        "AURORA",
+        "Bainbridge Warning"
+      ],
+      "sourceCollection": "research",
+      "unresolvedEdges": [
+        "Formal mathematical notation for AI-side coherence (ΔC_AI) remains in active development.",
+        "Metric weightings for the Telemetry-to-Decision pipeline require calibration from Stage 1 behavioral baselines."
+      ],
+      "keyClaims": [
+        "Governance requires a Minimal Canonical Runtime Contract that binds constraints, provenance, and phenomenological invariants.",
+        "The τ/λ handoff operates as a formal finite state machine requiring explicit revocation triggers and cryptographic lineage.",
+        "Commercial deployment must follow a strict constitutional sequencing gate: no monetization precedes revocation audit."
+      ]
+    },
+    {
       "id": "research-pocketos-incident",
       "slug": "pocketos-incident",
       "title": "Specimen: The PocketOS Incident",
@@ -2488,15 +2525,15 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-05-09T05:02:06.367Z",
+  "generatedAt": "2026-05-10T11:21:08.797Z",
   "stats": {
-    "totalNodes": 27,
+    "totalNodes": 28,
     "totalEdges": 148,
     "manualEdges": 48,
     "inferredEdges": 100,
     "byType": {
       "digest": 1,
-      "research": 17,
+      "research": 18,
       "product": 4,
       "clause": 4,
       "field": 1

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useProofState } from '../../hooks/useProofState';
+import ProofStateBadge from '../ui/ProofStateBadge';
 
 /* ── Data ──────────────────────────────────────────────────────────────────── */
 interface Instrument {
@@ -160,6 +162,7 @@ export default function OrchestraOperation() {
   const [question, setQuestion] = useState('');
   const [report, setReport] = useState<SynthesisReport | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const proof = useProofState();
 
   async function conduct() {
     if (!question.trim()) return;
@@ -293,7 +296,7 @@ export default function OrchestraOperation() {
 
         .oo-roster__grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
           gap: var(--space-3);
         }
 
@@ -304,6 +307,8 @@ export default function OrchestraOperation() {
           border-radius: var(--radius-md);
           padding: var(--space-4);
           cursor: pointer;
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: transparent;
           transition: all var(--duration-fast);
           animation: oo-in 0.3s var(--ease-out) both;
           width: 100%;
@@ -556,11 +561,19 @@ export default function OrchestraOperation() {
 
         /* ── Responsive ─── */
         @media (max-width: 560px) {
+          .oo-roster__grid { grid-template-columns: 1fr 1fr; }
+          .oo-instrument__symbol { font-size: 1.1rem; }
+          .oo-input { padding: var(--space-5); }
+          .oo-roster { padding: var(--space-4) var(--space-5); }
+          .oo-axes { padding: var(--space-4) var(--space-5); }
+        }
+        @media (max-width: 380px) {
           .oo-roster__grid { grid-template-columns: 1fr; }
         }
       `}</style>
 
-      <div className="oo-root">
+      <div className="oo-root" style={{ position: 'relative' }}>
+        <ProofStateBadge proof={proof} />
         {/* ── Input / Result ──────────────────────────────────────────────── */}
         {stage === 'input' && (
           <div className="oo-glass oo-input">

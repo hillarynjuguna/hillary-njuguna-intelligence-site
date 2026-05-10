@@ -1,4 +1,6 @@
 import { useState, useRef } from 'react';
+import { useProofState } from '../../hooks/useProofState';
+import ProofStateBadge from '../ui/ProofStateBadge';
 
 /* ── Types ─────────────────────────────────────────────────────────────────── */
 interface DiagnosticReport {
@@ -82,6 +84,7 @@ export default function BainbridgeDiagnostic() {
   const [report, setReport] = useState<DiagnosticReport | null>(null);
   const [error, setError] = useState<string | null>(null);
   const topRef = useRef<HTMLDivElement>(null);
+  const proof = useProofState();
 
   const fields: Array<{ key: keyof FormData; label: string; placeholder: string; required?: boolean }> = [
     {
@@ -622,10 +625,14 @@ export default function BainbridgeDiagnostic() {
           .bd-stages { display: none; }
           .bd-scores { grid-template-columns: 1fr; }
           .bd-report__title-row { flex-direction: column; gap: var(--space-3); }
+          .bd-panel { padding: var(--space-5); }
+          .bd-report__header { padding: var(--space-5); }
+          .bd-report__section { padding: var(--space-4) var(--space-5); }
         }
       `}</style>
 
-      <div className="bd-shell" ref={topRef}>
+      <div className="bd-shell" ref={topRef} style={{ position: 'relative' }}>
+        <ProofStateBadge proof={proof} />
         {/* ── Intake ─────────────────────────────────────────────────────── */}
         {stage === 'intake' && (
           <>

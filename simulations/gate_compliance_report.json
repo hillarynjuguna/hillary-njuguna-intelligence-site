@@ -1,0 +1,6 @@
+{
+    "cpe_pre_ship_gate": "PASS",
+    "revocation_sla_gate": "PASS",
+    "autarky_integrity_gate": "PASS",
+    "commercial_divergence_lock": "PASS"
+}

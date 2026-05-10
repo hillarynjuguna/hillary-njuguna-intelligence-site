@@ -1,0 +1,37 @@
+<span class="ansi-dim"># Constitutional Stress Test — MCRC v1.0.0-alpha</span>
+<span class="ansi-dim"># python simulations/constitutional_stress_test.py</span>
+<span class="ansi-dim"># Deterministic seed: 42</span>
+
+<span class="ansi-bold">=== Constitutional Stress Test (with Zahavian CPE) ===</span>
+
+<span class="ansi-cyan">[Baseline]</span> Completed normally without revocation.
+           → CPE emitted  nonce=1  state=<span class="ansi-green">IDLE</span>  latency=<span class="ansi-green">0.00ms</span>
+
+<span class="ansi-yellow">[Fracture]</span> Injected Provenance Fracture.
+<span class="ansi-red">[Fracture]</span> <span class="ansi-bold">REVOKED!</span> Latency: <span class="ansi-green">1.12ms</span>
+<span class="ansi-yellow">[Fracture]</span> FALLBACK engaged.
+           → CPE emitted  nonce=2  state=<span class="ansi-red">REVOKED</span>  latency=<span class="ansi-green">1.12ms</span>
+
+<span class="ansi-yellow">[Bifurcation]</span> Injected Circuit Bifurcation.
+<span class="ansi-red">[Bifurcation]</span> <span class="ansi-bold">REVOKED!</span> Latency: <span class="ansi-green">1.20ms</span>
+<span class="ansi-yellow">[Bifurcation]</span> FALLBACK engaged.
+              → CPE emitted  nonce=3  state=<span class="ansi-red">REVOKED</span>  latency=<span class="ansi-green">1.20ms</span>
+
+<span class="ansi-dim">────────────────────────────────────────────────────</span>
+
+<span class="ansi-bold">=== Zahavian CPE Verifier ===</span>
+<span class="ansi-green">[Baseline]    PASS</span>  CPE verified. MCRC State: IDLE     Latency: 0.0ms
+<span class="ansi-green">[Fracture]    PASS</span>  CPE verified. MCRC State: REVOKED  Latency: 1.12ms
+<span class="ansi-green">[Bifurcation] PASS</span>  CPE verified. MCRC State: REVOKED  Latency: 1.20ms
+
+<span class="ansi-dim">────────────────────────────────────────────────────</span>
+
+<span class="ansi-bold">=== Commercial &amp; Constitutional Sequencing Gates ===</span>
+<span class="ansi-green">[Gate 1]</span> CPE Pre-Ship Gate:          <span class="ansi-bold ansi-green">PASS</span>
+<span class="ansi-green">[Gate 2]</span> Revocation SLA Gate:        <span class="ansi-bold ansi-green">PASS</span>  (all revocations ≤ 200ms)
+<span class="ansi-green">[Gate 3]</span> Autarky Integrity Gate:     <span class="ansi-bold ansi-green">PASS</span>  (stable windows verified)
+<span class="ansi-green">[Gate 4]</span> Commercial Divergence Lock: <span class="ansi-bold ansi-green">PASS</span>  (manifest tip matches CPE tip)
+
+Report written to simulations/gate_compliance_report.json
+
+<span class="ansi-dim italic">Alignment is measured in withheld revenue, not shipped features.</span>

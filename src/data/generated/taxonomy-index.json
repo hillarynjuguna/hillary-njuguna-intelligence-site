@@ -80,6 +80,20 @@
       ],
       "count": 5
     },
+    "Constitutional Architecture": {
+      "label": "Constitutional Architecture",
+      "contentIds": [
+        "phase-3-constitutional-runtime"
+      ],
+      "count": 1
+    },
+    "Agentic Deployment": {
+      "label": "Agentic Deployment",
+      "contentIds": [
+        "phase-3-constitutional-runtime"
+      ],
+      "count": 1
+    },
     "security": {
       "label": "security",
       "contentIds": [
@@ -547,6 +561,41 @@
       ],
       "count": 1
     },
+    "Constitutional Runtime": {
+      "label": "Constitutional Runtime",
+      "contentIds": [
+        "phase-3-constitutional-runtime"
+      ],
+      "count": 1
+    },
+    "State Machine": {
+      "label": "State Machine",
+      "contentIds": [
+        "phase-3-constitutional-runtime"
+      ],
+      "count": 1
+    },
+    "Falsifiability": {
+      "label": "Falsifiability",
+      "contentIds": [
+        "phase-3-constitutional-runtime"
+      ],
+      "count": 1
+    },
+    "Telemetry": {
+      "label": "Telemetry",
+      "contentIds": [
+        "phase-3-constitutional-runtime"
+      ],
+      "count": 1
+    },
+    "MCRC": {
+      "label": "MCRC",
+      "contentIds": [
+        "phase-3-constitutional-runtime"
+      ],
+      "count": 1
+    },
     "case-study": {
       "label": "case-study",
       "contentIds": [
@@ -816,6 +865,27 @@
       ],
       "count": 3
     },
+    "DCFB": {
+      "label": "DCFB",
+      "contentIds": [
+        "phase-3-constitutional-runtime"
+      ],
+      "count": 1
+    },
+    "AURORA": {
+      "label": "AURORA",
+      "contentIds": [
+        "phase-3-constitutional-runtime"
+      ],
+      "count": 1
+    },
+    "Bainbridge Warning": {
+      "label": "Bainbridge Warning",
+      "contentIds": [
+        "phase-3-constitutional-runtime"
+      ],
+      "count": 1
+    },
     "bainbridge-warning": {
       "label": "bainbridge-warning",
       "contentIds": [
@@ -845,5 +915,5 @@
       "count": 1
     }
   },
-  "generatedAt": "2026-05-09T05:02:06.370Z"
+  "generatedAt": "2026-05-10T11:21:08.799Z"
 }

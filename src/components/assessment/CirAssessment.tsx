@@ -11,6 +11,7 @@ export default function CirAssessment() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
   
   // Final Results
   const [score, setScore] = useState(0);
@@ -80,13 +81,16 @@ export default function CirAssessment() {
         })
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to submit assessment.');
+        throw new Error(result.error || 'Failed to submit assessment.');
       }
 
       setScore(totalScore);
       setReadinessLevel(level);
       setGaps(identifiedGaps);
+      setEmailSent(result.emailSent === true);
       setState('results');
     } catch (err: any) {
       setError(err.message || 'An error occurred. Please try again.');
@@ -183,6 +187,12 @@ export default function CirAssessment() {
           <button type="submit" className="btn-primary" disabled={loading} style={{ marginTop: '1rem' }}>
             {loading ? 'Synthesizing Results...' : 'View My Diagnostic Score'}
           </button>
+
+          <p style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', marginTop: '1rem', textAlign: 'center' }}>
+            By submitting, you agree to our{' '}
+            <a href="/terms" style={{ color: 'var(--ember)' }}>Terms of Service</a>{' '}and{' '}
+            <a href="/privacy" style={{ color: 'var(--ember)' }}>Privacy Policy</a>.
+          </p>
         </form>
       </div>
     );
@@ -191,6 +201,23 @@ export default function CirAssessment() {
   if (state === 'results') {
     return (
       <div className="cir-results">
+        {emailSent && (
+          <div style={{
+            background: 'var(--surface-2)',
+            border: '1px solid var(--ember)',
+            borderRadius: '6px',
+            padding: '1rem 1.5rem',
+            marginBottom: '2rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+            fontSize: '0.875rem',
+            color: 'var(--text-secondary)'
+          }}>
+            <span style={{ color: 'var(--ember)', fontSize: '1.25rem' }}>✓</span>
+            <span>Full diagnostic report dispatched to <strong style={{ color: 'var(--text-primary)' }}>{email}</strong>. Check your inbox.</span>
+          </div>
+        )}
         <div className="cir-score-card">
           <div className="score-header">
             <span style={{ fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-tertiary)' }}>Final Evaluation</span>
