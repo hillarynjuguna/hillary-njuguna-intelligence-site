@@ -254,7 +254,7 @@ export default function CirAssessment() {
           <p style={{ marginBottom: '2rem', color: 'var(--text-secondary)' }}>
             Transition from managed compliance to architected governance. Get the formal specification and practitioner tools required to enforce Bounded Verifiability Latency and Dual Ownership.
           </p>
-          <a href="https://hillarynjuguna.gumroad.com" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'inline-block', textDecoration: 'none' }}>
+          <a href="https://hillarynjuguna.gumroad.com/l/cir-assessment" data-gumroad-overlay-checkout="true" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'inline-block', textDecoration: 'none' }}>
             Get the CIR Practitioner Workbook &rarr;
           </a>
         </div>
