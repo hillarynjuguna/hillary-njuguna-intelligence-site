@@ -15,7 +15,7 @@ if (process.env.VERCEL === '1') {
 }
 
 export default defineConfig({
-  site: 'https://hillary-site.vercel.app',
+  site: 'https://hillarynjuguna.vercel.app',
   output: 'static',
   adapter: vercel(),
   integrations: [sitemap(), react()]

@@ -2,7 +2,7 @@ export const SITE = {
   name: 'Hillary Njuguna',
   tagline: 'AI governance architecture for institutions that can\'t afford to get it wrong.',
   description:
-    'Hillary Njuguna diagnoses the structural conditions that make AI governance fail before it looks like failure, then builds the architecture that makes those failures visible. Research-backed frameworks, readiness assessments, and applied governance design.',
+    'Hillary Njuguna provides AI Governance architecture and structural diagnostics for institutions. Specialized in constitutional AI governance frameworks, AI risk readiness assessments, and building durable cognitive infrastructure for agentic AI systems.',
   url: 'https://hillarynjuguna.vercel.app',
   author: {
     name: 'Hillary Njuguna',

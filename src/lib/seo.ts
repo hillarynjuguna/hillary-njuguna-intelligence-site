@@ -57,6 +57,10 @@ export function buildPersonSchema() {
       'Cognitive Infrastructure',
       'Distributed Cognition',
       'Intelligence Architecture',
+      'AI Risk Management',
+      'AI Safety Systems',
+      'AI Compliance',
+      'Agentic Systems Governance',
     ],
   };
 }
