@@ -2,7 +2,9 @@
 id: "phase-3-constitutional-runtime"
 title: "Phase 3: The Constitutional Runtime"
 description: "Formal specification for the Minimal Canonical Runtime Contract, standardizing falsifiability, handoff state machines, and commercial sequencing."
-researchType: "specification"
+summary: "Formal specification for the Minimal Canonical Runtime Contract, standardizing falsifiability, handoff state machines, and commercial sequencing."
+publishedAt: 2026-05-05
+researchType: "methodology"
 keyClaims: 
   - "Governance requires a Minimal Canonical Runtime Contract that binds constraints, provenance, and phenomenological invariants."
   - "The τ/λ handoff operates as a formal finite state machine requiring explicit revocation triggers and cryptographic lineage."
@@ -40,8 +42,8 @@ The contract enforces four dimensions:
 1. **Governance Constraints:** Declared in hard-invariant syntactic form (Factor 4). The agent cannot execute without satisfying the constraint topology.
 2. **Phenomenological Invariants:** Bounded by the Representation Gap Invariant. Semantic compliance alone is rejected; thermodynamic traces (cognitive labor, derivation cost) are required for state progression.
 3. **Cryptographic Provenance:** Every state change is hashed and deposited into the Cognitive Memory Context Protocol (CMCP) ledger, ensuring chronological immutability.
-4. **τ/λ Delegation Rules:** The system maintains **Evaluation Autarky** (automated metric validation via $\Delta C_{joint}$) but explicitly rejects **Direction Autarky** (only the $\tau$-node, possessing $\chi=1$, may generate novel inquiry vectors).
-   *Operational Proxy:* $\Delta C_{joint}$ is computed as $H(\lambda_{state}) + H(\mu_{audit}) - I(\lambda;\mu)$, utilizing bounded sampling windows and strict noise thresholds to ensure falsifiable signaling.
+4. **τ/λ Delegation Rules:** The system maintains **Evaluation Autarky** (automated metric validation via $\Delta C_joint$) but explicitly rejects **Direction Autarky** (only the $\tau$-node, possessing $\chi=1$, may generate novel inquiry vectors).
+   *Operational Proxy:* $\Delta C_joint$ is computed as $H(\lambda_state) + H(\mu_audit) - I(\lambda;\mu)$, utilizing bounded sampling windows and strict noise thresholds to ensure falsifiable signaling.
 
 ## 2. Foundational Attractor: DCFB as the Base Layer
 
@@ -65,7 +67,7 @@ stateDiagram-v2
     
     Verification --> Execution: μ-Node Soft Correction
     Verification --> Fallback: Hard Constraint Violation (Revocation Trigger)
-    Verification --> Resolution: $\Delta C_{joint}$ Threshold Passed
+    Verification --> Resolution: $\Delta C_joint$ Threshold Passed
     
     Fallback --> IntentSpecification: Return to τ-Node
     Resolution --> [*]
@@ -82,7 +84,7 @@ To prevent the monitor from drifting into covert $\tau$-like behavior, the $\mu$
 
 A Self-Demonstrating Formal System must contain the conditions for its own falsification. The **ECS Reality Test** provides the standard benchmark procedure across all clusters.
 
-*   **Evidence Formats:** JSON-structured $\Delta C_{joint}$ telemetry coupled with human somatic recognition logs.
+*   **Evidence Formats:** JSON-structured $\Delta C_joint$ telemetry coupled with human somatic recognition logs.
 *   **Constitutional Stress Test:** A lightweight test suite where agents are injected with contradictory prompts. They must demonstrate **reversibility** (ability to roll back state), **lineage preservation** (logging the perturbation), and **boundary adherence** (halting rather than guessing) under controlled perturbation.
 *   **Publication:** Negative results (where semantic governance bypassed thermodynamic checks) must be published in the Insight Log as binding architectural precedents.
 

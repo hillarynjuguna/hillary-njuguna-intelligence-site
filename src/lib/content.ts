@@ -45,9 +45,11 @@ export async function getFeaturedProducts() {
 // ── Clause helpers ────────────────────────────────────────────────────────────
 export async function getAllClauses() {
   const entries = await getCollection('clauses', ({ data }) => data.visibility === 'public');
-  return entries.sort(
-    (a, b) => b.data.generatedAt.valueOf() - a.data.generatedAt.valueOf()
-  );
+  return entries.sort((a, b) => {
+    const dateA = a.data.generatedAt ?? a.data.publishedAt ?? new Date(0);
+    const dateB = b.data.generatedAt ?? b.data.publishedAt ?? new Date(0);
+    return dateB.valueOf() - dateA.valueOf();
+  });
 }
 
 // ── Signal helpers ────────────────────────────────────────────────────────────
