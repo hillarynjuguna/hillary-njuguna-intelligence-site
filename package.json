@@ -15,7 +15,8 @@
     "validate:content": "tsx scripts/validate-content.ts",
     "check:relations": "tsx scripts/check-relations.ts",
     "check:orphans": "tsx scripts/check-orphans.ts",
-    "check:governance": "tsx scripts/check-governance.ts"
+    "check:governance": "tsx scripts/check-governance.ts",
+    "skos:compile": "tsx scripts/bridge/compile.ts && tsx scripts/bridge/thesis.ts && tsx scripts/bridge/narrative.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",

@@ -45,7 +45,7 @@ faq:
     a: "A structured assessment process across interviews, system review, and governance mapping, followed by a formal report, executive briefing, and a practical sequence of next actions."
 ---
 
-> **The book is now available.** The Bainbridge Warning (v1.3) is a 58-page practitioner book covering the five documented failures, four governance capabilities, and the functional state monitoring question that sits upstream of current governance instruments. [Read the Introduction free →](/digest/bainbridge-warning-read) · [Get the book + workbook bundle →](/products/bainbridge-warning-book)
+> **The book is now available.** The Bainbridge Warning (v1.3) is a 58-page practitioner book covering the seven documented failures, four governance capabilities, and the functional state monitoring question that sits upstream of current governance instruments. [Read the Introduction free →](/digest/bainbridge-warning-read) · [Get the book + workbook bundle →](/products/bainbridge-warning-book)
 
 ---
 

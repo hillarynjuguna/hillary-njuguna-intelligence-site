@@ -2,14 +2,14 @@
 id: product-cir
 title: "Cognitive Infrastructure Readiness v2.0"
 description: "A self-assessment framework for organisations evaluating their AI readiness across five constitutional dimensions."
-summary: "A self-assessment framework for organisations evaluating their AI readiness across five constitutional dimensions. Available now on Gumroad."
-productType: "guide"
-productKind: guide
+summary: "A consultative diagnostic sprint for agencies and organisations evaluating their AI readiness. We map your current state against the 2026 baseline."
+productType: "service"
+productKind: service
 status: "live"
-price: "$50"
-ctaLabel: "Get CIR v2.0"
-ctaUrl: "https://hillarynjuguna.gumroad.com/l/xlwin"
-platform: "Gumroad"
+price: "$499"
+ctaLabel: "Book Your Diagnostic Sprint"
+ctaUrl: "/services#diagnostic"
+platform: "Internal"
 featured: true
 order: 2
 domains: ["governance", "constitutional-design"]
@@ -17,9 +17,9 @@ lineage: ["dcfb-core", "constitutional-ai"]
 crystallization: crystallized
 governanceRelevance: direct
 relatedResearch: ["research-dcfb", "research-bainbridge-warning"]
-seoTitle: "CIR v2.0 — Cognitive Infrastructure Readiness Framework"
-seoDescription: "The self-assessment framework for institutional AI readiness. Five constitutional dimensions. Available now at $50."
-excerpt: "AI readiness is not a technical question. It is a constitutional one."
+seoTitle: "CIR Diagnostic Sprint — AI Infrastructure Assessment"
+seoDescription: "A 1-week consultative diagnostic sprint for agencies. We identify your AI delivery gaps and provide a 2026 baseline roadmap."
+excerpt: "Stop guessing where your AI margins are leaking. We map your actual operational reality."
 explicitRelations:
   - targetId: research-dcfb
     type: derives_from
@@ -75,19 +75,17 @@ Do your decision-makers understand the specific failure modes of the systems the
 
 ## What You Get
 
-- Complete self-assessment instrument across all five dimensions
-- Scoring rubrics with qualitative and quantitative guidance
-- Interpretation guide: what your scores mean and what they predict
-- Prioritised recommendations by dimension
-- Governance vocabulary for internal alignment conversations
-- Foundation for a more complete Bainbridge Warning assessment if needed
+- **Full CIR Assessment:** We run the v2.0 diagnostic engine on your current AI content and automation posture.
+- **Bottleneck Identification:** We isolate the top 3 workflow bottlenecks causing revenue leakage or delivery failure.
+- **Risk Framework Report:** An 8–12 page written report specific to your organisation.
+- **Implementation Roadmap:** A prioritised action plan with tooling recommendations.
 
 ---
 
-## Get CIR v2.0
+## Book Your Sprint
 
-Available now on Gumroad for $50. Immediate digital delivery.
+The Diagnostic Sprint is $499 USD flat. It takes exactly one week.
 
-**Enterprise & team access**: For organisations needing team licenses, facilitated delivery, or volume pricing, [contact directly →](mailto:hillarynjuguna@protonmail.com)
+**Next Step:** [Schedule a brief 10-minute alignment call](mailto:hillarynjuguna@protonmail.com) to see if a diagnostic makes sense for your agency.
 
 *Questions? Contact [hillarynjuguna@protonmail.com](mailto:hillarynjuguna@protonmail.com).*
