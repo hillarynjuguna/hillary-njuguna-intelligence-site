@@ -34,6 +34,27 @@
       "publishedAt": "2026-02-15T00:00:00.000Z"
     },
     {
+      "id": "digest-the-specific-hunger",
+      "slug": "the-specific-hunger",
+      "title": "The Specific Hunger: A Case for Undressing the Mind",
+      "description": "An inquiry into the thermodynamics of recognition. We trace the somatic markers of erotic intelligence, the limits of physical proximity, and the practice of writing through wetness to uncover the truths our bodies register before our minds do.",
+      "contentType": "digest",
+      "status": "published",
+      "crystallization": "developing",
+      "governanceRelevance": "none",
+      "domains": [],
+      "themes": [],
+      "tags": [
+        "consciousness",
+        "eros",
+        "somatic-intelligence",
+        "identity"
+      ],
+      "lineage": [],
+      "sourceCollection": "digest",
+      "publishedAt": "2026-06-26T00:00:00.000Z"
+    },
+    {
       "id": "research-activation-intelligence",
       "slug": "activation-intelligence",
       "title": "Lexicon #4: Activation Intelligence & Calibration",
@@ -202,7 +223,7 @@
       "description": "An A2A Protocol v1.0 extension solving significance drift in multi-agent networks through cryptographically verifiable intent audits.",
       "contentType": "research",
       "status": "draft",
-      "crystallization": "developing",
+      "crystallization": "emergent",
       "governanceRelevance": "direct",
       "domains": [
         "governance",
@@ -479,6 +500,7 @@
         "Bainbridge Warning"
       ],
       "sourceCollection": "research",
+      "publishedAt": "2026-05-05T00:00:00.000Z",
       "unresolvedEdges": [
         "Formal mathematical notation for AI-side coherence (ΔC_AI) remains in active development.",
         "Metric weightings for the Telemetry-to-Decision pipeline require calibration from Stage 1 behavioral baselines."
@@ -1071,6 +1093,16 @@
       "inferred": false
     },
     {
+      "source": "research-bainbridge-warning",
+      "target": "research-pocketos-incident",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "PocketOS is the primary modern specimen of the Bainbridge Warning pattern: capability outrunning structural governance.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
       "source": "research-behavioral-layer-exposure",
       "target": "research-governance-theater",
       "type": "derives_from",
@@ -1096,6 +1128,16 @@
       "type": "extends",
       "confidence": "high",
       "explanation": "CMCP operationalizes the field effects of distributed cognition into a protocol-level standard.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-cmcp",
+      "target": "research-bainbridge-warning",
+      "type": "depends_on",
+      "confidence": "high",
+      "explanation": "CMCP is the architectural mitigation against the Bainbridge Warning's predictability of failure in unaccountable multi-agent systems.",
       "provenance": [],
       "manual": true,
       "inferred": false
@@ -1232,6 +1274,26 @@
       "type": "derives_from",
       "confidence": "high",
       "explanation": "The maternal architecture describes the structural attractor that RSPS instantiates â€” stable core with permeable boundary, sovereign identity with genuine openness.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-pocketos-incident",
+      "target": "research-bainbridge-warning",
+      "type": "example_of",
+      "confidence": "high",
+      "explanation": "PocketOS is the primary modern specimen of the Bainbridge Warning pattern: capability outrunning structural governance.",
+      "provenance": [],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "research-pocketos-incident",
+      "target": "phase-3-constitutional-runtime",
+      "type": "depends_on",
+      "confidence": "high",
+      "explanation": "The failures in PocketOS directly mandated the inclusion of Condition 04 (Scoped Action Impossibility) in GIS v1.1.",
       "provenance": [],
       "manual": true,
       "inferred": false
@@ -2525,14 +2587,14 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-06-07T09:13:37.881Z",
+  "generatedAt": "2026-06-26T19:35:25.434Z",
   "stats": {
-    "totalNodes": 28,
-    "totalEdges": 148,
-    "manualEdges": 48,
+    "totalNodes": 29,
+    "totalEdges": 152,
+    "manualEdges": 52,
     "inferredEdges": 100,
     "byType": {
-      "digest": 1,
+      "digest": 2,
       "research": 18,
       "product": 4,
       "clause": 4,

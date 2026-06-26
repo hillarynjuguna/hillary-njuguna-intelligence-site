@@ -1,0 +1,71 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  width?: 'prose' | 'wide' | 'full';
+  aspectRatio?: string;
+}
+
+const { src, alt, caption, width = 'wide', aspectRatio } = Astro.props;
+
+const style = aspectRatio ? `aspect-ratio: ${aspectRatio}; object-fit: cover;` : '';
+---
+
+<figure class={`image-block image-block--${width}`}>
+  <div class="image-block__container">
+    <img src={src} alt={alt} style={style} loading="lazy" class="image-block__img" />
+  </div>
+  {caption && (
+    <figcaption class="image-block__caption">
+      {caption}
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .image-block {
+    margin: var(--space-8) auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .image-block__container {
+    width: 100%;
+    background: var(--surface-3);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .image-block__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .image-block__caption {
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-align: center;
+    line-height: var(--leading-normal);
+    max-width: var(--max-w-prose);
+  }
+
+  /* Width variants */
+  .image-block--prose {
+    max-width: var(--max-w-prose);
+  }
+
+  .image-block--wide {
+    max-width: var(--max-w-wide);
+  }
+
+  .image-block--full {
+    max-width: 100%;
+  }
+</style>

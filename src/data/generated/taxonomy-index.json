@@ -366,15 +366,37 @@
       ],
       "count": 1
     },
-    "aurora": {
-      "label": "aurora",
+    "consciousness": {
+      "label": "consciousness",
       "contentIds": [
+        "digest-the-specific-hunger",
         "research-aurora"
+      ],
+      "count": 2
+    },
+    "eros": {
+      "label": "eros",
+      "contentIds": [
+        "digest-the-specific-hunger"
       ],
       "count": 1
     },
-    "consciousness": {
-      "label": "consciousness",
+    "somatic-intelligence": {
+      "label": "somatic-intelligence",
+      "contentIds": [
+        "digest-the-specific-hunger"
+      ],
+      "count": 1
+    },
+    "identity": {
+      "label": "identity",
+      "contentIds": [
+        "digest-the-specific-hunger"
+      ],
+      "count": 1
+    },
+    "aurora": {
+      "label": "aurora",
       "contentIds": [
         "research-aurora"
       ],
@@ -915,5 +937,5 @@
       "count": 1
     }
   },
-  "generatedAt": "2026-06-07T09:13:37.882Z"
+  "generatedAt": "2026-06-26T19:35:25.435Z"
 }

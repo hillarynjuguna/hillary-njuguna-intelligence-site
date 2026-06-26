@@ -1,0 +1,160 @@
+---
+interface Props {
+  series: string;
+  currentPart: number;
+  totalParts: number;
+  prevUrl?: string;
+  nextUrl?: string;
+  prevTitle?: string;
+  nextTitle?: string;
+}
+
+const {
+  series,
+  currentPart,
+  totalParts,
+  prevUrl,
+  nextUrl,
+  prevTitle = 'Previous Part',
+  nextTitle = 'Next Part',
+} = Astro.props;
+---
+
+<nav class="series-nav" aria-label="Series navigation">
+  <div class="series-nav__info">
+    <span class="series-nav__eyebrow">Part of a series</span>
+    <h5 class="series-nav__name">{series}</h5>
+    <span class="series-nav__progress">Part {currentPart} of {totalParts}</span>
+  </div>
+  
+  {(prevUrl || nextUrl) && (
+    <div class="series-nav__links">
+      {prevUrl ? (
+        <a href={prevUrl} class="series-nav__link series-nav__link--prev">
+          <span class="series-nav__direction">&larr; Previous</span>
+          <span class="series-nav__link-title">{prevTitle}</span>
+        </a>
+      ) : (
+        <div class="series-nav__link-spacer" />
+      )}
+      
+      {nextUrl ? (
+        <a href={nextUrl} class="series-nav__link series-nav__link--next">
+          <span class="series-nav__direction">Next &rarr;</span>
+          <span class="series-nav__link-title">{nextTitle}</span>
+        </a>
+      ) : (
+        <div class="series-nav__link-spacer" />
+      )}
+    </div>
+  )}
+</nav>
+
+<style>
+  .series-nav {
+    margin: var(--space-10) auto;
+    padding: var(--space-6);
+    background: var(--surface-2);
+    border-top: 1px solid var(--border-mid);
+    border-bottom: 1px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    max-width: var(--max-w-prose);
+    transition: all var(--duration-mid) var(--ease-out);
+  }
+
+  .series-nav__info {
+    text-align: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .series-nav__eyebrow {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-1);
+  }
+
+  .series-nav__name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-1) 0;
+    font-weight: 500;
+  }
+
+  .series-nav__progress {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ember);
+    font-weight: 500;
+  }
+
+  .series-nav__links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    border-top: 1px solid var(--border-dim);
+    padding-top: var(--space-4);
+  }
+
+  .series-nav__link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .series-nav__link--prev {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .series-nav__link--next {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .series-nav__direction {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-1);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .series-nav__link:hover .series-nav__direction {
+    color: var(--ember);
+  }
+
+  .series-nav__link-title {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .series-nav__link:hover .series-nav__link-title {
+    color: var(--ember-bright);
+  }
+
+  .series-nav__link-spacer {
+    display: block;
+  }
+
+  @media (max-width: 480px) {
+    .series-nav__links {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+    .series-nav__link--next {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+</style>

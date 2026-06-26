@@ -1,0 +1,108 @@
+---
+interface Props {
+  accent?: 'ember' | 'sage' | 'gold';
+  align?: 'left' | 'right' | 'center';
+  cite?: string;
+}
+
+const { accent = 'ember', align = 'center', cite } = Astro.props;
+---
+
+<div class={`pull-quote pull-quote--${accent} pull-quote--${align}`}>
+  <span class="pull-quote__mark" aria-hidden="true">“</span>
+  <blockquote class="pull-quote__content">
+    <slot />
+    {cite && <cite class="pull-quote__cite">{cite}</cite>}
+  </blockquote>
+</div>
+
+<style>
+  .pull-quote {
+    position: relative;
+    margin: var(--space-8) 0;
+    padding: var(--space-6) var(--space-8);
+    background: var(--surface-1);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--border-color, var(--ember));
+    transition: all var(--duration-mid) var(--ease-out);
+  }
+
+  .pull-quote--ember {
+    --border-color: var(--ember);
+    --bg-mark: rgba(184, 92, 56, 0.05);
+  }
+
+  .pull-quote--sage {
+    --border-color: var(--sage);
+    --bg-mark: rgba(90, 122, 98, 0.05);
+  }
+
+  .pull-quote--gold {
+    --border-color: var(--gold);
+    --bg-mark: rgba(158, 123, 79, 0.05);
+  }
+
+  /* Alignment styling */
+  .pull-quote--left {
+    float: left;
+    width: 40%;
+    margin-right: var(--space-6);
+    margin-left: 0;
+  }
+
+  .pull-quote--right {
+    float: right;
+    width: 40%;
+    margin-left: var(--space-6);
+    margin-right: 0;
+  }
+
+  .pull-quote--center {
+    width: 100%;
+    max-width: var(--max-w-prose);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pull-quote__mark {
+    position: absolute;
+    top: -10px;
+    left: var(--space-4);
+    font-family: var(--font-display);
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--bg-mark);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .pull-quote__content {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--text-primary);
+    font-style: italic;
+    margin: 0;
+  }
+
+  .pull-quote__cite {
+    display: block;
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+  }
+
+  /* Clear floats after floated blocks */
+  @media (max-width: 640px) {
+    .pull-quote--left, .pull-quote--right {
+      float: none;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+</style>

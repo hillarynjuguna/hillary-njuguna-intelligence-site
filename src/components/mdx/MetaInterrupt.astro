@@ -1,0 +1,65 @@
+---
+interface Props {
+  title?: string;
+  tone?: 'tension' | 'doubt' | 'correction' | 'context';
+}
+
+const { title = 'Self-Audit', tone = 'tension' } = Astro.props;
+---
+
+<div class={`meta-interrupt meta-interrupt--${tone}`}>
+  <div class="meta-interrupt__header">
+    <span class="meta-interrupt__tag">[{title.toUpperCase()}]</span>
+  </div>
+  <div class="meta-interrupt__body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .meta-interrupt {
+    margin: var(--space-6) auto;
+    padding: var(--space-5) var(--space-6);
+    background: var(--surface-2);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--accent-color, var(--text-accent));
+    max-width: var(--max-w-prose);
+    transition: all var(--duration-mid) var(--ease-out);
+  }
+
+  .meta-interrupt--tension {
+    --accent-color: var(--ember);
+  }
+
+  .meta-interrupt--doubt {
+    --accent-color: var(--ash);
+  }
+
+  .meta-interrupt--correction {
+    --accent-color: var(--ember-bright);
+  }
+
+  .meta-interrupt--context {
+    --accent-color: var(--sage);
+  }
+
+  .meta-interrupt__header {
+    margin-bottom: var(--space-2);
+  }
+
+  .meta-interrupt__tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--accent-color);
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  .meta-interrupt__body {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+</style>

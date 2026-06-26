@@ -1,0 +1,105 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  category?: string;
+  date?: string;
+}
+
+const { title, description, href, category = 'Essay', date } = Astro.props;
+---
+
+<a href={href} class="continuation-card">
+  <div class="continuation-card__header">
+    <span class="continuation-card__eyebrow">{category}</span>
+    {date && <span class="continuation-card__date">{date}</span>}
+  </div>
+  <h4 class="continuation-card__title">{title}</h4>
+  <p class="continuation-card__desc">{description}</p>
+  <div class="continuation-card__footer">
+    <span class="continuation-card__link-text">Read continuation &rarr;</span>
+  </div>
+</a>
+
+<style>
+  .continuation-card {
+    display: block;
+    margin: var(--space-8) auto;
+    padding: var(--space-6);
+    background: var(--surface-1);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    max-width: var(--max-w-prose);
+    transition: all var(--duration-mid) var(--ease-out);
+  }
+
+  .continuation-card:hover {
+    background: var(--surface-2);
+    border-color: var(--border-bright);
+    transform: translateY(-2px);
+  }
+
+  .continuation-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+  }
+
+  .continuation-card__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ember);
+    font-weight: 500;
+  }
+
+  .continuation-card__date {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+  }
+
+  .continuation-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-2) 0;
+    line-height: var(--leading-tight);
+    font-weight: 500;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .continuation-card:hover .continuation-card__title {
+    color: var(--ember);
+  }
+
+  .continuation-card__desc {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .continuation-card__footer {
+    display: flex;
+    align-items: center;
+  }
+
+  .continuation-card__link-text {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .continuation-card:hover .continuation-card__link-text {
+    color: var(--ember);
+  }
+</style>

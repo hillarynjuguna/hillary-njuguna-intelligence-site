@@ -1,0 +1,121 @@
+---
+interface Props {
+  id?: string;
+  somatic: string;
+  analytical: string;
+  counterfactual: string;
+  operational: string;
+}
+
+const { id = "mvd-block", somatic, analytical, counterfactual, operational } = Astro.props;
+---
+
+<div class="alternative-register-block" id={id}>
+  <div class="register-content-wrapper">
+    <div class="register-text somatic-text active-register">{somatic}</div>
+    <div class="register-text analytical-text hidden-register">{analytical}</div>
+    <div class="register-text counterfactual-text hidden-register">{counterfactual}</div>
+    <div class="register-text operational-text hidden-register">{operational}</div>
+  </div>
+  
+  <div class="register-control-bar">
+    <button class="register-btn active" data-target="somatic">[ Read somatic ]</button>
+    <button class="register-btn" data-target="analytical">[ Show analytical ]</button>
+    <button class="register-btn" data-target="counterfactual">[ Audit self ]</button>
+    <button class="register-btn" data-target="operational">[ Try practice ]</button>
+  </div>
+</div>
+
+<style>
+  .alternative-register-block {
+    margin: var(--space-8) 0;
+    padding: var(--space-6);
+    background: var(--surface-2);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+  }
+  .register-text {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+  }
+  .hidden-register {
+    display: none;
+  }
+  .register-control-bar {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    border-top: 1px solid var(--border-dim);
+    padding-top: var(--space-4);
+  }
+  .register-btn {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--space-1) var(--space-2);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+  .register-btn:hover {
+    color: var(--ember);
+  }
+  .register-btn.active {
+    color: var(--ember-bright);
+    text-shadow: 0 0 4px rgba(196, 112, 58, 0.4);
+  }
+</style>
+
+<script>
+  function initRegisters() {
+    document.querySelectorAll('.alternative-register-block').forEach((el) => {
+      const blockId = el.id;
+      const texts = {
+        somatic: el.querySelector('.somatic-text'),
+        analytical: el.querySelector('.analytical-text'),
+        counterfactual: el.querySelector('.counterfactual-text'),
+        operational: el.querySelector('.operational-text')
+      };
+      const buttons = el.querySelectorAll('.register-btn');
+      
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-target') as keyof typeof texts;
+          
+          // Toggle text visibility
+          Object.keys(texts).forEach((key) => {
+            const textEl = texts[key as keyof typeof texts];
+            if (textEl) {
+              if (key === target) {
+                textEl.classList.remove('hidden-register');
+                textEl.setAttribute('style', 'display: block;');
+              } else {
+                textEl.classList.add('hidden-register');
+                textEl.setAttribute('style', 'display: none;');
+              }
+            }
+          });
+          
+          // Toggle active button style
+          buttons.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          // Record voluntary switch event in sessionStorage
+          const log = JSON.parse(sessionStorage.getItem('mvd_telemetry') || '[]');
+          log.push({
+            timestamp: new Date().toISOString(),
+            blockId: blockId,
+            targetRegister: target
+          });
+          sessionStorage.setItem('mvd_telemetry', JSON.stringify(log));
+        });
+      });
+    });
+  }
+
+  // Run on load and on view transition
+  initRegisters();
+  document.addEventListener('astro:page-load', initRegisters);
+</script>

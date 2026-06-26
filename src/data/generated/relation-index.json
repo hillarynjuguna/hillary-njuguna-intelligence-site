@@ -174,6 +174,40 @@
         "inferred": true
       }
     ],
+    "research-bainbridge-warning": [
+      {
+        "target": "research-pocketos-incident",
+        "type": "example_of",
+        "confidence": "high",
+        "explanation": "PocketOS is the primary modern specimen of the Bainbridge Warning pattern: capability outrunning structural governance.",
+        "manual": true,
+        "inferred": false
+      },
+      {
+        "target": "clause-coherence-overfitting-guard",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "clause-epistemological-immune-system",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "clause-intent-specification",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      }
+    ],
     "research-behavioral-layer-exposure": [
       {
         "target": "research-governance-theater",
@@ -230,6 +264,14 @@
         "type": "extends",
         "confidence": "high",
         "explanation": "CMCP operationalizes the field effects of distributed cognition into a protocol-level standard.",
+        "manual": true,
+        "inferred": false
+      },
+      {
+        "target": "research-bainbridge-warning",
+        "type": "depends_on",
+        "confidence": "high",
+        "explanation": "CMCP is the architectural mitigation against the Bainbridge Warning's predictability of failure in unaccountable multi-agent systems.",
         "manual": true,
         "inferred": false
       }
@@ -396,6 +438,56 @@
         "explanation": "The maternal architecture describes the structural attractor that RSPS instantiates â€” stable core with permeable boundary, sovereign identity with genuine openness.",
         "manual": true,
         "inferred": false
+      }
+    ],
+    "research-pocketos-incident": [
+      {
+        "target": "research-bainbridge-warning",
+        "type": "example_of",
+        "confidence": "high",
+        "explanation": "PocketOS is the primary modern specimen of the Bainbridge Warning pattern: capability outrunning structural governance.",
+        "manual": true,
+        "inferred": false
+      },
+      {
+        "target": "phase-3-constitutional-runtime",
+        "type": "depends_on",
+        "confidence": "high",
+        "explanation": "The failures in PocketOS directly mandated the inclusion of Condition 04 (Scoped Action Impossibility) in GIS v1.1.",
+        "manual": true,
+        "inferred": false
+      },
+      {
+        "target": "clause-coherence-overfitting-guard",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "clause-epistemological-immune-system",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "clause-intent-specification",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "clause-irreversibility-threshold",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
       }
     ],
     "research-r0-r3-classification": [
@@ -1166,66 +1258,6 @@
         "inferred": true
       }
     ],
-    "research-bainbridge-warning": [
-      {
-        "target": "clause-coherence-overfitting-guard",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "clause-epistemological-immune-system",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "clause-intent-specification",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      }
-    ],
-    "research-pocketos-incident": [
-      {
-        "target": "clause-coherence-overfitting-guard",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "clause-epistemological-immune-system",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "clause-intent-specification",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "clause-irreversibility-threshold",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      }
-    ],
     "clause-epistemological-immune-system": [
       {
         "target": "clause-coherence-overfitting-guard",
@@ -1526,6 +1558,14 @@
         "inferred": false
       },
       {
+        "target": "research-cmcp",
+        "type": "depends_on",
+        "confidence": "high",
+        "explanation": "CMCP is the architectural mitigation against the Bainbridge Warning's predictability of failure in unaccountable multi-agent systems.",
+        "manual": true,
+        "inferred": false
+      },
+      {
         "target": "research-cora",
         "type": "responds_to",
         "confidence": "high",
@@ -1546,6 +1586,14 @@
         "type": "extends",
         "confidence": "high",
         "explanation": "Governance theater is the predictable failure mode the Bainbridge Warning names — the visible surface of the capability-governance gap.",
+        "manual": true,
+        "inferred": false
+      },
+      {
+        "target": "research-pocketos-incident",
+        "type": "example_of",
+        "confidence": "high",
+        "explanation": "PocketOS is the primary modern specimen of the Bainbridge Warning pattern: capability outrunning structural governance.",
         "manual": true,
         "inferred": false
       },
@@ -1620,6 +1668,24 @@
         "explanation": "Product shares lineage [dcfb-core] with this research and likely acts as an applied instantiation.",
         "manual": false,
         "inferred": true
+      },
+      {
+        "target": "field-signal-001",
+        "type": "clarifies",
+        "confidence": "low",
+        "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+        "manual": false,
+        "inferred": true
+      }
+    ],
+    "research-pocketos-incident": [
+      {
+        "target": "research-bainbridge-warning",
+        "type": "example_of",
+        "confidence": "high",
+        "explanation": "PocketOS is the primary modern specimen of the Bainbridge Warning pattern: capability outrunning structural governance.",
+        "manual": true,
+        "inferred": false
       },
       {
         "target": "field-signal-001",
@@ -2068,6 +2134,16 @@
         "inferred": true
       }
     ],
+    "phase-3-constitutional-runtime": [
+      {
+        "target": "research-pocketos-incident",
+        "type": "depends_on",
+        "confidence": "high",
+        "explanation": "The failures in PocketOS directly mandated the inclusion of Condition 04 (Scoped Action Impossibility) in GIS v1.1.",
+        "manual": true,
+        "inferred": false
+      }
+    ],
     "research-eigenform-and-rsps": [
       {
         "target": "research-r0-r3-classification",
@@ -2426,16 +2502,6 @@
         "inferred": true
       }
     ],
-    "research-pocketos-incident": [
-      {
-        "target": "field-signal-001",
-        "type": "clarifies",
-        "confidence": "low",
-        "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
-        "manual": false,
-        "inferred": true
-      }
-    ],
     "product-bainbridge-warning-book": [
       {
         "target": "field-signal-001",
@@ -2467,5 +2533,5 @@
       }
     ]
   },
-  "generatedAt": "2026-06-07T09:13:37.881Z"
+  "generatedAt": "2026-06-26T19:35:25.434Z"
 }
