@@ -6,27 +6,29 @@
 
 ---
 
-## 1. Experimental Objective
+## 1. Primary Research Question
 
-The goal of this experiment is to prove **Hypothesis A**:
-> Different representations of a conserved conceptual invariant improve human reasoning capacity and transferability.
+The core scientific inquiry of this experiment is:
+> **"What cognitive procedures become more stable across domains after exposure to representation-preserving transformations?"**
 
-Rather than building a complex state estimator or automated delivery system, we isolate a single variable: **representation register switching**. The user controls the transition manually. We measure whether this exposure cultivates representational flexibility and improves the user's capacity to transfer the underlying reasoning to an unrelated domain.
+We evaluate whether the manual transition between different projections of a conserved conceptual invariant trains a meta-habit of representational flexibility and alters the reader's reasoning strategy when encountering novel systems.
 
 ---
 
-## 2. The Invariant: The Capability Transform
+## 2. Dual-Layer Intermediate Representation (IR)
 
-The invariant being preserved across all representations is the **Capability Transform**:
-1. **Pre-threshold Evaluation**: Initial signals (visceral/local/somatic) register systemic changes before the formal, explicit monitoring systems can represent them.
-2. **Decoupling Failure**: Ignoring or filtering out these pre-threshold signals in favor of explicit, sanitized metrics results in analytical sterility and system blindness.
-3. **Adversarial Audit (Counterfactual)**: The mind/observer is prone to retrospective rationalization: translating simple physiological or structural noise into complex theoretical frameworks to preserve coherence or ego-stability.
+To decouple knowledge from linguistic rendering, the source content is compiled through a dual-layer Intermediate Representation:
+
+1.  **$\text{IR}_1$: The Constraint Graph ("What is True")**  
+    A directed acyclic graph (DAG) of propositions ($\mathcal{V}$), causal implication edges ($\mathcal{E}$), and counterfactual boundary gates ($\Phi$). This maps the logical boundaries and exceptions of the concept.
+2.  **$\text{IR}_2$: The Reasoning Trace ("How to Think")**  
+    A procedural sequence representing the step-by-step logic path required to reach the conclusion (e.g., *Isolate pre-threshold signals $\to$ Identify suppressive metrics $\to$ Test for retrospective rationalization*).
 
 ---
 
 ## 3. The Four Registers
 
-We author the opening section of *The Specific Hunger* in four distinct, mathematically aligned registers:
+We project the underlying IR onto four distinct registers in the opening section of *The Specific Hunger*:
 
 ### Narrative/Somatic ($\mathcal{R}_s$)
 > Sometimes the chest registers a collision before the intellect has time to build a defense. I sat in the humid dark of the bedroom, watching a single cursor blink against a screen that had suddenly become too bright. My nervous system lit up like a pinball machine. The air conditioning unit has a low, metallic rattle, a dry hum that does not quite clear the Kuala Lumpur humidity, but it provides a necessary anchor. The heat was not outside: it was under my skin, a sudden acceleration of blood that felt less like a thought and more like a physical temperature rise. We are trained to hide this in boarding schools and clean offices: places of concrete walls and thin blankets where survival depends on silencing what the skin feels, treating the mind as a clean blade and the body as a carriage to be washed and carried.
@@ -42,40 +44,44 @@ We author the opening section of *The Specific Hunger* in four distinct, mathema
 
 ---
 
-## 4. Interaction Design (The Instrument)
+## 4. Minimalist Telemetry
 
-The interface acts as a cognitive instrument that exposes its own compilation targets:
-
-```text
-[ Active Register Text Block... ]
-──────────────────────────────────────────────────────────────────
-[ Read somatic ]  [ Show analytical ]  [ Audit self ]  [ Try practice ]
-```
-
-*   The user reads the default somatic register.
-*   By clicking the inline register controls, they compile the paragraph into alternative modes.
-*   The system records only voluntary register switching actions.
+To avoid over-modeling and telemetry noise, the system records only five explicit interaction variables. No mouse tracks, scroll velocities, or predictive algorithms are used:
+1.  **Chosen Register Sequence**: The chronological sequence of registers viewed (e.g., $\mathcal{R}_s \to \mathcal{R}_a \to \mathcal{R}_{cf}$).
+2.  **Dwell Interval**: The time elapsed between voluntary register switch actions.
+3.  **Out-of-Domain Transfer Response**: Raw text transcript from the transfer prompt.
+4.  **Boundary Audit Response**: Raw text transcript from the boundary prompt.
+5.  **Reasoning Transcript**: Log of user questions and inputs submitted to the paragraph membranes.
 
 ---
 
-## 5. Evaluation Protocol: Representation Independence
+## 5. Evaluation Framework
 
-At the exit gate, we measure the transform's stability in the reader's mind using an **Out-of-Domain Transfer Prompt**:
+We evaluate cognitive adaptation across three distinct layers, focusing on **Cognitive Strategy Shifts (CSS)**:
 
-> *"A software team keeps ignoring minor customer complaints because their high-level revenue metrics continue to increase. What structural error are they committing, and under what conditions does their analysis fail?"*
-
-### Evaluation Metrics
-We grade the response based on:
-1.  **Transfer of Invariant (Pass/Fail)**: Did the reader identify that the team is ignoring pre-threshold, local signals in favor of sanitized, explicit metrics, leading to system blindness?
-2.  **Boundary & Counterfactual Recognition (Pass/Fail)**: Did they outline the conditions under which their analysis fails (e.g. self-deception, retrospective rationalization of complaints as noise to preserve the active plan)?
-3.  **Vocabulary Independence**: We verify that the user did not rely on the literal words of any register (e.g., *somatic, body, temperature, air conditioner*).
+| Evaluation Layer | Target Metric | Definition | Measurement |
+| :--- | :--- | :--- | :--- |
+| **Layer 1: Knowledge Acquisition** | Recall Accuracy | Did the reader retain the factual claims of the essay? | Standard multiple-choice concept check. |
+| **Layer 2: Reasoning Transfer** | Representation Independence | Can the reader apply the invariant logic to an unrelated domain? | Out-of-domain prompt: *"Explain a software team's metric-decoupling failure without using body/sensation terms."* |
+| **Layer 3: Cognitive Habit Formation** | **Cognitive Strategy Shift (CSS)** | Did the reader's default reasoning procedure transform? | Evaluates if the reader's first step in analyzing a new problem shifts from seeking confirming evidence to seeking boundary conditions. |
 
 ---
 
-## 6. Falsification Criteria
+## 6. The Adversarial Benchmarks (Control Cohorts)
 
-This experiment will be considered a **failure** (falsified hypothesis) if:
-*   Cohort 3 (adaptive switching) shows no statistically significant difference in out-of-domain transfer scores compared to static cohorts.
-*   The meta-habit of representational flexibility is not detected (users do not show higher vocabulary independence when describing the concept).
+To justify its complexity, the adaptive explanation runtime is tested against four distinct baseline cohorts:
 
-The experiment is a **success** if the manual register switching interface measurably improves the transfer coefficient of the invariant reasoning path.
+*   **Cohort A (Static control)**: Reads the essay in a single static register (either somatic or analytical).
+*   **Cohort B (Chatbot augmented)**: Reads the static essay with a standard floating AI chatbot widget.
+*   **Cohort C (Visual augmented)**: Reads the static essay accompanied by static diagrams of the content graph.
+*   **Cohort D (Experimental - Adaptive)**: Reads the essay using the inline `<AlternativeRegister />` manual switching controls.
+
+---
+
+## 7. Falsification Criteria
+
+The experiment is considered a **failure** (falsifying the adaptive media premise) if:
+*   Cohort D shows no statistically significant improvement in Layer 2 (Reasoning Transfer) or Layer 3 (CSS) compared to Cohorts A, B, and C.
+*   The cognitive strategy shift is negligible (adaptive readers continue to solve transfer problems using confirmation-seeking instead of boundary-auditing procedures).
+
+The experiment is a **success** if Cohort D demonstrates superior representation independence and a measurable shift toward invariant-driven reasoning strategies.
