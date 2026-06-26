@@ -10,8 +10,12 @@ if (process.env.VERCEL === '1') {
   const requiredEnv = ['RESEND_API_KEY', 'POSTGRES_URL'];
   const missing = requiredEnv.filter((key) => !process.env[key]);
   if (missing.length > 0) {
-    console.error(`\n[FATAL] Deployment blocked. Missing required environment variables: ${missing.join(', ')}\n`);
-    process.exit(1);
+    if (process.env.VERCEL_ENV === 'production') {
+      console.error(`\n[FATAL] Deployment blocked. Missing required environment variables: ${missing.join(', ')}\n`);
+      process.exit(1);
+    } else {
+      console.warn(`\n[WARN] Missing environment variables for preview: ${missing.join(', ')}. Continuing build.\n`);
+    }
   }
 }
 
