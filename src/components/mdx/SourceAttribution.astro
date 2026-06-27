@@ -81,9 +81,9 @@ if (claim.tier === 1) {
   }
   .attribution-tooltip {
     position: absolute;
-    bottom: 120%;
+    bottom: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(4px);
+    transform: translateX(-50%) translateY(8px);
     width: 280px;
     padding: var(--space-4);
     background: var(--surface-1);
@@ -91,19 +91,33 @@ if (claim.tier === 1) {
     border-radius: var(--radius-md);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
     z-index: var(--z-raised);
-    transition: opacity var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+    transition: opacity var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out), visibility 0s linear var(--duration-fast);
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
   }
   
-  /* Show tooltip on hover or active container touch */
+  /* Transparent bridge to connect superscript trigger to tooltip box */
+  .attribution-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: transparent;
+  }
+  
+  /* Show tooltip on hover or active container touch with zero transition delay */
   .attribution-container:hover .attribution-tooltip {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
     transform: translateX(-50%) translateY(0);
+    transition-delay: 0s;
   }
   
   .tooltip-header {
