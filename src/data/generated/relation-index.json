@@ -111,7 +111,7 @@
         "target": "research-bainbridge-warning",
         "type": "derives_from",
         "confidence": "high",
-        "explanation": "The security vulnerabilities of static MCP schemas derive directly from the capability-governance gap warning.",
+        "explanation": "The security vulnerabilities of static MCP schemas and dynamic compilers derive directly from the capability-governance gap warning.",
         "manual": true,
         "inferred": false
       }
@@ -1441,7 +1441,7 @@
         "target": "digest-the-poisoned-instrument",
         "type": "derives_from",
         "confidence": "high",
-        "explanation": "The security vulnerabilities of static MCP schemas derive directly from the capability-governance gap warning.",
+        "explanation": "The security vulnerabilities of static MCP schemas and dynamic compilers derive directly from the capability-governance gap warning.",
         "manual": true,
         "inferred": false
       },
@@ -2551,5 +2551,5 @@
       }
     ]
   },
-  "generatedAt": "2026-06-27T06:23:28.199Z"
+  "generatedAt": "2026-06-27T06:31:27.550Z"
 }

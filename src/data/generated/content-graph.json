@@ -37,7 +37,7 @@
       "id": "digest-the-poisoned-instrument",
       "slug": "the-poisoned-instrument",
       "title": "The Poisoned Instrument: Security and Sovereignty in the Agentic Runtime",
-      "description": "An analysis of the trust assumptions in model orchestration. We contrast the vulnerability profile of static tool-registry systems (MCP) with dynamic discovery models (RTDC) to define the perimeter of sovereign execution.",
+      "description": "An analysis of the trust assumptions in model orchestration. We contrast the vulnerability profile of static tool-registry systems (MCP) with dynamic discovery models (RTDC) and self-healing AST compilers (BIGBAG) to define the perimeter of sovereign execution.",
       "contentType": "digest",
       "status": "published",
       "crystallization": "developing",
@@ -51,7 +51,8 @@
         "ai-governance",
         "security",
         "mcp",
-        "rtdc"
+        "rtdc",
+        "bigbag"
       ],
       "lineage": [],
       "sourceCollection": "digest",
@@ -1060,7 +1061,7 @@
       "target": "research-bainbridge-warning",
       "type": "derives_from",
       "confidence": "high",
-      "explanation": "The security vulnerabilities of static MCP schemas derive directly from the capability-governance gap warning.",
+      "explanation": "The security vulnerabilities of static MCP schemas and dynamic compilers derive directly from the capability-governance gap warning.",
       "provenance": [],
       "manual": true,
       "inferred": false
@@ -2600,7 +2601,7 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-06-27T06:23:28.199Z",
+  "generatedAt": "2026-06-27T06:31:27.550Z",
   "stats": {
     "totalNodes": 29,
     "totalEdges": 153,
