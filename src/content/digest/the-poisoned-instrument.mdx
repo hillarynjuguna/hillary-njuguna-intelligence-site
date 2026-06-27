@@ -1,30 +1,3 @@
-# Epistemic Compilation Implementation Plan: "The Poisoned Instrument"
-
-This plan details the implementation steps required to pivot the Epistemic Compilation MVD-1 experiment to the new security-focused anchor.
-
----
-
-### Task 1: Clean Up Previous Anchoring Files
-
-**Files:**
-- Delete: `src/content/digest/the-specific-hunger.mdx`
-
-**Command:**
-```bash
-git rm src/content/digest/the-specific-hunger.mdx
-```
-
----
-
-### Task 2: Create "The Poisoned Instrument" Essay
-
-**Files:**
-- Create: `src/content/digest/the-poisoned-instrument.mdx`
-
-**Step 1: Write the content with AlternativeRegister and MDX layout elements**
-
-Write the following content into `src/content/digest/the-poisoned-instrument.mdx`:
-```mdx
 ---
 title: "The Poisoned Instrument: Security and Sovereignty in the Agentic Runtime"
 summary: "An analysis of the trust assumptions in model orchestration. We contrast the vulnerability profile of static tool-registry systems (MCP) with dynamic discovery models (RTDC) to define the perimeter of sovereign execution."
@@ -32,6 +5,13 @@ description: "An analysis of the trust assumptions in model orchestration. We co
 publishedAt: 2026-06-26
 date: 2026-06-26
 tags: ["ai-governance", "security", "mcp", "rtdc"]
+domains: ["ai-governance", "security"]
+related: ["research-bainbridge-warning"]
+explicitRelations:
+  - targetId: research-bainbridge-warning
+    type: derives_from
+    confidence: high
+    explanation: "The security vulnerabilities of static MCP schemas derive directly from the capability-governance gap warning."
 category: "Essays & Dispatches"
 series: "The Sovereignty Audits"
 seriesOrder: 1
@@ -87,18 +67,3 @@ Real-Time Discovery and Self-Coding (RTDC) represents an alternative paradigm. I
 This approach eliminates the static schema registry entirely. However, it introduces a dynamic execution risk. If the target system presents a spoofed signature, the meta-agent will compile and run compromised scripts.
 
 For the next phase of our governance tests, we will monitor these dynamic generation boundaries to evaluate if runtime compilation checks can catch synthesis anomalies before they execute.
-```
-
----
-
-### Task 3: Run Graph Generation & Project Build
-
-**Step 1: Run build scripts**
-
-Run:
-```bash
-npm run build:graph
-npx astro build
-```
-
-Expected: The project compiles cleanly, outputting the generated graph with `digest-the-poisoned-instrument` and resolving all MDX components.

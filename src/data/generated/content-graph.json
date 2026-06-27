@@ -34,21 +34,24 @@
       "publishedAt": "2026-02-15T00:00:00.000Z"
     },
     {
-      "id": "digest-the-specific-hunger",
-      "slug": "the-specific-hunger",
-      "title": "The Specific Hunger: A Case for Undressing the Mind",
-      "description": "An inquiry into the thermodynamics of recognition. We trace the somatic markers of erotic intelligence, the limits of physical proximity, and the practice of writing through wetness to uncover the truths our bodies register before our minds do.",
+      "id": "digest-the-poisoned-instrument",
+      "slug": "the-poisoned-instrument",
+      "title": "The Poisoned Instrument: Security and Sovereignty in the Agentic Runtime",
+      "description": "An analysis of the trust assumptions in model orchestration. We contrast the vulnerability profile of static tool-registry systems (MCP) with dynamic discovery models (RTDC) to define the perimeter of sovereign execution.",
       "contentType": "digest",
       "status": "published",
       "crystallization": "developing",
       "governanceRelevance": "none",
-      "domains": [],
+      "domains": [
+        "ai-governance",
+        "security"
+      ],
       "themes": [],
       "tags": [
-        "consciousness",
-        "eros",
-        "somatic-intelligence",
-        "identity"
+        "ai-governance",
+        "security",
+        "mcp",
+        "rtdc"
       ],
       "lineage": [],
       "sourceCollection": "digest",
@@ -1049,6 +1052,16 @@
       "provenance": [
         "section: The Core Argument"
       ],
+      "manual": true,
+      "inferred": false
+    },
+    {
+      "source": "digest-the-poisoned-instrument",
+      "target": "research-bainbridge-warning",
+      "type": "derives_from",
+      "confidence": "high",
+      "explanation": "The security vulnerabilities of static MCP schemas derive directly from the capability-governance gap warning.",
+      "provenance": [],
       "manual": true,
       "inferred": false
     },
@@ -2587,11 +2600,11 @@
       "inferred": true
     }
   ],
-  "generatedAt": "2026-06-26T19:35:25.434Z",
+  "generatedAt": "2026-06-27T06:15:24.794Z",
   "stats": {
     "totalNodes": 29,
-    "totalEdges": 152,
-    "manualEdges": 52,
+    "totalEdges": 153,
+    "manualEdges": 53,
     "inferredEdges": 100,
     "byType": {
       "digest": 2,

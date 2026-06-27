@@ -106,6 +106,16 @@
         "inferred": true
       }
     ],
+    "digest-the-poisoned-instrument": [
+      {
+        "target": "research-bainbridge-warning",
+        "type": "derives_from",
+        "confidence": "high",
+        "explanation": "The security vulnerabilities of static MCP schemas derive directly from the capability-governance gap warning.",
+        "manual": true,
+        "inferred": false
+      }
+    ],
     "research-activation-intelligence": [
       {
         "target": "research-dcfb",
@@ -1426,121 +1436,15 @@
         "inferred": true
       }
     ],
-    "clause-irreversibility-threshold": [
-      {
-        "target": "research-activation-intelligence",
-        "type": "governance_relevant_to",
-        "confidence": "high",
-        "explanation": "Calibration layers are the primary mechanism for monitoring irreversibility thresholds during real-time activation.",
-        "manual": true,
-        "inferred": false
-      },
-      {
-        "target": "research-dcfb",
-        "type": "governance_relevant_to",
-        "confidence": "high",
-        "explanation": "DCFB Principle 4 (distributed monitoring) requires knowing when deployment decisions cross irreversibility thresholds — the governance trigger the clause formalises.",
-        "manual": true,
-        "inferred": false
-      },
-      {
-        "target": "research-trust-irreversibility-residue",
-        "type": "crystallizes",
-        "confidence": "high",
-        "explanation": "This research directly produced the Irreversibility Threshold Review Requirement clause — the clause text appears verbatim as the 'Clause Candidate' at the end of this piece.",
-        "manual": true,
-        "inferred": false
-      },
-      {
-        "target": "digest-cir-v2-core-argument",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "research-aurora",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "research-behavioral-layer-exposure",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "research-governance-theater",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "research-pocketos-incident",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "research-r0-r3-classification",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "research-tongue-tie-diagnostic",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "product-bainbridge-warning-book",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "product-bainbridge-warning",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "product-cir",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      },
-      {
-        "target": "field-signal-001",
-        "type": "governance_relevant_to",
-        "confidence": "low",
-        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
-        "manual": false,
-        "inferred": true
-      }
-    ],
     "research-bainbridge-warning": [
+      {
+        "target": "digest-the-poisoned-instrument",
+        "type": "derives_from",
+        "confidence": "high",
+        "explanation": "The security vulnerabilities of static MCP schemas derive directly from the capability-governance gap warning.",
+        "manual": true,
+        "inferred": false
+      },
       {
         "target": "research-aurora",
         "type": "extends",
@@ -1674,6 +1578,120 @@
         "type": "clarifies",
         "confidence": "low",
         "explanation": "Field signal shares [governance] with this node and acts as a nearby specimen or synthesis trace.",
+        "manual": false,
+        "inferred": true
+      }
+    ],
+    "clause-irreversibility-threshold": [
+      {
+        "target": "research-activation-intelligence",
+        "type": "governance_relevant_to",
+        "confidence": "high",
+        "explanation": "Calibration layers are the primary mechanism for monitoring irreversibility thresholds during real-time activation.",
+        "manual": true,
+        "inferred": false
+      },
+      {
+        "target": "research-dcfb",
+        "type": "governance_relevant_to",
+        "confidence": "high",
+        "explanation": "DCFB Principle 4 (distributed monitoring) requires knowing when deployment decisions cross irreversibility thresholds — the governance trigger the clause formalises.",
+        "manual": true,
+        "inferred": false
+      },
+      {
+        "target": "research-trust-irreversibility-residue",
+        "type": "crystallizes",
+        "confidence": "high",
+        "explanation": "This research directly produced the Irreversibility Threshold Review Requirement clause — the clause text appears verbatim as the 'Clause Candidate' at the end of this piece.",
+        "manual": true,
+        "inferred": false
+      },
+      {
+        "target": "digest-cir-v2-core-argument",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-aurora",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-behavioral-layer-exposure",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-governance-theater",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-pocketos-incident",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-r0-r3-classification",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "research-tongue-tie-diagnostic",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "product-bainbridge-warning-book",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "product-bainbridge-warning",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "product-cir",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
+        "manual": false,
+        "inferred": true
+      },
+      {
+        "target": "field-signal-001",
+        "type": "governance_relevant_to",
+        "confidence": "low",
+        "explanation": "Both operate in domains [governance] and the content has direct governance relevance.",
         "manual": false,
         "inferred": true
       }
@@ -2533,5 +2551,5 @@
       }
     ]
   },
-  "generatedAt": "2026-06-26T19:35:25.434Z"
+  "generatedAt": "2026-06-27T06:15:24.794Z"
 }

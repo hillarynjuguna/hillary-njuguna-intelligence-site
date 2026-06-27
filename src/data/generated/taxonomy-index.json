@@ -33,6 +33,21 @@
       ],
       "count": 2
     },
+    "ai-governance": {
+      "label": "ai-governance",
+      "contentIds": [
+        "digest-the-poisoned-instrument"
+      ],
+      "count": 1
+    },
+    "security": {
+      "label": "security",
+      "contentIds": [
+        "digest-the-poisoned-instrument",
+        "research-pocketos-incident"
+      ],
+      "count": 2
+    },
     "consciousness": {
       "label": "consciousness",
       "contentIds": [
@@ -91,13 +106,6 @@
       "label": "Agentic Deployment",
       "contentIds": [
         "phase-3-constitutional-runtime"
-      ],
-      "count": 1
-    },
-    "security": {
-      "label": "security",
-      "contentIds": [
-        "research-pocketos-incident"
       ],
       "count": 1
     },
@@ -366,37 +374,44 @@
       ],
       "count": 1
     },
-    "consciousness": {
-      "label": "consciousness",
+    "ai-governance": {
+      "label": "ai-governance",
       "contentIds": [
-        "digest-the-specific-hunger",
-        "research-aurora"
+        "digest-the-poisoned-instrument",
+        "research-bainbridge-warning"
       ],
       "count": 2
     },
-    "eros": {
-      "label": "eros",
+    "security": {
+      "label": "security",
       "contentIds": [
-        "digest-the-specific-hunger"
+        "digest-the-poisoned-instrument"
       ],
       "count": 1
     },
-    "somatic-intelligence": {
-      "label": "somatic-intelligence",
+    "mcp": {
+      "label": "mcp",
       "contentIds": [
-        "digest-the-specific-hunger"
+        "digest-the-poisoned-instrument"
       ],
       "count": 1
     },
-    "identity": {
-      "label": "identity",
+    "rtdc": {
+      "label": "rtdc",
       "contentIds": [
-        "digest-the-specific-hunger"
+        "digest-the-poisoned-instrument"
       ],
       "count": 1
     },
     "aurora": {
       "label": "aurora",
+      "contentIds": [
+        "research-aurora"
+      ],
+      "count": 1
+    },
+    "consciousness": {
+      "label": "consciousness",
       "contentIds": [
         "research-aurora"
       ],
@@ -433,13 +448,6 @@
     },
     "institutional-failure": {
       "label": "institutional-failure",
-      "contentIds": [
-        "research-bainbridge-warning"
-      ],
-      "count": 1
-    },
-    "ai-governance": {
-      "label": "ai-governance",
       "contentIds": [
         "research-bainbridge-warning"
       ],
@@ -937,5 +945,5 @@
       "count": 1
     }
   },
-  "generatedAt": "2026-06-26T19:35:25.435Z"
+  "generatedAt": "2026-06-27T06:15:24.796Z"
 }
