@@ -101,6 +101,9 @@ const { id = "mvd-block", somatic, analytical, counterfactual, operational } = A
           // Toggle active button style
           buttons.forEach((b) => b.classList.remove('active'));
           btn.classList.add('active');
+
+          // Fire cross-component visual switch event
+          window.dispatchEvent(new CustomEvent('register:switched', { detail: { register: target } }));
           
           // Record voluntary switch event in sessionStorage
           const log = JSON.parse(sessionStorage.getItem('mvd_telemetry') || '[]');

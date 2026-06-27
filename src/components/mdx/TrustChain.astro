@@ -1,0 +1,130 @@
+---
+// TrustChain.astro - Vertical dependency trust chain diagram ending in YAML anchor
+---
+
+<div class="trust-chain-container">
+  <div class="chain-title">Layered Trust Architecture</div>
+
+  <div class="chain-nodes">
+    <div class="chain-node">
+      <div class="node-badge">Transport</div>
+      <div class="node-label">Neural Shield</div>
+    </div>
+    <div class="chain-link">↓</div>
+    
+    <div class="chain-node">
+      <div class="node-badge">Workspace</div>
+      <div class="node-label">Clean-Room Validator</div>
+    </div>
+    <div class="chain-link">↓</div>
+
+    <div class="chain-node">
+      <div class="node-badge">Telemetry</div>
+      <div class="node-label">AgentGuard Trace Monitor</div>
+    </div>
+    <div class="chain-link">↓</div>
+
+    <div class="chain-node sovereign-anchor">
+      <div class="node-badge anchor-badge">Sovereign prior</div>
+      <div class="node-label">Static YAML Specification</div>
+      <div class="sovereign-indicator"></div>
+    </div>
+  </div>
+
+  <div class="chain-caption">
+    The terminal anchor of the verification chain: the one place a human was required to decide.
+  </div>
+</div>
+
+<style>
+  .trust-chain-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    margin: var(--space-8) auto;
+    padding: var(--space-6);
+    background: var(--surface-1);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    max-width: var(--max-w-narrow);
+  }
+  .chain-title {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+  }
+  .chain-nodes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: var(--space-2);
+  }
+  .chain-node {
+    position: relative;
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-sm);
+    text-align: center;
+  }
+  .node-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+  }
+  .node-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .chain-link {
+    font-size: var(--text-base);
+    color: var(--text-tertiary);
+    font-weight: bold;
+    user-select: none;
+  }
+  
+  /* Sovereign Anchor Highlights */
+  .sovereign-anchor {
+    border-color: var(--color-sovereign);
+    background: rgba(217, 119, 6, 0.03);
+    overflow: hidden;
+  }
+  .sovereign-anchor .node-label {
+    color: var(--color-sovereign);
+  }
+  .anchor-badge {
+    color: var(--color-sovereign);
+    font-weight: bold;
+  }
+  .sovereign-indicator {
+    position: absolute;
+    top: 50%;
+    right: var(--space-4);
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--color-sovereign);
+    border-radius: 50%;
+    animation: var(--glow-active);
+  }
+  
+  .chain-caption {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: var(--leading-normal);
+    border-top: 1px solid var(--border-dim);
+    padding-top: var(--space-3);
+    width: 100%;
+  }
+</style>

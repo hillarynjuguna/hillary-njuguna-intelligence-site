@@ -1,0 +1,113 @@
+---
+import { Image } from 'astro:assets';
+import heroSomatic from '../../assets/hero/hero-somatic.png';
+import heroAnalytical from '../../assets/hero/hero-analytical.png';
+import heroCounterfactual from '../../assets/hero/hero-counterfactual.png';
+import heroOperational from '../../assets/hero/hero-operational.png';
+---
+
+<div class="hero-visual-container">
+  <div class="hero-visual-wrapper">
+    <div class="hero-image-wrapper somatic-img active" data-register="somatic">
+      <Image src={heroSomatic} alt="Somatic Register: server room telemetry showing cold-blue terminal screen and warning state" class="hero-img-element" />
+    </div>
+    <div class="hero-image-wrapper analytical-img" data-register="analytical">
+      <Image src={heroAnalytical} alt="Analytical Register: orthographic data flow of model context protocol exploit vectors" class="hero-img-element" />
+    </div>
+    <div class="hero-image-wrapper counterfactual-img" data-register="counterfactual">
+      <Image src={heroCounterfactual} alt="Counterfactual Register: branching state graph of trust boundaries and decision invariants" class="hero-img-element" />
+    </div>
+    <div class="hero-image-wrapper operational-img" data-register="operational">
+      <Image src={heroOperational} alt="Operational Register: JVM build execution boundary cutaway showing isolated re-application" class="hero-img-element" />
+    </div>
+
+    <!-- The live HTML/CSS Sovereign Dot Overlay -->
+    <div class="sovereign-dot"></div>
+    <span class="hero-legend">amber · human sovereignty</span>
+  </div>
+</div>
+
+<style>
+  .hero-visual-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: var(--space-8);
+    background: var(--color-infrastructure);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-mid);
+    overflow: hidden;
+  }
+  .hero-visual-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+  .hero-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity var(--duration-slow) var(--ease-in-out);
+  }
+  .hero-image-wrapper.active {
+    opacity: 1;
+    z-index: 2;
+  }
+  .hero-img-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Strict Coordinate Placement for Sovereign Dot */
+  .sovereign-dot {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-sovereign);
+    animation: var(--glow-active);
+    z-index: 10;
+  }
+  .hero-legend {
+    position: absolute;
+    bottom: calc(15% - 24px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--color-sovereign);
+    opacity: 0.7;
+    z-index: 10;
+    text-transform: uppercase;
+  }
+</style>
+
+<script>
+  function initHeroVisual() {
+    window.addEventListener('register:switched', (event: any) => {
+      const targetRegister = event.detail.register;
+      const images = document.querySelectorAll('.hero-image-wrapper');
+      
+      images.forEach((img) => {
+        const reg = img.getAttribute('data-register');
+        if (reg === targetRegister) {
+          img.classList.add('active');
+        } else {
+          img.classList.remove('active');
+        }
+      });
+    });
+  }
+
+  // Run on load and on view transition
+  initHeroVisual();
+  document.addEventListener('astro:page-load', initHeroVisual);
+</script>

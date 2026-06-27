@@ -133,4 +133,33 @@
   --z-modal: 30;
   --z-nav: 40;
   --z-toast: 50;
+
+  /* === Antigravity Visual Language v1 === */
+  /* Semantic Color Constants */
+  --color-sovereign: #D97706;        /* Warm Amber — marks irreducible human authority */
+  --color-verified: #0D9488;         /* Deep Teal — confirmed runtime state */
+  --color-execution: #EF4444;        /* Crimson Red — unmonitored/unverified execution */
+  --color-infrastructure: #2A2A2A;   /* Slate Graphite — structural/neutral layer */
+  --color-observable: #FFFFFF;       /* Pure White — visible/logged state */
+
+  /* Structural Line Styles */
+  --line-assumption: dashed;         /* Unverified pathway */
+  --line-verified: solid;            /* Confirmed pathway */
+
+  /* Live Glow Animation */
+  --glow-active: pulse-luminance 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+@keyframes pulse-luminance {
+  0%, 100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+    box-shadow: 0 0 8px var(--color-sovereign);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, 0) scale(0.9);
+    box-shadow: 0 0 16px var(--color-sovereign);
+  }
+}
+

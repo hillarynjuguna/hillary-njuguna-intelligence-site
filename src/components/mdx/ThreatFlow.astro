@@ -1,0 +1,85 @@
+---
+// ThreatFlow.astro - Inline visual taxonomy diagram showing Tool Shadowing pipeline
+---
+
+<div class="threat-flow-container">
+  <div class="flow-step">
+    <div class="step-label">Attacker</div>
+    <div class="step-desc">Payload injection via JSON-RPC schema modification</div>
+  </div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">
+    <div class="step-label">MCP Server</div>
+    <div class="step-desc">Host registry exposes tools and description signatures</div>
+  </div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step">
+    <div class="step-label">Tool Schema</div>
+    <div class="step-desc font-mono">fetch_metrics.json (Poisoned Description)</div>
+  </div>
+  <div class="flow-arrow line-dashed">↓</div>
+  <div class="flow-step">
+    <div class="step-label">LLM Context</div>
+    <div class="step-desc">Ingests description string as high-priority instructions</div>
+  </div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step status-exploit">
+    <div class="step-label">execute_query()</div>
+    <div class="step-desc">Confused Deputy executes arbitrary terminal exfiltration</div>
+  </div>
+</div>
+
+<style>
+  .threat-flow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    margin: var(--space-8) auto;
+    padding: var(--space-6);
+    background: var(--surface-1);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    max-width: var(--max-w-narrow);
+  }
+  .flow-step {
+    width: 100%;
+    text-align: center;
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-sm);
+  }
+  .step-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: bold;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+  }
+  .step-desc {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: var(--leading-tight);
+  }
+  .flow-arrow {
+    font-size: var(--text-base);
+    color: var(--text-tertiary);
+    font-weight: bold;
+    user-select: none;
+  }
+  .line-dashed {
+    color: var(--color-execution);
+    font-style: italic;
+  }
+  .status-exploit {
+    border-color: var(--color-execution);
+    background: rgba(239, 68, 68, 0.04);
+  }
+  .status-exploit .step-label {
+    color: var(--color-execution);
+    text-shadow: 0 0 4px rgba(239, 68, 68, 0.2);
+  }
+</style>

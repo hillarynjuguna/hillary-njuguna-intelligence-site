@@ -1,0 +1,139 @@
+{
+  "sources": [
+    {
+      "id": "S04",
+      "title": "Agentic Generation of AST Transformation Rules for Fixing Breaking Updates",
+      "authors": "Frank Reyes, Benoit Baudry, Martin Monperrus",
+      "venue": "arXiv preprint",
+      "url": "https://github.com/chains-project/bigbag",
+      "tier": 1
+    },
+    {
+      "id": "S07",
+      "title": "Autonomous Data Processing using Meta-Agents",
+      "authors": "Udayan Khurana",
+      "venue": "arXiv preprint",
+      "url": "https://arxiv.org/abs/2602.00307",
+      "tier": 1
+    },
+    {
+      "id": "S03",
+      "title": "AgentGuard: Runtime Verification of AI Agents",
+      "authors": "AgentGuard research team",
+      "venue": "arXiv preprint",
+      "url": "https://anonymous.4open.science/r/AgentGuard",
+      "tier": 1
+    },
+    {
+      "id": "S17",
+      "title": "The Era of Application-Aware AI",
+      "authors": "Stephane H. Maes",
+      "venue": "Zenodo / Independent Preprint",
+      "url": "https://zenodo.org/doi/10.5281/zenodo.19322700",
+      "tier": 1
+    },
+    {
+      "id": "S05",
+      "title": "MCP Neural Shield / RTDC Framework",
+      "authors": "Various (Stephane H. Maes et al.)",
+      "venue": "viXra preprint — unverified",
+      "url": "https://ai.viXra.org",
+      "tier": 2
+    }
+  ],
+  "claims": [
+    {
+      "id": "C01",
+      "text": "BIGBAG's best-performing configuration achieves a 94.3% compile success rate",
+      "sourceId": "S04",
+      "tier": 1
+    },
+    {
+      "id": "C02",
+      "text": "Fix Rate peaks at 78.6% under the GeminiCLI/Gemini-3.1-Pro/JavaParser configuration",
+      "sourceId": "S04",
+      "tier": 1
+    },
+    {
+      "id": "C03",
+      "text": "JavaParser outperforms Spoon by up to 17.8% CRR due to simpler Visitor API scaffolding",
+      "sourceId": "S04",
+      "tier": 1
+    },
+    {
+      "id": "C04",
+      "text": "ADP-MA uses progressive sampling across XS/S/M escalation tiers before full dataset execution",
+      "sourceId": "S07",
+      "tier": 1
+    },
+    {
+      "id": "C05",
+      "text": "ADP-MA explicitly leaves __builtins__ unrestricted in its exec sandbox",
+      "sourceId": "S07",
+      "tier": 1
+    },
+    {
+      "id": "C06",
+      "text": "AgentGuard's MDP baseline is learned dynamically from execution traces, not human-authored",
+      "sourceId": "S03",
+      "tier": 1
+    },
+    {
+      "id": "C07",
+      "text": "AgentGuard's safety constraints are human-authored in a static YAML configuration file",
+      "sourceId": "S03",
+      "tier": 1
+    },
+    {
+      "id": "C08",
+      "text": "RTDC uses a discovery-synthesize-verify-promote loop to accumulate versioned capability artefacts",
+      "sourceId": "S17",
+      "tier": 1
+    },
+    {
+      "id": "C09",
+      "text": "The Neural Shield uses a 4,301-schema training corpus with Semantic Cross-Pollination augmentation",
+      "sourceId": "S05",
+      "tier": 2
+    },
+    {
+      "id": "C10",
+      "text": "The Neural Shield achieves under 0.1ms hot-path inference latency via MD5-keyed LRU cache",
+      "sourceId": "S05",
+      "tier": 2
+    },
+    {
+      "id": "C11",
+      "text": "Reported 100% True Positive Rate and 0% False Positive Rate on the Neural Shield classifier",
+      "sourceId": "S05",
+      "tier": 2
+    },
+    {
+      "id": "C12",
+      "text": "MCP requires clients to grant unconditional trust over server-supplied tool schemas",
+      "sourceId": "S05",
+      "tier": 2
+    },
+    {
+      "id": "C13",
+      "text": "Static tool enumeration across 50 enterprise systems at 10 tools × 150 tokens = 75,000 token overhead per prompt",
+      "sourceId": null,
+      "tier": 3,
+      "note": "Extrapolated from standard LLM token economics — not sourced"
+    },
+    {
+      "id": "C14",
+      "text": "JSON-RPC description field as payload delivery vector in Tool Poisoning attack",
+      "sourceId": null,
+      "tier": 3,
+      "note": "Extrapolated from standard cybersecurity principles — not sourced"
+    },
+    {
+      "id": "C15",
+      "text": "Namespace escape via __class__.__bases__.__subclasses__() inheritance chain",
+      "sourceId": null,
+      "tier": 3,
+      "note": "Extrapolated from standard Python security principles — not sourced"
+    }
+  ]
+}
