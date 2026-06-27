@@ -76,7 +76,7 @@ The Neural Shield is a security proxy operating natively within the transport la
 
 The shield is trained on a database of schemas using **Semantic Cross-Pollination** data augmentation to recognize the semantic intent of adversarial payloads, bypassing shortcut learning. By using an MD5-keyed LRU embedding cache, the proxy holds hot-path latency to <SourceAttribution claimId="C10">under 0.1 milliseconds</SourceAttribution>. It evaluates the incoming schema, matches the semantic signature against known injection vectors, and drops the connection before the model can be fooled. 
 
-*The Neural Shield's performance metrics are reported in preprint literature and have not yet been independently benchmarked; the architectural argument — that a neural classifier and a deterministic parser operate in incommensurable representational domains — stands regardless of the specific figures.*
+*The Neural Shield's performance metrics are reported in preprint literature and have not yet been independently benchmarked; the architectural argument (that a neural classifier and a deterministic parser operate in incommensurable representational domains) stands regardless of the specific figures.*
 
 The perimeter holds until the attacker stops using known system keywords. Against syntax parsing anomalies, the neural classifier and the deterministic filter have no shared vocabulary. The payload slips through both.
 

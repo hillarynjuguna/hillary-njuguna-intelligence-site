@@ -4,24 +4,24 @@
       "id": "S04",
       "title": "Agentic Generation of AST Transformation Rules for Fixing Breaking Updates",
       "authors": "Frank Reyes, Benoit Baudry, Martin Monperrus",
-      "venue": "arXiv preprint",
-      "url": "https://github.com/chains-project/bigbag",
+      "venue": "arXiv preprint: 2606.24446",
+      "url": "https://arxiv.org/abs/2606.24446",
       "tier": 1
     },
     {
       "id": "S07",
       "title": "Autonomous Data Processing using Meta-Agents",
       "authors": "Udayan Khurana",
-      "venue": "arXiv preprint",
+      "venue": "arXiv preprint: 2602.00307",
       "url": "https://arxiv.org/abs/2602.00307",
       "tier": 1
     },
     {
       "id": "S03",
       "title": "AgentGuard: Runtime Verification of AI Agents",
-      "authors": "AgentGuard research team",
-      "venue": "arXiv preprint",
-      "url": "https://anonymous.4open.science/r/AgentGuard",
+      "authors": "Roham Koohestani",
+      "venue": "Proceedings of the 40th IEEE/ACM International Conference on Automated Software Engineering (ASE 2025)",
+      "url": "https://arxiv.org/abs/2509.23864",
       "tier": 1
     },
     {
@@ -36,8 +36,8 @@
       "id": "S05",
       "title": "MCP Neural Shield / RTDC Framework",
       "authors": "Various (Stephane H. Maes et al.)",
-      "venue": "viXra preprint — unverified",
-      "url": "https://ai.viXra.org",
+      "venue": "viXra preprint: unverified",
+      "url": "https://ai.vixra.org",
       "tier": 2
     }
   ],
