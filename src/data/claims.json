@@ -29,15 +29,15 @@
       "title": "The Era of Application-Aware AI",
       "authors": "Stephane H. Maes",
       "venue": "Zenodo / Independent Preprint",
-      "url": "https://zenodo.org/doi/10.5281/zenodo.19322700",
+      "url": "https://doi.org/10.5281/zenodo.19322700",
       "tier": 1
     },
     {
       "id": "S05",
-      "title": "MCP Neural Shield / RTDC Framework",
-      "authors": "Various (Stephane H. Maes et al.)",
-      "venue": "viXra preprint: unverified",
-      "url": "https://vixra.org",
+      "title": "Enterprise Agentic AI Should Use Real-Time Discovery and Self-Coding (RTDC) Integration Instead Of Static Tool-Registry Protocols like MCP",
+      "authors": "Stephane H. Maes, Andrey Ryabov, Ramu Sunkara",
+      "venue": "Zenodo Preprint: 10.5281/zenodo.20482269",
+      "url": "https://doi.org/10.5281/zenodo.20482269",
       "tier": 2
     }
   ],
