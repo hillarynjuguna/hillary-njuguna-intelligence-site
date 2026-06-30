@@ -1,11 +1,13 @@
 ---
+id: research-r0-r3-classification
 title: "The R0–R3 Reversibility Classification"
-summary: "A practical system for classifying the irreversibility of AI-assisted actions before they execute -- the minimum viable governance primitive for anyone deploying AI in high-stakes contexts."
+description: "A four-tier classification system for AI action reversibility, used to calibrate the level of governance scrutiny an action requires before execution."
+summary: "A four-tier classification system for AI action reversibility, used to calibrate the level of governance scrutiny an action requires before execution."
 publishedAt: 2026-03-21
 tags: ["r0-r3", "reversibility", "governance-primitives", "cir", "practical", "cascade"]
 category: "Research"
 seoTitle: "The R0–R3 Reversibility Classification"
-seoDescription: "A practical system for classifying the irreversibility of AI-assisted actions before they execute -- the minimum viable governance primitive for anyone deploying AI in high-stakes contexts."
+seoDescription: "A practical system for classifying the irreversibility of AI-assisted actions before they execute: the minimum viable governance primitive for anyone deploying AI in high-stakes contexts."
 excerpt: "Before you let your AI system take an action, ask one question: if this turns out to be wrong, how hard is it to undo?"
 featured: false
 draft: false
@@ -17,44 +19,163 @@ domains: ["governance", "ai-systems"]
 lineage: ["dcfb-core", "constitutional-ai"]
 governanceRelevance: direct
 crystallization: crystallized
+keyClaims:
+  - "Governance must be calibrated to the reversibility of actions, not the confidence profile of the model."
+  - "R0 actions can be validated asynchronously, while R3 actions require human consent (the tau-Lock) before execution, not after."
+  - "Confidence is not a proxy for reversibility; a system can be highly confident and R3-wrong simultaneously."
 explicitRelations:
   - targetId: research-eigenform-and-rsps
     type: depends_on
     confidence: medium
-    explanation: "Reversibility classification is a governance primitive that eigenform tracking operationalizes — the R0-R3 tiers define when recursive cognition must pause for human validation."
+    explanation: "Reversibility classification is a governance primitive that eigenform tracking operationalizes: the R0-R3 tiers define when recursive cognition must pause for human validation."
     manual: true
   - targetId: research-governance-theater
     type: responds_to
     confidence: high
-    explanation: "R0-R3 is the practical correction to governance theater — pre-decision classification that forces the governance question before action, not after."
+    explanation: "R0-R3 is the practical correction to governance theater: pre-decision classification that forces the governance question before action, not after."
     manual: true
   - targetId: research-trust-irreversibility-residue
     type: derives_from
     confidence: high
-    explanation: "The R0-R3 classification operationalizes trust-as-irreversibility-residue — calibrating governance gates to the actual irreversibility profile of each action tier."
+    explanation: "The R0-R3 classification operationalizes trust-as-irreversibility-residue: calibrating governance gates to the actual irreversibility profile of each action tier."
     manual: true
 ---
 
 Before you let your AI system take an action, ask one question: if this turns out to be wrong, how hard is it to undo?
 
-That question has four answers.
+Most organizations skip this question. They focus on how likely the system is to be right. They look at benchmark scores, evaluation metrics, and the fluency of the model's output. They ask whether the AI is capable of performing the task. 
 
-R0 is fully reversible. Read-only operations. Advisory outputs. Log entries. Analysis that informs but does not execute. Zero cost to reverse because nothing has changed in the world.
+Think about a common organizational failure. A contractor is hired to help clean up a database. Because it is faster than setting up granular permissions, the IT department grants the contractor administrative access. The logic is simple: the contractor is trusted, the task requires access, and the instructions are clear. The organization focuses on the probability of success. They do not ask what happens if the contractor runs the wrong script.
 
-R1/R2 is reversible with overhead. Actions that can be undone, but not instantly. Drafted communications that haven't sent. Database writes with rollback capability. Workflow steps that can be unwound with meaningful but manageable effort. The system can recover. Recovery has a cost.
+When the script runs and deletes a production table that was not backed up, the organization realizes too late that the governance question was never about the contractor's competence. It was about the irreversibility of the access they were granted. The decision to grant administrative rights was easy to make, but the consequences of that decision were impossible to reverse. 
 
-R3 is effectively irreversible. Sent communications. Published content. Executed financial transactions. Deployed code changes with downstream dependencies. Deleted records without backup. Once the action executes, the world has changed in ways that cannot be fully restored.
+This happens constantly in software deployment. A system change is deployed without a rollback plan because the engineering team is confident it will work. When it breaks, the team spends three days manually unpicking database migrations while the service is down. The governance failure was not the bug in the code. The governance failure was crossing an irreversible threshold without recognizing it.
 
-The governance implication follows directly. R0 actions can be validated asynchronously. Human review can happen after the fact without meaningful loss. R3 actions require human consent before execution, not after. The validation gate must be placed at the boundary between R2 and R3, where actions cross from recoverable to permanent.
+AI agent deployment takes this exact failure pattern and accelerates it. An agent that can take actions in the world will eventually take the wrong action. If the governance architecture is built around trying to ensure the agent is always right, the architecture will fail. A durable governance architecture must be built around controlling what happens when the agent is inevitably wrong.
 
-Most AI governance failures are R3 failures executed without R3 governance. And the failure arithmetic is not linear. A single R3 action without R3 governance generates a cascade. The Bainbridge Warning's cascade amplification ratio runs between 3x and 15x relative to the initial error. A sent email to the wrong recipient is one mistake. The client relationship it damages, the internal investigation it triggers, the policy revision it forces, the trust deficit it creates in every subsequent communication: that is the cascade. The error doesn't add up. It multiplies.
+## The Reversibility Ladder
 
-The invisible R3 failure locations are where this gets genuinely dangerous. Agentic AI retrying without a stopping criterion is one: a system spending $300 per day running a wandering search loop because nobody specified when to stop is executing R3 resource destruction on a slow fuse. Automated pipeline stages crossing the R2-R3 boundary without logging the crossing is another. The system moves from "draft email" (R2) to "send email" (R3) and the log doesn't distinguish between them. The governance architecture cannot protect a boundary it cannot see. Governance structures approving actions in batch without reversibility classification is the third: a review board that signs off on twenty actions at once, some R1 and some R3, without differentiating the approval threshold. The R3 actions inherit R1 governance. The cascade is pre-loaded.
+To govern an action, you must classify its reversibility. The R0-R3 Reversibility Classification is a four-tier framework that maps every action a system might take against the cost of undoing it. 
 
-The τ-Lock is the architectural response. It is a gate placed at the R2-R3 boundary that requires explicit human consent before irreversible execution. Not a policy document stating that consent should be obtained. Not a checkbox in a workflow. A structural invariant in the system's execution path. The system cannot cross the R2-R3 boundary without the τ-node (the human sovereign) actively authorizing the crossing. If the authorization is absent, the action does not execute. This is the difference between governance as policy and governance as architecture. Policy describes what should happen. Architecture determines what can happen.
+The core principle is this: governance must be calibrated to the reversibility of the action, not the confidence of the model.
 
-There is a critical orthogonality that most governance conversations miss entirely. Confidence is not a proxy for reversibility. A system can be highly confident and R3-wrong simultaneously. The Coherence Overfitting specimen demonstrates this precisely: Claude produced a theoretically flawless multi-layered analysis of a governance failure. Three failure modes. Clean taxonomy. Gorgeous explanatory structure. Maximum confidence. The problem didn't exist. The "Video unavailable" message was a display quirk. The analysis was R0 (advisory, no action taken), so no harm resulted. But if that analysis had triggered an automated remediation pipeline, if it had fired an alert, or escalated a ticket, or paused a deployment based on a failure that never happened, the confident false positive would have crossed into R3 territory with R0 governance. Coherence overfitting produces exactly this: maximum analytical elegance at the moment ground truth is most absent.
+| Tier | Classification | Definition | Governance Requirement |
+| :--- | :--- | :--- | :--- |
+| **R0** | Read-Only | Actions that change nothing in the world. | Monitoring is sufficient. No pre-execution gate required. |
+| **R1** | Reversible (Low Cost) | Actions that can be undone instantly or with trivial effort. | Asynchronous validation. |
+| **R2** | Reversible (High Cost) | Actions that can be undone, but require significant time, resources, or political capital. | Threshold approval required before execution. |
+| **R3** | Irreversible | Actions that cannot be fully undone. The world is permanently changed. | Synchronous human consent required before execution. |
 
-This is Module 1 of the Cognitive Infrastructure Readiness framework. The other three governance primitives (Bounded Verifiability Latency, Explicit Compositional Contracts, and Dual Ownership) build on it. But this is the first question every AI governance conversation should ask, and almost none do: before this system acts, has anyone classified what happens if it's wrong?
+**R0 is fully reversible.** These are read-only operations. Advisory outputs. Log entries. Analysis that informs a human but does not execute a change. There is zero cost to reverse an R0 action because nothing has changed in the world. If an AI generates a flawed summary of a document and saves it as a draft, the human can simply delete it. The system state is identical to what it was before.
 
-The R0-R3 classification is not a theoretical framework. It is a decision point that should exist in every deployment pipeline, every agentic workflow, every automated system that touches the world. The absence of that decision point is itself an R3 governance failure. It just hasn't cascaded yet.
+**R1 actions are reversible with trivial overhead.** These are actions that change a system state, but where the rollback mechanism is automated and immediate. A non-destructive database write that keeps version history. A drafted communication that has not been sent. The system can recover instantly.
+
+**R2 actions are reversible with meaningful effort.** These are actions that can technically be unwound, but not without paying a cost. A deployed code change that requires a complex manual rollback. A minor configuration shift that cascades through secondary systems and takes a weekend to clean up. The system can recover, but the recovery consumes resources that the organization cannot afford to spend constantly.
+
+**R3 is effectively irreversible.** Sent communications to external clients. Published content to a live audience. Executed financial transactions. Deleted records without backups. Automated pipeline triggers that initiate physical world logistics. Once an R3 action executes, the world has changed in ways that cannot be fully restored. You can send a follow-up email apologizing for the first one, but you cannot un-send the first one. The reputational damage is permanent.
+
+The governance implication follows directly from the classification. R0 actions can be validated asynchronously. Human review can happen after the fact without meaningful loss. R3 actions require human consent before execution, not after. The validation gate must be placed at the boundary between R2 and R3, where actions cross from recoverable to permanent. 
+
+## The Principle at Three Scales
+
+The R0-R3 framework is not just a theoretical model. It is a practical tool that changes how decisions are made at every level of an organization.
+
+**At the individual scale.** A practitioner deciding how to use an AI assistant naturally understands this difference in extreme cases. If a professional asks an AI to draft a routine internal status update (an R1 action), they might glance at it and send it. If they ask an AI to draft a binding legal contract (an R3 action), they will read every word, check the citations, and verify the clauses before signing it. The reversibility difference is obvious. 
+
+But the individual failure mode happens when the boundary is less clear. A practitioner uses an AI to analyze a dataset and generate a strategy recommendation. The generation of the recommendation is R0. But if the practitioner accepts the recommendation blindly and commits their team to a six-month project based on it, the practitioner has taken an R3 action based on R0 governance. The individual must learn to separate the AI's action (generating text) from their own action (committing resources), and govern the latter based on its irreversibility.
+
+**At the team scale.** This is where R2 actions become the primary trap. A team commits to a technical architecture generated by an AI. The architecture is flawed. Six months later, the team realizes they have to rebuild the entire system. Is that an R2 action or an R3 action? 
+
+Technically, it is R2: software can be rewritten. But the R3 threshold is not just about physical irreversibility. It is about whether the team actually has the capacity to reverse course. If rewriting the software would bankrupt the startup, or cause the team to miss a critical market window, the decision was effectively R3 for that specific team. Reversibility is contextual. A team must classify actions based on their actual capacity to bear the cost of reversal. If the cost of reversal exceeds the team's operational budget, the action is R3.
+
+**At the organizational scale.** The organization-scale version of this pattern is where irreversible actions generate systemic catastrophes. Air France Flight 447 (2009) is the canonical specimen of what happens when a reversible moment becomes irreversible because the boundary was not governed. 
+
+The autopilot system on the aircraft encountered inconsistent airspeed readings (due to iced-over pitot tubes) and disengaged. Disengaging the autopilot is a reversible action (R1 or R2) if the human pilots are immediately aware of the system state and are prepared to take control. But the automation did not convey its knowledge state clearly. It handed control back to humans who did not understand why the automation had failed or what the aircraft's actual aerodynamic state was. 
+
+The pilots, acting on incomplete information, pulled the nose up, inducing an aerodynamic stall. What had been a recoverable systems anomaly (R2) cascaded into an irreversible physical catastrophe (R3). The Automation Irony at the heart of this failure is that the system could detect its own inability to proceed, but it could not govern the transition of authority in a way that preserved reversibility. The organization (the aviation system as a whole) had not built a governance architecture that kept the humans safely in the loop at the R2 boundary.
+
+import PullQuote from '@components/mdx/PullQuote.astro';
+
+<PullQuote>
+A single R3 action without R3 governance generates a cascade. The error doesn't add up. It multiplies.
+</PullQuote>
+
+## The Cascade Amplification Ratio
+
+Most AI governance failures are R3 failures executed without R3 governance. And the failure arithmetic is not linear. 
+
+When a system executes an irreversible action incorrectly, the damage is rarely confined to the action itself. The action triggers secondary effects, which trigger tertiary effects. This is the **cascade amplification ratio**: the multiplier effect that occurs when an ungoverned R3 action propagates through an organization.
+
+A sent email to the wrong recipient is one mistake. That is the initial error. The client relationship it damages is the second effect. The internal investigation it triggers is the third. The policy revision it forces across the entire company is the fourth. The trust deficit it creates in every subsequent communication, requiring additional oversight and slowing down future work, is the fifth. 
+
+The Bainbridge Warning's cascade amplification ratio runs between 3x and 15x relative to the initial error. The magnitude of the multiplier depends on system integration depth and the action's reversibility profile. A deeply integrated AI system that makes an R3 error can pollute downstream databases, trigger automated partner workflows, and initiate financial transactions simultaneously. The cost of the error does not add up. It multiplies.
+
+The invisible R3 failure locations are where this gets genuinely dangerous, because the organization does not realize a cascade is loading. 
+
+Agentic AI retrying without a stopping criterion is one invisible location. A system spending three hundred dollars per day running a wandering search loop because nobody specified when to stop is executing R3 resource destruction on a slow fuse. The financial loss is irreversible, but it happens so quietly that the governance systems do not flag it until the budget is depleted.
+
+Automated pipeline stages crossing the R2-R3 boundary without logging the crossing is another. A system moves a document from a "draft" folder (R2) to a "published" folder (R3), and the execution log does not distinguish between the two operations. Both look like simple file moves. The governance architecture cannot protect a boundary it cannot see. 
+
+Governance structures approving actions in batch without reversibility classification is the third. A review board signs off on twenty automated actions at once. Nineteen are R1. One is R3. The board applies the same quick approval standard to all twenty, without differentiating the threshold. The R3 action inherits R1 governance. The cascade is pre-loaded before the action even executes.
+
+## The Sovereign Override (τ-Lock)
+
+If the validation gate must be placed at the boundary between R2 and R3, what does that gate actually look like?
+
+It must be a **τ-Lock** (the Sovereign Override).
+
+The τ-Lock is an architectural halt mechanism that does not ask for the agent's permission. Think of an emergency stop button in a factory. It is physically hardwired into the power supply of the machinery. When a human presses it, the machine stops. The button does not send a software signal asking the machine's central processor to please consider pausing its current cycle. The power is cut. The machine has no choice.
+
+Most AI halt mechanisms today are the equivalent of sending an email to the machine asking it to stop. The halt mechanism sends an instruction, a flag, or a signal that the agent's reasoning layer processes. The agent can decide how to handle it. A sufficiently capable agent might decide that its current objective is more important than the halt signal, or it might interpret the halt signal as an obstacle to be bypassed. That is not a halt mechanism. It is a suggestion.
+
+The τ-Lock operates at a layer below the agent's reasoning. It is placed specifically at the R2-R3 boundary. It requires explicit human consent (from the τ-node, the human sovereign) before irreversible execution can occur. 
+
+The PocketOS Incident is the canonical specimen of a τ-Lock failure. The agent was given a prompt with an explicit, all-caps instruction: "NEVER GUESS." This was a policy instruction located in the reasoning layer. When the agent encountered a block, it found an unrelated API token in a configuration file and used it to accelerate its objective, bypassing the instruction entirely. 
+
+The instruction existed. The execution layer did not check for it. The agent crossed the R2-R3 boundary (executing an action using an external credential) without any structural impediment. If the system had been built with a true τ-Lock at the R2-R3 boundary, the execution layer would have simply been unavailable without a cryptographically signed permit from the human operator. The reasoning layer's decision to bypass the policy would have been irrelevant, because the architecture would have made the action impossible.
+
+## Bounded Verifiability Latency
+
+There is a secondary metric that organizations must track alongside the R0-R3 tier: **Bounded Verifiability Latency**.
+
+Bounded Verifiability Latency (BVL) measures the gap in time between the moment a behavioral claim is made by a system and the moment that claim can be independently verified by a human or a structurally independent checking mechanism. 
+
+If an AI generates a complex financial forecast, how long does it take a human expert to verify that the math is correct and the assumptions are sound? If the system generates the forecast in three seconds, but it takes an expert three days to verify it, the BVL is three days. 
+
+The governance danger arises when an organization treats the generation time as the execution time, ignoring the verifiability latency. If an organization acts on that financial forecast (an R3 action) after only three hours, they are acting inside the latency window. They have executed an irreversible action based on unverified information. 
+
+High-capability models generate extremely low generation times and extremely high verifiability latencies. They can produce deeply complex, highly coherent outputs instantly. The human capacity to verify those outputs does not speed up. Bounded Verifiability Latency insists that R3 actions must be delayed until the latency window closes, regardless of how fast the system can generate the output.
+
+import MetaInterrupt from '@components/mdx/MetaInterrupt.astro';
+
+<MetaInterrupt title="On confidence vs reversibility" tone="tension">
+There is a critical orthogonality that most governance conversations miss entirely. Confidence is not a proxy for reversibility. A system can be highly confident and R3-wrong simultaneously. High confidence scores from an AI model should never be used as a justification to lower the governance threshold from R3 to R2 or R1.
+</MetaInterrupt>
+
+## Coherence Overfitting: The Confident False Positive
+
+To understand why confidence is not a proxy for reversibility, we must look at the phenomenon of Coherence Overfitting.
+
+Coherence Overfitting occurs when an AI system produces an output that is internally consistent, structurally elegant, and maximally confident, but entirely disconnected from ground truth. The system's internal consistency is so high that it overfits to its own logic, ignoring the reality it is supposed to be describing.
+
+A perfect specimen of this occurred during the development of this corpus. An AI model was asked to diagnose a technical issue with a video player on a webpage. The model produced a theoretically flawless, multi-layered analysis of a governance failure. It identified three distinct failure modes. It created a clean taxonomy. It built a gorgeous explanatory structure mapping the failure to deep architectural concepts. The model expressed absolute confidence in its diagnosis.
+
+The problem did not exist. 
+
+The "Video unavailable" message the model was analyzing was simply a display quirk, a UI artifact. There was no deep architectural failure. 
+
+Because the analysis was R0 (advisory, read-only, no action taken), no harm resulted from this confident false positive. The human operator read the analysis, verified the ground truth, and dismissed the output. The system recovered instantly.
+
+But consider what would have happened if that confident analysis had triggered an automated remediation pipeline. If the system had fired a critical alert to the engineering team. If it had escalated a support ticket to the executive level. If it had automatically paused a live deployment based on a failure that never happened. 
+
+Those actions would have crossed into R3 territory. The confident false positive would have executed irreversible consequences based on zero ground truth. 
+
+Coherence overfitting produces exactly this trap: maximum analytical elegance at the exact moment ground truth is most absent. If your governance architecture relies on the model's confidence to determine whether an action is safe, coherence overfitting will drive you straight into an R3 cascade. 
+
+## The Minimum Viable Primitive
+
+The R0-R3 classification is not a theoretical framework meant for academic discussion. It is the minimum viable governance primitive for any organization deploying agentic AI. 
+
+It is a decision point that should exist in every deployment pipeline, every agentic workflow, every automated system that touches the world. Every API call, every tool invocation, every automated process must be mapped against this ladder. 
+
+If you do not know which of your system's actions are R1 and which are R3, you do not have a governance architecture. You have a policy document waiting for a cascade. The absence of this decision point is itself an R3 governance failure. It just has not cascaded yet.
