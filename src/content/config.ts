@@ -80,7 +80,9 @@ const research = defineCollection({
     structuredDataType: z.enum(['Article', 'ScholarlyArticle', 'TechArticle']).default('Article'),
     // Research-specific topology
     researchType: z.enum(['essay', 'framework', 'methodology', 'analysis', 'theoretical-framework']).optional(),
-    keyClaims: normalizeArray(),
+    // NOTE: keyClaims stores human-readable sentences. NEVER use normalizeArray() here —
+    // normalizeArray() lowercases and slug-cases all strings, which would destroy prose.
+    keyClaims: z.array(z.string()).transform(arr => arr.map(s => s.trim())).default([]),
     unresolvedEdges: normalizeArray(),
     dependsOnConcepts: normalizeArray(),
     ...topologyFields,
