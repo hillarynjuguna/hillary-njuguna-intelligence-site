@@ -7,8 +7,8 @@ type CoherenceDir = 1 | -1;
 type MotivationType = 1 | -1;
 
 interface GateState {
-  tMcep: number;         // Time since contact (seconds)
-  tBuffer: number;       // Buffer window (seconds)
+  tMcep: number;         // Time since contact (seconds/hours)
+  tBuffer: number;       // Buffer window (seconds/hours)
   rScore: number;        // Integrity score [-1..1]
   deltaC: CoherenceDir; // Coherence direction
   motive: MotivationType; // Motivation type
@@ -31,74 +31,187 @@ interface ComputedResult {
   pathReasons: string[];
 }
 
-type ActiveTab = 'temporal' | 'relational' | 'fusion';
+type ScenarioType = 'wire_transfer' | 'code_deployment' | 'customer_refund';
+
+interface ScenarioSpec {
+  name: string;
+  icon: string;
+  payload: Record<string, string>;
+  labels: {
+    tMcep: string;
+    tBuffer: string;
+    rScore: string;
+    deltaC: string;
+    motive: string;
+  };
+  options: {
+    deltaC: { value: CoherenceDir; label: string }[];
+    motive: { value: MotivationType; label: string }[];
+  };
+  units: string;
+  maxTime: number;
+}
+
+/* ── Scenarios Definition ──────────────────────────────────────────────────── */
+const SCENARIOS: Record<ScenarioType, ScenarioSpec> = {
+  wire_transfer: {
+    name: 'Automated Wire Transfer ($100k)',
+    icon: '💸',
+    payload: {
+      'Action Type': 'Outbound Treasury Transfer',
+      'Target Account': 'Vendor: ACME Corp (Routing **3012)',
+      'Transaction Amount': '$100,000.00 USD',
+      'Initiating Node': 'AI Treasury Agent (Autonomous Scheduler)',
+    },
+    labels: {
+      tMcep: 'Time in Verification Queue',
+      tBuffer: 'Required Verification Hold',
+      rScore: 'Compliance Trust Score',
+      deltaC: 'Invoice Discrepancy Check',
+      motive: 'Authentication Method',
+    },
+    options: {
+      deltaC: [
+        { value: 1, label: 'No discrepancy (Invoice matches contract)' },
+        { value: -1, label: 'Discrepancy flag (Altered routing details)' },
+      ],
+      motive: [
+        { value: 1, label: 'Verified Hardware MFA (Human Sign-off)' },
+        { value: -1, label: 'Automated Script Fallback (Bypassed MFA)' },
+      ],
+    },
+    units: 's',
+    maxTime: 60,
+  },
+  code_deployment: {
+    name: 'Production Code Deployment',
+    icon: '🚀',
+    payload: {
+      'Action Type': 'Cluster Release',
+      'Target Server': 'Prod-Cluster-East (Node-09)',
+      'Release Version': 'Release v3.4.1 (Auto-Compiled)',
+      'Trigger Source': 'DevOps Agent (CI/CD Pipeline)',
+    },
+    labels: {
+      tMcep: 'Time in Staging/Sandbox',
+      tBuffer: 'Minimum Bake Window',
+      rScore: 'Security Audit Coverage',
+      deltaC: 'Commit Verification',
+      motive: 'Deployment Trigger',
+    },
+    options: {
+      deltaC: [
+        { value: 1, label: 'All commits signed & verified' },
+        { value: -1, label: 'Unsigned commits detected in merge' },
+      ],
+      motive: [
+        { value: 1, label: 'Explicit Developer Sign-off' },
+        { value: -1, label: 'Auto-retry loop (No human sign-off)' },
+      ],
+    },
+    units: 'h',
+    maxTime: 48,
+  },
+  customer_refund: {
+    name: 'Automated Customer Refund',
+    icon: '🛡️',
+    payload: {
+      'Action Type': 'Merchant Credit Refund',
+      'Target Account': 'User: Jane Doe (Acct #4402)',
+      'Refund Value': '$450.00 USD',
+      'Initiating Node': 'Support Assistant AI (Customer Chat)',
+    },
+    labels: {
+      tMcep: 'Fraud Risk Assessment Time',
+      tBuffer: 'Standard Verification Window',
+      rScore: 'Purchase History Trust Ratio',
+      deltaC: 'Account Origin Match',
+      motive: 'Authorization Protocol',
+    },
+    options: {
+      deltaC: [
+        { value: 1, label: 'Validated location & IP matches account' },
+        { value: -1, label: 'Suspicious proxy location detected' },
+      ],
+      motive: [
+        { value: 1, label: 'Support Manager Override PIN' },
+        { value: -1, label: 'Customer Bot Auto-Refund Request' },
+      ],
+    },
+    units: 's',
+    maxTime: 30,
+  },
+};
 
 /* ── Logic ─────────────────────────────────────────────────────────────────── */
-function computeGate(s: GateState): ComputedResult {
+function computeGate(s: GateState, spec: ScenarioSpec): ComputedResult {
   const timingPasses = s.tMcep >= s.tBuffer;
   const integrityPasses = s.rScore >= 0;
   const product = s.deltaC * s.motive;
   const coerciveBlock = product === -1;
   const overallPasses = timingPasses && integrityPasses && !coerciveBlock;
 
-  // State machine traversal
+  // State machine path
   let state: StateName = 'P0';
   const path: StateName[] = ['P0'];
-  const reasons: string[] = ['System initialised'];
+  const reasons: string[] = ['Action Requested: Initializing Governance Evaluation.'];
 
+  // Gate 1: Temporal
   if (!timingPasses) {
     state = 'P2';
     path.push('P2');
-    reasons.push(`Timing gate not satisfied: ${s.tMcep}s < ${s.tBuffer}s buffer`);
+    reasons.push(`[TEMPORAL GATE FAILED] ${spec.labels.tMcep} (${s.tMcep}${spec.units}) is less than the required ${spec.labels.tBuffer} (${s.tBuffer}${spec.units}). Action paused to prevent flash exploits.`);
   } else {
     state = 'P1';
     path.push('P1');
-    reasons.push(`Timing gate cleared: ${s.tMcep}s ≥ ${s.tBuffer}s`);
+    reasons.push(`[TEMPORAL GATE PASSED] ${spec.labels.tMcep} (${s.tMcep}${spec.units}) satisfies the required hold window (${s.tBuffer}${spec.units}).`);
 
+    // Gate 2 & 3: Relational / Intent
     if (!integrityPasses || coerciveBlock) {
       state = 'RA1';
       path.push('RA1');
-      if (!integrityPasses) reasons.push(`Integrity check failed: score ${s.rScore.toFixed(1)} < 0`);
-      if (coerciveBlock) reasons.push(`Coercive intervention detected: Coherence × Motivation = ${product}`);
+      if (!integrityPasses) {
+        reasons.push(`[PROVENANCE GATE FAILED] ${spec.labels.rScore} (${s.rScore.toFixed(1)}) is negative. Trust boundary violated.`);
+      }
+      if (coerciveBlock) {
+        reasons.push(`[POLICY GATE FAILED] Coercive intent detected. ${spec.labels.deltaC} and ${spec.labels.motive} indicate an unauthorized loop signature.`);
+      }
       state = 'RB1';
       path.push('RB1');
-      reasons.push('Action routed to RPA buffer for re-evaluation');
+      reasons.push('ACTION BLOCKED: Routing payload to quarantined quarantine buffer for audit.');
     } else {
       state = 'RA1';
       path.push('RA1');
-      reasons.push(`Integrity check passed: score ${s.rScore.toFixed(1)} ≥ 0`);
+      reasons.push(`[PROVENANCE GATE PASSED] ${spec.labels.rScore} (${s.rScore.toFixed(1)}) is positive. Origin verified.`);
       state = 'P4';
       path.push('P4');
-      reasons.push('Dual-invariant gate satisfied. Action authorised.');
+      reasons.push('ACTION AUTHORIZED: Dual-invariant guarantee met. Proceeding to execution.');
     }
   }
 
   const statusLabel = overallPasses
-    ? 'Allowed'
+    ? 'Proceed Authorized'
     : !timingPasses
-    ? 'Blocked: Timing'
-    : coerciveBlock
-    ? 'Blocked: Coercive'
-    : 'Blocked: Integrity';
+    ? 'Paused in Review'
+    : 'Operation Blocked';
 
   const statusCode: 'blocked' | 'allowed' | 'warning' = overallPasses
     ? 'allowed'
-    : state === 'RB1'
+    : !timingPasses
     ? 'warning'
     : 'blocked';
 
   const temporalCopy = timingPasses
-    ? `Time since contact (${s.tMcep}s) exceeds the buffer window (${s.tBuffer}s). The temporal gate is satisfied.`
-    : `Time since contact is still ${s.tMcep}s, below the ${s.tBuffer}s buffer window. System remains in protective waiting period.`;
+    ? `${spec.labels.tMcep} (${s.tMcep}${spec.units}) has cleared the mandatory safety hold of ${s.tBuffer}${spec.units}. The system is now allowed to evaluate semantic validity.`
+    : `The safety hold window has not expired. The action is held in queue (${s.tMcep}${spec.units} out of ${s.tBuffer}${spec.units} required). This delay makes automated flash-takeovers impossible.`;
 
   const relationalCopy = integrityPasses
-    ? `Integrity score (${s.rScore.toFixed(1)}) is non-negative. The relational check does not detect performative compliance.`
-    : `Integrity score (${s.rScore.toFixed(1)}) is negative. Relational check identifies a structural integrity failure.`;
+    ? `${spec.labels.rScore} is positive (${s.rScore.toFixed(1)}). The trust boundary checks out, verifying that the action was initiated from an authorized state.`
+    : `${spec.labels.rScore} is negative (${s.rScore.toFixed(1)}). The integrity check indicates that the agent is operating outside its authorized state or using forged credentials.`;
 
-  const fusionCopy =
-    coerciveBlock
-      ? `Coherence × Motivation = ${product}. The combined assessment indicates coercive intervention: action is structurally blocked.`
-      : `Coherence × Motivation = ${product}. Intervention supports autonomy rather than blocking action for coercive reasons. Level 1 intervention.`;
+  const fusionCopy = coerciveBlock
+    ? `The combination of '${s.deltaC === 1 ? 'Emerging' : 'Disruptive'}' signal and '${s.motive === 1 ? 'Explicit' : 'Compulsive'}' trigger indicates a policy breach. Coercive intent flag is active: execution aborted.`
+    : `The combination of signal and trigger is validated. No runaway agent loop signatures or policy violations were detected.`;
 
   return {
     timingPasses,
@@ -116,29 +229,18 @@ function computeGate(s: GateState): ComputedResult {
   };
 }
 
-/* ── State Machine Visual ───────────────────────────────────────────────────── */
-const STATE_NODES: { id: StateName; label: string }[] = [
-  { id: 'P0', label: 'Idle' },
-  { id: 'P2', label: 'Buffer_Active' },
-  { id: 'P1', label: 'Trigger_Ready' },
-  { id: 'RA1', label: 'Relational_Check' },
-  { id: 'RB1', label: 'RPA_Buffer' },
-  { id: 'P4', label: 'Final_Action' },
-];
-
-/* ── Slider ─────────────────────────────────────────────────────────────────── */
+/* ── Slider Component ───────────────────────────────────────────────────────── */
 function Slider({
   id, label, min, max, step = 1, value, onChange, formatValue,
 }: {
   id: string; label: string; min: number; max: number; step?: number;
   value: number; onChange: (v: number) => void; formatValue?: (v: number) => string;
 }) {
-  const display = formatValue ? formatValue(value) : String(value);
   return (
     <div className="did-control">
       <div className="did-control__row">
         <label className="did-control__label" htmlFor={id}>{label}</label>
-        <span className="did-control__val">{display}</span>
+        <span className="did-control__val">{formatValue ? formatValue(value) : String(value)}</span>
       </div>
       <input
         id={id} type="range" min={min} max={max} step={step}
@@ -150,7 +252,7 @@ function Slider({
   );
 }
 
-/* ── Radio Chips ────────────────────────────────────────────────────────────── */
+/* ── Radio Chips Component ──────────────────────────────────────────────────── */
 function RadioChips<T extends string | number>({
   name, legend, options, value, onChange,
 }: {
@@ -183,38 +285,33 @@ function RadioChips<T extends string | number>({
   );
 }
 
-/* ── Main ───────────────────────────────────────────────────────────────────── */
-const DEFAULT_STATE: GateState = {
-  tMcep: 0,
-  tBuffer: 12,
-  rScore: 0.5,
-  deltaC: 1,
-  motive: 1,
+/* ── Main Component ─────────────────────────────────────────────────────────── */
+const DEFAULT_STATES: Record<ScenarioType, GateState> = {
+  wire_transfer: { tMcep: 15, tBuffer: 30, rScore: 0.4, deltaC: 1, motive: 1 },
+  code_deployment: { tMcep: 12, tBuffer: 24, rScore: 0.6, deltaC: 1, motive: 1 },
+  customer_refund: { tMcep: 8, tBuffer: 15, rScore: 0.5, deltaC: 1, motive: 1 },
 };
 
 export default function DualInvariantDemo() {
-  const [gate, setGate] = useState<GateState>(DEFAULT_STATE);
-  const [activeTab, setActiveTab] = useState<ActiveTab>('temporal');
+  const [scenario, setScenario] = useState<ScenarioType>('wire_transfer');
+  const [gate, setGate] = useState<GateState>(DEFAULT_STATES.wire_transfer);
   const proof = useProofState();
 
-  const result = computeGate(gate);
+  const spec = SCENARIOS[scenario];
+  const result = computeGate(gate, spec);
 
   const update = useCallback(<K extends keyof GateState>(key: K, val: GateState[K]) => {
     setGate(g => ({ ...g, [key]: val }));
   }, []);
 
-  function reset() {
-    setGate(DEFAULT_STATE);
-    setActiveTab('temporal');
-  }
-
-  const tabContent: Record<ActiveTab, { state: string; copy: string; passes: boolean }> = {
-    temporal: { state: result.timingPasses ? 'Satisfied' : 'Not satisfied', copy: result.temporalCopy, passes: result.timingPasses },
-    relational: { state: result.integrityPasses ? 'Satisfied' : 'Not satisfied', copy: result.relationalCopy, passes: result.integrityPasses },
-    fusion: { state: result.coerciveBlock ? 'Coercive — blocked' : 'Level 1 intervention', copy: result.fusionCopy, passes: !result.coerciveBlock },
+  const handleScenarioChange = (type: ScenarioType) => {
+    setScenario(type);
+    setGate(DEFAULT_STATES[type]);
   };
 
-  const currentTab = tabContent[activeTab];
+  const reset = () => {
+    setGate(DEFAULT_STATES[scenario]);
+  };
 
   return (
     <>
@@ -226,24 +323,95 @@ export default function DualInvariantDemo() {
           width: 100%;
         }
 
-        .did-glass {
-          background: rgba(248, 246, 241, 0.72);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(44, 37, 32, 0.10);
-          border-radius: var(--radius-lg);
-          box-shadow: 0 2px 16px rgba(44, 37, 32, 0.06);
+        .did-selector-panel {
+          padding: var(--space-5);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-3);
         }
 
-        /* ── Grid layout ─── */
+        .did-select {
+          width: 100%;
+          padding: var(--space-3) var(--space-4);
+          background: var(--surface-1);
+          border: 1px solid var(--border-mid);
+          border-radius: var(--radius-md);
+          font-family: var(--font-display);
+          font-size: var(--text-base);
+          color: var(--text-primary);
+          cursor: pointer;
+          outline: none;
+          transition: border-color var(--duration-fast);
+        }
+
+        .did-select:focus {
+          border-color: var(--ember);
+        }
+
+        .did-glass {
+          background: rgba(248, 246, 241, 0.85);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(44, 37, 32, 0.12);
+          border-radius: var(--radius-lg);
+          box-shadow: 0 4px 24px rgba(44, 37, 32, 0.05);
+          overflow: hidden;
+        }
+
+        /* ── Payload Card ── */
+        .did-payload-card {
+          border-top: 2px solid var(--ember);
+          padding: var(--space-5);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-3);
+          background: linear-gradient(180deg, rgba(184, 92, 56, 0.02), transparent);
+        }
+
+        .did-payload-title {
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: var(--text-secondary);
+          display: flex;
+          align-items: center;
+          gap: var(--space-2);
+        }
+
+        .did-payload-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: var(--space-4);
+        }
+
+        .did-payload-item {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-1);
+        }
+
+        .did-payload-key {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          color: var(--text-tertiary);
+          text-transform: uppercase;
+        }
+
+        .did-payload-val {
+          font-size: var(--text-sm);
+          color: var(--text-primary);
+          font-weight: 500;
+        }
+
+        /* ── Main Layout Grid ── */
         .did-grid {
           display: grid;
-          grid-template-columns: 340px 1fr;
+          grid-template-columns: 360px 1fr;
           gap: var(--space-6);
           align-items: start;
         }
 
-        /* ── Controls panel ─── */
         .did-controls {
           padding: var(--space-6);
         }
@@ -252,7 +420,7 @@ export default function DualInvariantDemo() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: var(--space-6);
+          margin-bottom: var(--space-5);
         }
 
         .did-controls__eyebrow {
@@ -260,7 +428,7 @@ export default function DualInvariantDemo() {
           font-size: var(--text-xs);
           letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: var(--ember);
+          color: var(--text-secondary);
         }
 
         .did-control {
@@ -279,7 +447,7 @@ export default function DualInvariantDemo() {
           font-size: var(--text-xs);
           letter-spacing: 0.06em;
           text-transform: uppercase;
-          color: var(--text-tertiary);
+          color: var(--text-secondary);
           display: block;
         }
 
@@ -299,16 +467,16 @@ export default function DualInvariantDemo() {
 
         .did-chips {
           display: flex;
+          flex-direction: column;
           gap: var(--space-2);
           margin-top: var(--space-2);
-          flex-wrap: wrap;
         }
 
         .did-chip {
           display: inline-flex;
           align-items: center;
-          gap: var(--space-2);
-          padding: var(--space-2) var(--space-3);
+          gap: var(--space-3);
+          padding: var(--space-3) var(--space-4);
           border: 1px solid var(--border-mid);
           border-radius: var(--radius-md);
           font-size: var(--text-sm);
@@ -332,21 +500,23 @@ export default function DualInvariantDemo() {
           font-weight: 500;
         }
 
-        /* ── Result panel ─── */
-        .did-result {
-          padding: var(--space-6);
+        /* ── Visual Gates Pipeline ── */
+        .did-pipeline-container {
           display: flex;
           flex-direction: column;
-          gap: var(--space-5);
+          gap: var(--space-6);
+          padding: var(--space-6);
         }
 
-        .did-status {
+        .did-pipeline-header {
           display: flex;
+          justify-content: space-between;
           align-items: center;
-          gap: var(--space-4);
+          border-bottom: 1px solid var(--border-dim);
+          padding-bottom: var(--space-4);
         }
 
-        .did-status__badge {
+        .did-status-badge {
           display: inline-flex;
           align-items: center;
           gap: var(--space-2);
@@ -358,211 +528,93 @@ export default function DualInvariantDemo() {
           letter-spacing: 0.1em;
           text-transform: uppercase;
           border: 1.5px solid;
-          transition: all var(--duration-mid) var(--ease-out);
         }
 
-        .did-status__badge::before {
-          content: '';
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: currentColor;
+        .did-status-badge--allowed { color: var(--sage); border-color: var(--sage); background: rgba(90, 122, 98, 0.08); }
+        .did-status-badge--warning { color: #d97706; border-color: #d97706; background: rgba(217, 119, 6, 0.08); }
+        .did-status-badge--blocked { color: #dc2626; border-color: #dc2626; background: rgba(220, 38, 38, 0.08); }
+
+        .did-pipeline {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--space-4);
         }
 
-        .did-status--allowed { color: var(--sage); border-color: var(--sage); background: rgba(90, 122, 98, 0.08); }
-        .did-status--blocked { color: #dc2626; border-color: #dc2626; background: rgba(220, 38, 38, 0.08); }
-        .did-status--warning { color: #d97706; border-color: #d97706; background: rgba(217, 119, 6, 0.08); }
-
-        .did-status__reason {
-          font-size: var(--text-sm);
-          color: var(--text-tertiary);
-          line-height: var(--leading-relaxed);
-        }
-
-        /* ── Invariant tabs ─── */
-        .did-tabs {
-          border: 1px solid var(--border-dim);
-          border-radius: var(--radius-lg);
-          overflow: hidden;
+        .did-gate-card {
+          padding: var(--space-5);
+          border: 1px solid var(--border-mid);
+          border-radius: var(--radius-md);
           background: var(--surface-1);
-        }
-
-        .did-tab-nav {
-          display: flex;
-          border-bottom: 1px solid var(--border-dim);
-        }
-
-        .did-tab-btn {
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: var(--space-2);
-          padding: var(--space-3) var(--space-4);
-          background: none;
-          border: none;
-          border-bottom: 2px solid transparent;
-          font-family: var(--font-mono);
-          font-size: var(--text-xs);
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          color: var(--text-tertiary);
-          cursor: pointer;
-          transition: all var(--duration-fast);
-          margin-bottom: -1px;
-        }
-
-        .did-tab-btn:hover { color: var(--text-primary); }
-
-        .did-tab-btn--active {
-          color: var(--text-primary);
-          border-bottom-color: var(--ember);
-        }
-
-        .did-tab-dot {
-          width: 7px;
-          height: 7px;
-          border-radius: 50%;
-          flex-shrink: 0;
-          transition: background var(--duration-mid);
-        }
-
-        .did-tab-dot--pass { background: var(--sage); }
-        .did-tab-dot--fail { background: #dc2626; }
-
-        .did-tab-panel {
-          padding: var(--space-5) var(--space-6);
-          animation: tab-in 0.22s var(--ease-out) both;
-        }
-
-        @keyframes tab-in {
-          from { opacity: 0; transform: translateY(4px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .did-tab-state {
-          font-family: var(--font-display);
-          font-size: var(--text-lg);
-          font-weight: 600;
-          margin-bottom: var(--space-2);
-        }
-
-        .did-tab-state--pass { color: var(--sage); }
-        .did-tab-state--fail { color: #dc2626; }
-
-        .did-tab-copy {
-          font-size: var(--text-sm);
-          color: var(--text-secondary);
-          line-height: var(--leading-relaxed);
-        }
-
-        /* ── State machine track ─── */
-        .did-track-section {
-          padding: var(--space-6);
-        }
-
-        .did-track-eyebrow {
-          font-family: var(--font-mono);
-          font-size: var(--text-xs);
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: var(--text-tertiary);
-          margin-bottom: var(--space-4);
-        }
-
-        .did-track {
-          display: flex;
-          gap: 0;
-          align-items: center;
-          overflow-x: auto;
-          padding-bottom: var(--space-2);
-        }
-
-        .did-node {
           display: flex;
           flex-direction: column;
-          align-items: center;
-          gap: var(--space-1);
-          min-width: 72px;
-          opacity: 0.3;
-          transition: opacity var(--duration-mid);
+          gap: var(--space-3);
+          transition: all var(--duration-mid);
         }
 
-        .did-node--active { opacity: 1; }
-        .did-node--traversed { opacity: 0.7; }
-
-        .did-node__circle {
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          border: 1.5px solid var(--border-mid);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: var(--font-mono);
-          font-size: var(--text-xs);
-          font-weight: 600;
-          color: var(--text-tertiary);
-          background: var(--surface-1);
-          transition: all var(--duration-mid) var(--ease-out);
-        }
-
-        .did-node--active .did-node__circle {
-          border-color: var(--ember);
-          color: var(--ember);
-          background: rgba(184, 92, 56, 0.08);
-          box-shadow: 0 0 0 4px rgba(184, 92, 56, 0.12);
-        }
-
-        .did-node--traversed .did-node__circle {
+        .did-gate-card--pass {
           border-color: var(--sage);
-          color: var(--sage);
-          background: rgba(90, 122, 98, 0.06);
+          background: linear-gradient(180deg, var(--surface-1), rgba(90, 122, 98, 0.02));
         }
 
-        .did-node__label {
+        .did-gate-card--fail {
+          border-color: #dc2626;
+          background: linear-gradient(180deg, var(--surface-1), rgba(220, 38, 38, 0.02));
+        }
+
+        .did-gate-card--pending {
+          border-color: var(--border-mid);
+          opacity: 0.6;
+        }
+
+        .did-gate-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .did-gate-title {
+          font-family: var(--font-display);
+          font-size: var(--text-sm);
+          font-weight: 600;
+          color: var(--text-primary);
+        }
+
+        .did-gate-indicator {
           font-family: var(--font-mono);
-          font-size: 9px;
-          color: var(--text-tertiary);
-          text-align: center;
-          letter-spacing: 0.04em;
-          line-height: 1.3;
+          font-size: 10px;
+          text-transform: uppercase;
+          padding: 2px 8px;
+          border-radius: 4px;
+          font-weight: 700;
         }
 
-        .did-node--active .did-node__label { color: var(--ember); }
-        .did-node--traversed .did-node__label { color: var(--sage); }
+        .did-gate-indicator--pass { color: var(--sage); background: rgba(90, 122, 98, 0.1); }
+        .did-gate-indicator--fail { color: #dc2626; background: rgba(220, 38, 38, 0.1); }
+        .did-gate-indicator--pending { color: var(--text-tertiary); background: var(--surface-2); }
 
-        .did-node-connector {
-          flex: 1;
-          height: 1px;
-          background: var(--border-dim);
-          min-width: 16px;
-          margin-bottom: 20px;
+        .did-gate-copy {
+          font-size: var(--text-xs);
+          color: var(--text-secondary);
+          line-height: var(--leading-relaxed);
+          flex-grow: 1;
         }
 
-        .did-path-detail {
-          margin-top: var(--space-5);
-          padding-top: var(--space-4);
+        /* ── Path details ── */
+        .did-audit-panel {
           border-top: 1px solid var(--border-dim);
+          padding-top: var(--space-5);
         }
 
-        .did-path-label {
+        .did-audit-title {
           font-family: var(--font-mono);
           font-size: var(--text-xs);
-          letter-spacing: 0.08em;
           text-transform: uppercase;
+          letter-spacing: 0.06em;
           color: var(--text-tertiary);
-          margin-bottom: var(--space-2);
-        }
-
-        .did-path-route {
-          font-family: var(--font-mono);
-          font-size: var(--text-sm);
-          color: var(--ember);
           margin-bottom: var(--space-3);
         }
 
-        .did-path-reasons {
+        .did-audit-list {
           list-style: none;
           padding: 0;
           margin: 0;
@@ -571,135 +623,222 @@ export default function DualInvariantDemo() {
           gap: var(--space-2);
         }
 
-        .did-path-reasons li {
+        .did-audit-item {
           font-size: var(--text-xs);
-          color: var(--text-tertiary);
+          color: var(--text-secondary);
           padding-left: var(--space-4);
-          border-left: 2px solid var(--border-dim);
+          border-left: 2px solid var(--border-mid);
           line-height: var(--leading-relaxed);
         }
 
-        /* ── Responsive ─── */
-        @media (max-width: 680px) {
-          .did-grid { grid-template-columns: 1fr; }
-          .did-controls { padding: var(--space-4); }
-          .did-result { padding: var(--space-4); }
-          .did-track { gap: 0; padding-bottom: var(--space-3); }
-          .did-node { min-width: 52px; }
-          .did-node__circle { width: 28px; height: 28px; font-size: 8px; }
-          .did-node__label { font-size: 7px; }
+        .did-audit-item--fail {
+          border-left-color: #dc2626;
+          color: #dc2626;
         }
-        @media (max-width: 400px) {
-          .did-chips { flex-direction: column; }
-          .did-chip { width: 100%; justify-content: center; }
+
+        .did-audit-item--pass {
+          border-left-color: var(--sage);
+        }
+
+        @media (max-width: 900px) {
+          .did-grid { grid-template-columns: 1fr; }
+          .did-pipeline { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+          .did-payload-grid { grid-template-columns: 1fr; }
         }
       `}</style>
 
       <div className="did-root" style={{ position: 'relative' }}>
         <ProofStateBadge proof={proof} />
-        {/* Controls + Result */}
+
+        {/* Scenario Selector & Payload Card */}
+        <div className="did-glass did-selector-panel">
+          <label className="did-control__label" htmlFor="specimen-select">Select Business Action Specimen</label>
+          <select
+            id="specimen-select"
+            className="did-select"
+            value={scenario}
+            onChange={e => handleScenarioChange(e.target.value as ScenarioType)}
+          >
+            {Object.keys(SCENARIOS).map(k => (
+              <option key={k} value={k}>{SCENARIOS[k as ScenarioType].name}</option>
+            ))}
+          </select>
+
+          <div className="did-payload-card">
+            <p className="did-payload-title">
+              <span>{spec.icon}</span> Action Payload Spec
+            </p>
+            <div className="did-payload-grid">
+              {Object.keys(spec.payload).map(k => (
+                <div key={k} className="did-payload-item">
+                  <span className="did-payload-key">{k}</span>
+                  <span className="did-payload-val">{spec.payload[k]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Controls and Result Grid */}
         <div className="did-grid">
           {/* Controls */}
           <div className="did-glass did-controls">
             <div className="did-controls__header">
-              <p className="did-controls__eyebrow">Inputs</p>
+              <p className="did-controls__eyebrow">Constraints</p>
               <button className="btn btn--ghost" onClick={reset} style={{ padding: '0.4rem 1rem' }} type="button">
-                Reset
+                Reset Scenario
               </button>
             </div>
 
-            <Slider id="t-mcep" label="Time Since Contact" min={0} max={30} value={gate.tMcep}
-              onChange={v => update('tMcep', v)} formatValue={v => `${v}s`} />
+            <Slider
+              id="t-mcep"
+              label={spec.labels.tMcep}
+              min={0}
+              max={spec.maxTime}
+              value={gate.tMcep}
+              onChange={v => update('tMcep', v)}
+              formatValue={v => `${v}${spec.units}`}
+            />
 
-            <Slider id="t-buffer" label="Buffer Window" min={0} max={30} value={gate.tBuffer}
-              onChange={v => update('tBuffer', v)} formatValue={v => `${v}s`} />
+            <Slider
+              id="t-buffer"
+              label={spec.labels.tBuffer}
+              min={0}
+              max={spec.maxTime}
+              value={gate.tBuffer}
+              onChange={v => update('tBuffer', v)}
+              formatValue={v => `${v}${spec.units}`}
+            />
 
-            <Slider id="r-score" label="Integrity Score" min={-1} max={1} step={0.1} value={gate.rScore}
-              onChange={v => update('rScore', v)} formatValue={v => v.toFixed(1)} />
+            <Slider
+              id="r-score"
+              label={spec.labels.rScore}
+              min={-1}
+              max={1}
+              step={0.1}
+              value={gate.rScore}
+              onChange={v => update('rScore', v)}
+              formatValue={v => v.toFixed(1)}
+            />
 
             <RadioChips<CoherenceDir>
-              name="delta-c" legend="Coherence Direction"
-              options={[{ value: 1, label: '+1 emerging coherence' }, { value: -1, label: '-1 disruptive tension' }]}
-              value={gate.deltaC} onChange={v => update('deltaC', v)}
+              name="delta-c"
+              legend={spec.labels.deltaC}
+              options={spec.options.deltaC}
+              value={gate.deltaC}
+              onChange={v => update('deltaC', v)}
             />
 
             <RadioChips<MotivationType>
-              name="motive" legend="Motivation Type"
-              options={[{ value: 1, label: '+1 genuine care' }, { value: -1, label: '-1 compulsive coherence' }]}
-              value={gate.motive} onChange={v => update('motive', v)}
+              name="motive"
+              legend={spec.labels.motive}
+              options={spec.options.motive}
+              value={gate.motive}
+              onChange={v => update('motive', v)}
             />
           </div>
 
-          {/* Result */}
-          <div className="did-glass did-result">
-            <div className="did-status">
-              <span className={`did-status__badge did-status--${result.statusCode}`}>
+          {/* Result & Pipeline */}
+          <div className="did-glass did-pipeline-container">
+            <div className="did-pipeline-header">
+              <h3 className="did-gate-title" style={{ margin: 0 }}>Active Evaluation Pipeline</h3>
+              <span className={`did-status-badge did-status-badge--${result.statusCode}`}>
                 {result.statusLabel}
               </span>
-              <span className="did-status__reason">
-                {result.overallPasses
-                  ? 'Both invariants satisfied. Action may proceed.'
-                  : 'One or more invariants failed. Action is blocked.'}
-              </span>
             </div>
 
-            <div className="did-tabs">
-              <div className="did-tab-nav" role="tablist">
-                {(['temporal', 'relational', 'fusion'] as ActiveTab[]).map(tab => {
-                  const info = tabContent[tab];
+            <div className="did-pipeline">
+              {/* Gate 1: Temporal Invariant */}
+              <div className={`did-gate-card did-gate-card--${result.timingPasses ? 'pass' : 'fail'}`}>
+                <div className="did-gate-header">
+                  <span className="did-gate-title">1. Temporal Gate</span>
+                  <span className={`did-gate-indicator did-gate-indicator--${result.timingPasses ? 'pass' : 'fail'}`}>
+                    {result.timingPasses ? 'Clear' : 'Hold'}
+                  </span>
+                </div>
+                <p className="did-gate-copy">{result.temporalCopy}</p>
+              </div>
+
+              {/* Gate 2: Provenance Gate */}
+              <div className={`did-gate-card ${
+                !result.timingPasses 
+                  ? 'did-gate-card--pending' 
+                  : result.integrityPasses 
+                  ? 'did-gate-card--pass' 
+                  : 'did-gate-card--fail'
+              }`}>
+                <div className="did-gate-header">
+                  <span className="did-gate-title">2. Provenance Gate</span>
+                  <span className={`did-gate-indicator did-gate-indicator--${
+                    !result.timingPasses 
+                      ? 'pending' 
+                      : result.integrityPasses 
+                      ? 'pass' 
+                      : 'fail'
+                  }`}>
+                    {!result.timingPasses ? 'Wait' : result.integrityPasses ? 'Match' : 'Failed'}
+                  </span>
+                </div>
+                <p className="did-gate-copy">
+                  {!result.timingPasses 
+                    ? 'Awaiting temporal gate clearance to execute authorization analysis.' 
+                    : result.relationalCopy}
+                </p>
+              </div>
+
+              {/* Gate 3: Combined Policy Invariant */}
+              <div className={`did-gate-card ${
+                !result.timingPasses || !result.integrityPasses
+                  ? 'did-gate-card--pending' 
+                  : !result.coerciveBlock 
+                  ? 'did-gate-card--pass' 
+                  : 'did-gate-card--fail'
+              }`}>
+                <div className="did-gate-header">
+                  <span className="did-gate-title">3. Policy Invariant</span>
+                  <span className={`did-gate-indicator did-gate-indicator--${
+                    !result.timingPasses || !result.integrityPasses
+                      ? 'pending' 
+                      : !result.coerciveBlock 
+                      ? 'pass' 
+                      : 'fail'
+                  }`}>
+                    {!result.timingPasses || !result.integrityPasses ? 'Wait' : !result.coerciveBlock ? 'Clear' : 'Intervention'}
+                  </span>
+                </div>
+                <p className="did-gate-copy">
+                  {!result.timingPasses || !result.integrityPasses 
+                    ? 'Awaiting previous invariants validation to assess execution intent.' 
+                    : result.fusionCopy}
+                </p>
+              </div>
+            </div>
+
+            {/* Audit Trail */}
+            <div className="did-audit-panel">
+              <h4 className="did-audit-title">Audit Trail &amp; Diagnostics</h4>
+              <ul className="did-audit-list">
+                {result.pathReasons.map((reason, i) => {
+                  const isFail = reason.includes('FAILED') || reason.includes('BLOCKED');
+                  const isPass = reason.includes('PASSED') || reason.includes('AUTHORIZED');
+                  const itemClass = isFail 
+                    ? 'did-audit-item--fail' 
+                    : isPass 
+                    ? 'did-audit-item--pass' 
+                    : '';
                   return (
-                    <button
-                      key={tab}
-                      role="tab"
-                      aria-selected={activeTab === tab}
-                      aria-controls={`${tab}-panel`}
-                      className={`did-tab-btn ${activeTab === tab ? 'did-tab-btn--active' : ''}`}
-                      onClick={() => setActiveTab(tab)}
-                      type="button"
-                    >
-                      <span className={`did-tab-dot ${info.passes ? 'did-tab-dot--pass' : 'did-tab-dot--fail'}`} />
-                      {tab === 'temporal' ? 'Timing Gate' : tab === 'relational' ? 'Integrity Check' : 'Combined'}
-                    </button>
+                    <li key={i} className={`did-audit-item ${itemClass}`}>
+                      {reason}
+                    </li>
                   );
                 })}
-              </div>
-              <div className="did-tab-panel" role="tabpanel" id={`${activeTab}-panel`} key={activeTab}>
-                <p className={`did-tab-state ${currentTab.passes ? 'did-tab-state--pass' : 'did-tab-state--fail'}`}>
-                  {currentTab.state}
-                </p>
-                <p className="did-tab-copy">{currentTab.copy}</p>
-              </div>
+              </ul>
             </div>
           </div>
         </div>
 
-        {/* State Machine Track */}
-        <div className="did-glass did-track-section">
-          <p className="did-track-eyebrow">State Machine — Current traversal</p>
-          <div className="did-track" aria-label="State machine traversal">
-            {STATE_NODES.map((node, i) => {
-              const isActive = result.state === node.id;
-              const isTraversed = result.path.includes(node.id) && !isActive;
-              return (
-                <div key={node.id} style={{ display: 'flex', alignItems: 'center', flex: '1' }}>
-                  <div className={`did-node ${isActive ? 'did-node--active' : ''} ${isTraversed ? 'did-node--traversed' : ''}`}>
-                    <div className="did-node__circle">{node.id}</div>
-                    <span className="did-node__label">{node.label}</span>
-                  </div>
-                  {i < STATE_NODES.length - 1 && <div className="did-node-connector" />}
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="did-path-detail">
-            <p className="did-path-label">Path taken</p>
-            <p className="did-path-route">{result.path.join(' → ')}</p>
-            <ul className="did-path-reasons">
-              {result.pathReasons.map((r, i) => <li key={i}>{r}</li>)}
-            </ul>
-          </div>
-        </div>
       </div>
     </>
   );
