@@ -553,7 +553,100 @@ section {
 /* Field-native primitives */
 .field-page {
   padding: var(--space-24) 0 var(--space-32);
+  position: relative; /* required for ::before to position against */
 }
+
+/* ── DIGEST ATMOSPHERIC SYSTEM ──────────────────────────────────────── */
+
+/* Layer 2 — Sovereign wireframe grid (digest-only, sits above body grain) */
+.field-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background-image:
+    linear-gradient(to right, rgba(160, 135, 95, 0.095) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(160, 135, 95, 0.095) 1px, transparent 1px);
+  background-size: 72px 72px;
+  background-position: 0 0;
+}
+
+/* Ensure all direct content children clear the overlay stack */
+.field-page > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* Layer 3 — Reading column manuscript rule (article view only) */
+.content-body {
+  position: relative;
+}
+
+.content-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2.5rem;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(160, 135, 95, 0.28) 4%,
+    rgba(160, 135, 95, 0.28) 96%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Coordinate marker — desktop only */
+.field-coordinate {
+  position: fixed;
+  bottom: 3.5rem;
+  right: 2rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(180, 160, 120, 0.35);
+  font-family: var(--font-mono, 'Courier New', monospace);
+  pointer-events: none;
+  z-index: 50;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .field-coordinate {
+    display: none;
+  }
+
+  /* Reduce grid opacity on mobile — less visual noise on small screens */
+  .field-page::before {
+    opacity: 0.75;
+  }
+}
+
+/* Overrides for calm reading experience on dedicated article pages */
+.route-article #gold-field {
+  opacity: 0.18 !important; /* lower gold flake density to a soft shimmer */
+  transition: opacity 1.5s ease;
+}
+
+.route-article .content-body {
+  background: var(--void, #F8F6F1);
+  position: relative;
+  z-index: 10;
+  /* Feathered boundary masking the grid/flakes behind text */
+  box-shadow: 0 0 32px 32px var(--void, #F8F6F1);
+  border-radius: var(--radius-sm);
+}
+
+.route-article .content-body::before {
+  z-index: 11; /* keep manuscript line above the new masking background */
+}
+
+/* ── END DIGEST ATMOSPHERIC SYSTEM ─────────────────────────────────── */
 
 .field-stack {
   display: flex;

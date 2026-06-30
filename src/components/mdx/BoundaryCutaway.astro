@@ -1,0 +1,184 @@
+---
+// BoundaryCutaway.astro - Cutaway diagram of the three physics-layer governance limits
+---
+
+<div class="boundary-cutaway-container">
+  <div class="cutaway-title">Geometric Governance: Three-Layer Cutaway</div>
+
+  <div class="cutaway-layers">
+    <!-- Layer 1: Edge -->
+    <div class="cutaway-layer layer-edge">
+      <div class="layer-meta">Layer 1: Cognitive Edge</div>
+      <div class="layer-header">FunctionGemma local execution</div>
+      <div class="layer-body">
+        Local 270M model constraints client intent at the device boundary. Ephemeral tool-call compiling before cloud transmission prevents unauthorized instruction expansion.
+      </div>
+    </div>
+
+    <div class="cutaway-connector"></div>
+
+    <!-- Layer 2: Coupling -->
+    <div class="cutaway-layer layer-coupling">
+      <div class="layer-meta">Layer 2: Coupling Sheaf</div>
+      <div class="layer-header">Model Context Protocol (MCP)</div>
+      <div class="layer-body">
+        JSON-RPC 2.0 schemas translate intent between incommensurable system geometries. Formally isolates the client's semantic network from privileged enterprise databases.
+      </div>
+    </div>
+
+    <div class="cutaway-connector"></div>
+
+    <!-- Layer 3: Torus -->
+    <div class="cutaway-layer layer-torus">
+      <div class="layer-meta">Layer 3: Hardware Physics</div>
+      <div class="layer-header">Ironwood 3D Torus topology</div>
+      <div class="layer-body">
+        Authority propagates by routing adjacency rather than security rank. Hardware interconnect wraps coordinates to horizontal peer verification loops.
+      </div>
+    </div>
+
+    <div class="cutaway-connector connector-to-anchor"></div>
+
+    <!-- Base Anchor -->
+    <div class="cutaway-anchor">
+      <div class="anchor-meta">Irreducible Anchor</div>
+      <div class="anchor-header">Human-Signed MCP Configuration File</div>
+      <div class="anchor-body font-mono">
+        /etc/mcp/config.json
+      </div>
+      <div class="amber-light-indicator"></div>
+    </div>
+  </div>
+
+  <div class="cutaway-caption">
+    Cross-section of structural containment. Authority flows downward through edge and protocol layers, terminating at the human-authored config signature.
+  </div>
+</div>
+
+<style>
+  .boundary-cutaway-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    margin: var(--space-8) auto;
+    padding: var(--space-6);
+    background: var(--surface-1);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    max-width: var(--max-w-narrow);
+  }
+  .cutaway-title {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+  }
+  .cutaway-layers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0;
+  }
+  .cutaway-layer {
+    width: 100%;
+    padding: var(--space-4);
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .cutaway-layer:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-sovereign);
+  }
+  .layer-meta {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-1);
+  }
+  .layer-header {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+  .layer-body {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: var(--leading-normal);
+  }
+  .cutaway-connector {
+    width: 2px;
+    height: var(--space-4);
+    background: var(--border-mid);
+  }
+  .connector-to-anchor {
+    background: linear-gradient(to bottom, var(--border-mid), var(--color-sovereign));
+  }
+  
+  /* base anchor styles */
+  .cutaway-anchor {
+    position: relative;
+    width: 100%;
+    padding: var(--space-4);
+    background: rgba(217, 119, 6, 0.03);
+    border: 1px solid var(--color-sovereign);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    box-shadow: 0 0 12px rgba(217, 119, 6, 0.08);
+  }
+  .anchor-meta {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-sovereign);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: bold;
+    margin-bottom: var(--space-1);
+  }
+  .anchor-header {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-sovereign);
+    margin-bottom: var(--space-2);
+  }
+  .anchor-body {
+    font-size: var(--text-xs);
+    color: var(--text-primary);
+    background: var(--surface-3);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    border: 1px solid var(--border-dim);
+  }
+  
+  .amber-light-indicator {
+    position: absolute;
+    top: 50%;
+    right: var(--space-4);
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--color-sovereign);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--color-sovereign);
+  }
+  
+  .cutaway-caption {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: var(--leading-normal);
+    border-top: 1px solid var(--border-dim);
+    padding-top: var(--space-3);
+    width: 100%;
+  }
+</style>

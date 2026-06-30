@@ -1,0 +1,141 @@
+---
+// ComparisonPlate.astro - Side-by-side contrast of Compliance vs. Physics governance
+---
+
+<div class="comparison-plate-container">
+  <div class="comparison-header">Governance Paradigms Compared</div>
+  
+  <div class="comparison-grid">
+    <!-- Paradigm A: Compliance -->
+    <div class="comparison-column column-compliance">
+      <div class="column-title">Compliance-Layer Governance</div>
+      <div class="column-subtitle">Post-Hoc Verification (SynthID Model)</div>
+      
+      <div class="comparison-item">
+        <div class="item-label">Operational Focus</div>
+        <div class="item-value">Output monitoring and post-hoc metadata watermarking. Analyzes generated content at the edge of the pipeline.</div>
+      </div>
+
+      <div class="comparison-item">
+        <div class="item-label">Structural Boundary</div>
+        <div class="item-value">Soft policies. Rules are stated in textual allowlists, prompts, or license agreements.</div>
+      </div>
+
+      <div class="comparison-item">
+        <div class="item-label">Vulnerability Profile</div>
+        <div class="item-value font-mono-text">Surgically defeatable. Carrier watermarks are easily stripped or forged using 2D Fourier phase coherence analysis.</div>
+      </div>
+    </div>
+
+    <!-- Paradigm B: Physics -->
+    <div class="comparison-column column-physics">
+      <div class="column-title">Physics-Layer Governance</div>
+      <div class="column-subtitle">Structural Constraint (FunctionGemma + MCP + Torus)</div>
+      
+      <div class="comparison-item">
+        <div class="item-label font-sovereign-text">Operational Focus</div>
+        <div class="item-value">Local execution containment, schema contract verification, and network routing limitations.</div>
+      </div>
+
+      <div class="comparison-item">
+        <div class="item-label font-sovereign-text">Structural Boundary</div>
+        <div class="item-value">Hard limits. Constraints are compiled into edge model weights and hardware routing paths.</div>
+      </div>
+
+      <div class="comparison-item">
+        <div class="item-label font-sovereign-text">Vulnerability Profile</div>
+        <div class="item-value font-mono-text">Topology-locked. Rogue actions are starved of bandwidth by hardware interconnect feedback loops.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .comparison-plate-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: var(--space-8) auto;
+    padding: var(--space-6);
+    background: var(--surface-1);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    max-width: var(--max-w-wide);
+  }
+  .comparison-header {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  @media (min-width: 640px) {
+    .comparison-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .comparison-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: var(--surface-2);
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-sm);
+  }
+  .column-compliance {
+    border-left: 3px solid var(--border-dim);
+  }
+  .column-physics {
+    border-left: 3px solid var(--color-sovereign);
+    background: rgba(217, 119, 6, 0.01);
+  }
+  .column-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: bold;
+    color: var(--text-primary);
+  }
+  .column-subtitle {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-top: -10px;
+    margin-bottom: var(--space-2);
+  }
+  .comparison-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    border-top: 1px solid var(--border-dim);
+    padding-top: var(--space-3);
+  }
+  .item-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .font-sovereign-text {
+    color: var(--color-sovereign);
+    font-weight: bold;
+  }
+  .item-value {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: var(--leading-normal);
+  }
+  .font-mono-text {
+    font-family: var(--font-mono);
+  }
+</style>

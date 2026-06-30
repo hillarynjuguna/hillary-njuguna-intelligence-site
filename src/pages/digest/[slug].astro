@@ -20,6 +20,7 @@ import SourceAttribution from '@components/mdx/SourceAttribution.astro';
 import ThreatFlow from '@components/mdx/ThreatFlow.astro';
 import ValidationStack from '@components/mdx/ValidationStack.astro';
 import TrustChain from '@components/mdx/TrustChain.astro';
+import { Trap, Advice, Hook, Divider } from '@components/mdx';
 
 export async function getStaticPaths() {
   const entries = await getCollection('digest', ({ data }) => !data.draft);
@@ -75,5 +76,5 @@ const articleSchema = buildArticleSchema({
   prompt={prompt}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-  <Content components={{ PullQuote, MetaInterrupt, ContinuationCard, SeriesNav, ImageBlock, DropCap, AlternativeRegister, HeroVisual, SourceAttribution, ThreatFlow, ValidationStack, TrustChain }} />
+  <Content components={{ PullQuote, MetaInterrupt, ContinuationCard, SeriesNav, ImageBlock, DropCap, AlternativeRegister, HeroVisual, SourceAttribution, ThreatFlow, ValidationStack, TrustChain, Trap, Advice, Hook, Divider }} />
 </ContentLayout>

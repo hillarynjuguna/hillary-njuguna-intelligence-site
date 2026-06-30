@@ -14,13 +14,16 @@ interface Props extends SEOProps {
 
 const { class: className, ...seoProps } = Astro.props;
 // Construct per-page canonical from Astro.site + current pathname.
-// Astro.site reads from astro.config.mjs → 'https://hillary-site.vercel.app'.
+// Astro.site reads from astro.config.mjs → 'https://hillarynjuguna.vercel.app'.
 // This ensures every page declares its own URL as canonical, not the homepage.
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const seo = buildSEO({
   ...seoProps,
   canonical: seoProps.canonical ?? canonicalURL.href,
 });
+
+const isArticle = Astro.url.pathname.match(/^\/(digest|research)\/[^/]+\/?$/) !== null;
+const bodyClass = [className, isArticle ? 'route-article' : ''].filter(Boolean).join(' ');
 ---
 
 <!doctype html>
@@ -38,7 +41,7 @@ const seo = buildSEO({
     />
     <SEOHead seo={seo} />
   </head>
-  <body class={className}>
+  <body class={bodyClass}>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Gold Flake Field: fixed, z-index 0, behind all content -->

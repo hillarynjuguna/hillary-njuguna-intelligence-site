@@ -463,7 +463,7 @@ const TRANSLATIONS = [
       function: "First-contact definitions for framework terms",
       scope: "AI governance vocabulary",
       mechanism: "Canonical alias mapping",
-      access: "Oscillatory Fields (hillary-site.vercel.app)",
+      access: "Oscillatory Fields (hillarynjuguna.vercel.app)",
       coverage: "30+ governance terms defined"
     },
     queries: [
@@ -658,7 +658,7 @@ export default function Portfolio() {
             Hillary Njuguna · Portfolio Brief · June 2026
           </div>
           <div className="footer-right">
-            <a href="https://hillary-site.vercel.app">oscillatory-fields</a> · <a href="https://github.com/hillarynjuguna">github</a>
+            <a href="https://hillarynjuguna.vercel.app">oscillatory-fields</a> · <a href="https://github.com/hillarynjuguna">github</a>
           </div>
         </div>
 

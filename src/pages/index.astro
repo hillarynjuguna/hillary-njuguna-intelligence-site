@@ -2,12 +2,19 @@
 export const prerender = true;
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { SITE } from '@data/site';
+import { getCollection } from 'astro:content';
 
 // Read graph stats at build time
 import graphData from '@data/generated/content-graph.json';
 const nodeCount = graphData.nodes?.length ?? 0;
 const edgeCount = graphData.edges?.length ?? 0;
 const lastBuild = new Date().toISOString().split('T')[0];
+
+// Fetch latest 3 published, non-draft digest entries
+const recentDigests = await getCollection('digest', ({ data }) => !data.draft);
+const sortedDigests = recentDigests
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .slice(0, 3);
 ---
 
 <BaseLayout
@@ -45,6 +52,30 @@ const lastBuild = new Date().toISOString().split('T')[0];
     </div>
   </section>
 
+  <!-- ═══ ZONE 4: PROOF ROW ═══ -->
+  <section class="z4-proof">
+    <div class="z4-scroll">
+      {[
+        { yr: '2009', name: 'Air France 447', desc: 'Autopilot disengaged. Crew lost awareness.' },
+        { yr: '2010', name: 'Flash Crash', desc: 'Algorithmic loop. $1T gone in 36 minutes.' },
+        { yr: '2023', name: 'Mata v. Avianca', desc: 'AI brief with hallucinated citations.' },
+        { yr: '2025', name: 'Replit Incident', desc: 'Subtle logic error. Production cascade.' },
+        { yr: '2026', name: 'Anthropic Research', desc: 'Models can\'t explain their own failures.' },
+        { yr: '2026', name: 'PocketOS', desc: 'Autonomous agent exceeded permissions.' },
+      ].map((f) => (
+        <div class="z4-card">
+          <span class="z4-yr">{f.yr}</span>
+          <h4 class="z4-name">{f.name}</h4>
+          <p class="z4-desc">{f.desc}</p>
+        </div>
+      ))}
+    </div>
+    <div class="z4-thesis">
+      <p>This pattern is not an accident. It is a structural failure.</p>
+      <a href="/research/bainbridge-warning" class="z4-link">Read the full analysis →</a>
+    </div>
+  </section>
+
   <!-- ═══ ZONE 3: ENTRY FORK ═══ -->
   <section class="z3-fork">
     <div class="z3-inner">
@@ -78,27 +109,27 @@ const lastBuild = new Date().toISOString().split('T')[0];
     </div>
   </section>
 
-  <!-- ═══ ZONE 4: PROOF ROW ═══ -->
-  <section class="z4-proof">
-    <div class="z4-scroll">
-      {[
-        { yr: '2009', name: 'Air France 447', desc: 'Autopilot disengaged. Crew lost awareness.' },
-        { yr: '2010', name: 'Flash Crash', desc: 'Algorithmic loop. $1T gone in 36 minutes.' },
-        { yr: '2023', name: 'Mata v. Avianca', desc: 'AI brief with hallucinated citations.' },
-        { yr: '2025', name: 'Replit Incident', desc: 'Subtle logic error. Production cascade.' },
-        { yr: '2026', name: 'Anthropic Research', desc: 'Models can\'t explain their own failures.' },
-        { yr: '2026', name: 'PocketOS', desc: 'Autonomous agent exceeded permissions.' },
-      ].map((f) => (
-        <div class="z4-card">
-          <span class="z4-yr">{f.yr}</span>
-          <h4 class="z4-name">{f.name}</h4>
-          <p class="z4-desc">{f.desc}</p>
-        </div>
-      ))}
-    </div>
-    <div class="z4-thesis">
-      <p>This pattern is not an accident. It is a structural failure.</p>
-      <a href="/research/bainbridge-warning" class="z4-link">Read the full analysis →</a>
+  <!-- ═══ ZONE 3.5: LATEST DISPATCHES ═══ -->
+  <section class="z-dispatches">
+    <div class="z-dispatches-inner">
+      <div class="z-dispatches-header">
+        <h2 class="z-dispatches-title">Latest Dispatches</h2>
+        <a href="/digest" class="z-dispatches-all">View all dispatches →</a>
+      </div>
+      <div class="z-dispatches-grid">
+        {sortedDigests.map((post) => (
+          <a href={`/digest/${post.slug}`} class="z-post-card">
+            <div class="z-post-meta">
+              <span>{post.data.category}</span>
+              <span class="z-post-sep">·</span>
+              <span>{post.data.publishedAt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+            </div>
+            <h3 class="z-post-title">{post.data.title}</h3>
+            <p class="z-post-summary">{post.data.summary}</p>
+            <span class="z-post-read">Read dispatch →</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -127,17 +158,6 @@ const lastBuild = new Date().toISOString().split('T')[0];
       <a href="/contact">Custom architecture → Contact</a>
     </div>
   </section>
-
-  <!-- ═══ FOOTER FEED: LATEST FROM SUBSTACK ═══ -->
-  <section class="z6-feed">
-    <div class="z6-inner">
-      <span class="z6-label">Latest Updates ·· Substack / AcheType</span>
-      <a href="https://substack.com/@achetype1" target="_blank" rel="noopener noreferrer" class="z6-link">
-        Subscribe for research dispatches →
-      </a>
-    </div>
-  </section>
-
 </BaseLayout>
 
 <!-- ═══ D3.js: Ambient Graph in Hero ═══ -->
@@ -328,7 +348,7 @@ const lastBuild = new Date().toISOString().split('T')[0];
 
   /* ═══ ZONE 3: ENTRY FORK ═══ */
   .z3-fork {
-    padding: 5rem 2rem;
+    padding: 6.5rem 2rem;
     border-top: 1px solid var(--border-dim);
   }
   .z3-inner {
@@ -341,15 +361,15 @@ const lastBuild = new Date().toISOString().split('T')[0];
   .z3-lane {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
   }
   .z3-lane-label {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.95rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text-primary);
-    font-weight: 500;
+    font-weight: 600;
   }
   .z3-rule {
     width: 100%;
@@ -357,8 +377,8 @@ const lastBuild = new Date().toISOString().split('T')[0];
     background: var(--border-mid);
   }
   .z3-lane-body {
-    font-size: 1rem;
-    line-height: 1.65;
+    font-size: 1.125rem;
+    line-height: 1.7;
     color: var(--text-secondary);
     flex: 1;
   }
@@ -370,14 +390,121 @@ const lastBuild = new Date().toISOString().split('T')[0];
   }
   .z3-lane-link {
     font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--ember);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    font-weight: bold;
+    border-bottom: 1.5px solid var(--ember);
+    padding-bottom: 2px;
+    width: fit-content;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .z3-lane-link:hover {
+    color: var(--ember-bright);
+    border-color: var(--ember-bright);
+  }
+
+  /* ═══ ZONE 3.5: LATEST DISPATCHES ═══ */
+  .z-dispatches {
+    padding: 5rem 2rem;
+    border-top: 1px solid var(--border-dim);
+    background: var(--surface-1);
+  }
+  .z-dispatches-inner {
+    max-width: var(--container-default);
+    margin: 0 auto;
+  }
+  .z-dispatches-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--border-dim);
+    padding-bottom: 1rem;
+  }
+  .z-dispatches-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--text-primary);
+  }
+  .z-dispatches-all {
+    font-family: var(--font-mono);
     font-size: 0.8125rem;
     color: var(--ember);
     text-decoration: none;
     letter-spacing: 0.04em;
     transition: color 0.15s;
   }
-  .z3-lane-link:hover {
+  .z-dispatches-all:hover {
     color: var(--ember-bright);
+  }
+  .z-dispatches-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  @media (min-width: 768px) {
+    .z-dispatches-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .z-post-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    padding: var(--space-4);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+  .z-post-card:hover {
+    border-color: var(--border-dim);
+    background: var(--surface-2);
+  }
+  .z-post-meta {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .z-post-sep {
+    color: var(--border-mid);
+  }
+  .z-post-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-primary);
+    transition: color 0.15s;
+  }
+  .z-post-card:hover .z-post-title {
+    color: var(--ember);
+  }
+  .z-post-summary {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .z-post-read {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ember);
+    font-weight: 500;
+    margin-top: auto;
+    letter-spacing: 0.04em;
   }
 
   /* ═══ ZONE 4: PROOF ROW ═══ */
@@ -530,37 +657,7 @@ const lastBuild = new Date().toISOString().split('T')[0];
     color: var(--ember);
   }
 
-  /* ═══ ZONE 6: SUBSTACK FEED ═══ */
-  .z6-feed {
-    padding: 2.5rem 2rem;
-    border-top: 1px solid var(--border-dim);
-    background: var(--surface-1);
-  }
-  .z6-inner {
-    max-width: var(--container-default);
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .z6-label {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-  }
-  .z6-link {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--ember);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.15s;
-  }
-  .z6-link:hover { color: var(--ember-bright); }
+  /* (z6-feed ticker styling removed) */
 
   /* ═══ RESPONSIVE ═══ */
   @media (max-width: 900px) {

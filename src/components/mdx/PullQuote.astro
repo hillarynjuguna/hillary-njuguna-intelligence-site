@@ -3,16 +3,17 @@ interface Props {
   accent?: 'ember' | 'sage' | 'gold';
   align?: 'left' | 'right' | 'center';
   cite?: string;
+  attribution?: string;
 }
 
-const { accent = 'ember', align = 'center', cite } = Astro.props;
+const { accent = 'ember', align = 'center', cite, attribution } = Astro.props;
 ---
 
 <div class={`pull-quote pull-quote--${accent} pull-quote--${align}`}>
   <span class="pull-quote__mark" aria-hidden="true">“</span>
   <blockquote class="pull-quote__content">
     <slot />
-    {cite && <cite class="pull-quote__cite">{cite}</cite>}
+    {(cite || attribution) && <cite class="pull-quote__cite">— {cite || attribution}</cite>}
   </blockquote>
 </div>
 

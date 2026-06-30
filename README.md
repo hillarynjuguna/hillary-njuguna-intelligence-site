@@ -19,7 +19,7 @@ This is the public research portal for the Oscillatory Fields corpus—a suite o
 
 ### For Practitioners
 - **[Martha Cohorts](https://github.com/hillarynjuguna/martha-course)** — 12-module training program
-- **[Live Site](https://hillary-site.vercel.app)** — Interactive research portal
+- **[Live Site](https://hillarynjuguna.vercel.app)** — Interactive research portal
 
 ## Quick Start
 

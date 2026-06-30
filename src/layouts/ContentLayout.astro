@@ -68,26 +68,33 @@ const chips = tags.slice(0, 6).map((tag) => ({
         meta={meta}
         chips={chips}
         width="wide"
-        actions={[
-          { label: 'Open corpus', href: '/corpus', tone: 'ghost' },
-          { label: 'Query Intelligence', href: '/orchestra-operation', tone: 'secondary' },
-        ]}
       />
 
       <div class="field-layout">
         <div class="field-main">
           <div class="prose content-body">
             <slot />
+            <hr class="post-prose-rule" />
+            <div class="post-prose-actions">
+              <a href="/corpus" class="btn btn--ghost">Open corpus</a>
+              <a href="/orchestra-operation" class="btn btn--secondary">Query Intelligence</a>
+            </div>
           </div>
         </div>
-
-              </div>
+      </div>
     </div>
+    <div class="field-coordinate" aria-hidden="true">SYS.LOC // KL-UTC+8</div>
   </article>
 </BaseLayout>
 
 <style>
   .content-body {
     margin: 0 auto;
+  }
+  .post-prose-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
   }
 </style>

@@ -39,6 +39,22 @@
       "venue": "Zenodo Preprint: 10.5281/zenodo.20482269",
       "url": "https://doi.org/10.5281/zenodo.20482269",
       "tier": 2
+    },
+    {
+      "id": "S06",
+      "title": "Google Technical Announcements / Google I/O 2026",
+      "authors": "Google DeepMind",
+      "venue": "Google Developer Releases",
+      "url": "https://deepmind.google/technologies/gemini/",
+      "tier": 1
+    },
+    {
+      "id": "S07",
+      "title": "Model Context Protocol Roadmap 2026",
+      "authors": "Linux Foundation Agentic AI Foundation",
+      "venue": "Linux Foundation Announcements",
+      "url": "https://modelcontextprotocol.io/",
+      "tier": 1
     }
   ],
   "claims": [
@@ -133,7 +149,31 @@
       "text": "Namespace escape via __class__.__bases__.__subclasses__() inheritance chain",
       "sourceId": null,
       "tier": 3,
-      "note": "Extrapolated from standard Python security principles — not sourced"
+      "note": "Extrapolated from standard Python security principles: not sourced"
+    },
+    {
+      "id": "C16",
+      "text": "FunctionGemma 270M parameter model on LiteRT achieves 58% baseline and 85% fine-tuned function calling accuracy",
+      "sourceId": "S06",
+      "tier": 1
+    },
+    {
+      "id": "C17",
+      "text": "Ironwood TPU interconnect architecture organizes 64-chip cubes into a 3D Torus with 9,600-chip superpods providing 19.2 Tbps of bidirectional bandwidth",
+      "sourceId": "S06",
+      "tier": 1
+    },
+    {
+      "id": "C18",
+      "text": "Enterprise-Managed Authorization is stable as of April 2026 under the Linux Foundation Agentic AI Foundation",
+      "sourceId": "S07",
+      "tier": 1
+    },
+    {
+      "id": "C19",
+      "text": "Session-state collision is identified as the top unsolved engineering challenge in the 2026 MCP roadmap",
+      "sourceId": "S07",
+      "tier": 1
     }
   ]
 }

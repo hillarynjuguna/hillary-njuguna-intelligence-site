@@ -54,7 +54,10 @@ const prompt = buildFieldPrompt('orient', {
               formatDate(entry.data.publishedAt),
               entry.data.crystallization,
             ]}
-            chips={entry.data.tags.slice(0, 4).map((tag) => ({ label: `#${tag}` }))}
+            chips={[
+              ...entry.data.tags.slice(0, 3).map((tag) => ({ label: `#${tag}` })),
+              ...(entry.data.tags.length > 3 ? [{ label: `+${entry.data.tags.length - 3}` }] : [])
+            ]}
             footer={getNeighborLabel(neighborCount, 'Field note')}
             badge={entry.data.featured ? 'Featured' : undefined}
           />
