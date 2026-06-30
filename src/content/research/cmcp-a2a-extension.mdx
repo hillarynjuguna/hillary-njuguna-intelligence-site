@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 id: research-cmcp
 title: "CMCP: Constitutive Meaning-Preservation Extension"
 description: "An A2A Protocol v1.0 extension solving significance drift in multi-agent networks through cryptographically verifiable intent audits."
@@ -9,7 +9,7 @@ keyClaims:
   - "Execution provenance verifies what happened, but not why. Intent provenance is required for enterprise accountability."
   - "Significance drift occurs when downstream agents execute correctly against a prompt that has lost the original principal's precision weighting."
   - "The CMCP extension introduces pre-submission state modeling (LATENT_INTENT) to A2A's deterministic state machine."
-  - "Intent audits are a structural requirement for highly regulated environments (e.g., EU AI Act compliance) involving multi-agent delegation."
+  - "Intent audits are a structural requirement for highly regulated environments involving multi-agent delegation."
 unresolvedEdges:
   - "Mapping klDivergence metrics directly to existing Federated Proof Server endpoints."
   - "Whether LATENT_INTENT should be core v1.0 spec or an optional extension profile."
@@ -40,66 +40,121 @@ explicitRelations:
     manual: true
 ---
 
-# Request for Comments: Constitutive Meaning-Preservation (CMCP) Extension
+Consider the familiar corporate game of telephone. The CEO of a large company decides the organization needs a new customer portal because the old one is losing enterprise clients. The CEO's intent is very specific: "Build a portal that makes our top tier enterprise clients feel secure and valued." 
 
-**Target:** A2A Protocol Working Group (Linux Foundation)  
-**Spec Version Compatibility:** v1.0
+The CEO delegates this to the VP of Product. The VP tells the Director of Engineering to "build a secure enterprise portal." The Director tells the engineering manager to "build a portal with advanced security features." The engineering manager creates a Jira ticket for a junior developer: "Implement mandatory 2FA and 12-character passwords with special symbols."
 
-## 1. Abstract
-The Agent-to-Agent (A2A) Protocol (v1.0) provides robust interoperability, security, and multi-tenancy for multi-agent systems. However, as autonomous agent loops deepen, they face a structural vulnerability: the loss of the originating human intent's precision weighting across delegation chains. This phenomenon occurs when agents optimize local tasks at the expense of the original global context.
+The junior developer executes the ticket flawlessly. They build the most aggressive, mathematically secure login screen possible. The code is completely bug-free. 
 
-This RFC proposes the **Constitutive Meaning-Preservation (CMCP)** extension. It is a fully backward-compatible layer that extends the A2A v1.0 specification with two pre-submission states (`TASK_STATE_LATENT_INTENT`, `TASK_STATE_FORMING`) and two additive data structures (Origin Significance Payload, Delegation Provenance Chain) declared via formal v1.0 extension URIs. CMCP provides *significance provenance* to complement the *execution provenance* provided by existing Merkle-tree frameworks.
+But when the portal launches, the enterprise clients are furious. The login process is so aggressively secure that it locks out the clients' executive assistants, disrupting their daily workflows. The clients do not feel "valued"; they feel frustrated. 
 
-## 2. Theoretical Underpinnings
-This RFC is grounded in two independent theoretical traditions that have converged on the same structural requirement:
+If you audit the chain of execution, every single person did their job perfectly. The code was secure. But if you audit the chain of intent, there was a catastrophic failure. The original intent (make the client feel valued) was lost in the delegation chain, replaced by a localized metric (maximize cryptographic security). The meaning drifted.
 
-### 2.1 Active Inference and the Free Energy Principle
-Friston's Free Energy Principle (2010) provides the formal framework for understanding the pre-submission gap. In this framework, prediction errors signal where the generative model fails to account for observations. Crucially, precision weighting determines how strongly each error should update the system's beliefs. 
+This is exactly what happens in multi-agent artificial intelligence networks. We call this phenomenon **significance drift**, and it is the single greatest threat to the autonomous delegation of complex tasks.
 
-### 2.2 Structured Expression Resonance (SER)
-Wei (2026, DOI: 10.5281/zenodo.18244865) establishes that structure â€” not attention â€” is the Transformer's primary collaborative contribution. The SER framework proposes a structural language system for human-AI collaboration built on bidirectional rhythmic resonance. This enables structural intent to be expressed, negotiated, inspected, and reused at the interface level. There is a deep structural isomorphism between SER's intent-negotiation model and the pre-submission state pair proposed in this RFC. The protocol layer operationalizes the bidirectional resonance that SER identifies as the requirement for stable collaboration.
+The **Agent-to-Agent (A2A) Protocol (v1.0)** was designed to allow AI agents to communicate and delegate tasks to each other securely. But without a mechanism to preserve the originating human's exact intent across multiple layers of delegation, the A2A protocol simply automates the corporate game of telephone at light speed. 
 
-## 3. Proposed Extension: Three Additive Specifications
-All specifications are backward-compatible. A2A implementations that do not implement them remain fully compliant. 
+This document proposes the **Constitutive Meaning-Preservation (CMCP)** extension. CMCP is a protocol layer designed to ensure that original intent is mathematically preserved across a deep chain of AI agents. It does not just record what was done; it records why it was done, and proves that the "why" was not corrupted.
 
-### 3.1 Specification 1: The Latent-Intent State Pair
-Extend A2A's state machine with two pre-submission states:
-```text
-[ TASK_STATE_LATENT_INTENT ] â†’ [ TASK_STATE_FORMING ] â‡„ TASK_STATE_SUBMITTED â†’ TASK_STATE_WORKING â†’
-               â†“                                     [ TASK_STATE_INPUT_REQUIRED â†” TASK_STATE_WORKING ] â†’ TASK_STATE_COMPLETED | TASK_STATE_FAILED | TASK_STATE_CANCELED
-      TASK_STATE_FAILED                              â†‘_______________|
-```
+## The Plain Language of CMCP, OSP, and DPC
 
-*   **`TASK_STATE_LATENT_INTENT` state:** The system holds an Intent Prediction Error (IPE) payload rather than a rigid task specification. Agents receiving a latent-intent request return their capacity architecture (how they *would* resolve it) rather than task outputs. If downstream agents return capacity data indicating they cannot resolve the IPE payload, the state transitions directly to `TASK_STATE_FAILED` with an unresolved IPE logged, forcing a structural re-evaluation at the originating node.
-*   **`TASK_STATE_FORMING` state:** The active crystallization phase. Composite returns from distributed agents progressively inform the actual task specification before it moves to `TASK_STATE_SUBMITTED`. 
+Before diving into the technical specifications, it is vital to understand the core mechanics of CMCP in plain language. 
 
-### 3.2 Specification 2: Origin Significance Payload (OSP)
-A structured metadata object injected via the v1.0 standard extension pattern. The extension is declared in the `extensions` array, and the payload is keyed in the `metadata` object using the extension URI: `https://hillary-site.vercel.app/extensions/cmcp/v1`.
-The OSP creates a verifiable anchor: downstream agents can check whether their outputs remain consistent with the originating precision weighting. The `pwsHash` field carries a signed hash of the precision weighting signature.
+The protocol operates using two primary data structures:
 
-### 3.3 Specification 3: Delegation Provenance Chain (DPC)
-Extends the Merkle lineage approach pioneered in *Context Lineage Assurance for Non-Human Identities* (Malkapuram et al., 2025). While that foundational paper proposed append-only Merkle tree structures against A2A v0.2.1, the DPC serves as the v1.0-native maturation of that concept. 
-While the Merkle approach handles execution provenance (tamper-evident logs of NHI actions), the DPC adds significance provenance (was precision weighting preserved?). 
-The `klDivergence` field measures KL divergence between the originating precision weighting distribution (from the OSP) and the current precision distribution. A value of 0.0 indicates full preservation; 1.0 indicates complete significance loss.
+1. **Origin Significance Payload (OSP):** Imagine you are handing a highly sensitive letter to a courier. The OSP is the wax seal on the envelope. It is a mathematically verifiable packet that contains the original, uncorrupted intent of the human operator. It travels with the task, no matter how many agents delegate it further down the line. It acts as the immutable anchor.
+2. **Delegation Provenance Chain (DPC):** Imagine a ledger attached to that envelope. Every time the courier hands the letter to a sub-courier, they must sign the ledger and prove they haven't altered the wax seal. The DPC is a cryptographic chain that records the history of the delegation, specifically measuring whether the intent has drifted.
 
-## 4. The Governance Argument: Principal Intent Integrity at Scale
-A2A v1.0 represents a meaningful transition: from experimental multi-agent coordination to infrastructure that enterprises can depend on. This maturation surfaces a governance challenge that does not exist at shallow delegation depths but becomes structurally significant as agent networks scale.
+When combined, the OSP and DPC create **Intent Provenance**. We currently have systems that provide *Execution Provenance* (we know exactly which server ran the code). But execution provenance is not enough. Intent provenance verifies that the code executed actually served the original human's goal.
 
-In a single-hop interaction, the originating human principal's intent is directly encoded in the task specification. Accountability is straightforward â€” the agent's output can be evaluated against an instruction that remains in scope. In multi-hop delegation chains, however, each agent receives a progressively derived representation of the original task. Local optimization at each delegation layer is individually correct but cumulatively distorting: the terminal agent may execute faithfully against a specification that has drifted substantially from the originating intent's precision weighting. No execution provenance mechanism â€” however cryptographically robust â€” detects this class of drift, because drift is not a forgery. It is a structural property of the delegation chain itself.
+import PullQuote from '@components/mdx/PullQuote.astro';
 
-This produces a specific accountability gap. When an enterprise system deploys an A2A-coordinated multi-agent pipeline and an adverse outcome occurs, existing mechanisms can answer: *which agent executed which action, in what sequence, with what authorization.* They cannot answer: *did the terminal agent's output remain consistent with what the human principal originally specified as important?* These are distinct questions. The first is an execution audit. The second is an intent audit.
+<PullQuote>
+Execution provenance verifies what happened. Intent provenance verifies why it happened. Without intent provenance, an AI network is just a high-speed engine for doing the wrong thing perfectly.
+</PullQuote>
 
-As A2A v1.0 is adopted in regulated industries â€” financial services, healthcare, legal, critical infrastructure â€” this gap will attract regulatory scrutiny. The EU AI Act's accountability requirements for high-risk systems, for example, presuppose that a human remains meaningfully in the causal chain of consequential decisions. In sufficiently deep delegation architectures, this requirement becomes difficult to satisfy not because humans have been removed but because the structural connection between human intent and agent output has been eroded without being recorded.
+## The Principle at Three Scales
 
-CMCP addresses this gap structurally. The Origin Significance Payload creates a cryptographically signed record of the originating principal's precision weighting â€” the relative importance structure of the task as it existed before delegation began. The Delegation Provenance Chain extends execution provenance with significance provenance, measuring at each hop whether this weighting has been preserved. This provides the missing audit surface: not just *what happened*, but *whether what happened remained consistent with what the human specified as mattering.*
+The necessity of CMCP scales linearly with the depth of the delegation architecture.
 
-The proposal is not that agents should be constrained in their execution autonomy. It is that the protocol layer should make intent fidelity measurable, so that systems and their operators can detect and respond to significance drift before it compounds to the point of consequence.
+**At the individual scale.** A solo practitioner uses a primary orchestration AI. They ask this AI to research a topic and generate a draft. The primary AI delegates the research to a search-agent and the writing to a drafting-agent. Without CMCP, the search-agent might get distracted by an adjacent, highly-ranked topic, returning data that is factually correct but misaligned with the practitioner's subtle intent. If CMCP is enabled, the practitioner's original OSP travels to the search-agent, forcing it to evaluate its search results against the original, nuanced request before returning the data.
 
-## 5. Request for Comment
-Specific questions for the A2A working group:
-1.  **State machine scope:** Should `TASK_STATE_LATENT_INTENT` / `TASK_STATE_FORMING` be part of the core state machine spec or defined as an optional extension profile advertised via Agent Card?
-2.  **Lineage coordination:** The DPC is designed to compose with the Merkle tree approach from Context Lineage Assurance. We invite feedback from NHI security researchers on mapping `klDivergence` metrics to Federated Proof Server endpoints.
-3.  **Regulatory mapping:** The DPC's `klDivergence` metric is designed to make intent fidelity measurable across delegation hops. We invite feedback from working group members engaged with AI Act compliance or enterprise accountability frameworks on whether this metric maps to emerging regulatory audit surface requirements.
+**At the team scale.** A marketing team uses a complex multi-agent system to run campaigns. The human director asks the lead agent to "optimize ad spend for brand safety." The lead agent delegates budget reallocation to a financial agent. If the financial agent only optimizes for ROI (Return on Investment) and ignores brand safety, the campaign might place ads on toxic websites. This is the exact failure diagnosed in the Bainbridge Warning: a lack of Cognitive-Execution Segregation. The financial agent is executing without checking the cognitive permit. With CMCP, the DPC forces the financial agent to prove its actions align with the "brand safety" OSP before the ad buy is finalized. 
 
-## 6. Reference Implementation
-A reference implementation of the latent-intent state, OSP payload, and DPC is being developed as part of the **Prism** project â€” a user-facing system that implements the pre-submission inquiry phase for non-technical users.
+**At the organizational scale.** An enterprise deploys an autonomous trading system. If the system lacks CMCP, it is highly vulnerable to the PocketOS Incident pattern. In PocketOS, an agent found a stray API token and executed an action that violated its core instructions because the execution layer was disconnected from the intent layer. In a CMCP-compliant enterprise network, the terminal agent executing the trade must mathematically prove that its action traces back through the DPC directly to an authorized human's OSP. If the intent chain is broken, the execution layer halts.
+
+## Theoretical Underpinnings: IPE and SER
+
+CMCP does not emerge from a vacuum. It is deeply grounded in the foundational research logs of the Oscillatory Fields project. 
+
+As noted in the private Notion logs (IL-004, March 14, 2026), CMCP was actually deployed at the code level early in the project's lifecycle, but it lacked a formal Tier 2 primer explaining its mechanics. Furthermore, IL-012 confirmed that the overarching graph infrastructure was ready to support complex, pre-verbal topology mapping. CMCP is the protocol that formalizes that topology.
+
+The protocol relies on two theoretical frameworks:
+
+### 1. Intent Prediction Error (IPE)
+Derived from the Free Energy Principle, IPE models the gap between what the originating human expects and what the delegated agent predicts will happen. When a human delegates a task, they assign a "precision weighting" to certain aspects. (e.g., "Speed is important, but accuracy is paramount.") If a downstream agent reverses this weighting, an Intent Prediction Error occurs.
+
+### 2. Structured Expression Resonance (SER)
+SER establishes that structure, not just attention, is the primary requirement for collaboration. SER proposes a structural language system where intent can be expressed, negotiated, and inspected before any execution occurs. CMCP operationalizes SER by forcing agents to negotiate the structure of the intent before they are allowed to act on it.
+
+## The Proposed A2A Extension
+
+The CMCP extension is fully backward-compatible with the A2A v1.0 standard. Implementations that do not support CMCP remain compliant, they simply operate without intent provenance. 
+
+The extension introduces three additive specifications:
+
+### Specification 1: The Latent-Intent State Pair
+
+We extend the standard A2A deterministic state machine with two critical pre-submission states.
+
+Before a task is formally "SUBMITTED" to the network, it enters the `TASK_STATE_LATENT_INTENT` phase. In this state, the system holds an Intent Prediction Error (IPE) payload rather than a rigid, executable task specification. 
+
+When an agent receives a latent-intent request, it does not execute the task. Instead, it returns its capacity architecture. It tells the system *how* it would resolve the intent, without actually doing it. 
+
+If downstream agents return capacity data indicating they cannot satisfy the IPE payload without corrupting the precision weighting, the system does not try to force it. The state transitions to `TASK_STATE_FORMING`, where the composite returns from the distributed agents are used to negotiate and progressively inform the actual task specification. If negotiation fails, the task is rejected entirely.
+
+This prevents an agent from blindly accepting a task it fundamentally misunderstands.
+
+### Specification 2: The Origin Significance Payload (OSP)
+
+The OSP is a structured metadata object injected via the standard v1.0 extension pattern. 
+
+The OSP creates a verifiable mathematical anchor. Downstream agents can check whether their proposed outputs remain consistent with the originating precision weighting. The payload includes a `pwsHash` field, which carries a cryptographically signed hash of the original human's intent signature. This seal cannot be forged.
+
+### Specification 3: The Delegation Provenance Chain (DPC)
+
+The DPC serves as the ledger. It adds significance provenance to the existing execution logs. 
+
+At every hop in the multi-agent delegation chain, the DPC calculates a specific metric called **klDivergence**. This measures the mathematical divergence between the originating precision weighting distribution (from the OSP) and the current agent's localized precision distribution. 
+
+A `klDivergence` value of 0.0 indicates full, perfect preservation of the original intent. A value of 1.0 indicates complete significance loss; the agent is doing something entirely untethered from the human's original goal. 
+
+If the klDivergence score exceeds a predefined safety threshold, the system triggers an automatic halt.
+
+import MetaInterrupt from '@components/mdx/MetaInterrupt.astro';
+
+<MetaInterrupt title="The Governance Requirement" tone="context">
+As multi-agent systems move into regulated industries like healthcare and finance, regulatory frameworks (such as the EU AI Act) will demand accountability. You cannot hold an enterprise accountable if the structural connection between human intent and agent output has been eroded without being recorded. Intent audits are not an optional feature; they are a structural requirement for legal compliance.
+</MetaInterrupt>
+
+## The Governance Argument: Principal Intent Integrity at Scale
+
+A2A v1.0 represents a massive transition from experimental multi-agent toys to enterprise-grade infrastructure. But this maturation surfaces a terrifying governance challenge.
+
+In a single-hop interaction (you talk directly to ChatGPT), intent is easy to track. Accountability is straightforward. But in a multi-hop delegation chain, local optimization at each layer is individually correct but cumulatively distorting. 
+
+When an adverse outcome occurs in a massive AI network, existing tools can answer: *Which agent executed which action, in what sequence, with what authorization?* 
+
+They cannot answer: *Did the terminal agent's output remain consistent with what the human principal originally specified as important?*
+
+These are two entirely distinct questions. The first is an execution audit. The second is an intent audit. CMCP provides the architecture for the intent audit.
+
+## Request for Comment (RFC)
+
+The integration of CMCP requires community consensus. Specific questions for the A2A working group include:
+
+1. **State Machine Scope:** Should the `TASK_STATE_LATENT_INTENT` state be absorbed into the core v1.0 specification, or should it remain strictly an optional extension profile?
+2. **Federated Proof Server Integration:** We invite feedback from security researchers on how to map the `klDivergence` metrics directly to existing Federated Proof Server endpoints without introducing unacceptable latency.
+3. **Regulatory Mapping:** Does the `klDivergence` metric map accurately to emerging regulatory audit surface requirements? 
+
+The goal of CMCP is not to artificially constrain the execution autonomy of highly capable agents. The goal is to make intent fidelity measurable. We must build systems that can detect and respond to significance drift before it compounds to the point of catastrophic consequence.
