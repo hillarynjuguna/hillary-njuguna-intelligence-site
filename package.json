@@ -11,7 +11,7 @@
     "build": "npm run validate:content && npm run build:graph && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "build:graph": "tsx scripts/build-graph.ts",
+    "build:graph": "tsx scripts/bridge/sync-notion-graph.ts && tsx scripts/build-graph.ts",
     "validate:content": "tsx scripts/validate-content.ts",
     "check:relations": "tsx scripts/check-relations.ts",
     "check:orphans": "tsx scripts/check-orphans.ts",

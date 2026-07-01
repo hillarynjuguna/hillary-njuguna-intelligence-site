@@ -8,14 +8,43 @@ Disallow: /api/
 Sitemap: https://hillarynjuguna.vercel.app/sitemap-index.xml
 
 # AI crawlers are welcome — this site is designed for machine retrieval
+# An llms.txt index is available for structured ingestion: /llms.txt
+
+# OpenAI
 User-agent: GPTBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
 Allow: /
 
 User-agent: anthropic-ai
 Allow: /
 
+# Google
 User-agent: Google-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Meta
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
 Allow: /

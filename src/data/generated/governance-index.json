@@ -321,6 +321,216 @@
         "clause-irreversibility-threshold"
       ],
       "governanceRelevance": "direct"
+    },
+    {
+      "contentId": "cycle-37eeb86f-d1b0-81a3-afa2-cc82d4c58ebf",
+      "contentTitle": "Cycle Log: Interface Expropriation",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-37eeb86f-d1b0-8108-a15b-e43ae2137d3f",
+      "contentTitle": "Cycle Log: Latent vs. Structured AI Video Classes",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-37eeb86f-d1b0-81b9-819b-e9a56d049e48",
+      "contentTitle": "Cycle Log: Parametric-to-Contextual Memory Migration",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-37eeb86f-d1b0-8134-a255-d17a8e519378",
+      "contentTitle": "Cycle Log: Billing-Layer BVL",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-34ceb86f-d1b0-8192-9609-dea27bddc261",
+      "contentTitle": "Cycle Log: Degraded Implementation Confirmation",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-335eb86f-d1b0-8127-8a5e-fadc5ab182c5",
+      "contentTitle": "Cycle Log: Field Suite / RESONANCE",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-335eb86f-d1b0-817a-ab79-d483094ffb7d",
+      "contentTitle": "Cycle Log: Clarity Garden",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-335eb86f-d1b0-8188-bf56-f218ead85613",
+      "contentTitle": "Cycle Log: Deal Packet",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-335eb86f-d1b0-81c3-80a4-d40e75d6f3c8",
+      "contentTitle": "Cycle Log: ClearBid",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-333eb86f-d1b0-8101-b1e2-eb4e0a79a157",
+      "contentTitle": "Cycle Log: Second-Order Institutional Capture",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-333eb86f-d1b0-8128-ada9-c8f798811081",
+      "contentTitle": "Cycle Log: Epistemically Sovereign Measurement",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-333eb86f-d1b0-8144-bc7a-fe3ead8b1586",
+      "contentTitle": "Cycle Log: Capture-Resistant Evidence Infrastructure",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-333eb86f-d1b0-81cf-93ae-fd12093ef9a0",
+      "contentTitle": "Cycle Log: Counter-Ontological Evidence Architecture",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-332eb86f-d1b0-8182-867e-c510fa5dd485",
+      "contentTitle": "Cycle Log: Behavioral Layer Exposure",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-331eb86f-d1b0-8130-9c7c-f482501072fa",
+      "contentTitle": "Cycle Log: The Tongue-Tie Diagnostic",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-331eb86f-d1b0-8138-892b-ebfec17eb36b",
+      "contentTitle": "Cycle Log: Substrate-Agnostic Crystallization",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-331eb86f-d1b0-81da-a036-ebdf85895d88",
+      "contentTitle": "Cycle Log: Counter-Ontological Refusal Architecture (CORA)",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-32deb86f-d1b0-8170-a40f-d4b9645cd780",
+      "contentTitle": "Cycle Log: Value Authoring Substrate",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-8117-b553-ebf628b38a1a",
+      "contentTitle": "Cycle Log: R0–R3 Reversibility Classification",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-8146-8f25-e3123320e6f2",
+      "contentTitle": "Cycle Log: The Ache",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-8158-9653-f8f6d8cdbb70",
+      "contentTitle": "Cycle Log: CMCP (Cross-Manifold Context Protocol)",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-8164-b529-c38b63016e64",
+      "contentTitle": "Cycle Log: Eigenform (Von Foerster)",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-81a6-ae44-d2e74a1fa77e",
+      "contentTitle": "Cycle Log: Maternal Architecture",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-81b1-8370-f7d41fe08557",
+      "contentTitle": "Cycle Log: Governance Theater",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-81b1-ad5d-d75fcfda26a1",
+      "contentTitle": "Cycle Log: Untethered Semantics",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-81b3-ac17-d54cb6ae2d24",
+      "contentTitle": "Cycle Log: DCFB (Distributed Cognition as Fear Bypass)",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-81c7-9951-fc0c8bf366cb",
+      "contentTitle": "Cycle Log: AOD (Appearance/Outcome Decoupling)",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-81da-a6a9-cc8c9e7fbee1",
+      "contentTitle": "Cycle Log: RSPS (Recursive Sovereign Project Space)",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-81ea-a30a-d508ce1beee1",
+      "contentTitle": "Cycle Log: Sigma Stratum",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
+    },
+    {
+      "contentId": "cycle-323eb86f-d1b0-81fa-a0e3-e2c2c5bdfbee",
+      "contentTitle": "Cycle Log: The Bainbridge Warning",
+      "contentType": "digest",
+      "clauseIds": [],
+      "governanceRelevance": "adjacent"
     }
   ],
   "byDomain": {
@@ -337,5 +547,5 @@
       "clause-irreversibility-threshold"
     ]
   },
-  "generatedAt": "2026-06-30T16:51:16.658Z"
+  "generatedAt": "2026-07-01T16:53:06.907Z"
 }

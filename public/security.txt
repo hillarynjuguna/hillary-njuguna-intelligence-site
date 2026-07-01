@@ -1,0 +1,4 @@
+Contact: mailto:hillarynjuguna@protonmail.com
+Preferred-Languages: en
+Policy: https://hillarynjuguna.vercel.app/terms
+Expires: 2027-07-01T12:00:00.000Z

@@ -129,7 +129,18 @@ function formatNodeAsJsonLd(node: any) {
     additionalProperty: [
       { '@type': 'PropertyValue', name: 'crystallization', value: node.crystallization },
       { '@type': 'PropertyValue', name: 'governanceRelevance', value: node.governanceRelevance },
-    ],
+      { '@type': 'PropertyValue', name: 'version', value: node.version ?? null },
+    ].filter(p => p.value !== null && p.value !== undefined),
+    // abstract: primary extractable claim (standard schema.org field)
+    ...(node.keyClaims?.length > 0 && {
+      abstract: node.keyClaims[0],
+      // Non-standard extension — full claim array for RAG extraction
+      'x-keyClaims': node.keyClaims,
+    }),
+    // Uncertainty exposure — surfaces unresolved tensions alongside claims
+    ...(node.unresolvedEdges?.length > 0 && {
+      'x-unresolvedEdges': node.unresolvedEdges,
+    }),
   };
 }
 
@@ -142,6 +153,9 @@ function formatEdgeAsJsonLd(edge: any) {
       target: edge.target,
       confidence: edge.confidence || 'inferred',
       manual: edge.manual || false,
+      explanation: edge.explanation ?? null,
+      firstIntroduced: edge.firstIntroduced ?? null,
+      lastVerified: edge.lastVerified ?? null,
     },
   };
 }

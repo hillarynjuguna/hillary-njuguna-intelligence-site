@@ -39,6 +39,10 @@ export interface RelationInput {
   provenance?: string[];
   /** True when authored in frontmatter by a human. Used to rank above inferred relations. */
   manual?: boolean;
+  /** ISO date string — when this relationship was first established */
+  firstIntroduced?: string;
+  /** ISO date string — when this relationship was last verified against evidence */
+  lastVerified?: string;
 }
 
 // ── Relation type metadata ────────────────────────────────────────────────────

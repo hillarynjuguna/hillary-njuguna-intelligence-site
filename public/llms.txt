@@ -1,0 +1,46 @@
+# Hillary Njuguna
+
+> AI governance architecture and structural diagnostics for institutions. Specialized in constitutional AI governance frameworks, AI risk readiness assessments, and building durable cognitive infrastructure for agentic AI systems.
+
+## Machine-Readable Corpus
+The full research corpus is available as structured JSON-LD — no HTML parsing required.
+* [Knowledge Graph API](https://hillarynjuguna.vercel.app/api/v0-alpha-graph.json) - Complete corpus as Schema.org `Dataset`: 30+ nodes, 190+ typed edges, queryable by `?node=` or `?domain=`. Returns JSON-LD with `Access-Control-Allow-Origin: *`.
+* [Research Index](https://hillarynjuguna.vercel.app/research-index.json) - Flat machine-readable index of all research papers with abstracts, keyClaims, concepts, version, and status.
+* [Knowledge Manifest](https://hillarynjuguna.vercel.app/knowledge-manifest.json) - Canonical machine-readable summary of core frameworks, epistemology, and intellectual territory.
+
+## About the Author
+Hillary Njuguna is an AI governance architect, researcher, and practitioner based internationally (Nairobi → Kuala Lumpur). He builds structural diagnostics and readiness frameworks for institutions deploying agentic AI — with a focus on making governance failures visible before they become catastrophic. Contact: hillarynjuguna@protonmail.com | Twitter/X: @quasiconscious
+
+## Primary Frameworks & Products
+* [Cognitive Infrastructure Readiness (CIR v2.0)](https://hillarynjuguna.vercel.app/products/cir) - The structural assessment instrument for evaluating organizational capacity to deploy autonomous systems without governance failure. Available at [Gumroad](https://hillarynjuguna.gumroad.com/l/xlwin).
+* [Bainbridge Warning](https://hillarynjuguna.vercel.app/products/bainbridge-warning) - Framework for diagnosing AI governance authenticity vs. "governance theater."
+* [CIR Live Assessment](https://hillarynjuguna.vercel.app/cir-assessment) - Interactive diagnostic tool to run a live Cognitive Infrastructure Readiness evaluation for your organization.
+
+## Core Research & Publications
+* [Behavioral Layer Exposure](https://hillarynjuguna.vercel.app/research/behavioral-layer-exposure) - The gap between dynamic system actions and static policy definitions; the core mechanism of undetected AI drift.
+* [Governance Theater: The Failure Mode Nobody Names](https://hillarynjuguna.vercel.app/research/governance-theater) - How process artifacts and documentation rituals mask operational vulnerability in AI systems.
+* [The Bainbridge Warning](https://hillarynjuguna.vercel.app/research/bainbridge-warning) - The foundational doctrine: why AI governance fails before it looks like failure; structural guarantees of predictable collapse.
+* [Trust, Irreversibility, and Residue](https://hillarynjuguna.vercel.app/research/trust-irreversibility-residue) - A theoretical framework for safety boundaries under autonomous delegation.
+* [DCFB: Distributed Cognition Failure Boundaries](https://hillarynjuguna.vercel.app/research/dcfb-distributed-cognition) - Defining the structural limits where human-AI cognitive integration degrades.
+* [R0-R3 Classification](https://hillarynjuguna.vercel.app/research/r0-r3-classification) - Structural classification scheme for decision authority in agentic systems.
+* [Activation Intelligence](https://hillarynjuguna.vercel.app/research/activation-intelligence) - Research on empirical verification patterns in active runtimes.
+* [Aurora Consciousness Architecture](https://hillarynjuguna.vercel.app/research/aurora-consciousness-architecture) - Theoretical design paradigms for alignment-preserving system architecture.
+* [Sovereign Constitutional Runtime](https://hillarynjuguna.vercel.app/research/phase-3-constitutional-runtime) - Real-time policy execution layers for agentic actions.
+* [RSPS Architecture](https://hillarynjuguna.vercel.app/research/rsps-architecture) - Recursive Sovereign Processing System structural design.
+* [Pocketos Incident](https://hillarynjuguna.vercel.app/research/pocketos-incident) - Case study analysis of the PocketOS deployment failure as a governance theater specimen.
+
+## Latest Digest Briefs
+* [CIR v2.0 — Core Argument](https://hillarynjuguna.vercel.app/digest/cir-v2-core-argument) - The central thesis that AI readiness is a constitutional design problem, not a technology adoption problem.
+* [It Was Never About the Music](https://hillarynjuguna.vercel.app/digest/it-was-never-about-the-music) - A cultural and structural analysis of alignment vector shifts in modern AI systems.
+* [The Poisoned Instrument](https://hillarynjuguna.vercel.app/digest/the-poisoned-instrument) - Evaluating feedback loops in autonomous alignment pipelines.
+
+## Governance Clauses
+* [Irreversibility Threshold Review](https://hillarynjuguna.vercel.app/clauses/irreversibility-threshold-review) - Constitutional clause on mandatory reversal review for high-stakes autonomous actions.
+* [Epistemological Immune System](https://hillarynjuguna.vercel.app/clauses/epistemological-immune-system) - Governance clause on defending cognitive infrastructure against epistemic corruption.
+
+## Public Resources & Kits
+* [Sovereign Operations Dashboard](https://hillarynjuguna.vercel.app/sovereign-ops) - Real-time metrics and verification status for constitutional systems.
+* [Proof Kit](https://hillarynjuguna.vercel.app/proof) - Verifiable signed state transitions of the governance runtime.
+* [Orchestra Operation](https://hillarynjuguna.vercel.app/orchestra-operation) - Demonstration of human-agent cognitive alignment.
+* [Dual Invariant Demo](https://hillarynjuguna.vercel.app/tools/dual-invariant-demo) - Live instrument demonstrating threshold boundaries of sovereign states.
+* [Contact](https://hillarynjuguna.vercel.app/contact) - Enquiries, collaboration, and consulting engagement requests.

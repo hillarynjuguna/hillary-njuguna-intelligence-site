@@ -4,7 +4,12 @@
 
 import type { RelationInput } from './relations';
 
-export type CrystallizationState = 'emergent' | 'developing' | 'crystallized';
+export type CrystallizationState =
+  | 'emergent'      // Working hypothesis, no specimen validation yet
+  | 'developing'    // Active, being refined against evidence
+  | 'crystallized'  // Stable, supported by multiple specimens
+  | 'canonical'     // Externally verified or cited — stable for institutional reference
+  | 'deprecated';   // Retired, superseded, or structurally invalidated
 export type GovernanceRelevance = 'none' | 'adjacent' | 'direct';
 export type ContentType = 'research' | 'digest' | 'product' | 'clause' | 'field' | 'signal';
 export type PublishStatus = 'draft' | 'published' | 'archived';

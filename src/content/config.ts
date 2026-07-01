@@ -14,6 +14,10 @@ const relationInputSchema = z.object({
   explanation: z.string(),
   provenance: z.array(z.string()).optional(),
   manual: z.boolean().optional(),
+  /** ISO date — when this relationship was first established */
+  firstIntroduced: z.string().optional(),
+  /** ISO date — when this relationship was last verified against evidence */
+  lastVerified: z.string().optional(),
 });
 
 // ── Shared topology fields added to all content collections ──────────────────
@@ -23,7 +27,7 @@ const topologyFields = {
   publishStatus: z.enum(['draft', 'published', 'archived']).default('published'),
   featuredRank: z.number().default(99),
   domains: normalizeArray(),
-  crystallization: z.enum(['emergent', 'developing', 'crystallized']).default('developing'),
+  crystallization: z.enum(['emergent', 'developing', 'crystallized', 'canonical', 'deprecated']).default('developing'),
   governanceRelevance: z.enum(['none', 'adjacent', 'direct']).default('none'),
   lineage: normalizeArray(),
   explicitRelations: z.array(relationInputSchema).optional(),
@@ -85,6 +89,14 @@ const research = defineCollection({
     keyClaims: z.array(z.string()).transform(arr => arr.map(s => s.trim())).default([]),
     unresolvedEdges: normalizeArray(),
     dependsOnConcepts: normalizeArray(),
+    /** Semantic version string — e.g. "1.2", "2.0". Matches version in seoTitle. */
+    version: z.string().optional(),
+    /** Changelog entries for version history display */
+    changelog: z.array(z.object({
+      version: z.string(),
+      date: z.coerce.date(),
+      summary: z.string(),
+    })).default([]),
     ...topologyFields,
   }),
 });

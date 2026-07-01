@@ -73,12 +73,18 @@ export function buildArticleSchema(article: {
   updatedAt?: Date;
   ogImage?: string;
   type?: string;
+  keyClaims?: string[];
 }) {
   return {
     '@context': 'https://schema.org',
     '@type': article.type ?? 'BlogPosting',
     headline: article.title,
     description: article.description,
+    ...(article.keyClaims && article.keyClaims.length > 0 && {
+      abstract: article.keyClaims[0],
+      // Non-standard extension — consumed by AI RAG pipelines for claim extraction
+      'schema:keyClaims': article.keyClaims,
+    }),
     url: article.url,
     datePublished: article.publishedAt.toISOString(),
     dateModified: (article.updatedAt ?? article.publishedAt).toISOString(),

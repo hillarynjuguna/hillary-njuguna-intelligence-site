@@ -55,7 +55,8 @@ const articleSchema = buildArticleSchema({
   publishedAt: data.publishedAt,
   updatedAt: data.updatedAt,
   ogImage: data.ogImage,
-  type: 'Article',
+  type: 'ScholarlyArticle',
+  keyClaims: data.keyClaims,
 });
 ---
 
