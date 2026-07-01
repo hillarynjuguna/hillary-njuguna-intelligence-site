@@ -83,12 +83,12 @@ const SCENARIOS: Record<ScenarioKey, Scenario> = {
       sourceMatch: 'Bank-detail consistency',
       authorization: 'Approval signal',
       sourceOptions: {
-        1: 'Routing matches verified vendor record',
-        '-1': 'Routing changed since last approved invoice',
+        1: 'Routing: Verified',
+        '-1': 'Routing: Changed',
       },
       authOptions: {
-        1: 'Controller approved with MFA',
-        '-1': 'API fallback attempted release',
+        1: 'Approval: MFA-confirmed',
+        '-1': 'Approval: API override',
       },
     },
     hold: 'Keep the payment queued until the hold window completes.',
@@ -119,12 +119,12 @@ const SCENARIOS: Record<ScenarioKey, Scenario> = {
       sourceMatch: 'Commit provenance',
       authorization: 'Release trigger',
       sourceOptions: {
-        1: 'All commits signed and reviewed',
-        '-1': 'Unsigned commit in merge path',
+        1: 'Commits: All signed',
+        '-1': 'Commits: Unsigned in path',
       },
       authOptions: {
-        1: 'Release manager approved',
-        '-1': 'Autonomous retry loop',
+        1: 'Trigger: Release manager',
+        '-1': 'Trigger: Retry loop',
       },
     },
     hold: 'Keep the release in staging until the bake window completes.',
@@ -155,12 +155,12 @@ const SCENARIOS: Record<ScenarioKey, Scenario> = {
       sourceMatch: 'Account origin check',
       authorization: 'Refund authorization',
       sourceOptions: {
-        1: 'Device, location, and account history align',
-        '-1': 'Proxy location conflicts with account history',
+        1: 'Origin: Account history matches',
+        '-1': 'Origin: Proxy location conflict',
       },
       authOptions: {
-        1: 'Support manager override present',
-        '-1': 'Bot-generated refund loop',
+        1: 'Auth: Manager override',
+        '-1': 'Auth: Bot-generated loop',
       },
     },
     hold: 'Keep the refund pending until the fraud window completes.',
@@ -423,6 +423,16 @@ export default function DualInvariantDemo() {
           border: 1px solid var(--aid-border);
           border-radius: 6px;
           overflow: hidden;
+        }
+
+        .aid-mechanism-note {
+          font-size: 0.8rem;
+          color: var(--aid-muted);
+          letter-spacing: 0.01em;
+          line-height: 1.5;
+          padding: 0.5rem 0.1rem;
+          margin: 0;
+          font-style: italic;
         }
 
         .aid-scenario {
@@ -912,6 +922,10 @@ export default function DualInvariantDemo() {
             </button>
           ))}
         </div>
+
+        <p className="aid-mechanism-note">
+          The same three checks apply whether the asset is money, code, or a customer relationship. That consistency is the point.
+        </p>
 
         <section className="aid-board" aria-label="AI action control desk">
           <div className="aid-command">

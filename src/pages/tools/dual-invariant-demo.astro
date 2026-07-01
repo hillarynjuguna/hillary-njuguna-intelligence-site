@@ -5,61 +5,70 @@ import DualInvariantDemo from '@components/tools/DualInvariantDemo';
 import { buildFieldPrompt } from '@lib/field';
 
 const prompt = buildFieldPrompt('trace', {
-  title: 'Dual-Invariant demo',
+  title: 'AI action approval desk',
   nodeHref: '/tools/dual-invariant-demo',
   primaryCorpusHref: '/corpus',
 });
 ---
 
 <FieldShellLayout
-  title="Governance Gate Demo"
-  description="Interactive demo showing how a dual-invariant governance gate evaluates whether an AI action should proceed, pause, or block."
+  title="AI Action Approval Desk"
+  description="A business-facing control-plane demo for deciding whether an autonomous AI action should be approved, held, escalated, or blocked."
   eyebrow="Interactive tool"
-  summary="An interactive state machine demonstrating how timing constraints and relational integrity checks combine to govern AI action execution in real time."
+  summary="See what happens when an AI agent tries to release a $100,000 wire transfer to a changed bank account."
   actions={[
-    { label: 'Read AURORA', href: '/research/aurora-consciousness-architecture', tone: 'secondary' },
+    { label: 'Request implementation review', href: '/contact', tone: 'primary' },
+    { label: 'Run CIR assessment', href: '/products/cir-assessment', tone: 'secondary' },
     { label: 'Return to Orchestra', href: '/orchestra-operation', tone: 'ghost' },
-    { label: 'Open corpus', href: '/corpus', tone: 'primary' },
   ]}
   prompt={prompt}
   facts={[
-    { label: 'Mode', value: 'Trace formal verification logic' },
-    { label: 'Core rule', value: 'Both invariants must hold' },
-    { label: 'Surface', value: 'Interactive state machine specimen' },
+    { label: 'Mode', value: 'Operational approval console' },
+    { label: 'Decisions', value: 'Approve, hold, escalate, or block' },
+    { label: 'Coverage', value: 'Money, production, customer refunds' },
   ]}
 >
   <div class="dual-demo page-enter">
     <div class="container">
-      <header class="demo-header">
-        <p class="label demo-label">Interactive Playground</p>
-        <h2 class="demo-title">Governance Gate Simulator</h2>
-        <p class="demo-desc">
-          See how a Dual-Invariant Governance Gate operates in real time. Autonomous AI agents are granted operational power only when both timing safety and relational integrity invariants pass. Select a business scenario below to explore how this prevents catastrophic failures in practice.
-        </p>
-        <div class="demo-links">
-          <a href="/research/aurora-consciousness-architecture" class="label">Read the AURORA research entry</a>
-          <a href="/research/r0-r3-classification" class="label">Read Reversibility &amp; Invariants</a>
-        </div>
-      </header>
+
+      <DualInvariantDemo client:visible />
 
       <section class="demo-intro card">
         <div class="intro-grid">
           <div>
-            <p class="label section-label">The Core Principle</p>
+            <p class="label section-label">The business problem</p>
             <p>
-              Security isn't built by policing output strings; it's built by establishing invariants. The timing gate prevents instant, unrecallable actions. The relational check ensures the action has an unbroken chain of human authorization.
+              Most AI safety demos stop at prompts and responses. Operators need a control plane for actions: who or what is asking, which system will be touched, whether the evidence is trustworthy, and whether the action should wait for human review.
             </p>
           </div>
           <div>
-            <p class="label section-label">Operational Sandbox</p>
+            <p class="label section-label">The formal layer</p>
             <p>
-              Use the controls in the simulator below to modify the agent's environmental conditions. If any security constraint is violated, the gate immediately flags, pauses, or blocks execution.
+              Under the console is the same dual-invariant logic: irreversible action must wait long enough to be recallable, and the request must preserve a clean chain of provenance and authorization. The UI translates that into business decisions.
             </p>
           </div>
         </div>
       </section>
 
-      <DualInvariantDemo client:visible />
+      <section class="demo-next card">
+        <div class="demo-next__main">
+          <p class="label section-label">Implementation path</p>
+          <h3>Turn this from a demo into an action-control layer.</h3>
+          <p>
+            The practical work is mapping your irreversible actions, defining approval windows, connecting source-of-truth evidence, and deciding which cases are automatic, held, escalated, or blocked.
+          </p>
+        </div>
+        <div class="demo-next__actions">
+          <a href="/contact" class="btn btn--primary">Request implementation review</a>
+          <a href="/products/cir-assessment" class="btn btn--secondary">Run CIR assessment</a>
+        </div>
+        <div class="demo-next__links">
+          <span class="label">For technical readers</span>
+          <a href="/research/aurora-consciousness-architecture" class="label">Technical basis</a>
+          <a href="/research/r0-r3-classification" class="label">Reversibility model</a>
+          <a href="/corpus" class="label">Open corpus</a>
+        </div>
+      </section>
     </div>
   </div>
 </FieldShellLayout>
@@ -94,21 +103,6 @@ const prompt = buildFieldPrompt('trace', {
     margin-bottom: var(--space-5);
   }
 
-  .demo-links {
-    display: flex;
-    gap: var(--space-5);
-    flex-wrap: wrap;
-  }
-
-  .demo-links a {
-    color: var(--text-tertiary);
-    text-decoration: none;
-  }
-
-  .demo-links a:hover {
-    color: var(--ember);
-  }
-
   .card {
     padding: var(--space-7);
     border: 1px solid var(--border-mid);
@@ -126,5 +120,67 @@ const prompt = buildFieldPrompt('trace', {
   .intro-grid p:not(.label) {
     color: var(--text-secondary);
     line-height: var(--leading-relaxed);
+  }
+
+  .demo-next {
+    margin-top: var(--space-8);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .demo-next__main {
+    max-width: 68ch;
+  }
+
+  .demo-next__main h3 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .demo-next__main p:not(.label) {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .demo-next__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: flex-end;
+  }
+
+  .demo-next__links {
+    grid-column: 1 / -1;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--border-dim);
+    display: flex;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .demo-next__links span {
+    color: var(--text-tertiary);
+  }
+
+  .demo-next__links a {
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+
+  .demo-next__links a:hover {
+    color: var(--ember);
+  }
+
+  @media (max-width: 860px) {
+    .demo-next {
+      grid-template-columns: 1fr;
+    }
+
+    .demo-next__actions {
+      justify-content: flex-start;
+    }
   }
 </style>
