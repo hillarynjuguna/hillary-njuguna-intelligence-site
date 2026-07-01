@@ -78,6 +78,10 @@ const articleSchema = buildArticleSchema({
   governance={govItems}
   lineage={data.lineage}
   prompt={prompt}
+  version={data.version}
+  changelog={data.changelog}
+  crystallization={data.crystallization}
+  slug={entry.slug}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <Content components={{ PullQuote, MetaInterrupt, ContinuationCard, SeriesNav, ImageBlock, DropCap, AlternativeRegister, HeroVisual, SourceAttribution, ThreatFlow, ValidationStack, TrustChain, BoundaryCutaway, ComparisonPlate, Trap, Advice, Hook, Divider }} />

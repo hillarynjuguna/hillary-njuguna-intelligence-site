@@ -16,3 +16,4 @@ export { default as ValidationStack } from './ValidationStack.astro';
 export { default as TrustChain } from './TrustChain.astro';
 export { default as BoundaryCutaway } from './BoundaryCutaway.astro';
 export { default as ComparisonPlate } from './ComparisonPlate.astro';
+export { default as Citation } from './Citation.astro';

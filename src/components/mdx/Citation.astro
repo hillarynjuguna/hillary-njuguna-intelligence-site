@@ -1,0 +1,193 @@
+---
+interface Props {
+  title: string;
+  author?: string;
+  publishedAt: Date | string;
+  version?: string;
+  slug: string;
+}
+
+const { title, author = 'Hillary Njuguna', publishedAt, version, slug } = Astro.props;
+
+const dateObj = typeof publishedAt === 'string' ? new Date(publishedAt) : publishedAt;
+const year = dateObj.getFullYear();
+const formattedDate = dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const canonicalUrl = `https://hillarynjuguna.vercel.app/research/${slug}`;
+
+// APA Citation Format
+const apaCitation = `${author}. (${year}). *${title}*${version ? ` (v${version})` : ''}. Retrieved from ${canonicalUrl}`;
+
+// BibTeX Citation Format
+const bibtexKey = `${author.toLowerCase().split(' ')[1] || 'njuguna'}${year}${slug.replace(/[^a-zA-Z0-9]/g, '')}`;
+const bibtexCitation = `@article{${bibtexKey},
+  author = {${author}},
+  title = {${title}},
+  year = {${year}},
+  url = {${canonicalUrl}},
+  note = {${version ? `Version ${version}` : 'Retrieved from ' + canonicalUrl}},
+  urldate = {${dateObj.toISOString().split('T')[0]}}
+}`;
+---
+
+<div class="citation-block">
+  <div class="citation-header">
+    <div class="citation-title">Cite this work</div>
+    <span class="citation-badge">DOI Ready</span>
+  </div>
+  
+  <div class="citation-tabs">
+    <button class="tab-btn active" data-tab="apa">APA</button>
+    <button class="tab-btn" data-tab="bibtex">BibTeX</button>
+  </div>
+
+  <div class="tab-content" id="tab-apa">
+    <div class="citation-text" id="apa-text">{apaCitation}</div>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('apa-text').innerText); this.innerText = 'Copied!'; setTimeout(() => this.innerText = 'Copy APA', 2000)">Copy APA</button>
+  </div>
+
+  <div class="tab-content hidden" id="tab-bibtex">
+    <pre class="citation-code"><code id="bibtex-text">{bibtexCitation}</code></pre>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('bibtex-text').innerText); this.innerText = 'Copied!'; setTimeout(() => this.innerText = 'Copy BibTeX', 2000)">Copy BibTeX</button>
+  </div>
+</div>
+
+<script>
+  function setupTabs() {
+    const blocks = document.querySelectorAll('.citation-block');
+    blocks.forEach((block) => {
+      const tabs = block.querySelectorAll('.tab-btn');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          
+          const tabName = tab.getAttribute('data-tab');
+          const contents = block.querySelectorAll('.tab-content');
+          contents.forEach((content) => {
+            if (content.id === `tab-${tabName}`) {
+              content.classList.remove('hidden');
+            } else {
+              content.classList.add('hidden');
+            }
+          });
+        });
+      });
+    });
+  }
+
+  setupTabs();
+  document.addEventListener('astro:page-load', setupTabs);
+</script>
+
+<style>
+  .citation-block {
+    margin: var(--space-8) 0;
+    padding: var(--space-6);
+    background: linear-gradient(135deg, rgba(30, 27, 24, 0.4) 0%, rgba(15, 12, 10, 0.6) 100%);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+
+  .citation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .citation-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .citation-badge {
+    font-size: var(--text-xxs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 800;
+    color: var(--accent-light);
+    border: 1px solid rgba(232, 212, 176, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(232, 212, 176, 0.05);
+  }
+
+  .citation-tabs {
+    display: flex;
+    gap: var(--space-2);
+    border-bottom: 1px solid var(--border-dim);
+    margin-bottom: var(--space-4);
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tab-btn.active {
+    color: var(--text-primary);
+    border-bottom-color: var(--text-primary);
+  }
+
+  .tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .tab-content.hidden {
+    display: none;
+  }
+
+  .citation-text {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.02);
+    padding: var(--space-4);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255,255,255,0.01);
+  }
+
+  .citation-code {
+    margin: 0;
+    font-size: var(--text-xs);
+    background: rgba(0, 0, 0, 0.3);
+    padding: var(--space-4);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-dim);
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+  }
+
+  .copy-btn {
+    align-self: flex-start;
+    background: rgba(232, 212, 176, 0.05);
+    border: 1px solid var(--border-mid);
+    color: var(--text-primary);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .copy-btn:hover {
+    background: rgba(232, 212, 176, 0.1);
+    border-color: var(--text-primary);
+  }
+</style>
