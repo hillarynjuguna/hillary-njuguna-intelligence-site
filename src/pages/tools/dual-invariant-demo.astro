@@ -135,18 +135,24 @@ const prompt = buildFieldPrompt('trace', {
   }
 
   .demo-next__main h3 {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: var(--text-xl);
-    font-weight: 650;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
-    margin-bottom: var(--space-3);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: var(--text-xl) !important;
+    font-weight: 650 !important;
+    letter-spacing: -0.01em !important;
+    line-height: 1.3 !important;
+    margin-bottom: var(--space-3) !important;
   }
 
   .demo-title {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  :global(.field-header__title) {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
   }
 
   .demo-next__main p:not(.label) {
