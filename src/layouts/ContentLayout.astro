@@ -25,6 +25,8 @@ interface Props extends SEOProps {
   version?: string;
   changelog?: Array<{ version: string; date: Date | string; summary: string }>;
   crystallization?: string;
+  evidence?: string;
+  consensus?: string;
   slug?: string;
 }
 
@@ -46,6 +48,8 @@ const {
   version,
   changelog = [],
   crystallization,
+  evidence,
+  consensus,
   slug,
   ...seoProps
 } = Astro.props;
@@ -59,6 +63,8 @@ const meta = [
     : null,
   version ? { label: 'Version', value: `v${version}` } : null,
   crystallization ? { label: 'Maturity', value: crystallization.toUpperCase() } : null,
+  evidence ? { label: 'Evidence', value: evidence.toUpperCase() } : null,
+  consensus ? { label: 'Consensus', value: consensus.replace(/-/g, ' ').toUpperCase() } : null,
 ].filter((item): item is { label: string; value: string } => Boolean(item));
 
 const chips = tags.slice(0, 6).map((tag) => ({

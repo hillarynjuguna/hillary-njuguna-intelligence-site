@@ -28,6 +28,8 @@ const topologyFields = {
   featuredRank: z.number().default(99),
   domains: normalizeArray(),
   crystallization: z.enum(['emergent', 'developing', 'crystallized', 'canonical', 'deprecated']).default('developing'),
+  evidence: z.enum(['weak', 'moderate', 'strong']).optional(),
+  consensus: z.enum(['personal-hypothesis', 'framework-proposition', 'internally-validated', 'widely-adopted', 'deprecated']).optional(),
   governanceRelevance: z.enum(['none', 'adjacent', 'direct']).default('none'),
   lineage: normalizeArray(),
   explicitRelations: z.array(relationInputSchema).optional(),

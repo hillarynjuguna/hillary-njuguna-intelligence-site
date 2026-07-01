@@ -7,6 +7,8 @@ The full research corpus is available as structured JSON-LD — no HTML parsing 
 * [Knowledge Graph API](https://hillarynjuguna.vercel.app/api/v0-alpha-graph.json) - Complete corpus as Schema.org `Dataset`: 30+ nodes, 190+ typed edges, queryable by `?node=` or `?domain=`. Returns JSON-LD with `Access-Control-Allow-Origin: *`.
 * [Research Index](https://hillarynjuguna.vercel.app/research-index.json) - Flat machine-readable index of all research papers with abstracts, keyClaims, concepts, version, and status.
 * [Knowledge Manifest](https://hillarynjuguna.vercel.app/knowledge-manifest.json) - Canonical machine-readable summary of core frameworks, epistemology, and intellectual territory.
+* [Ontology Registry API](https://hillarynjuguna.vercel.app/ontology.json) - Schema.org `DefinedTermSet` containing definitions, directionality rules, and inference policies for semantic edge types.
+* [Ontology Edge Registry Page](https://hillarynjuguna.vercel.app/ontology) - Human-readable documentation for the relationships and grammar binding the knowledge graph.
 
 ## About the Author
 Hillary Njuguna is an AI governance architect, researcher, and practitioner based internationally (Nairobi → Kuala Lumpur). He builds structural diagnostics and readiness frameworks for institutions deploying agentic AI — with a focus on making governance failures visible before they become catastrophic. Contact: hillarynjuguna@protonmail.com | Twitter/X: @quasiconscious

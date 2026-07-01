@@ -1,0 +1,173 @@
+---
+export const prerender = true;
+import BaseLayout from '@layouts/BaseLayout.astro';
+import FieldHeader from '@components/field/FieldHeader.astro';
+import {
+  RELATION_LABELS,
+  RELATION_DESCRIPTION,
+  MANUAL_ONLY_RELATIONS,
+  RelationType
+} from '../lib/content/schemas/relations';
+
+const relationTypes = Object.keys(RELATION_LABELS) as RelationType[];
+---
+
+<BaseLayout
+  title="Ontology Edge Registry | Hillary Njuguna"
+  description="Semantics, directionality rules, and confidence policies for the Hillary Njuguna research graph edges."
+>
+  <div class="field-page page-enter">
+    <div class="container">
+      <FieldHeader
+        eyebrow="Epistemic Grammar"
+        title="Ontology Edge Registry"
+        summary="A website is a compiler for a language. This page documents the grammar of the relations (edges) that bind our research, project cycle logs, and operational products together."
+        meta={[
+          { label: 'Registered Edges', value: String(relationTypes.length) },
+          { label: 'Registry Version', value: 'v1.0-alpha' },
+          { label: 'Schema Type', value: 'DefinedTermSet' }
+        ]}
+        actions={[
+          { label: 'Download JSON', href: '/ontology.json', tone: 'secondary' },
+          { label: 'View Graph', href: '/corpus', tone: 'ghost' }
+        ]}
+      />
+
+      <div class="field-layout">
+        <div class="field-main">
+          <div class="ontology-grid">
+            {relationTypes.map((type) => {
+              const isManual = MANUAL_ONLY_RELATIONS.includes(type);
+              return (
+                <div class="ontology-card">
+                  <div class="ontology-header">
+                    <h3 class="ontology-name">{RELATION_LABELS[type]}</h3>
+                    <code class="ontology-code">{type}</code>
+                  </div>
+                  <p class="ontology-description">{RELATION_DESCRIPTION[type]}</p>
+                  
+                  <div class="ontology-metadata">
+                    <div class="meta-row">
+                      <span class="meta-label">Directionality:</span>
+                      <span class="meta-value">Source → Target (directional edge)</span>
+                    </div>
+                    <div class="meta-row">
+                      <span class="meta-label">Confidence Policy:</span>
+                      <span class="meta-value badge" data-policy={isManual ? 'manual' : 'inferable'}>
+                        {isManual ? 'Manual Verification Required' : 'Inferable from Overlap'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .ontology-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .ontology-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .ontology-card {
+    background: linear-gradient(135deg, rgba(30, 27, 24, 0.4) 0%, rgba(15, 12, 10, 0.6) 100%);
+    border: 1px solid var(--border-dim);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .ontology-card:hover {
+    border-color: var(--border-mid);
+    transform: translateY(-2px);
+  }
+
+  .ontology-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+  }
+
+  .ontology-name {
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .ontology-code {
+    font-family: var(--font-mono);
+    font-size: var(--text-xxs);
+    color: var(--accent-light);
+    background: rgba(232, 212, 176, 0.05);
+    border: 1px solid rgba(232, 212, 176, 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .ontology-description {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .ontology-metadata {
+    border-top: 1px solid var(--border-dim);
+    padding-top: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-xxs);
+  }
+
+  .meta-label {
+    color: var(--text-dim);
+  }
+
+  .meta-value {
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  .meta-value.badge {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .meta-value.badge[data-policy="manual"] {
+    background: rgba(239, 68, 68, 0.08);
+    color: rgb(239, 68, 68);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+  }
+
+  .meta-value.badge[data-policy="inferable"] {
+    background: rgba(16, 185, 129, 0.08);
+    color: rgb(16, 185, 129);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+  }
+</style>

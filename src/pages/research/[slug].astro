@@ -81,6 +81,8 @@ const articleSchema = buildArticleSchema({
   version={data.version}
   changelog={data.changelog}
   crystallization={data.crystallization}
+  evidence={(data as any).evidence}
+  consensus={(data as any).consensus}
   slug={entry.slug}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />

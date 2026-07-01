@@ -10,6 +10,13 @@ export type CrystallizationState =
   | 'crystallized'  // Stable, supported by multiple specimens
   | 'canonical'     // Externally verified or cited — stable for institutional reference
   | 'deprecated';   // Retired, superseded, or structurally invalidated
+export type EvidenceLevel = 'weak' | 'moderate' | 'strong';
+export type ConsensusLevel =
+  | 'personal-hypothesis'   // Personal attractor/working model
+  | 'framework-proposition'  // Part of named framework spec
+  | 'internally-validated'   // Validated against internal project specimens
+  | 'widely-adopted'         // Externally integrated or cited by institutions
+  | 'deprecated';            // Retired or superseded
 export type GovernanceRelevance = 'none' | 'adjacent' | 'direct';
 export type ContentType = 'research' | 'digest' | 'product' | 'clause' | 'field' | 'signal';
 export type PublishStatus = 'draft' | 'published' | 'archived';
@@ -30,6 +37,10 @@ export interface BaseContentFrontmatter {
   themes?: string[];
   /** How settled is the conceptual work in this entry */
   crystallization: CrystallizationState;
+  /** Axis 1: Empirical verification status */
+  evidence?: EvidenceLevel;
+  /** Axis 2: Consensus and adoption status */
+  consensus?: ConsensusLevel;
   /** Degree to which this content has direct governance implications */
   governanceRelevance?: GovernanceRelevance;
   /** Lineage markers — which intellectual threads does this belong to */
